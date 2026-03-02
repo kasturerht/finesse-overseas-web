@@ -1,17 +1,41 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+// Here we define the SEO Data for the Home Page
+const seoTitle = "Study in Europe for Free | Finesse Overseas Education";
+const seoDescription = "Kolhapur's most trusted study abroad consultants. Specializing in zero tuition fee public universities in Germany and 100% scholarships in Italy.";
+const siteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Finesse Overseas Education",
+  "description": seoDescription,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Samarth Sakshi Plaza, First Floor, Above Sohala Showroom, Beside Lenskart, 4th Lane, Rajarampuri",
+    "addressLocality": "Kolhapur",
+    "postalCode": "416008",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+  }
+});
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={seoTitle} description={seoDescription} schema={siteSchema}>
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+    <span class="text-teal-600 font-semibold tracking-wide uppercase mb-3">Kolhapur's Most Trusted Consultants</span>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl text-slate-900">
+      Unlock Free Education in Europe with <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">Expert Visa Strategies</span>
+    </h1>
+    <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
+      Specializing in Germany (Zero Tuition Fee) & Italy (100% Scholarship). Guided by 22+ Years of Expertise.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="/contact" class="px-8 py-4 bg-teal-600 text-white font-bold rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300">
+        Check Your Eligibility - Free
+      </a>
+      <a href="#success-stories" class="px-8 py-4 bg-white text-slate-800 font-bold rounded-lg border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-300">
+        Watch Success Stories
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,56 @@
+---
+// This is the Frontmatter script where we write Server-side logic.
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import TopBar from '../components/TopBar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  schema?: string;
+}
+
+const { title, description, canonical, schema } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    {schema && <script type="application/ld+json" set:html={schema} />}
+    
+    </head>
+  <body class="font-inter bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+    
+    <TopBar /> <Navbar /> <main>
+      <slot /> </main>
+
+    </body>
+</html>
+
+<style is:global>
+  /* Global CSS Variables for our 60-30-10 Color Rule */
+  :root {
+    --accent: 13, 148, 136; /* Teal/Blue-Green Accent */
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+</style>

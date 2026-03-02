@@ -1,0 +1,31 @@
+---
+// src/components/TopBar.astro
+---
+
+<div id="announcement-bar" class="bg-slate-900 text-slate-200 text-sm py-2.5 px-4 relative flex justify-center items-center z-[60] transition-all duration-300">
+  <p class="text-center font-medium">
+    Germany Summer 2026 Intake Applications Closing Soon! 
+    <a href="#consultation" class="font-bold text-teal-400 hover:text-teal-300 ml-1 underline underline-offset-2 transition-colors">
+      Apply Before Oct 15.
+    </a>
+  </p>
+  
+  <button id="close-announcement" class="absolute right-4 md:right-6 text-slate-400 hover:text-white focus:outline-none transition-colors" aria-label="Close Announcement">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // Vanilla JS to handle the close action without React bloat
+  const closeBtn = document.getElementById('close-announcement');
+  const bar = document.getElementById('announcement-bar');
+
+  if (closeBtn && bar) {
+    closeBtn.addEventListener('click', () => {
+      bar.style.display = 'none';
+      // Future enhancement: We can set a local storage cookie here so it doesn't show again if closed
+    });
+  }
+</script>
