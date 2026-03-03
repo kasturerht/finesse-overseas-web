@@ -1,7 +1,8 @@
 ---
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import ROICalculator from '../components/ROICalculator.astro';
 
-// Here we define the SEO Data for the Home Page
 const seoTitle = "Study in Europe for Free | Finesse Overseas Education";
 const seoDescription = "Kolhapur's most trusted study abroad consultants. Specializing in zero tuition fee public universities in Germany and 100% scholarships in Italy.";
 const siteSchema = JSON.stringify({
@@ -18,24 +19,182 @@ const siteSchema = JSON.stringify({
     "addressCountry": "IN"
   }
 });
+
+// Destination Data Array (Mapping from your PDF)
+const destinations = [
+  { name: "Germany", hook: "World-Class Engineering at Zero Tuition Fee.", usps: ["Public Universities (No Fees)", "18-Month Job Seeker Visa"], link: "/study-in-germany" },
+  { name: "Italy", hook: "Get 100% Scholarship + Annual Stipend.", usps: ["Earn up to 8 Lakhs/Year", "No IELTS Required (Selected Unis)"], link: "/study-in-italy" },
+  { name: "Austria", hook: "High Quality Education at Low Cost.", usps: ["No Blocked Account Needed", "Affordable Fees (€736/Sem)"], link: "#" },
+  { name: "UK / USA", hook: "Fast-Track Masters & STEM Careers.", usps: ["1-Year Masters (UK)", "3-Year Work Permit (USA STEM)"], link: "#" }
+];
 ---
 
 <Layout title={seoTitle} description={seoDescription} schema={siteSchema}>
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-4">
-    <span class="text-teal-600 font-semibold tracking-wide uppercase mb-3">Kolhapur's Most Trusted Consultants</span>
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl text-slate-900">
-      Unlock Free Education in Europe with <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">Expert Visa Strategies</span>
-    </h1>
-    <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-      Specializing in Germany (Zero Tuition Fee) & Italy (100% Scholarship). Guided by 22+ Years of Expertise.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4">
-      <a href="/contact" class="px-8 py-4 bg-teal-600 text-white font-bold rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300">
-        Check Your Eligibility - Free
-      </a>
-      <a href="#success-stories" class="px-8 py-4 bg-white text-slate-800 font-bold rounded-lg border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-300">
-        Watch Success Stories
-      </a>
+  
+<section class="relative min-h-[85vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-[#0A0F1C]">
+    
+    <div class="absolute inset-0 z-0 bg-[#0A0F1C]">
+      <div 
+        class="absolute inset-0 opacity-[0.08] grayscale mix-blend-luminosity transition-opacity duration-1000"
+        style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"
+      ></div>
+      
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#0A0F1C]/90 via-[#0A0F1C]/40 to-[#0A0F1C]"></div>
+      
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-teal-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-12">
+      
+      <div class="mb-10 inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-800/60 border border-slate-700/50 backdrop-blur-md shadow-2xl h-11 overflow-hidden cursor-default">
+        <span class="relative flex h-3 w-3 shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-teal-500"></span>
+        </span>
+        <span id="dynamic-ticker-text" class="text-sm font-medium text-slate-200 transition-opacity duration-500 opacity-100 min-w-[280px] sm:min-w-[350px] text-left">
+          Loading live updates...
+        </span>
+      </div>
+
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-white leading-[1.1]">
+        Unlock Free Education in Europe with <br class="hidden md:block"/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">Expert Visa Strategies</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed font-normal">
+        We cut the confusion. Get <span class="text-white font-semibold">Zero Tuition Fee</span> in Germany & <span class="text-white font-semibold">100% Scholarship</span> in Italy.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto">
+        <a href="#consultation" class="group relative px-8 py-4 bg-teal-500 text-slate-900 font-bold rounded-lg hover:bg-teal-400 transition-all duration-300 w-full flex items-center justify-center shadow-[0_0_20px_rgba(20,184,166,0.2)] hover:shadow-[0_0_30px_rgba(20,184,166,0.4)]">
+          Check Your Eligibility - Free
+          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+        </a>
+      </div>
+      
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Future: This array will be fetched from Sanity CMS API
+      const tickerData = [
+        "Recent Admit: Rohan (Kolhapur) got 100% Scholarship in Italy 🇮🇹",
+        "Visa Alert: 18-Month Job Seeker Visas are open for Germany 🇩🇪",
+        "Success: Sneha secured admission in TU Munich (Zero Fees) 🎓",
+        "Fast Track: 15-day APS processing completed for 12 students ⚡"
+      ];
+
+      const tickerElement = document.getElementById('dynamic-ticker-text');
+      let currentIndex = 0;
+
+      if(tickerElement) {
+        // Initialize first text
+        tickerElement.textContent = tickerData[0];
+
+        setInterval(() => {
+          // Fade out
+          tickerElement.classList.remove('opacity-100');
+          tickerElement.classList.add('opacity-0');
+          
+          setTimeout(() => {
+            // Change text while hidden
+            currentIndex = (currentIndex + 1) % tickerData.length;
+            tickerElement.textContent = tickerData[currentIndex];
+            
+            // Fade in
+            tickerElement.classList.remove('opacity-0');
+            tickerElement.classList.add('opacity-100');
+          }, 500); // 500ms matches the CSS transition duration
+          
+        }, 4000); // Rotate every 4 seconds
+      }
+    });
+  </script>
+
+  <section class="py-10 bg-slate-900 text-white relative z-20 -mt-12 mx-4 md:mx-auto max-w-7xl rounded-2xl shadow-2xl">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-12 text-center divide-x divide-slate-700/50">
+      <div class="px-4">
+        <div class="text-3xl font-black text-teal-400 mb-1">22+</div>
+        <div class="text-sm text-slate-300 font-medium">Years Experience</div>
+      </div>
+      <div class="px-4">
+        <div class="text-3xl font-black text-teal-400 mb-1">1000+</div>
+        <div class="text-sm text-slate-300 font-medium">Students Placed</div>
+      </div>
+      <div class="px-4">
+        <div class="text-3xl font-black text-teal-400 mb-1">99%</div>
+        <div class="text-sm text-slate-300 font-medium">Visa Success Rate</div>
+      </div>
+      <div class="px-4">
+        <div class="text-xl font-bold text-teal-400 mb-1 mt-1">ICEF / Goethe</div>
+        <div class="text-sm text-slate-300 font-medium">Certified Training</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white" id="destinations">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Where Do You Want to Study?</h2>
+        <p class="text-lg text-slate-600">Select your dream destination to explore tuition-free and scholarship-based programs.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {destinations.map((dest) => (
+          <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-teal-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2 group-hover:text-teal-600 transition-colors">Study in {dest.name}</h3>
+            <p class="text-teal-700 font-semibold text-sm mb-6 pb-4 border-b border-slate-200">{dest.hook}</p>
+            <ul class="space-y-3 mb-8 flex-grow text-slate-600 text-sm">
+              {dest.usps.map((usp) => (
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-teal-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>{usp}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={dest.link} class="mt-auto w-full block text-center bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-bold py-3 rounded-lg transition-colors">
+              Explore {dest.name}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ROICalculator />
+
+  <section class="py-24 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Expertise You Can Trust. <span class="text-teal-600">Guidance You Deserve.</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+          <div class="w-32 h-32 rounded-full bg-slate-200 shrink-0 overflow-hidden border-4 border-slate-50">
+             <div class="w-full h-full flex items-center justify-center text-slate-400 text-xs">Photo</div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">Jayant Patil</h3>
+            <p class="text-teal-600 font-medium text-sm mb-4">Director & Visa Strategist</p>
+            <p class="text-slate-600 italic">"With 20+ years in technical operations, I ensure your documentation is error-free and visa-ready."</p>
+          </div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+          <div class="w-32 h-32 rounded-full bg-slate-200 shrink-0 overflow-hidden border-4 border-slate-50">
+             <div class="w-full h-full flex items-center justify-center text-slate-400 text-xs">Photo</div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">Sneha Pai</h3>
+            <p class="text-teal-600 font-medium text-sm mb-4">Director & Career Mentor</p>
+            <p class="text-slate-600 italic">"I help students identify their true potential and match them with universities that value their talent."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>

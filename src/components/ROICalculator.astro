@@ -1,0 +1,162 @@
+---
+// src/components/ROICalculator.astro
+---
+
+<section class="py-24 bg-white relative overflow-hidden" id="roi-calculator">
+  <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-teal-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-16">
+      <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Financial Transparency</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Calculate Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">Actual Cost</span></h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">Don't guess your expenses. Use our live calculator to see exactly how part-time jobs and scholarships cover your living costs in Europe.</p>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 md:p-10 grid lg:grid-cols-2 gap-12">
+      
+      <div class="flex flex-col justify-center space-y-8">
+        
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">1. Select Destination</label>
+          <div class="grid grid-cols-2 gap-4">
+            <button id="btn-germany" class="country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md">
+              🇩🇪 Germany
+            </button>
+            <button id="btn-italy" class="country-btn bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300 py-3 rounded-xl font-semibold transition-all">
+              🇮🇹 Italy
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-end mb-3">
+            <label class="block text-sm font-bold text-slate-700 uppercase tracking-wide">2. Part-Time Work</label>
+            <span class="text-teal-600 font-bold text-xl"><span id="hours-display">20</span> <span class="text-sm text-slate-500 font-medium">hrs/week</span></span>
+          </div>
+          <input type="range" id="work-hours" min="0" max="20" value="20" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-500">
+          <div class="flex justify-between text-xs text-slate-400 mt-2 font-medium">
+            <span>0 hrs</span>
+            <span>Legal Max (20 hrs)</span>
+          </div>
+        </div>
+
+        <div id="dynamic-note" class="bg-teal-50 text-teal-800 p-4 rounded-xl text-sm font-medium border border-teal-100">
+          💡 In Germany, students typically earn €12 to €15 per hour working part-time.
+        </div>
+
+      </div>
+
+      <div class="bg-slate-900 rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-400/20 to-blue-500/20 blur-2xl rounded-full"></div>
+        
+        <h3 class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-6">Monthly Financial Projection</h3>
+        
+        <div class="space-y-6">
+          <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
+            <span class="text-slate-300">University Tuition Fee</span>
+            <span class="text-xl font-bold text-teal-400">€0</span>
+          </div>
+          
+          <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
+            <span class="text-slate-300">Est. Living Expenses</span>
+            <span class="text-xl font-bold text-rose-400" id="out-living">- €934</span>
+          </div>
+
+          <div id="scholarship-row" class="hidden flex justify-between items-center pb-4 border-b border-slate-700/50">
+            <span class="text-slate-300">DSU Scholarship Stipend</span>
+            <span class="text-xl font-bold text-teal-400">+ €616</span>
+          </div>
+          
+          <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
+            <span class="text-slate-300">Part-Time Earnings</span>
+            <span class="text-xl font-bold text-teal-400" id="out-earning">+ €960</span>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-slate-600">
+          <div class="flex justify-between items-end">
+            <div>
+              <span class="block text-slate-400 text-sm font-medium mb-1">Your Net Cost / Savings</span>
+              <span class="text-xs text-slate-500">Per month</span>
+            </div>
+            <span class="text-4xl font-black" id="out-net">+ €26</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Grandmaster-level Vanilla JS logic for instant calculation
+  document.addEventListener('DOMContentLoaded', () => {
+    // Data Models based on Finesse PDF Data
+    const data = {
+      germany: { living: 934, hourlyWage: 12, scholarship: 0, note: "💡 In Germany, students typically earn €12 to €15 per hour working part-time." },
+      italy: { living: 800, hourlyWage: 9, scholarship: 616, note: "💡 Italy offers 100% scholarship + €7,400/year DSU stipend (approx €616/month)." }
+    };
+
+    let currentCountry = 'germany';
+
+    // DOM Elements
+    const btnGermany = document.getElementById('btn-germany');
+    const btnItaly = document.getElementById('btn-italy');
+    const sliderHours = document.getElementById('work-hours');
+    const displayHours = document.getElementById('hours-display');
+    const noteDisplay = document.getElementById('dynamic-note');
+    
+    const outLiving = document.getElementById('out-living');
+    const outEarning = document.getElementById('out-earning');
+    const outNet = document.getElementById('out-net');
+    const scholarshipRow = document.getElementById('scholarship-row');
+
+    // Calculate Engine
+    const calculate = () => {
+      const hoursPerWeek = parseInt(sliderHours.value);
+      displayHours.textContent = hoursPerWeek;
+
+      const stats = data[currentCountry];
+      const monthlyEarning = hoursPerWeek * 4 * stats.hourlyWage;
+      
+      const netAmount = (monthlyEarning + stats.scholarship) - stats.living;
+
+      // Update UI
+      outLiving.textContent = `- €${stats.living}`;
+      outEarning.textContent = `+ €${monthlyEarning}`;
+      
+      if(netAmount >= 0) {
+        outNet.textContent = `+ €${netAmount} (Saved)`;
+        outNet.className = "text-4xl font-black text-teal-400";
+      } else {
+        outNet.textContent = `- €${Math.abs(netAmount)} (Cost)`;
+        outNet.className = "text-4xl font-black text-rose-400";
+      }
+    };
+
+    // Event Listeners
+    sliderHours.addEventListener('input', calculate);
+
+    btnGermany.addEventListener('click', () => {
+      currentCountry = 'germany';
+      btnGermany.className = "country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md";
+      btnItaly.className = "country-btn bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300 py-3 rounded-xl font-semibold transition-all";
+      noteDisplay.textContent = data.germany.note;
+      scholarshipRow.classList.add('hidden');
+      calculate();
+    });
+
+    btnItaly.addEventListener('click', () => {
+      currentCountry = 'italy';
+      btnItaly.className = "country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md";
+      btnGermany.className = "country-btn bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300 py-3 rounded-xl font-semibold transition-all";
+      noteDisplay.textContent = data.italy.note;
+      scholarshipRow.classList.remove('hidden');
+      calculate();
+    });
+
+    // Initial load
+    calculate();
+  });
+</script>
