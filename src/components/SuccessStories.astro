@@ -1,0 +1,98 @@
+---
+// src/components/SuccessStories.astro
+
+const stories = [
+  {
+    id: "w0-M8cRF_fA",
+    student: "Success Story 1",
+    destination: "Germany",
+    impact: "Secured Admission",
+    thumbnail: "https://img.youtube.com/vi/w0-M8cRF_fA/maxresdefault.jpg"
+  },
+  {
+    id: "DVHH7pBTlPE",
+    student: "Success Story 2",
+    destination: "Italy",
+    impact: "100% Scholarship Secured",
+    thumbnail: "https://img.youtube.com/vi/DVHH7pBTlPE/maxresdefault.jpg"
+  },
+  {
+    id: "kDZpnYsxgNI",
+    student: "Success Story 3",
+    destination: "Germany",
+    impact: "Visa Success",
+    thumbnail: "https://img.youtube.com/vi/kDZpnYsxgNI/maxresdefault.jpg"
+  }
+];
+---
+
+<section class="py-24 bg-slate-50 overflow-hidden" id="success-stories">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Real Results, Real People</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Success Stories</h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">Hear directly from our students who are currently building their global careers in Europe.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {stories.map((story) => (
+        <div class="group bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-2xl transition-all duration-500">
+          
+          <div class="relative aspect-video cursor-pointer video-container overflow-hidden" data-id={story.id}>
+            <img 
+              src={story.thumbnail} 
+              alt={story.student} 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 flex items-center justify-center bg-slate-900/20 group-hover:bg-slate-900/40 transition-colors">
+              <div class="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-teal-50 text-teal-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-teal-100">
+                {story.destination}
+              </span>
+              <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">• {story.impact}</span>
+            </div>
+            <h3 class="text-xl font-black text-slate-900 group-hover:text-teal-600 transition-colors">
+              {story.student}
+            </h3>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script to swap Facade with real YouTube Iframe on Click
+  const initVideos = () => {
+    document.querySelectorAll('.video-container').forEach(container => {
+      container.addEventListener('click', function() {
+        const id = this.getAttribute('data-id');
+        this.innerHTML = `
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${id}?autoplay=1" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            class="absolute inset-0 w-full h-full"
+          ></iframe>
+        `;
+      });
+    });
+  };
+
+  initVideos();
+  // Support for Astro View Transitions
+  document.addEventListener('astro:after-swap', initVideos);
+</script>

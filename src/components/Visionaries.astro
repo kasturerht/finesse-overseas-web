@@ -1,0 +1,81 @@
+---
+// src/components/Visionaries.astro
+const leaders = [
+  {
+    name: "Jayant Patil",
+    role: "Founder & Strategic Director",
+    experience: "22+ Years",
+    expertise: "German Public University Specialist",
+    bio: "With over two decades of experience, Jayant has mastered the intricacies of European education systems. He is ICEF trained and specializes in high-probability admission strategies for tuition-free universities.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2000&auto=format&fit=crop", // Replace with real photo
+    tags: ["ICEF Trained", "Public Uni Expert"]
+  },
+  {
+    name: "Sneha Pai",
+    role: "International Mentor & Visa Head",
+    experience: "International Specialist",
+    expertise: "Italy & Germany Visa Strategist",
+    bio: "Sneha is the driving force behind Finesse’s 99% visa success rate. She specializes in the complex bureaucratic processes of APS, DOV, and DSU scholarships, ensuring a frictionless journey for every student.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2000&auto=format&fit=crop", // Replace with real photo
+    tags: ["Visa Specialist", "DSU Mentor"]
+  }
+];
+---
+
+<section class="py-24 bg-white" id="visionaries">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <div class="max-w-2xl">
+        <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">The Minds Behind Your Success</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Meet the Visionaries</h2>
+      </div>
+      <p class="text-slate-600 text-lg max-w-sm">Leading with 22+ years of on-ground expertise in European education.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      {leaders.map((leader) => (
+        <div class="group relative bg-slate-50 rounded-[2.5rem] p-8 md:p-12 overflow-hidden border border-slate-100 hover:border-teal-200 transition-all duration-500 hover:shadow-2xl hover:shadow-teal-900/5">
+          
+          <div class="absolute -right-20 -top-20 w-64 h-64 bg-teal-500/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row gap-8 items-start">
+            <div class="w-full lg:w-48 shrink-0">
+              <div class="aspect-square rounded-3xl overflow-hidden border-4 border-white shadow-lg">
+                <img 
+                  src={leader.image} 
+                  alt={leader.name} 
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+            </div>
+
+            <div class="flex-grow">
+              <div class="flex flex-wrap gap-2 mb-4">
+                {leader.tags.map(tag => (
+                  <span class="px-3 py-1 bg-white border border-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-widest rounded-full">{tag}</span>
+                ))}
+              </div>
+              
+              <h3 class="text-3xl font-black text-slate-900 mb-1">{leader.name}</h3>
+              <p class="text-teal-600 font-bold text-sm uppercase tracking-wider mb-6">{leader.role}</p>
+              
+              <p class="text-slate-600 leading-relaxed mb-8 italic">"{leader.bio}"</p>
+              
+              <div class="grid grid-cols-2 gap-4 pt-6 border-t border-slate-200">
+                <div>
+                  <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Experience</p>
+                  <p class="text-slate-900 font-bold">{leader.experience}</p>
+                </div>
+                <div>
+                  <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Focus</p>
+                  <p class="text-slate-900 font-bold">{leader.expertise}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
