@@ -1,0 +1,92 @@
+---
+// src/components/Destinations.astro
+
+// Future-proof Data Array (Will be replaced by Sanity CMS later)
+const destinations = [
+  { 
+    id: "germany",
+    name: "Germany", 
+    badge: "Zero Tuition Fee",
+    badgeColor: "bg-slate-900 text-white",
+    hook: "World-Class Engineering at 0 Cost.", 
+    usps: ["Public Universities (No Fees)", "18-Month Job Seeker Visa", "APS Assistance"], 
+    link: "/study-in-germany",
+    isPopular: true
+  },
+  { 
+    id: "italy",
+    name: "Italy", 
+    badge: "100% Scholarship",
+    badgeColor: "bg-teal-500 text-slate-900",
+    hook: "Free Education + Annual Stipend.", 
+    usps: ["Earn up to ₹8 Lakhs/Year", "No IELTS (Selected Unis)", "DSU Scholarship Process"], 
+    link: "/study-in-italy",
+    isPopular: true
+  },
+  { 
+    id: "austria",
+    name: "Austria", 
+    badge: "Low Cost",
+    badgeColor: "bg-slate-100 text-slate-600 border border-slate-200",
+    hook: "High Quality Education at Low Cost.", 
+    usps: ["No Blocked Account Needed", "Affordable Fees (€736/Sem)", "High Visa Success"], 
+    link: "#",
+    isPopular: false
+  },
+  { 
+    id: "uk-usa",
+    name: "UK / USA", 
+    badge: "Fast-Track",
+    badgeColor: "bg-slate-100 text-slate-600 border border-slate-200",
+    hook: "Fast-Track Masters & STEM Careers.", 
+    usps: ["1-Year Masters (UK)", "3-Year Work Permit (USA STEM)", "Top Ranked Unis"], 
+    link: "#",
+    isPopular: false
+  }
+];
+---
+
+<section class="py-24 bg-slate-50 relative" id="destinations">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Your Global Pathway</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Where Do You Want to Study?</h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">Select your dream destination to explore tuition-free public universities and fully-funded scholarship programs.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {destinations.map((dest) => (
+        <div class="relative bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] hover:border-teal-400/50 transform hover:-translate-y-2 transition-all duration-300 ease-out will-change-transform group flex flex-col h-full overflow-hidden">
+          
+          {dest.isPopular && (
+            <div class="absolute top-0 right-0 w-24 h-24 bg-teal-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150 duration-500"></div>
+          )}
+
+          <div class="mb-6 relative z-10">
+            <span class={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-md mb-4 ${dest.badgeColor}`}>
+              {dest.badge}
+            </span>
+            <h3 class="text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors">Study in {dest.name}</h3>
+          </div>
+          
+          <p class="text-slate-700 font-medium text-sm mb-6 pb-6 border-b border-slate-100 relative z-10">{dest.hook}</p>
+          
+          <ul class="space-y-3 mb-8 flex-grow text-slate-600 text-sm relative z-10">
+            {dest.usps.map((usp) => (
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-teal-500 mr-2.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span class="font-medium">{usp}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <a href={dest.link} class="mt-auto w-full block text-center bg-slate-50 border border-slate-200 text-slate-900 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 font-bold py-3.5 rounded-xl transition-colors relative z-10">
+            Explore {dest.name}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
