@@ -13,7 +13,7 @@
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">Don't guess your expenses. Use our live calculator to see exactly how part-time jobs and scholarships cover your living costs in Europe.</p>
     </div>
 
-    <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 md:p-10 grid lg:grid-cols-2 gap-12">
+    <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 md:p-10 grid lg:grid-cols-2 gap-12 relative z-20">
       
       <div class="flex flex-col justify-center space-y-8">
         
@@ -47,15 +47,22 @@
 
       </div>
 
-      <div class="bg-slate-900 rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-400/20 to-blue-500/20 blur-2xl rounded-full"></div>
+      <div class="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-400/20 to-blue-500/20 blur-2xl rounded-full pointer-events-none"></div>
         
-        <h3 class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-6">Monthly Financial Projection</h3>
+        <div class="flex justify-between items-center mb-6 relative z-10 border-b border-slate-700/50 pb-4">
+          <h3 class="text-slate-400 text-xs sm:text-sm font-bold uppercase tracking-widest">Monthly Projection</h3>
+          
+          <div class="bg-slate-800 p-1 rounded-lg flex text-xs font-bold shadow-inner">
+            <button id="curr-eur" class="px-3 py-1.5 rounded-md bg-teal-500 text-slate-900 transition-all shadow-sm">EUR (€)</button>
+            <button id="curr-inr" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">INR (₹)</button>
+          </div>
+        </div>
         
-        <div class="space-y-6">
+        <div class="space-y-5 relative z-10">
           <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
             <span class="text-slate-300">University Tuition Fee</span>
-            <span class="text-xl font-bold text-teal-400">€0</span>
+            <span class="text-xl font-bold text-teal-400" id="out-tuition">€0</span>
           </div>
           
           <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
@@ -65,7 +72,7 @@
 
           <div id="scholarship-row" class="hidden flex justify-between items-center pb-4 border-b border-slate-700/50">
             <span class="text-slate-300">DSU Scholarship Stipend</span>
-            <span class="text-xl font-bold text-teal-400">+ €616</span>
+            <span class="text-xl font-bold text-teal-400" id="out-scholarship">+ €616</span>
           </div>
           
           <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
@@ -74,13 +81,16 @@
           </div>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-slate-600">
-          <div class="flex justify-between items-end">
+        <div class="mt-8 pt-6 border-t border-slate-600 relative z-10">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-2 sm:gap-4">
             <div>
               <span class="block text-slate-400 text-sm font-medium mb-1">Your Net Cost / Savings</span>
               <span class="text-xs text-slate-500">Per month</span>
             </div>
-            <span class="text-4xl font-black" id="out-net">+ €26</span>
+            <div class="text-left sm:text-right flex items-baseline sm:block">
+              <span class="text-4xl font-black tracking-tight" id="out-net">+ €26</span>
+              <span class="text-lg font-bold ml-2 sm:ml-1" id="out-net-label">(Saved)</span>
+            </div>
           </div>
         </div>
 
@@ -90,15 +100,17 @@
 </section>
 
 <script>
-  // Grandmaster-level Vanilla JS logic for instant calculation
   document.addEventListener('DOMContentLoaded', () => {
-    // Data Models based on Finesse PDF Data
+    // Financial Data Models (Base Currency: EUR)
     const data = {
       germany: { living: 934, hourlyWage: 12, scholarship: 0, note: "💡 In Germany, students typically earn €12 to €15 per hour working part-time." },
       italy: { living: 800, hourlyWage: 9, scholarship: 616, note: "💡 Italy offers 100% scholarship + €7,400/year DSU stipend (approx €616/month)." }
     };
 
+    // State Variables
     let currentCountry = 'germany';
+    let currentCurrency = 'EUR';
+    const EXCHANGE_RATE = 91; // 1 EUR = 91 INR (Adjustable)
 
     // DOM Elements
     const btnGermany = document.getElementById('btn-germany');
@@ -107,37 +119,60 @@
     const displayHours = document.getElementById('hours-display');
     const noteDisplay = document.getElementById('dynamic-note');
     
+    const currEurBtn = document.getElementById('curr-eur');
+    const currInrBtn = document.getElementById('curr-inr');
+
+    const outTuition = document.getElementById('out-tuition');
     const outLiving = document.getElementById('out-living');
+    const outScholarship = document.getElementById('out-scholarship');
     const outEarning = document.getElementById('out-earning');
     const outNet = document.getElementById('out-net');
+    const outNetLabel = document.getElementById('out-net-label');
     const scholarshipRow = document.getElementById('scholarship-row');
 
-    // Calculate Engine
+    // Number Formatter (Handles INR Commas seamlessly)
+    const formatCurrency = (amount, prefix = '') => {
+      if (currentCurrency === 'INR') {
+        const inrAmount = amount * EXCHANGE_RATE;
+        return `${prefix}₹${Math.round(inrAmount).toLocaleString('en-IN')}`;
+      }
+      return `${prefix}€${Math.round(amount).toLocaleString('en-US')}`;
+    };
+
+    // Main Calculation Engine
     const calculate = () => {
       const hoursPerWeek = parseInt(sliderHours.value);
       displayHours.textContent = hoursPerWeek;
 
       const stats = data[currentCountry];
       const monthlyEarning = hoursPerWeek * 4 * stats.hourlyWage;
-      
       const netAmount = (monthlyEarning + stats.scholarship) - stats.living;
 
-      // Update UI
-      outLiving.textContent = `- €${stats.living}`;
-      outEarning.textContent = `+ €${monthlyEarning}`;
+      // Update UI with Formatted Currency
+      outTuition.textContent = formatCurrency(0);
+      outLiving.textContent = formatCurrency(stats.living, '- ');
+      outScholarship.textContent = formatCurrency(stats.scholarship, '+ ');
+      outEarning.textContent = formatCurrency(monthlyEarning, '+ ');
       
       if(netAmount >= 0) {
-        outNet.textContent = `+ €${netAmount} (Saved)`;
-        outNet.className = "text-4xl font-black text-teal-400";
+        outNet.textContent = formatCurrency(netAmount, '+ ');
+        outNet.className = "text-4xl font-black text-teal-400 tracking-tight";
+        outNetLabel.textContent = "(Saved)";
+        outNetLabel.className = "text-lg font-bold ml-2 sm:ml-1 text-teal-500/80";
       } else {
-        outNet.textContent = `- €${Math.abs(netAmount)} (Cost)`;
-        outNet.className = "text-4xl font-black text-rose-400";
+        outNet.textContent = formatCurrency(Math.abs(netAmount), '- ');
+        outNet.className = "text-4xl font-black text-rose-400 tracking-tight";
+        outNetLabel.textContent = "(Cost)";
+        outNetLabel.className = "text-lg font-bold ml-2 sm:ml-1 text-rose-500/80";
       }
     };
 
-    // Event Listeners
+    // --- Event Listeners ---
+    
+    // Slider
     sliderHours.addEventListener('input', calculate);
 
+    // Country Tabs
     btnGermany.addEventListener('click', () => {
       currentCountry = 'germany';
       btnGermany.className = "country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md";
@@ -153,6 +188,21 @@
       btnGermany.className = "country-btn bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300 py-3 rounded-xl font-semibold transition-all";
       noteDisplay.textContent = data.italy.note;
       scholarshipRow.classList.remove('hidden');
+      calculate();
+    });
+
+    // Currency Toggle
+    currEurBtn.addEventListener('click', () => {
+      currentCurrency = 'EUR';
+      currEurBtn.className = "px-3 py-1.5 rounded-md bg-teal-500 text-slate-900 transition-all shadow-sm";
+      currInrBtn.className = "px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all";
+      calculate();
+    });
+
+    currInrBtn.addEventListener('click', () => {
+      currentCurrency = 'INR';
+      currInrBtn.className = "px-3 py-1.5 rounded-md bg-teal-500 text-slate-900 transition-all shadow-sm";
+      currEurBtn.className = "px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all";
       calculate();
     });
 
