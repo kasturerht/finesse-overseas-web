@@ -1,0 +1,131 @@
+---
+// src/components/FAQ.astro
+
+const faqs = [
+  {
+    question: "Is education really free in Germany for international students?",
+    answer: "Yes. The vast majority of public universities in Germany do not charge tuition fees for Bachelor's and Master's programs, even for international students. You only need to pay a small semester contribution (usually €150 - €300) which often includes a public transport ticket."
+  },
+  {
+    question: "How does the 100% Scholarship in Italy work?",
+    answer: "Italy offers the DSU (Diritto allo Studio Universitario) scholarship, which is a regional need-based scholarship. If you qualify, it covers your full tuition fee, provides free hostel accommodation (or allowance), free daily meals, and an annual stipend of up to €7,000 to €8,000."
+  },
+  {
+    question: "What is an APS Certificate and why is it required?",
+    answer: "The APS (Akademische Prüfstelle) certificate is a mandatory document for Indian students applying to German universities. It verifies the authenticity of your Indian academic documents. Finesse handles the entire APS notarization and application process to ensure zero delays."
+  },
+  {
+    question: "Do I need to speak German or Italian to study there?",
+    answer: "Not necessarily. We map your profile to 100% English-taught programs. However, learning the basics of the local language (A1/A2 level) is highly recommended for daily life, part-time jobs, and future post-study work opportunities."
+  },
+  {
+    question: "What is a Blocked Account for Germany?",
+    answer: "To get a German student visa, you must prove you can support yourself financially. You do this by depositing around €11,208 into a 'Blocked Account' (Sperrkonto) in Germany. This money remains yours, and you receive a monthly payout of €934 to cover your living expenses."
+  }
+];
+
+// This is the Magic SEO Schema that Google reads to rank your site
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section class="py-24 bg-white relative overflow-hidden" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-16">
+      <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Clear Your Doubts</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Frequently Asked Questions</h2>
+      <p class="text-lg text-slate-600">Everything you need to know before starting your European education journey.</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-teal-200">
+          <button 
+            class="faq-button w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="text-lg font-bold text-slate-900 pr-8">{faq.question}</span>
+            <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 transition-transform duration-300">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </span>
+          </button>
+          
+          <div class="faq-answer grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <p class="px-6 pb-6 text-slate-600 leading-relaxed font-medium">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const initFaqs = () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-button');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      // Check if button exists to avoid TS errors
+      if (button && answer && icon) {
+        button.addEventListener('click', () => {
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          
+          // Optional: Close all other accordions when one opens (Comment this block out if you want multiple open at once)
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherButton = otherItem.querySelector('.faq-button');
+              const otherAnswer = otherItem.querySelector('.faq-answer');
+              const otherIcon = otherItem.querySelector('.faq-icon');
+              if (otherButton && otherAnswer && otherIcon) {
+                otherButton.setAttribute('aria-expanded', 'false');
+                otherAnswer.classList.remove('grid-rows-[1fr]');
+                otherAnswer.classList.add('grid-rows-[0fr]');
+                otherIcon.classList.remove('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+                otherItem.classList.remove('border-teal-500', 'shadow-md');
+              }
+            }
+          });
+
+          // Toggle current accordion
+          button.setAttribute('aria-expanded', (!isExpanded).toString());
+          
+          if (!isExpanded) {
+            answer.classList.remove('grid-rows-[0fr]');
+            answer.classList.add('grid-rows-[1fr]');
+            icon.classList.add('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+            item.classList.add('border-teal-500', 'shadow-md');
+          } else {
+            answer.classList.remove('grid-rows-[1fr]');
+            answer.classList.add('grid-rows-[0fr]');
+            icon.classList.remove('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+            item.classList.remove('border-teal-500', 'shadow-md');
+          }
+        });
+      }
+    });
+  };
+
+  initFaqs();
+  document.addEventListener('astro:after-swap', initFaqs);
+</script>

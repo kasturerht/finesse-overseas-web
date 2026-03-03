@@ -7,6 +7,9 @@ import Services from '../components/Services.astro';
 import Visionaries from '../components/Visionaries.astro';
 import SuccessStories from '../components/SuccessStories.astro';
 import Footer from '../components/Footer.astro';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import FAQ from '../components/FAQ.astro';
+import UniversitiesMarquee from '../components/UniversitiesMarquee.astro';
 
 const seoTitle = "Study in Europe for Free | Finesse Overseas Education";
 const seoDescription = "Kolhapur's most trusted study abroad consultants. Specializing in zero tuition fee public universities in Germany and 100% scholarships in Italy.";
@@ -139,6 +142,8 @@ const destinations = [
     </div>
   </section>
 
+  <UniversitiesMarquee />
+
   <section class="py-24 bg-white" id="destinations">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -146,14 +151,13 @@ const destinations = [
         <p class="text-lg text-slate-600">Select your dream destination to explore tuition-free and scholarship-based programs.</p>
       </div>
 
-<Destinations />
-
-  <ROICalculator />
-
+      <Destinations />
+      
+    </div> </section> <ROICalculator />
   <Services />
-
-<Visionaries />
-
+  <Visionaries />
   <SuccessStories />
-<Footer />
+  <FAQ />
+  <Footer />
+  <WhatsAppWidget />
 </Layout>

@@ -1,0 +1,82 @@
+---
+// src/components/UniversitiesMarquee.astro
+
+// Apan ata external links nahi, tar direct CSS ani text vaprat ahot.
+// He kadhich break honar nahi!
+const universities = [
+  { 
+    name: "TU Munich", 
+    style: "font-sans font-black tracking-tighter text-2xl",
+    prefix: "TUM" 
+  },
+  { 
+    name: "Politecnico di Milano", 
+    style: "font-serif font-bold italic text-xl",
+    prefix: "POLIMI" 
+  },
+  { 
+    name: "RWTH Aachen", 
+    style: "font-mono font-bold tracking-widest text-lg",
+    prefix: "RWTH" 
+  },
+  { 
+    name: "Uni Bologna", 
+    style: "font-serif font-semibold tracking-wide text-2xl uppercase",
+    prefix: "UNIBO" 
+  },
+  { 
+    name: "Sapienza Rome", 
+    style: "font-sans font-bold tracking-tight text-xl text-red-900",
+    prefix: "SAPIENZA" 
+  },
+  { 
+    name: "FU Berlin", 
+    style: "font-sans font-extrabold tracking-widest text-xl uppercase",
+    prefix: "FREIE" 
+  }
+];
+
+const doubledUnis = [...universities, ...universities];
+---
+
+<section class="py-12 bg-white border-b border-slate-100 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    <p class="text-center text-xs font-black text-slate-400 uppercase tracking-widest">Our Students Have Successfully Enrolled At</p>
+  </div>
+  
+  <div class="relative flex overflow-x-hidden group">
+    
+    <div class="absolute top-0 left-0 w-24 md:w-48 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+    
+    <div class="animate-marquee flex whitespace-nowrap items-center gap-20 md:gap-32 px-8 w-max">
+      {doubledUnis.map((uni) => (
+        <div class="flex-none flex items-center gap-3 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer select-none">
+          <svg class="w-8 h-8 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2.81-1.53M12 18.72l-5-2.73v-5l5 2.73l5-2.73v5l-5 2.73M12 5.28l7 3.82l-7 3.82l-7-3.82l7-3.82Z"/>
+          </svg>
+          <span class={`text-slate-800 ${uni.style}`}>
+            {uni.name}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div class="absolute top-0 right-0 w-24 md:w-48 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+    
+  </div>
+</section>
+
+<style>
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+  
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } 
+  }
+</style>
