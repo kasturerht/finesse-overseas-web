@@ -1,0 +1,101 @@
+---
+// src/components/Services.astro
+
+const services = [
+  {
+    step: "01",
+    title: "Strategic Shortlisting",
+    description: "We don't just apply; we strategize. We analyze your academic profile to target tuition-free public universities in Germany and 100% scholarship programs in Italy.",
+    features: ["Profile & GAP Justification", "English-Taught Course Mapping", "Elite SOP & LOR Drafting"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+    // Dark Theme for Card 1
+    themeClasses: "bg-slate-900 border-slate-700 text-white",
+    numberColor: "text-slate-800",
+    featureIcon: "bg-slate-800 text-teal-400 border-slate-700",
+    descColor: "text-slate-400"
+  },
+  {
+    step: "02",
+    title: "APS & Visa Processing",
+    description: "European paperwork is notoriously complex. We take 100% control of the bureaucratic maze, from German APS certification to Italian DOV and embassy prep.",
+    features: ["APS Document Notarization", "Embassy Appointment Booking", "Mock Visa Interviews"],
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop",
+    // Teal Brand Theme for Card 2
+    themeClasses: "bg-teal-600 border-teal-500 text-white",
+    numberColor: "text-teal-700",
+    featureIcon: "bg-teal-700 text-white border-teal-500",
+    descColor: "text-teal-100"
+  },
+  {
+    step: "03",
+    title: "Financial Strategy",
+    description: "Studying abroad shouldn't drain savings. We guide you through the exact financial structures required, ensuring zero blockages during your visa approval.",
+    features: ["Blocked Account Setup", "DSU Scholarship Filing", "Education Loan Assistance"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+    // Light/White Theme for Card 3
+    themeClasses: "bg-white border-slate-200 text-slate-900",
+    numberColor: "text-slate-100",
+    featureIcon: "bg-teal-50 text-teal-600 border-teal-100",
+    descColor: "text-slate-600"
+  }
+];
+---
+
+<section class="py-24 bg-slate-950 relative" id="services">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16 relative z-10">
+      <span class="text-teal-400 font-bold tracking-wider uppercase mb-3 block text-sm">Our Blueprint</span>
+      <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">How We Build Your Future</h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">Scroll down to see our step-by-step execution framework.</p>
+    </div>
+
+    <div class="relative pb-[20vh] space-y-12 md:space-y-24">
+      
+      {services.map((service, index) => {
+        // Dynamic top spacing so they stack perfectly like a deck of cards
+        const topOffsets = ['top-[10vh]', 'top-[15vh]', 'top-[20vh]'];
+        const zIndexes = ['z-10', 'z-20', 'z-30'];
+        
+        return (
+          <div class={`sticky ${topOffsets[index]} ${zIndexes[index]} w-full rounded-[2rem] overflow-hidden shadow-[0_30px_50px_-15px_rgba(0,0,0,0.5)] border ${service.themeClasses} flex flex-col md:flex-row min-h-[500px] transform transition-all duration-500 ease-out`}>
+            
+            <div class="p-10 md:p-16 flex flex-col justify-center w-full md:w-1/2 relative">
+              <span class={`absolute top-4 right-10 text-8xl md:text-[150px] font-black opacity-50 ${service.numberColor} select-none pointer-events-none`}>
+                {service.step}
+              </span>
+              
+              <div class="relative z-10">
+                <h3 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">{service.title}</h3>
+                <p class={`text-lg mb-8 leading-relaxed font-medium ${service.descColor}`}>{service.description}</p>
+                
+                <ul class="space-y-4">
+                  {service.features.map((feature) => (
+                    <li class="flex items-center font-bold">
+                      <span class={`flex items-center justify-center w-8 h-8 rounded-full mr-4 shrink-0 border ${service.featureIcon}`}>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                      </span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/2 relative min-h-[300px] md:min-h-full">
+               <img 
+                 src={service.image} 
+                 alt={service.title} 
+                 class="absolute inset-0 w-full h-full object-cover"
+                 loading={index === 0 ? "eager" : "lazy"}
+               />
+               <div class={`absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent to-${service.themeClasses.split(' ')[0].replace('bg-', '')} opacity-60 md:opacity-100 w-full md:w-1/3`}></div>
+            </div>
+
+          </div>
+        );
+      })}
+
+    </div>
+  </div>
+</section>
