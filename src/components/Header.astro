@@ -7,7 +7,7 @@
     <div class="flex justify-between items-center h-20">
       
       <a href="/" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold text-xl group-hover:bg-teal-500 transition-colors">
+        <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold text-xl group-hover:bg-teal-500 transition-colors shadow-sm">
           F
         </div>
         <div class="flex flex-col">
@@ -26,31 +26,51 @@
         </a>
       </nav>
 
-      <button id="mobile-menu-btn" class="md:hidden text-slate-800 focus:outline-none p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle Menu">
-        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      <button id="mobile-menu-btn" class="md:hidden text-slate-800 focus:outline-none p-2 rounded-lg hover:bg-slate-50 transition-colors" aria-label="Toggle Menu">
+        <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg id="close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
 
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-transform">
-    <div class="px-4 pt-4 pb-8 space-y-2 flex flex-col">
-      <a href="/#destinations" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">🌍 Destinations</a>
-      <a href="/#services" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">🚀 Our Services</a>
-      <a href="/#faq" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">❓ FAQ</a>
+  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all rounded-b-3xl">
+    <div class="px-5 pt-6 pb-8 space-y-2 flex flex-col">
       
-      <div class="pt-4 mt-2 border-t border-slate-100">
-        <a href="/contact" class="block text-center bg-teal-600 hover:bg-teal-700 text-white px-6 py-4 rounded-xl font-bold transition-colors shadow-md">
+      <a href="/#destinations" class="mobile-link group flex items-center gap-4 px-4 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 rounded-2xl transition-all">
+        <span class="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-500 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </span>
+        Explore Destinations
+      </a>
+
+      <a href="/#services" class="mobile-link group flex items-center gap-4 px-4 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 rounded-2xl transition-all">
+        <span class="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-500 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </span>
+        Our Blueprint
+      </a>
+
+      <a href="/#faq" class="mobile-link group flex items-center gap-4 px-4 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 rounded-2xl transition-all">
+        <span class="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-500 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </span>
+        Knowledge Base
+      </a>
+      
+      <div class="pt-6 mt-4 border-t border-slate-100">
+        <a href="/contact" class="flex justify-center items-center gap-2 w-full bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-xl text-lg font-semibold transition-all shadow-md active:scale-95">
           Book Free Counseling
+          <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
         </a>
       </div>
+      
     </div>
   </div>
 </header>
 
 <script>
-  // Client-side script for Mobile Menu Toggle
+  // Original reliable script kept intact
   const initHeader = () => {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
@@ -65,7 +85,6 @@
         closeIcon.classList.toggle('hidden');
       });
 
-      // Close menu when a link is clicked
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
           menu.classList.add('hidden');
@@ -76,9 +95,6 @@
     }
   };
 
-  // Run on first load
   initHeader();
-  
-  // Support for Astro View Transitions (if enabled later)
   document.addEventListener('astro:after-swap', initHeader);
 </script>
