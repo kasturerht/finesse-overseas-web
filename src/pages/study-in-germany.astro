@@ -11,8 +11,8 @@ import Footer from '../components/Footer.astro';
 <section class="relative bg-slate-950 pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden border-b border-slate-800">
   
   <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] hidden md:block hidden md:block"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] hidden md:block hidden md:block"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -157,7 +157,7 @@ import Footer from '../components/Footer.astro';
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           <div class="lg:col-span-2 bg-slate-950 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group shadow-xl">
-            <div class="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full blur-[80px] group-hover:bg-teal-500/20 transition-colors duration-700 pointer-events-none"></div>
+            <div class="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full blur-[80px] hidden md:block group-hover:bg-teal-500/20 transition-colors duration-700 pointer-events-none"></div>
 
             <div class="relative z-10 flex flex-col h-full justify-between">
               <div>
@@ -231,8 +231,8 @@ import Footer from '../components/Footer.astro';
     <section class="py-24 bg-slate-950 relative overflow-hidden border-t border-slate-800" id="cost-roi">
       
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px]"></div>
+        <div class="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[100px] hidden md:block"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px] hidden md:block"></div>
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGcgc3Ryb2tlPSIjMWUyOTNiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CgkJCTxwb2x5Z29uIHBvaW50cz0iMCw2MCA2MCwwIDYwLDYwIiBvcGFjaXR5PSIwLjE1Ii8+CgkJPC9nPgoJPC9zdmc+')] opacity-20"></div>
       </div>
 
@@ -294,7 +294,7 @@ import Footer from '../components/Footer.astro';
           <div class="lg:col-span-6 flex flex-col h-full gap-8">
             
             <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden group">
-              <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+              <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] hidden md:block pointer-events-none"></div>
 
               <div class="relative z-10">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold tracking-widest uppercase mb-6 text-[10px]">
@@ -362,8 +362,8 @@ import Footer from '../components/Footer.astro';
       
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
       
-      <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div class="absolute bottom-40 left-[-20%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[120px] hidden md:block pointer-events-none"></div>
+      <div class="absolute bottom-40 left-[-20%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] hidden md:block pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -675,7 +675,7 @@ import Footer from '../components/Footer.astro';
 
     <section class="relative py-24 bg-slate-950 overflow-hidden border-t-8 border-teal-500">
       <div class="absolute inset-0 z-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-[120px] hidden md:block pointer-events-none"></div>
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMzMiIG9wYWNpdHk9IjAuNSIvPgoJPC9zdmc+')] opacity-30"></div>
       </div>
 
