@@ -36,6 +36,10 @@ const { title, description, canonical, schema } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     {schema && <script type="application/ld+json" set:html={schema} />}
+
+    {Astro.url.pathname.includes('study-in-germany') && (
+    <link rel="preload" as="image" href="/images/germany-hero.webp" type="image/webp" fetchpriority="high" />
+  )}
     
     </head>
   <body class="font-inter bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
