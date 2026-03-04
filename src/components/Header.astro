@@ -1,0 +1,84 @@
+---
+// src/components/Header.astro
+---
+
+<header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/85 backdrop-blur-md border-b border-slate-200/50 shadow-sm" id="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold text-xl group-hover:bg-teal-500 transition-colors">
+          F
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold text-slate-900 tracking-tight leading-none">Finesse<span class="text-teal-600">.</span></span>
+          <span class="text-[0.65rem] font-bold text-slate-500 tracking-widest uppercase mt-0.5">Overseas Education</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex gap-8 items-center">
+        <a href="/#destinations" class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors">Destinations</a>
+        <a href="/#services" class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors">Services</a>
+        <a href="/#faq" class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors">FAQ</a>
+        
+        <a href="/contact" class="bg-slate-900 hover:bg-teal-600 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ml-2">
+          Book Free Counseling
+        </a>
+      </nav>
+
+      <button id="mobile-menu-btn" class="md:hidden text-slate-800 focus:outline-none p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle Menu">
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-transform">
+    <div class="px-4 pt-4 pb-8 space-y-2 flex flex-col">
+      <a href="/#destinations" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">🌍 Destinations</a>
+      <a href="/#services" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">🚀 Our Services</a>
+      <a href="/#faq" class="mobile-link block px-4 py-3 text-base font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-colors">❓ FAQ</a>
+      
+      <div class="pt-4 mt-2 border-t border-slate-100">
+        <a href="/contact" class="block text-center bg-teal-600 hover:bg-teal-700 text-white px-6 py-4 rounded-xl font-bold transition-colors shadow-md">
+          Book Free Counseling
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Client-side script for Mobile Menu Toggle
+  const initHeader = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (btn && menu && menuIcon && closeIcon) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+
+      // Close menu when a link is clicked
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        });
+      });
+    }
+  };
+
+  // Run on first load
+  initHeader();
+  
+  // Support for Astro View Transitions (if enabled later)
+  document.addEventListener('astro:after-swap', initHeader);
+</script>

@@ -24,7 +24,6 @@ const faqs = [
   }
 ];
 
-// This is the Magic SEO Schema that Google reads to rank your site
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -39,41 +38,60 @@ const faqSchema = {
 };
 ---
 
-<section class="py-24 bg-white relative overflow-hidden" id="faq">
+<section class="py-24 bg-slate-50 relative overflow-hidden" id="faq">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    
-    <div class="text-center mb-16">
-      <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Clear Your Doubts</span>
-      <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Frequently Asked Questions</h2>
-      <p class="text-lg text-slate-600">Everything you need to know before starting your European education journey.</p>
-    </div>
+  <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="space-y-4">
-      {faqs.map((faq, index) => (
-        <div class="faq-item bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-teal-200">
-          <button 
-            class="faq-button w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
-            aria-expanded="false"
-          >
-            <span class="text-lg font-bold text-slate-900 pr-8">{faq.question}</span>
-            <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 transition-transform duration-300">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-            </span>
-          </button>
-          
-          <div class="faq-answer grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
-            <div class="overflow-hidden">
-              <p class="px-6 pb-6 text-slate-600 leading-relaxed font-medium">
-                {faq.answer}
-              </p>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <div class="lg:col-span-5 lg:sticky lg:top-32">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-teal-100 text-teal-700 font-bold tracking-wider uppercase mb-6 text-xs shadow-sm">Clear Your Doubts</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Got Questions?<br/><span class="text-teal-600">We've Got Answers.</span></h2>
+        <p class="text-lg text-slate-600 mb-8 leading-relaxed">Everything you need to know before starting your European education journey. Can't find what you're looking for?</p>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex items-center gap-5 hover:border-teal-200 transition-colors group">
+          <div class="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 shrink-0 group-hover:bg-teal-500 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-lg">Still have doubts?</h4>
+            <a href="/contact" class="text-teal-600 font-bold text-sm hover:text-teal-700 flex items-center mt-1">
+              Talk to our experts 
+              <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
           </div>
         </div>
-      ))}
-    </div>
+      </div>
 
+      <div class="lg:col-span-7 space-y-5">
+        {faqs.map((faq) => (
+          <div class="faq-item group bg-white border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-teal-200">
+            <button 
+              class="faq-button w-full px-6 md:px-8 py-6 text-left flex justify-between items-center focus:outline-none"
+              aria-expanded="false"
+            >
+              <span class="text-lg font-bold text-slate-800 pr-8 group-hover:text-teal-600 transition-colors">{faq.question}</span>
+              <span class="faq-icon relative shrink-0 w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 transition-all duration-500 group-hover:bg-teal-50 group-hover:text-teal-600 group-hover:border-teal-200">
+                <svg class="w-5 h-5 transition-transform duration-500 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+              </span>
+            </button>
+            
+            <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out opacity-50">
+              <div class="overflow-hidden">
+                <p class="px-6 md:px-8 pb-6 text-slate-600 leading-relaxed font-medium">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -85,40 +103,45 @@ const faqSchema = {
       const button = item.querySelector('.faq-button');
       const answer = item.querySelector('.faq-answer');
       const icon = item.querySelector('.faq-icon');
+      const iconSvg = icon?.querySelector('svg');
 
-      // Check if button exists to avoid TS errors
-      if (button && answer && icon) {
+      if (button && answer && icon && iconSvg) {
         button.addEventListener('click', () => {
           const isExpanded = button.getAttribute('aria-expanded') === 'true';
           
-          // Optional: Close all other accordions when one opens (Comment this block out if you want multiple open at once)
+          // Auto-close others
           faqItems.forEach(otherItem => {
             if (otherItem !== item) {
-              const otherButton = otherItem.querySelector('.faq-button');
-              const otherAnswer = otherItem.querySelector('.faq-answer');
-              const otherIcon = otherItem.querySelector('.faq-icon');
-              if (otherButton && otherAnswer && otherIcon) {
-                otherButton.setAttribute('aria-expanded', 'false');
-                otherAnswer.classList.remove('grid-rows-[1fr]');
-                otherAnswer.classList.add('grid-rows-[0fr]');
-                otherIcon.classList.remove('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+              const otherBtn = otherItem.querySelector('.faq-button');
+              const otherAns = otherItem.querySelector('.faq-answer');
+              const otherIc = otherItem.querySelector('.faq-icon');
+              const otherSvg = otherIc?.querySelector('svg');
+              
+              if (otherBtn && otherAns && otherIc && otherSvg) {
+                otherBtn.setAttribute('aria-expanded', 'false');
+                otherAns.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                otherAns.classList.add('grid-rows-[0fr]', 'opacity-50');
+                otherIc.classList.remove('bg-teal-500', 'text-white', 'border-teal-500');
+                otherSvg.classList.remove('rotate-45');
                 otherItem.classList.remove('border-teal-500', 'shadow-md');
               }
             }
           });
 
-          // Toggle current accordion
+          // Toggle Current
           button.setAttribute('aria-expanded', (!isExpanded).toString());
           
           if (!isExpanded) {
-            answer.classList.remove('grid-rows-[0fr]');
-            answer.classList.add('grid-rows-[1fr]');
-            icon.classList.add('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+            answer.classList.remove('grid-rows-[0fr]', 'opacity-50');
+            answer.classList.add('grid-rows-[1fr]', 'opacity-100');
+            icon.classList.add('bg-teal-500', 'text-white', 'border-teal-500');
+            iconSvg.classList.add('rotate-45'); // Magic trick: '+' becomes 'x'
             item.classList.add('border-teal-500', 'shadow-md');
           } else {
-            answer.classList.remove('grid-rows-[1fr]');
-            answer.classList.add('grid-rows-[0fr]');
-            icon.classList.remove('rotate-180', 'bg-teal-500', 'text-white', 'border-teal-500');
+            answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+            answer.classList.add('grid-rows-[0fr]', 'opacity-50');
+            icon.classList.remove('bg-teal-500', 'text-white', 'border-teal-500');
+            iconSvg.classList.remove('rotate-45');
             item.classList.remove('border-teal-500', 'shadow-md');
           }
         });
