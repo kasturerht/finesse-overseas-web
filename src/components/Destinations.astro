@@ -11,17 +11,30 @@ const destinations = [
     hook: "World-Class Engineering at 0 Cost.", 
     usps: ["Public Universities (No Fees)", "18-Month Job Seeker Visa", "APS Assistance"], 
     link: "/study-in-germany",
-    isPopular: true
+    isPopular: true,
+    // 🌟 Theme: Regular Teal/Slate
+    cardHoverBorder: "hover:border-teal-400/50",
+    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
+    blobColor: "bg-teal-500/10",
+    titleHover: "group-hover:text-teal-600",
+    btnHover: "group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900"
   },
   { 
     id: "italy",
     name: "Italy", 
+    // 🌟 THE FIX: The Golden Badge for Italy
     badge: "100% Scholarship",
-    badgeColor: "bg-teal-500 text-slate-900",
+    badgeColor: "bg-amber-100 text-amber-700 border border-amber-200",
     hook: "Free Education + Annual Stipend.", 
     usps: ["Stipend up to ₹8 Lakhs/Year", "IELTS", "Scholarship Process"], 
     link: "/study-in-italy",
-    isPopular: true
+    isPopular: true,
+    // 🌟 Theme: Amber/Gold for Scholarship vibe
+    cardHoverBorder: "hover:border-amber-300",
+    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.15)]",
+    blobColor: "bg-amber-400/15",
+    titleHover: "group-hover:text-amber-600",
+    btnHover: "group-hover:bg-amber-50 group-hover:text-amber-700 group-hover:border-amber-200"
   },
   { 
     id: "austria",
@@ -31,7 +44,13 @@ const destinations = [
     hook: "High Quality Education at Low Cost.", 
     usps: ["No Blocked Account Needed", "Affordable Fees (€736/Sem)", "High Visa Success Ratio"], 
     link: "#",
-    isPopular: false
+    isPopular: false,
+    // 🌟 Theme: Regular Teal/Slate
+    cardHoverBorder: "hover:border-teal-400/50",
+    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
+    blobColor: "bg-teal-500/10",
+    titleHover: "group-hover:text-teal-600",
+    btnHover: "group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900"
   },
   { 
     id: "uk-usa",
@@ -41,7 +60,13 @@ const destinations = [
     hook: "Fast-Track Masters & STEM Careers.", 
     usps: ["1-Year Masters (UK)", "3-Year Work Permit (USA STEM)", "Top Ranked Unis"], 
     link: "#",
-    isPopular: false
+    isPopular: false,
+    // 🌟 Theme: Regular Teal/Slate
+    cardHoverBorder: "hover:border-teal-400/50",
+    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
+    blobColor: "bg-teal-500/10",
+    titleHover: "group-hover:text-teal-600",
+    btnHover: "group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900"
   }
 ];
 ---
@@ -58,17 +83,17 @@ const destinations = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {destinations.map((dest) => (
-        <div class="relative bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] hover:border-teal-400/50 transform hover:-translate-y-2 transition-all duration-300 ease-out will-change-transform group flex flex-col h-full overflow-hidden">
+        <div class={`relative bg-white rounded-2xl p-8 border border-slate-200 shadow-sm transform hover:-translate-y-2 transition-all duration-300 ease-out will-change-transform group flex flex-col h-full overflow-hidden ${dest.cardHoverShadow} ${dest.cardHoverBorder}`}>
           
           {dest.isPopular && (
-            <div class="absolute top-0 right-0 w-24 h-24 bg-teal-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150 duration-500"></div>
+            <div class={`absolute top-0 right-0 w-24 h-24 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150 duration-500 ${dest.blobColor}`}></div>
           )}
 
           <div class="mb-6 relative z-10">
-            <span class={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-md mb-4 ${dest.badgeColor}`}>
+            <span class={`inline-block px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-md mb-4 ${dest.badgeColor}`}>
               {dest.badge}
             </span>
-            <h3 class="text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors">Study in {dest.name}</h3>
+            <h3 class={`text-2xl font-black text-slate-900 transition-colors ${dest.titleHover}`}>Study in {dest.name}</h3>
           </div>
           
           <p class="text-slate-700 font-medium text-sm mb-6 pb-6 border-b border-slate-100 relative z-10">{dest.hook}</p>
@@ -76,13 +101,13 @@ const destinations = [
           <ul class="space-y-3 mb-8 flex-grow text-slate-600 text-sm relative z-10">
             {dest.usps.map((usp) => (
               <li class="flex items-start">
-                <svg class="w-5 h-5 text-teal-500 mr-2.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg class="w-5 h-5 text-teal-500 mr-2.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                 <span class="font-medium">{usp}</span>
               </li>
             ))}
           </ul>
           
-          <a href={dest.link} class="mt-auto w-full block text-center bg-slate-50 border border-slate-200 text-slate-900 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 font-bold py-3.5 rounded-xl transition-colors relative z-10">
+          <a href={dest.link} class={`mt-auto w-full block text-center bg-slate-50 border border-slate-200 text-slate-900 font-bold py-3.5 rounded-xl transition-colors relative z-10 ${dest.btnHover}`}>
             Explore {dest.name}
           </a>
         </div>
