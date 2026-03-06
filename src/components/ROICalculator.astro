@@ -21,10 +21,10 @@
           <label class="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">1. Select Destination</label>
           <div class="grid grid-cols-2 gap-4">
             <button id="btn-germany" class="country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md">
-              🇩🇪 Germany
+              Germany
             </button>
             <button id="btn-italy" class="country-btn bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300 py-3 rounded-xl font-semibold transition-all">
-              🇮🇹 Italy
+              Italy
             </button>
           </div>
         </div>
@@ -67,11 +67,11 @@
           
           <div class="flex justify-between items-center pb-4 border-b border-slate-700/50">
             <span class="text-slate-300">Est. Living Expenses</span>
-            <span class="text-xl font-bold text-rose-400" id="out-living">- €934</span>
+            <span class="text-xl font-bold text-rose-400" id="out-living">- €750</span>
           </div>
 
           <div id="scholarship-row" class="hidden flex justify-between items-center pb-4 border-b border-slate-700/50">
-            <span class="text-slate-300">DSU Scholarship Stipend</span>
+            <span class="text-slate-300"> Scholarship Stipend</span>
             <span class="text-xl font-bold text-teal-400" id="out-scholarship">+ €616</span>
           </div>
           
@@ -103,14 +103,14 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Financial Data Models (Base Currency: EUR)
     const data = {
-      germany: { living: 934, hourlyWage: 12, scholarship: 0, note: "💡 In Germany, students typically earn €12 to €15 per hour working part-time." },
-      italy: { living: 800, hourlyWage: 9, scholarship: 616, note: "💡 Italy offers 100% scholarship + €7,400/year DSU stipend (approx €616/month)." }
+      germany: { living: 750, hourlyWage: 12, scholarship: 0, note: "💡 In Germany, students typically earn €12 to €15 per hour working part-time." },
+      italy: { living: 700, hourlyWage: 9, scholarship: 616, note: "💡 Italy offers 100% scholarship + €7,400/year  stipend (approx €616/month)." }
     };
 
     // State Variables
     let currentCountry = 'germany';
     let currentCurrency = 'EUR';
-    const EXCHANGE_RATE = 91; // 1 EUR = 91 INR (Adjustable)
+    const EXCHANGE_RATE = 106.38; // 1 EUR = 91 INR (Adjustable)
 
     // DOM Elements
     const btnGermany = document.getElementById('btn-germany');
