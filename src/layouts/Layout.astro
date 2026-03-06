@@ -36,7 +36,6 @@ const { title, description, canonical, schema } = Astro.props;
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript>
@@ -44,16 +43,8 @@ const { title, description, canonical, schema } = Astro.props;
     </noscript>
 
     {schema && <script type="application/ld+json" set:html={schema} />}
-
-    {Astro.url.pathname === '/' && (
-      <link rel="preload" as="image" href="/home-hero.avif" type="image/avif" fetchpriority="high" />
-    )}
-
-    {Astro.url.pathname.includes('study-in-germany') && (
-      <link rel="preload" as="image" href="/germany-hero.avif" type="image/avif" fetchpriority="high" />
-    )}
     
-  </head>
+    </head>
   <body class="font-inter bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
     
     <Header /> 
