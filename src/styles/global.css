@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Tujha baki cha custom CSS kiva @apply code ithe khali yeil */
+body {
+  @apply text-slate-900; 
+}
