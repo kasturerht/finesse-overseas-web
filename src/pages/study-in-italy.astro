@@ -5,7 +5,46 @@ import Footer from '../components/Footer.astro';
 
 // 🌟 CORRECTED: Image imported from assets folder
 import { Picture } from 'astro:assets';
-import heroImage from '../assets/italy-hero.avif'; 
+import heroImage from '../assets/italy-hero.avif';
+
+
+const italyFaqs = [
+  {
+    question: "Is the €7,400 DSU Scholarship guaranteed for everyone?",
+    answer: "The DSU Scholarship is a regional need-based initiative. If your family's annual income (ISEE parificato) falls below the required threshold (which is true for most middle-class Indian families), and you submit the correct documentation on time, your chances of receiving the full scholarship and stipend are extremely high."
+  },
+  {
+    question: "Do I need to learn Italian to study or live there?",
+    answer: "For your studies? No. All the public universities we recommend offer 100% English-taught programs. However, for daily life and to secure good part-time jobs, learning basic conversational Italian (A1/A2 level) is highly recommended."
+  },
+  {
+    question: "Are part-time jobs available for international students?",
+    answer: "Yes! As an international student in Italy, you are legally allowed to work up to 20 hours per week (1,040 hours per year). Most students earn around €8 to €10 per hour, which easily covers personal expenses."
+  },
+  {
+    question: "Are study gaps accepted in Italian universities?",
+    answer: "Yes, Italian public universities are incredibly gap-friendly compared to other European countries. A gap of 2-3 years after 12th, or even 5-8 years after a Bachelor's degree is widely accepted, provided you can justify it with relevant work experience."
+  },
+  {
+    question: "Do I need a high IELTS score for admission?",
+    answer: "While some universities accept a Medium of Instruction (MOI) certificate from your previous college, an IELTS score of 6.0 to 6.5 is highly recommended. It not only increases your admission chances but also ensures a smooth, rejection-free Visa process."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": italyFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
+
 ---
 
 <Layout title="Study in Italy with 100% Scholarship | Finesse Overseas" description="Get 100% tuition fee waiver and an annual stipend of up to €7,400 (8 Lakhs INR) in top Italian Public Universities.">
@@ -751,7 +790,166 @@ import heroImage from '../assets/italy-hero.avif';
       </div>
     </section>
 
+
+
+    ---
+// 🌟 SECTION 6: FAQS & FINAL CTA (Astro Component Code)
+
+
+---
+
+<section class="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <div class="lg:col-span-5 lg:sticky lg:top-32">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 border border-amber-200 text-amber-700 font-bold tracking-widest uppercase mb-6 text-[10px] shadow-sm">
+          Clear Your Doubts
+        </span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tighter leading-[1.1]">
+          Got Questions?<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-600">We've Got Answers.</span>
+        </h2>
+        <p class="text-lg text-slate-600 mb-10 leading-relaxed font-medium">
+          Everything you need to know before starting your Italian education journey. Can't find what you're looking for?
+        </p>
+        
+        <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-slate-100 flex items-center gap-5 group hover:border-amber-200 transition-colors duration-300">
+          <div class="w-14 h-14 bg-amber-50 rounded-full flex items-center justify-center text-amber-500 shrink-0 group-hover:bg-amber-500 group-hover:text-slate-900 transition-colors duration-300 shadow-inner">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </div>
+          <div>
+            <h4 class="font-black text-slate-900 text-xl tracking-tight mb-1">Still have doubts?</h4>
+            <a href="/contact" class="text-amber-600 font-bold text-sm hover:text-amber-700 flex items-center group/link">
+              Talk to our Italy experts 
+              <svg class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-4 pt-4">
+        {italyFaqs.map((faq) => (
+          <div class="faq-item group bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-amber-300">
+            <button 
+              class="faq-button w-full px-6 md:px-8 py-6 text-left flex justify-between items-center focus:outline-none"
+              aria-expanded="false"
+            >
+              <span class="text-lg md:text-xl font-bold text-slate-800 pr-8 group-hover:text-amber-600 transition-colors tracking-tight">{faq.question}</span>
+              <span class="faq-icon relative shrink-0 w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 transition-all duration-500 group-hover:bg-amber-50 group-hover:text-amber-600 group-hover:border-amber-200">
+                <svg class="w-6 h-6 transition-transform duration-500 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+              </span>
+            </button>
+            
+            <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out opacity-50">
+              <div class="overflow-hidden">
+                <p class="px-6 md:px-8 pb-8 text-slate-500 leading-relaxed font-medium text-base">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+    <div class="mt-32 relative rounded-[3rem] bg-slate-950 p-10 md:p-16 text-center shadow-2xl overflow-hidden group border border-slate-800">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl transform group-hover:scale-110 transition-transform duration-1000 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-6 drop-shadow-sm">
+          Ready to start your <br class="hidden md:block" /> 
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-600">Italian Dream?</span>
+        </h2>
+        <p class="text-slate-400 text-lg md:text-xl font-medium mb-12 max-w-2xl mx-auto">
+          Our expert counselors will evaluate your profile and create a personalized roadmap to secure your admission and <strong class="text-white">€7,400 scholarship.</strong>
+        </p>
+        <a href="/contact" class="inline-flex justify-center items-center gap-3 px-10 py-5 rounded-2xl bg-amber-400 text-slate-900 font-black tracking-widest uppercase hover:bg-amber-300 transition-all shadow-[0_0_40px_rgba(245,158,11,0.3)] hover:-translate-y-1 duration-300 active:scale-95">
+          Book Free Counseling
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const initFaqs = () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      // Clean up previous event listeners to avoid bugs on Astro page transitions
+      const button = item.querySelector('.faq-button');
+      if (!button) return;
+      
+      const clone = button.cloneNode(true);
+      button.parentNode.replaceChild(clone, button);
+      
+      const newButton = item.querySelector('.faq-button');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const iconSvg = icon?.querySelector('svg');
+
+      if (newButton && answer && icon && iconSvg) {
+        newButton.addEventListener('click', () => {
+          const isExpanded = newButton.getAttribute('aria-expanded') === 'true';
+          
+          // Auto-close others
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherBtn = otherItem.querySelector('.faq-button');
+              const otherAns = otherItem.querySelector('.faq-answer');
+              const otherIc = otherItem.querySelector('.faq-icon');
+              const otherSvg = otherIc?.querySelector('svg');
+              
+              if (otherBtn && otherAns && otherIc && otherSvg) {
+                otherBtn.setAttribute('aria-expanded', 'false');
+                otherAns.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                otherAns.classList.add('grid-rows-[0fr]', 'opacity-50');
+                otherIc.classList.remove('bg-amber-400', 'text-slate-900', 'border-amber-400');
+                otherSvg.classList.remove('rotate-45');
+                otherItem.classList.remove('border-amber-300', 'shadow-md');
+              }
+            }
+          });
+
+          // Toggle Current
+          newButton.setAttribute('aria-expanded', (!isExpanded).toString());
+          
+          if (!isExpanded) {
+            answer.classList.remove('grid-rows-[0fr]', 'opacity-50');
+            answer.classList.add('grid-rows-[1fr]', 'opacity-100');
+            icon.classList.add('bg-amber-400', 'text-slate-900', 'border-amber-400');
+            iconSvg.classList.add('rotate-45'); 
+            item.classList.add('border-amber-300', 'shadow-md');
+          } else {
+            answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+            answer.classList.add('grid-rows-[0fr]', 'opacity-50');
+            icon.classList.remove('bg-amber-400', 'text-slate-900', 'border-amber-400');
+            iconSvg.classList.remove('rotate-45');
+            item.classList.remove('border-amber-300', 'shadow-md');
+          }
+        });
+      }
+    });
+  };
+
+  initFaqs();
+  // Using page-load which is standard for Astro View Transitions
+  document.addEventListener('astro:page-load', initFaqs);
+</script>
+
+
   </main>
   
-  <Footer />
+  <Footer hideCTA={true} theme="dark" />
 </Layout>
