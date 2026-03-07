@@ -6,30 +6,31 @@ const destinations = [
   { 
     id: "germany",
     name: "Germany", 
+    // 🌟 THE FIX: Tech-Blue Theme for Germany
     badge: "Zero Tuition Fee",
-    badgeColor: "bg-slate-900 text-white",
+    badgeColor: "bg-blue-100 text-blue-700 border border-blue-200",
     hook: "World-Class Engineering at 0 Cost.", 
     usps: ["Public Universities (No Fees)", "18-Month Job Seeker Visa", "APS Assistance"], 
     link: "/study-in-germany",
     isPopular: true,
-    // 🌟 Theme: Regular Teal/Slate
-    cardHoverBorder: "hover:border-teal-400/50",
-    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
-    blobColor: "bg-teal-500/10",
-    titleHover: "group-hover:text-teal-600",
-    btnHover: "group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900"
+    iconColor: "text-blue-500", // Dynamic Icon Color
+    cardHoverBorder: "hover:border-blue-300",
+    cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)]",
+    blobColor: "bg-blue-400/15",
+    titleHover: "group-hover:text-blue-600",
+    btnHover: "group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-200"
   },
   { 
     id: "italy",
     name: "Italy", 
-    // 🌟 THE FIX: The Golden Badge for Italy
+    // 🌟 Theme: Amber/Gold for Scholarship vibe
     badge: "100% Scholarship",
     badgeColor: "bg-amber-100 text-amber-700 border border-amber-200",
     hook: "Free Education + Annual Stipend.", 
     usps: ["Stipend up to ₹8 Lakhs/Year", "IELTS", "Scholarship Process"], 
     link: "/study-in-italy",
     isPopular: true,
-    // 🌟 Theme: Amber/Gold for Scholarship vibe
+    iconColor: "text-amber-500", // Dynamic Icon Color
     cardHoverBorder: "hover:border-amber-300",
     cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.15)]",
     blobColor: "bg-amber-400/15",
@@ -46,6 +47,7 @@ const destinations = [
     link: "#",
     isPopular: false,
     // 🌟 Theme: Regular Teal/Slate
+    iconColor: "text-teal-500", // Dynamic Icon Color
     cardHoverBorder: "hover:border-teal-400/50",
     cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
     blobColor: "bg-teal-500/10",
@@ -62,6 +64,7 @@ const destinations = [
     link: "#",
     isPopular: false,
     // 🌟 Theme: Regular Teal/Slate
+    iconColor: "text-teal-500", // Dynamic Icon Color
     cardHoverBorder: "hover:border-teal-400/50",
     cardHoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
     blobColor: "bg-teal-500/10",
@@ -101,7 +104,7 @@ const destinations = [
           <ul class="space-y-3 mb-8 flex-grow text-slate-600 text-sm relative z-10">
             {dest.usps.map((usp) => (
               <li class="flex items-start">
-                <svg class="w-5 h-5 text-teal-500 mr-2.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <svg class={`w-5 h-5 mr-2.5 shrink-0 transition-colors duration-300 ${dest.iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                 <span class="font-medium">{usp}</span>
               </li>
             ))}
