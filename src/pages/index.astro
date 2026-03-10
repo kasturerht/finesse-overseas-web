@@ -46,15 +46,18 @@ const destinations = [
   
   <div class="absolute inset-0 z-0 bg-[#0A0F1C]">
     <Picture 
-  src={heroImage} 
-  alt="Finesse Overseas Education Hero"
-  widths={[400, 800, 1200, 1920]} 
-  sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, (max-width: 1200px) 1200px, 1920px"
-  fallbackFormat="webp"
-  fetchpriority="high"
-  loading="eager"
-  class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.08] grayscale mix-blend-luminosity transition-opacity duration-1000"
-/>
+      src={heroImage} 
+      alt="Finesse Overseas Education Hero Background"
+      widths={[400, 800, 1200, 1920]} 
+      sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, (max-width: 1200px) 1200px, 1920px"
+      formats={['avif', 'webp']}
+      fallbackFormat="webp"
+      quality={40}
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.08] grayscale mix-blend-luminosity"
+    />
     
     <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#0A0F1C]/90 via-[#0A0F1C]/40 to-[#0A0F1C]"></div>
     
