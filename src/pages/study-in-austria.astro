@@ -1,0 +1,928 @@
+---
+// src/pages/study-in-austria.astro
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const seoTitle = "Study in Austria | Zero Blocked Account | Finesse Overseas";
+const seoDescription = "Keep your 12 Lakhs in your bank. Study in premium Austrian public universities for just €726/semester with no blocked account required.";
+
+const austriaFaqs = [
+  {
+    question: "Do I need to deposit €11,208 in a Blocked Account like Germany?",
+    answer: "No, absolutely not. This is Austria's biggest advantage. You do not need a mandatory blocked account. You simply have to show the required living expenses in your or your sponsor's regular local bank account."
+  },
+  {
+    question: "Is it mandatory to learn the German language?",
+    answer: "For your visa and university admission into English-taught Master's programs, German is NOT required. However, we highly recommend learning basic A1/A2 German while studying there, as it makes finding part-time jobs and daily life much easier."
+  },
+  {
+    question: "How much is the actual tuition fee?",
+    answer: "Unlike private universities that charge thousands of euros, Austria's elite public universities charge a standardized low fee of just €726.72 per semester for international students from non-EU countries."
+  },
+  {
+    question: "What is the stay-back period after graduation?",
+    answer: "Indian students are officially granted a 12-month stay-back period after graduation. During this time, you can legally stay in Austria to find a full-time job related to your field of study, which then converts into a Red-White-Red card."
+  },
+  {
+    question: "Can I manage my living expenses with a part-time job?",
+    answer: "Yes. International students are legally allowed to work up to 20 hours per week. Given the current labor shortage and high minimum wages, students easily earn around €1,000+ per month, which comfortably covers rent, food, and insurance."
+  }
+];
+
+const austriaFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": austriaFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+  <main class="pt-20 flex-grow bg-[#050505]">
+
+    <section class="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden border-b border-white/5">
+      
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz4KCTwvc3ZnPg==')] opacity-50"></div>
+        
+        <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 translate-x-1/4 translate-y-1/4 w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-[150px]"></div>
+        
+        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#050505] to-transparent"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center mt-12 md:mt-0">
+        
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+          </span>
+          <span class="text-xs font-black text-red-400 uppercase tracking-widest">
+            Verified for 2026 | Zero Blocked Funds Required
+          </span>
+        </div>
+
+        <h1 class="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-white tracking-tighter leading-[1.05] mb-6">
+          Keep your <span class="text-transparent bg-clip-text bg-gradient-to-br from-red-500 via-rose-500 to-orange-400 drop-shadow-sm">12 Lakhs</span> <br class="hidden md:block" />
+          in your bank.
+        </h1>
+        
+        <h2 class="text-xl md:text-2xl text-slate-400 font-medium mb-10 max-w-3xl leading-relaxed">
+          Unlock premium European education in Austria. No blocked accounts. No hidden financial traps. Just pure merit and a minimal <strong class="text-white">€726/semester</strong> fee.
+        </h2>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-12">
+          <div class="flex items-center gap-2 text-slate-300 font-bold text-sm bg-white/5 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
+            <svg aria-hidden="true" class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Accessible Bank Funds
+          </div>
+          <div class="flex items-center gap-2 text-slate-300 font-bold text-sm bg-white/5 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
+            <svg aria-hidden="true" class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            World's #1 Livable City
+          </div>
+          <div class="flex items-center gap-2 text-slate-300 font-bold text-sm bg-white/5 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
+            <svg aria-hidden="true" class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            29 Schengen Countries
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+          <a href="/contact" class="group relative flex justify-center items-center gap-2 bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white px-9 py-4 rounded-xl text-lg font-black transition-all shadow-[0_0_30px_rgba(225,29,72,0.3)] active:scale-95 overflow-hidden">
+            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+            <span class="relative z-10">Check Your Eligibility</span>
+            <svg aria-hidden="true" class="w-5 h-5 relative z-10 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+          
+          <a href="#guide" class="flex justify-center items-center gap-2 bg-transparent hover:bg-white/5 text-white border border-white/20 hover:border-white/40 px-9 py-4 rounded-xl text-lg font-bold transition-all active:scale-95 group">
+            <svg aria-hidden="true" class="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download Austria Guide
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="py-24 md:py-32 bg-white relative rounded-t-[3rem] -mt-8 md:-mt-12 z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.2)]" id="lifestyle">
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mb-16 md:mb-20">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-red-50 text-red-600 font-black tracking-widest uppercase mb-6 text-[10px] shadow-sm border border-red-100">
+            The Lifestyle Upgrade
+          </span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tighter mb-6 leading-[1.1]">
+            Not just a degree.<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">A profound shift in reality.</span>
+          </h2>
+          <p class="text-slate-500 text-lg md:text-xl font-medium leading-relaxed">
+            Hover over the cards below to discover why Vienna isn't just a city, but the ultimate hack for international students.
+          </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row w-full h-[800px] lg:h-[600px] gap-4 lg:gap-6">
+
+          <div class="group relative flex-1 hover:flex-[3] lg:hover:flex-[4] transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-md hover:shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&q=80&w=1200" 
+              alt="Vienna Architecture" 
+              class="absolute inset-0 w-full h-full object-cover object-center grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2000ms]"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+            
+            <div class="absolute inset-0 p-8 flex flex-col justify-end lg:items-center lg:justify-end opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500 lg:group-hover:duration-150 delay-300 lg:group-hover:delay-0">
+              <h3 class="text-white font-black text-2xl lg:-rotate-90 lg:whitespace-nowrap lg:translate-y-[-100px] tracking-widest uppercase drop-shadow-md">#1 Livable City</h3>
+            </div>
+
+            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end h-full pointer-events-none group-hover:pointer-events-auto">
+              <div class="w-[280px] sm:w-[320px] lg:w-[380px]">
+                
+                <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white mb-6 shadow-[0_0_30px_rgba(220,38,38,0.5)] opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-150 group-hover:duration-500 delay-0 group-hover:delay-200">
+                  <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                
+                <h3 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-none opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-150 group-hover:duration-700 delay-0 group-hover:delay-300">
+                  Global #1<br/><span class="text-red-400">Quality of Life</span>
+                </h3>
+                
+                <p class="text-slate-300 font-medium text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-150 group-hover:duration-700 delay-0 group-hover:delay-400">
+                  Voted the most livable city in the world for over a decade. Experience royal architecture, spotless streets, and an environment that nurtures success.
+                </p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="group relative flex-1 hover:flex-[3] lg:hover:flex-[4] transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-md hover:shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1541427468627-a89a96e5ca1d?auto=format&fit=crop&q=80&w=1200" 
+              alt="Vienna Public Transport" 
+              class="absolute inset-0 w-full h-full object-cover object-center grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2000ms]"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+            
+            <div class="absolute inset-0 p-8 flex flex-col justify-end lg:items-center lg:justify-end opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500 lg:group-hover:duration-150 delay-300 lg:group-hover:delay-0">
+              <h3 class="text-white font-black text-2xl lg:-rotate-90 lg:whitespace-nowrap lg:translate-y-[-100px] tracking-widest uppercase drop-shadow-md">€1/Day Travel</h3>
+            </div>
+
+            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end h-full pointer-events-none group-hover:pointer-events-auto">
+              <div class="w-[280px] sm:w-[320px] lg:w-[380px]">
+                
+                <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white mb-6 shadow-[0_0_30px_rgba(220,38,38,0.5)] opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-150 group-hover:duration-500 delay-0 group-hover:delay-200">
+                  <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                
+                <h3 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-none opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-150 group-hover:duration-700 delay-0 group-hover:delay-300">
+                  Unlimited<br/><span class="text-red-400">Transit Pass</span>
+                </h3>
+                
+                <p class="text-slate-300 font-medium text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-150 group-hover:duration-700 delay-0 group-hover:delay-400">
+                  Forget Uber or expensive cabs. As a student, you get an annual pass covering all buses, ultra-modern trams, and underground trains for virtually nothing.
+                </p>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="group relative flex-1 hover:flex-[3] lg:hover:flex-[4] transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-md hover:shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=1200" 
+              alt="Safe Vienna Streets" 
+              class="absolute inset-0 w-full h-full object-cover object-center grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2000ms]"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+            
+            <div class="absolute inset-0 p-8 flex flex-col justify-end lg:items-center lg:justify-end opacity-100 lg:group-hover:opacity-0 transition-opacity duration-500 lg:group-hover:duration-150 delay-300 lg:group-hover:delay-0">
+              <h3 class="text-white font-black text-2xl lg:-rotate-90 lg:whitespace-nowrap lg:translate-y-[-100px] tracking-widest uppercase drop-shadow-md">100% Safe</h3>
+            </div>
+
+            <div class="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col justify-end h-full pointer-events-none group-hover:pointer-events-auto">
+              <div class="w-[280px] sm:w-[320px] lg:w-[380px]">
+                
+                <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white mb-6 shadow-[0_0_30px_rgba(220,38,38,0.5)] opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-150 group-hover:duration-500 delay-0 group-hover:delay-200">
+                  <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                
+                <h3 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-none opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-150 group-hover:duration-700 delay-0 group-hover:delay-300">
+                  Absolute<br/><span class="text-red-400">Peace of Mind</span>
+                </h3>
+                
+                <p class="text-slate-300 font-medium text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-150 group-hover:duration-700 delay-0 group-hover:delay-400">
+                  Ranked in the top 5 safest countries globally. Whether you are returning from a late-night part-time job or a library session, you are always secure.
+                </p>
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-y border-white/5" id="finance">
+      
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz4KCTwvc3ZnPg==')] pointer-events-none"></div>
+      <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div class="text-center md:text-left mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-10">
+          <div class="max-w-2xl">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-slate-400 font-bold tracking-widest uppercase mb-6 text-[10px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+              Financial Clarity
+            </span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1]">
+              Capital required to <br class="hidden md:block" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">start your journey.</span>
+            </h2>
+          </div>
+          <div class="md:text-right">
+            <p class="text-slate-400 text-sm md:text-base font-medium max-w-xs ml-auto leading-relaxed">
+              No hidden traps. No absurd locked funds. Just clear, manageable expenses that keep your savings safe.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+          <div class="lg:col-span-7 bg-gradient-to-br from-white/5 to-transparent rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden group hover:border-red-500/30 transition-colors duration-500">
+            <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-red-600/20 rounded-full blur-[80px] group-hover:bg-red-500/30 transition-colors duration-500"></div>
+            
+            <div class="relative z-10 h-full flex flex-col justify-between">
+              <div>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-sm mb-2">Mandatory Blocked Account</p>
+                <div class="flex items-baseline gap-3">
+                  <span class="text-7xl md:text-[6rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 tracking-tighter leading-none">
+                    €0
+                  </span>
+                </div>
+              </div>
+              
+              <div class="mt-12 pt-8 border-t border-white/10">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20 text-red-400 shadow-inner">
+                    <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white mb-1">Your funds stay liquid.</h3>
+                    <p class="text-slate-400 font-medium text-sm leading-relaxed max-w-md">
+                      Unlike Germany's strict €11,208 blocked account rule, Austria simply requires you to show proof of funds in your (or your sponsor's) local bank account. You do not need to lock your money abroad.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <div class="bg-[#0a0a0a] rounded-[2rem] p-8 border border-white/5 shadow-lg flex-1 flex flex-col justify-center relative overflow-hidden group hover:border-white/10 transition-colors">
+              <div class="absolute top-0 left-0 w-2 h-full bg-slate-800 group-hover:bg-slate-600 transition-colors"></div>
+              <div class="pl-6">
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-xs mb-3">Public University Fee</p>
+                <div class="flex items-baseline gap-2 mb-2">
+                  <span class="text-4xl md:text-5xl font-black text-white tracking-tight">€726</span>
+                  <span class="text-slate-400 font-medium">/ Sem</span>
+                </div>
+                <p class="text-slate-400 text-sm font-medium">
+                  Standardized tuition fee across all premium Austrian public universities. No sudden hikes.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-[#0a0a0a] rounded-[2rem] p-8 border border-white/5 shadow-lg flex-1 flex flex-col justify-center relative overflow-hidden group hover:border-white/10 transition-colors">
+              <div class="absolute top-0 left-0 w-2 h-full bg-red-600 group-hover:bg-red-500 transition-colors"></div>
+              <div class="pl-6">
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-xs mb-3">Part-Time Earnings</p>
+                <div class="flex items-baseline gap-2 mb-2">
+                  <span class="text-4xl md:text-5xl font-black text-white tracking-tight">€1,000+</span>
+                  <span class="text-slate-400 font-medium">/ Mo</span>
+                </div>
+                <p class="text-slate-400 text-sm font-medium">
+                  Legally work up to 20 hours a week. Earnings easily cover your rent and living expenses.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <section class="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden" id="eligibility">
+      
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz4KCTwvc3ZnPg==')] pointer-events-none"></div>
+      
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-red-100/40 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-slate-200/50 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 font-bold tracking-widest uppercase mb-6 text-[10px] shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+            Live Profile Analysis
+          </span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tighter mb-6 leading-tight">
+            Do you have what it takes?
+          </h2>
+          <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">
+            Austrian public universities value pure academic consistency over hidden donations. Select your profile below to run the ultimate eligibility check.
+          </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto bg-white/70 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-4 md:p-8 lg:p-12 shadow-[0_20px_80px_-15px_rgba(0,0,0,0.08)] relative overflow-hidden group">
+          
+          <div class="absolute -top-40 -right-40 w-80 h-80 bg-red-500/10 rounded-full blur-[80px] group-hover:scale-150 transition-transform duration-[2000ms] pointer-events-none"></div>
+
+          <div class="flex justify-center mb-12 relative z-20">
+            <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-full p-1.5 flex relative shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+              <div id="eligibility-slider" class="absolute top-1.5 left-1.5 bottom-1.5 w-[calc(50%-6px)] bg-slate-900 rounded-full transition-transform duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-md"></div>
+              
+              <button id="btn-ug" class="relative w-40 md:w-48 py-3.5 text-sm md:text-base font-bold text-white transition-colors duration-500 z-10">
+                Bachelors (UG)
+              </button>
+              <button id="btn-pg" class="relative w-40 md:w-48 py-3.5 text-sm md:text-base font-bold text-slate-500 hover:text-slate-700 transition-colors duration-500 z-10">
+                Masters (PG)
+              </button>
+            </div>
+          </div>
+
+          <div class="relative min-h-[750px] md:min-h-[380px] perspective-1000">
+            
+            <div id="view-ug" class="view-container is-active absolute inset-0 z-10">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
+                
+                <div class="widget w-delay-1 bg-gradient-to-b from-white to-slate-50/50 rounded-[2rem] border border-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center">
+                  <div class="relative w-32 h-32 mb-6">
+                    <svg class="w-full h-full -rotate-90 drop-shadow-sm" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-slate-100"></circle>
+                      <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-slate-900 progress-ring ug-ring" pathLength="100" stroke-dasharray="100" stroke-linecap="round"></circle>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                      <span class="text-3xl font-black text-slate-900">60%</span>
+                      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Min Score</span>
+                    </div>
+                  </div>
+                  <h4 class="text-lg font-black text-slate-900 mb-2">12th Standard</h4>
+                  <p class="text-sm text-slate-500 font-medium">Consistent percentage in HSC, CBSE, or ICSE boards.</p>
+                </div>
+
+                <div class="widget w-delay-2 bg-gradient-to-b from-white to-slate-50/50 rounded-[2rem] border border-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center">
+                  <div class="flex items-center gap-2 justify-center mb-8">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">Study Gap Limit</span>
+                  </div>
+                  <div class="flex items-center justify-between relative mb-8">
+                    <div class="absolute left-0 right-0 h-1.5 bg-slate-100 rounded-full top-1/2 -translate-y-1/2 z-0"></div>
+                    <div class="absolute left-0 w-1/3 h-1.5 bg-slate-900 rounded-full top-1/2 -translate-y-1/2 z-0 shadow-[0_0_10px_rgba(15,23,42,0.3)]"></div>
+                    
+                    <div class="w-8 h-8 rounded-full bg-slate-900 border-4 border-white shadow-md relative z-10 flex items-center justify-center text-white text-xs font-bold">0</div>
+                    <div class="w-5 h-5 rounded-full bg-slate-900 border-[3px] border-white shadow-sm relative z-10 flex items-center justify-center"></div>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border-4 border-white shadow-sm relative z-10 flex items-center justify-center text-slate-400 text-xs font-bold">2+</div>
+                  </div>
+                  <h4 class="text-lg font-black text-slate-900 mb-2 text-center">Up to 2 Years</h4>
+                  <p class="text-sm text-slate-500 font-medium text-center">Accepted with valid justification, preparation, or internship.</p>
+                </div>
+
+                <div class="widget w-delay-3 bg-gradient-to-b from-white to-slate-50/50 rounded-[2rem] border border-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center text-center">
+                  <div class="w-16 h-16 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-800 mb-6 shadow-md transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <svg aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                  </div>
+                  <h4 class="text-lg font-black text-slate-900 mb-2">TOLC / Entrance</h4>
+                  <p class="text-sm text-slate-500 font-medium mb-5">University-specific exams required. No JEE or NEET needed.</p>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 text-[10px] font-black rounded-lg uppercase tracking-widest border border-green-200 shadow-sm">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    100% English Taught
+                  </span>
+                </div>
+
+              </div>
+            </div>
+
+            <div id="view-pg" class="view-container absolute inset-0 z-0 pointer-events-none">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
+                
+                <div class="widget w-delay-1 bg-gradient-to-b from-white to-slate-50/50 rounded-[2rem] border border-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(220,38,38,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center">
+                  <div class="relative w-32 h-32 mb-6">
+                    <svg class="w-full h-full -rotate-90 drop-shadow-sm" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-slate-100"></circle>
+                      <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-red-500 progress-ring pg-ring" pathLength="100" stroke-dasharray="100" stroke-linecap="round"></circle>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                      <span class="text-3xl font-black text-red-600">55%</span>
+                      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Min Score</span>
+                    </div>
+                  </div>
+                  <h4 class="text-lg font-black text-slate-900 mb-2">Bachelor's Degree</h4>
+                  <p class="text-sm text-slate-500 font-medium">Both 3-year and 4-year undergraduate degrees are warmly accepted.</p>
+                </div>
+
+                <div class="widget w-delay-2 bg-gradient-to-b from-white to-slate-50/50 rounded-[2rem] border border-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(220,38,38,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center">
+                  <div class="flex items-center gap-2 justify-center mb-8">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">Study Gap Limit</span>
+                  </div>
+                  <div class="flex items-center justify-between relative mb-8">
+                    <div class="absolute left-0 right-0 h-1.5 bg-slate-100 rounded-full top-1/2 -translate-y-1/2 z-0"></div>
+                    <div class="absolute left-0 w-full h-1.5 bg-red-500 rounded-full top-1/2 -translate-y-1/2 z-0 shadow-[0_0_10px_rgba(239,68,68,0.4)]"></div>
+                    
+                    <div class="w-8 h-8 rounded-full bg-red-500 border-4 border-white shadow-md relative z-10 flex items-center justify-center text-white text-xs font-bold">0</div>
+                    <div class="w-5 h-5 rounded-full bg-red-500 border-[3px] border-white shadow-sm relative z-10 flex items-center justify-center"></div>
+                    <div class="w-8 h-8 rounded-full bg-red-500 border-4 border-white shadow-md relative z-10 flex items-center justify-center text-white text-xs font-bold">8+</div>
+                  </div>
+                  <h4 class="text-lg font-black text-slate-900 mb-2 text-center">Highly Flexible</h4>
+                  <p class="text-sm text-slate-500 font-medium text-center">Even 5 to 8 years of gap is beautifully accepted with valid work experience.</p>
+                </div>
+
+                <div class="widget w-delay-3 bg-slate-900 rounded-[2rem] border border-slate-800 p-8 shadow-[0_10px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_50px_rgba(220,38,38,0.3)] hover:-translate-y-1 transition-all duration-500 flex flex-col items-center justify-center text-center relative overflow-hidden group/card">
+                  <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-red-500/30 rounded-full blur-[40px] group-hover/card:scale-150 transition-transform duration-1000"></div>
+                  
+                  <div class="w-16 h-16 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center justify-center text-red-500 mb-6 shadow-inner transform group-hover/card:scale-110 transition-transform duration-500">
+                    <svg aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                  <h4 class="text-2xl font-black text-white mb-2 relative z-10 tracking-tight">No IELTS Required</h4>
+                  <p class="text-slate-400 text-sm font-medium mb-5 relative z-10">Bypass the standard English test. Medium of Instruction (MOI) is widely accepted.</p>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-500/20 text-red-400 text-[10px] font-black rounded-lg uppercase tracking-widest border border-red-500/30 backdrop-blur-md relative z-10">
+                    🔥 The Ultimate Hack
+                  </span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <style>
+      /* Base state for all widgets: hidden and pushed down */
+      .view-container .widget {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      /* Active state: visible and in place */
+      .view-container.is-active .widget {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* The Cascade/Staggering Delays */
+      .view-container.is-active .w-delay-1 { transition-delay: 100ms; }
+      .view-container.is-active .w-delay-2 { transition-delay: 200ms; }
+      .view-container.is-active .w-delay-3 { transition-delay: 300ms; }
+
+      /* SVG Radial Progress Drawing Animation */
+      .progress-ring {
+        stroke-dashoffset: 100;
+        transition: stroke-dashoffset 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      /* When active, draw the circle to the specific percentage */
+      .view-container.is-active .ug-ring { stroke-dashoffset: 40; transition-delay: 400ms; } /* 60% Fill */
+      .view-container.is-active .pg-ring { stroke-dashoffset: 45; transition-delay: 400ms; } /* 55% Fill */
+    </style>
+
+    <script>
+      function initEligibilityConsole() {
+        const btnUg = document.getElementById('btn-ug');
+        const btnPg = document.getElementById('btn-pg');
+        const slider = document.getElementById('eligibility-slider');
+        
+        const viewUg = document.getElementById('view-ug');
+        const viewPg = document.getElementById('view-pg');
+
+        if(!btnUg || !btnPg) return;
+
+        // Custom bounce easing for the pill slider
+        slider.style.transitionTimingFunction = "cubic-bezier(0.34, 1.56, 0.64, 1)";
+
+        btnUg.addEventListener('click', () => {
+          if (viewUg.classList.contains('is-active')) return;
+
+          slider.style.transform = 'translateX(0)';
+          
+          btnUg.classList.replace('text-slate-500', 'text-white');
+          btnPg.classList.replace('text-white', 'text-slate-500');
+
+          // Instantly hide PG
+          viewPg.classList.remove('is-active', 'z-10');
+          viewPg.classList.add('z-0', 'pointer-events-none');
+          
+          // Activate UG with slight delay so animation re-triggers cleanly
+          setTimeout(() => {
+            viewUg.classList.remove('z-0', 'pointer-events-none');
+            viewUg.classList.add('is-active', 'z-10');
+          }, 50);
+        });
+
+        btnPg.addEventListener('click', () => {
+          if (viewPg.classList.contains('is-active')) return;
+
+          slider.style.transform = 'translateX(100%)';
+          
+          btnPg.classList.replace('text-slate-500', 'text-white');
+          btnUg.classList.replace('text-white', 'text-slate-500');
+
+          // Instantly hide UG
+          viewUg.classList.remove('is-active', 'z-10');
+          viewUg.classList.add('z-0', 'pointer-events-none');
+          
+          // Activate PG with slight delay
+          setTimeout(() => {
+            viewPg.classList.remove('z-0', 'pointer-events-none');
+            viewPg.classList.add('is-active', 'z-10');
+          }, 50);
+        });
+      }
+
+      initEligibilityConsole();
+      document.addEventListener('astro:page-load', initEligibilityConsole);
+    </script>
+
+
+
+    <section class="relative bg-[#000000] py-24 md:py-32 min-h-screen flex flex-col items-center justify-center overflow-hidden border-t border-white/5" id="career-endgame">
+      
+      <div class="absolute top-1/4 left-0 w-full overflow-hidden whitespace-nowrap opacity-[0.02] pointer-events-none select-none flex z-0">
+        <div class="animate-marquee inline-block text-[12rem] md:text-[18rem] font-black tracking-tighter">
+          EUROPE'S BEST KEPT SECRET • HIGH DEMAND TALENT • NO QUOTA LIMITS • 
+        </div>
+        <div class="animate-marquee inline-block text-[12rem] md:text-[18rem] font-black tracking-tighter" aria-hidden="true">
+          EUROPE'S BEST KEPT SECRET • HIGH DEMAND TALENT • NO QUOTA LIMITS • 
+        </div>
+      </div>
+
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+
+        <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-slate-400 font-bold tracking-widest uppercase mb-6 text-[10px] shadow-sm backdrop-blur-md">
+            <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+            The Ultimate Career Roadmap
+          </span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-6 leading-tight">
+            Study. Work. Settle.<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Your Direct Pathway to PR.</span>
+          </h2>
+          <p class="text-slate-400 text-lg md:text-xl font-medium leading-relaxed">
+            Forget the visa struggles of the UK, US, or Canada. Austria’s 'Red-White-Red Card' guarantees Indian graduates a secure stay-back period to find a high-paying job and settle permanently.
+          </p>
+        </div>
+
+        <div class="relative w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-24" id="rwr-container">
+          
+          <div class="relative w-[320px] h-[480px] md:w-[380px] md:h-[550px] z-20" style="perspective: 1500px;">
+            <div id="rwr-card" class="w-full h-full relative rounded-[2.5rem] p-1 bg-gradient-to-br from-red-500/40 via-white/5 to-rose-600/20 shadow-[0_30px_60px_-15px_rgba(220,38,38,0.3)] transition-transform duration-200 ease-out transform-style-3d backface-hidden">
+              
+              <div class="absolute inset-[2px] rounded-[2.4rem] bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col justify-between p-8">
+                
+                <div id="card-glare" class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 transition-opacity duration-300 pointer-events-none z-30 transform -translate-x-full"></div>
+
+                <div class="relative z-20 flex justify-between items-start">
+                  <div>
+                    <p class="text-[10px] font-black tracking-widest text-slate-500 uppercase mb-1">Republik Österreich</p>
+                    <h3 class="text-2xl font-black text-white tracking-tight">Rot-Weiß-Rot</h3>
+                  </div>
+                  <div class="w-10 h-10 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                    <div class="w-4 h-4 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,1)] animate-pulse"></div>
+                  </div>
+                </div>
+
+                <div class="relative z-20 flex justify-center my-8">
+                  <div class="w-32 h-32 rounded-full border border-white/5 flex items-center justify-center bg-gradient-to-b from-white/5 to-transparent relative">
+                    <svg class="w-16 h-16 text-slate-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div class="absolute inset-0 border border-red-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                  </div>
+                </div>
+
+                <div class="relative z-20">
+                  <p class="text-[9px] font-bold tracking-widest text-slate-500 uppercase mb-2">Access Level</p>
+                  <div class="bg-white/5 rounded-xl p-4 border border-white/5 backdrop-blur-sm">
+                    <div class="flex justify-between items-end mb-2">
+                      <span class="text-white font-black text-lg leading-none">PR Pathway Visa</span>
+                      <span class="text-red-400 font-bold text-xs uppercase tracking-widest">Valid</span>
+                    </div>
+                    <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                      <div class="w-full h-full bg-gradient-to-r from-red-600 to-rose-400"></div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-6 md:gap-8 z-20 w-full md:w-auto relative">
+            
+            <div class="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-red-500/30 rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:translate-x-2">
+              <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#000000] border-2 border-red-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.5)] z-10 hidden md:flex">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+              </div>
+              <h4 class="text-white font-black text-xl mb-1 flex items-center gap-3">
+                12-Month Stay-Back Visa
+              </h4>
+              <p class="text-slate-400 text-sm font-medium max-w-sm">You get a full official year after graduation to secure employment in your field. No need to rush back home immediately.</p>
+            </div>
+
+            <div class="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-red-500/30 rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:translate-x-2">
+              <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#000000] border-2 border-red-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.5)] z-10 hidden md:flex">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+              </div>
+              <h4 class="text-white font-black text-xl mb-1 flex items-center gap-3">
+                Massive Demand for Indian Talent
+              </h4>
+              <p class="text-slate-400 text-sm font-medium max-w-sm">Austria faces a severe shortage of IT, Mechanical, and Business professionals. Indian graduates are highly preferred and respected.</p>
+            </div>
+
+            <div class="group relative bg-white/5 hover:bg-white/10 border border-red-500/20 hover:border-red-500/50 rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:translate-x-2 shadow-[0_0_30px_rgba(220,38,38,0.1)]">
+              <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#000000] border-2 border-red-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.5)] z-10 hidden md:flex">
+                <div class="w-2 h-2 bg-white rounded-full animate-ping"></div>
+              </div>
+              <h4 class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-300 font-black text-xl mb-1 flex items-center gap-3 leading-none pt-0.5">
+                Fast-Track to European PR
+              </h4>
+              <p class="text-slate-300 text-sm font-medium max-w-sm">This isn't just a temporary work visa. After 5 years of continuous employment, you and your family are eligible for European Permanent Residency.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <style>
+      .transform-style-3d { transform-style: preserve-3d; }
+      .backface-hidden { backface-visibility: hidden; }
+
+      @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
+      }
+      .animate-marquee {
+        animation: marquee 40s linear infinite;
+        padding-right: 2rem;
+      }
+    </style>
+
+    <script>
+      function initFixed3DCard() {
+        const container = document.getElementById('rwr-container');
+        const cardArea = document.querySelector('[style="perspective: 1500px;"]');
+        const card = document.getElementById('rwr-card');
+        const glare = document.getElementById('card-glare');
+
+        if (!container || !cardArea || !card || !glare) return;
+
+        container.addEventListener('mousemove', (e) => {
+          if (window.innerWidth < 768) return;
+
+          const rect = cardArea.getBoundingClientRect(); 
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          const rotateX = (y / (rect.height / 2)) * -10; 
+          const rotateY = (x / (rect.width / 2)) * 10;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          glare.style.opacity = '1';
+          glare.style.transform = `translateX(${x * 0.5}px) translateY(${y * 0.5}px)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+          if (window.innerWidth < 768) return;
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+          glare.style.opacity = '0';
+        });
+      }
+
+      initFixed3DCard();
+      document.addEventListener('astro:page-load', initFixed3DCard);
+    </script>
+
+
+
+
+    <section class="py-24 bg-slate-50 relative overflow-hidden border-t border-slate-200" id="faq">
+      <script type="application/ld+json" set:html={JSON.stringify(austriaFaqSchema)} />
+
+      <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <div class="lg:col-span-5 lg:sticky lg:top-32">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-red-100 text-red-700 font-bold tracking-wider uppercase mb-6 text-xs shadow-sm">
+              Clear Your Doubts
+            </span>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+              Got Questions?<br/>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-500">We've Got Answers.</span>
+            </h2>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+              Everything you need to know about the Austrian education system, visas, and living costs. Can't find what you're looking for?
+            </p>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex items-center gap-5 hover:border-red-200 transition-colors group">
+              <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center text-red-600 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-lg">Still have doubts?</h4>
+                <a href="/contact" class="text-red-600 font-bold text-sm hover:text-red-700 flex items-center mt-1">
+                  Book a Free Audit 
+                  <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-5">
+            {austriaFaqs.map((faq) => (
+              <div class="faq-item group bg-white border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-red-200">
+                <button 
+                  class="faq-button w-full px-6 md:px-8 py-6 text-left flex justify-between items-center focus:outline-none"
+                  aria-expanded="false"
+                >
+                  <span class="text-lg font-bold text-slate-800 pr-8 group-hover:text-red-600 transition-colors">{faq.question}</span>
+                  <span class="faq-icon relative shrink-0 w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 transition-all duration-500 group-hover:bg-red-50 group-hover:text-red-600 group-hover:border-red-200">
+                    <svg class="w-5 h-5 transition-transform duration-500 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                  </span>
+                </button>
+                
+                <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out opacity-50">
+                  <div class="overflow-hidden">
+                    <p class="px-6 md:px-8 pb-6 text-slate-600 leading-relaxed font-medium">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const initAustriaFaqs = () => {
+        const faqItems = document.querySelectorAll('#faq .faq-item'); // Scoped to this section
+
+        faqItems.forEach(item => {
+          const button = item.querySelector('.faq-button');
+          const answer = item.querySelector('.faq-answer');
+          const icon = item.querySelector('.faq-icon');
+          const iconSvg = icon?.querySelector('svg');
+
+          if (button && answer && icon && iconSvg) {
+            button.addEventListener('click', () => {
+              const isExpanded = button.getAttribute('aria-expanded') === 'true';
+              
+              // Auto-close others
+              faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  const otherBtn = otherItem.querySelector('.faq-button');
+                  const otherAns = otherItem.querySelector('.faq-answer');
+                  const otherIc = otherItem.querySelector('.faq-icon');
+                  const otherSvg = otherIc?.querySelector('svg');
+                  
+                  if (otherBtn && otherAns && otherIc && otherSvg) {
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    otherAns.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                    otherAns.classList.add('grid-rows-[0fr]', 'opacity-50');
+                    // Removed Teal, Added Red
+                    otherIc.classList.remove('bg-red-500', 'text-white', 'border-red-500');
+                    otherSvg.classList.remove('rotate-45');
+                    otherItem.classList.remove('border-red-500', 'shadow-md');
+                  }
+                }
+              });
+
+              // Toggle Current
+              button.setAttribute('aria-expanded', (!isExpanded).toString());
+              
+              if (!isExpanded) {
+                answer.classList.remove('grid-rows-[0fr]', 'opacity-50');
+                answer.classList.add('grid-rows-[1fr]', 'opacity-100');
+                // Removed Teal, Added Red
+                icon.classList.add('bg-red-500', 'text-white', 'border-red-500');
+                iconSvg.classList.add('rotate-45'); 
+                item.classList.add('border-red-500', 'shadow-md');
+              } else {
+                answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                answer.classList.add('grid-rows-[0fr]', 'opacity-50');
+                // Removed Teal, Added Red
+                icon.classList.remove('bg-red-500', 'text-white', 'border-red-500');
+                iconSvg.classList.remove('rotate-45');
+                item.classList.remove('border-red-500', 'shadow-md');
+              }
+            });
+          }
+        });
+      };
+
+      initAustriaFaqs();
+      document.addEventListener('astro:after-swap', initAustriaFaqs);
+      document.addEventListener('astro:page-load', initAustriaFaqs);
+    </script>
+
+
+
+
+    <section class="relative py-24 bg-[#050505]" id="final-cta">
+      
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz4KCTwvc3ZnPg==')] pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="relative w-full rounded-[3rem] bg-[#0a0a0a] border border-white/5 shadow-[0_30px_100px_-15px_rgba(220,38,38,0.1)] overflow-hidden p-10 md:p-20 text-center flex flex-col items-center">
+          
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-red-500/80 to-transparent"></div>
+          <div class="absolute -bottom-32 left-1/2 -translate-x-1/2 w-1/2 h-[250px] bg-red-600/20 blur-[100px] pointer-events-none rounded-t-full"></div>
+          
+          <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-rose-500/10 blur-[120px] pointer-events-none rounded-b-full"></div>
+
+          <span class="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-red-400 font-bold tracking-widest uppercase mb-8 text-[10px] shadow-sm backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            Intake Applications Open
+          </span>
+
+          <h2 class="relative z-10 text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-6 leading-[1.1]">
+            Your European PR journey <br class="hidden md:block" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">starts right here.</span>
+          </h2>
+          
+          <p class="relative z-10 text-slate-400 text-lg md:text-xl font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
+            Stop guessing your eligibility. Let our experts deeply analyze your profile, academic scores, and study gaps to give you a crystal-clear, zero-BS roadmap to Austria.
+          </p>
+
+          <div class="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto">
+            
+            <a href="/contact" class="group relative w-full sm:w-auto flex justify-center items-center gap-3 bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white px-10 py-5 rounded-2xl text-lg font-black transition-all duration-300 shadow-[0_0_40px_rgba(225,29,72,0.3)] hover:shadow-[0_0_60px_rgba(225,29,72,0.5)] active:scale-[0.98] overflow-hidden">
+              <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"></div>
+              <span class="relative z-10 tracking-wide">Book Free Profile Audit</span>
+              <svg class="w-6 h-6 relative z-10 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="group w-full sm:w-auto flex justify-center items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all duration-300 backdrop-blur-md active:scale-[0.98]">
+              <svg class="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+
+          <div class="relative z-10 mt-12 flex flex-wrap justify-center items-center gap-6 text-slate-500 text-xs font-bold uppercase tracking-widest">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              No Hidden Charges
+            </div>
+            <div class="hidden sm:block w-1 h-1 bg-slate-700 rounded-full"></div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              100% Data Privacy
+            </div>
+            <div class="hidden sm:block w-1 h-1 bg-slate-700 rounded-full"></div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              Expert Counseling
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @keyframes shimmer {
+        100% { transform: translateX(100%); }
+      }
+    </style>
+
+    
+
+
+
+    </main>
+  
+  <Footer hideCTA={true} theme="red" />
+</Layout>
