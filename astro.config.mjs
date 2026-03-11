@@ -9,6 +9,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+
+  build: {
+    assets: 'media' // '_astro' च्या जागी आता 'media' किंवा 'static' नाव दिसेल
+  },
   
   image: {
     service: {
