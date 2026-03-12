@@ -9,6 +9,17 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 <Layout title={seoTitle} description={seoDescription}>
   <main class="flex-grow bg-[#03070E] selection:bg-amber-500/30 selection:text-amber-200">
 
+    <div class="absolute top-0 left-0 w-full z-50 px-6 py-6 lg:px-12 flex justify-between items-center pointer-events-auto">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded bg-emerald-500 text-white font-black flex items-center justify-center text-lg">F</div>
+            <span class="text-white font-black text-xl tracking-tight">Finesse.</span>
+        </div>
+        
+        <button onclick="document.getElementById('bouncer-form').scrollIntoView({ behavior: 'smooth' })" class="text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-2.5 rounded-full backdrop-blur-md transition-all">
+            Secure Seat
+        </button>
+    </div>
+
     <section class="relative min-h-[600px] flex flex-col justify-center pt-28 pb-16 lg:pt-32 lg:pb-20 overflow-hidden border-b border-white/5">
       
       <div class="absolute inset-0 z-0 pointer-events-none">
@@ -504,6 +515,19 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 </Layout>
 
 <style is:global>
+
+
+/* 🚨 KILL THE LEAKS: Hide Global Header & Footer on this Landing Page ONLY 🚨 */
+  header, 
+  footer, 
+  .navbar, 
+  #navbar, 
+  .site-header, 
+  .site-footer {
+      display: none !important;
+  }
+
+
   /* Base Animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
