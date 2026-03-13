@@ -603,11 +603,14 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 <script>
     const initMasterLogic = () => {
         
+        // 🎯 GTM DataLayer Initialization
+        window.dataLayer = window.dataLayer || [];
+
         /* --- 1. FORM SLIDING & SUBMIT LOGIC --- */
         const s1 = document.getElementById('split-step-1');
         const s2 = document.getElementById('split-step-2');
         const s3 = document.getElementById('split-step-3');
-        const sSuccess = document.getElementById('split-step-success'); // New Success Screen
+        const sSuccess = document.getElementById('split-step-success'); 
         const sReject = document.getElementById('split-step-reject');
         
         const d1 = document.getElementById('split-dot-1');
@@ -634,21 +637,36 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         };
 
         if (s1) {
+            // 📍 STEP 1: Score Selected
             s1.querySelectorAll('.split-option').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    // 🚀 MICRO-EVENT: User completed Step 1
+                    window.dataLayer.push({ 
+                        'event': 'form_step_1_completed',
+                        'selected_score': e.currentTarget.querySelector('.text-base').innerText 
+                    });
+
                     switchStep(s1, s2, 'forward', () => d2.classList.replace('bg-slate-100', 'bg-slate-900'));
                 });
             });
 
+            // 📍 STEP 2: Budget Selected
             s2.querySelectorAll('.split-option').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const budget = e.currentTarget.getAttribute('data-budget');
+                    
                     if (budget === 'high') {
+                        // 🚀 MICRO-EVENT: User Qualified (High Budget) - But hasn't given number yet
+                        window.dataLayer.push({ 'event': 'form_step_2_qualified' });
+
                         switchStep(s2, s3, 'forward', () => {
                             d1.classList.replace('bg-slate-900', 'bg-emerald-500');
                             d2.classList.replace('bg-slate-900', 'bg-emerald-500');
                         });
                     } else {
+                        // 🚀 MICRO-EVENT: User Rejected (Low Budget)
+                        window.dataLayer.push({ 'event': 'lead_rejected_low_budget' });
+
                         switchStep(s2, sReject, 'forward', () => {
                             d1.classList.replace('bg-slate-900', 'bg-blue-500');
                             d2.classList.replace('bg-slate-900', 'bg-blue-500');
@@ -672,8 +690,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 });
             });
 
-            // a23dc8d7-5a81-4be3-b711-32a0d054778b
-            // 🚨 THE REAL DATA CAPTURE & TRACKING ENGINE 🚨
+            // 🚨 📍 STEP 3: FINAL SUBMIT (Qualified Lead) 🚨
             const leadForm = document.getElementById('lead-form');
             if(leadForm) {
                 leadForm.addEventListener('submit', async (e) => {
@@ -683,17 +700,11 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                     const originalText = submitBtn.innerHTML;
                     submitBtn.innerHTML = 'Securing Protocol... <span class="animate-pulse">⏳</span>';
                     
-                    // 1. Prepare Data
                     const formData = new FormData(leadForm);
-                    
-                    // 🔑 WEB3FORMS ACCESS KEY (इथे तुझी मिळालेली Key टाक)
                     formData.append("access_key", "a23dc8d7-5a81-4be3-b711-32a0d054778b");
-                    
-                    // (Optional) ईमेलचा Subject लाईन कस्टमाईज करण्यासाठी
                     formData.append("subject", "🚨 HIGH TICKET LEAD: Tier-A MBBS Landing Page");
 
                     try {
-                        // 2. Send Data to Email
                         const response = await fetch('https://api.web3forms.com/submit', {
                             method: 'POST',
                             body: formData
@@ -702,27 +713,18 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                         const result = await response.json();
                         
                         if (result.success) {
-                            // 3. Show Success Screen (UI)
                             switchStep(s3, sSuccess, 'forward'); 
                             
-                            // 🎯 4. FIRE GTM & META PIXEL EVENT (The Marketing Magic)
-                            // हा कोड Facebook आणि Google Ads ला सांगेल की Lead कन्व्हर्ट झाली आहे
-                            window.dataLayer = window.dataLayer || [];
+                            // 🚀 MACRO-EVENT: The Final Conversion
                             window.dataLayer.push({
                                 'event': 'lead_submitted',
-                                'lead_type': 'tier_a_mbbs_hni',
-                                'form_location': 'split_dashboard'
+                                'lead_type': 'tier_a_mbbs_hni'
                             });
                             
-                            // जर डायरेक्ट Meta Pixel लावला असेल तर:
+                            // Direct Meta Pixel (Optional)
                             if(typeof fbq === 'function') {
-                                fbq('track', 'Lead', {
-                                    content_name: 'Tier-A MBBS',
-                                    currency: 'INR',
-                                    value: 12000000 // 1.2 Cr (Optional for ROAS tracking)
-                                });
+                                fbq('track', 'Lead', { value: 12000000, currency: 'INR' });
                             }
-                            
                         } else {
                             alert("System busy. Please try again.");
                             submitBtn.innerHTML = originalText;
