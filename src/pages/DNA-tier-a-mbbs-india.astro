@@ -928,8 +928,19 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
 <script is:inline>
   window.addEventListener('load', () => {
-    // 🚨 SILICON VALLEY MASTERSTROKE: 100% Look + 90+ Score
-    setTimeout(initDNAEngine, 2500); // Wait for page to be completely quiet
+    // 🚨 DEVICE DETECTION: Only run on Desktop for max speed
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+        // Mobile: DNA नको, फक्त एक प्रीमियम लुक ठेवू (Background Glow handles it)
+        const canvas = document.getElementById('dna-canvas');
+        if(canvas) canvas.style.display = 'none'; // Hide canvas to save memory
+        console.log("Mobile detected: DNA Engine disabled for speed.");
+        return; 
+    }
+
+    // Desktop: Run the full WOW engine
+    setTimeout(initDNAEngine, 2000); 
   });
 
   function initDNAEngine() {
@@ -945,10 +956,10 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     };
     setCanvasSize();
 
-    // 🧬 1. SPRITE CACHING: Render the perfect ball ONCE
+    // 🧬 Sprite Caching for Desktop Performance
     const createBallSprite = (color) => {
         const sCanvas = document.createElement('canvas');
-        sCanvas.width = 40; sCanvas.height = 40; // Space for glow
+        sCanvas.width = 40; sCanvas.height = 40;
         const sCtx = sCanvas.getContext('2d');
         sCtx.shadowBlur = 10;
         sCtx.shadowColor = color;
@@ -963,7 +974,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     const amberSprite = createBallSprite('#F59E0B');
 
     const particles = [];
-    const numParticles = 120; // Original Density
+    const numParticles = 120; // Original Look
     const radius = 60; 
     const ySpacing = 6; 
     let rotation = 0;
@@ -1017,7 +1028,6 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
             return { ...p, x2d: x2d + repelX, y2d: y2d + repelY, z3d, scale };
         });
 
-        // Lines (Lightweight)
         ctx.lineWidth = 0.5;
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
         for (let i = 0; i < numParticles; i += 2) {
@@ -1033,7 +1043,6 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
         projected.sort((a, b) => b.z3d - a.z3d);
 
-        // 🚀 THE MAGIC: Draw Image instead of Shadow Path
         projected.forEach(p => {
             const size = 40 * p.scale;
             ctx.globalAlpha = Math.max(0.2, p.scale);
