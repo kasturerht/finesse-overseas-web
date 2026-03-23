@@ -92,30 +92,31 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
           </div>
 
           <div class="lg:col-span-5 relative w-full h-[500px] lg:h-[750px] flex items-center justify-center lg:justify-end">
-             
-             <canvas id="dna-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full lg:w-[120%] lg:h-[120%] z-10"></canvas>
+   
+   <div id="dna-placeholder" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-[80%] bg-[radial-gradient(circle,rgba(16,185,129,0.15),transparent_70%)] blur-2xl animate-pulse"></div>
+   
+   <canvas id="dna-canvas" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full lg:w-[120%] lg:h-[120%] z-10 opacity-0"></canvas>
 
-             <div class="absolute top-[20%] left-[-10%] md:left-[-5%] group z-30 animate-float-data-1 pointer-events-auto">
-                <div class="relative bg-[#0A0C10]/95 backdrop-blur-xl border border-emerald-500/30 p-4 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex items-center gap-3">
-                    <div class="w-2 h-10 rounded-full bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
-                    <div class="text-left">
-                        <p class="text-white font-black text-xs mb-0.5">Base Pair 01: Audit</p>
-                        <p class="text-emerald-400 font-bold text-[9px] uppercase tracking-[0.15em]">100% Legal Framework</p>
-                    </div>
-                </div>
-             </div>
-
-             <div class="absolute bottom-[25%] right-[-10%] md:right-0 group z-30 animate-float-data-2 pointer-events-auto">
-                <div class="relative bg-[#0A0C10]/95 backdrop-blur-xl border border-amber-500/30 p-4 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex items-center gap-3">
-                    <div class="w-2 h-10 rounded-full bg-gradient-to-b from-amber-400 to-amber-600"></div>
-                    <div class="text-left">
-                        <p class="text-white font-black text-xs mb-0.5">Base Pair 02: Finance</p>
-                        <p class="text-amber-400 font-bold text-[9px] uppercase tracking-[0.15em]">Zero Cash Advance</p>
-                    </div>
-                </div>
-             </div>
-
+   <div class="absolute top-[20%] left-[-10%] md:left-[-5%] group z-30 animate-float-data-1">
+      <div class="relative bg-[#0A0C10]/95 backdrop-blur-xl border border-emerald-500/30 p-4 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex items-center gap-3">
+          <div class="w-2 h-10 rounded-full bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
+          <div class="text-left">
+              <p class="text-white font-black text-xs mb-0.5">Base Pair 01: Audit</p>
+              <p class="text-emerald-400 font-bold text-[9px] uppercase tracking-[0.15em]">100% Legal Framework</p>
           </div>
+      </div>
+   </div>
+
+   <div class="absolute bottom-[25%] right-[-10%] md:right-0 group z-30 animate-float-data-2">
+      <div class="relative bg-[#0A0C10]/95 backdrop-blur-xl border border-amber-500/30 p-4 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex items-center gap-3">
+          <div class="w-2 h-10 rounded-full bg-gradient-to-b from-amber-400 to-amber-600"></div>
+          <div class="text-left">
+              <p class="text-white font-black text-xs mb-0.5">Base Pair 02: Finance</p>
+              <p class="text-amber-400 font-bold text-[9px] uppercase tracking-[0.15em]">Zero Cash Advance</p>
+          </div>
+      </div>
+   </div>
+</div>
           
         </div>
       </div>
@@ -610,6 +611,15 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
       display: none !important;
   }
 
+
+  @keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+}
+.animate-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
   /* Base Animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -928,23 +938,19 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
 <script is:inline>
   window.addEventListener('load', () => {
-    // 🚨 DEVICE DETECTION: Only run on Desktop for max speed
-    const isMobile = window.innerWidth < 768;
-    
-    if (isMobile) {
-        // Mobile: DNA नको, फक्त एक प्रीमियम लुक ठेवू (Background Glow handles it)
+    // १. मोबाईल चेक (मोबाईलवर स्पीडसाठी इंजिन बंद)
+    if (window.innerWidth < 768) {
         const canvas = document.getElementById('dna-canvas');
-        if(canvas) canvas.style.display = 'none'; // Hide canvas to save memory
-        console.log("Mobile detected: DNA Engine disabled for speed.");
+        if(canvas) canvas.style.display = 'none';
         return; 
     }
-
-    // Desktop: Run the full WOW engine
-    setTimeout(initDNAEngine, 2000); 
+    // २. डेस्कटॉपवर १.२ सेकंद थांबा (Lighthouse साठी)
+    setTimeout(initDNAEngine, 1200); 
   });
 
   function initDNAEngine() {
     const canvas = document.getElementById('dna-canvas');
+    const placeholder = document.getElementById('dna-placeholder');
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: true });
 
@@ -955,8 +961,9 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         ctx.scale(2, 2);
     };
     setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
 
-    // 🧬 Sprite Caching for Desktop Performance
+    // Sprite Caching (Calculations वाचवण्यासाठी)
     const createBallSprite = (color) => {
         const sCanvas = document.createElement('canvas');
         sCanvas.width = 40; sCanvas.height = 40;
@@ -974,7 +981,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     const amberSprite = createBallSprite('#F59E0B');
 
     const particles = [];
-    const numParticles = 120; // Original Look
+    const numParticles = 120; 
     const radius = 60; 
     const ySpacing = 6; 
     let rotation = 0;
@@ -1001,7 +1008,6 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
     const render = () => {
         if (!isVisible) { requestAnimationFrame(render); return; }
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const centerX = canvas.width / 4;
         const centerY = canvas.height / 4;
@@ -1042,7 +1048,6 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         }
 
         projected.sort((a, b) => b.z3d - a.z3d);
-
         projected.forEach(p => {
             const size = 40 * p.scale;
             ctx.globalAlpha = Math.max(0.2, p.scale);
@@ -1053,7 +1058,37 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         requestAnimationFrame(render);
     };
 
+    // Transition: Glow घालवा आणि DNA दाखवा
+    canvas.style.transition = 'opacity 1.5s ease-in-out';
     canvas.style.opacity = '1';
+    if(placeholder) {
+        placeholder.style.transition = 'opacity 1s ease-out';
+        placeholder.style.opacity = '0';
+    }
     render();
+
+    // Toggle Logic
+    const btnIndia = document.getElementById('btn-target-india');
+    const btnAbroad = document.getElementById('btn-fallback-abroad');
+    const highlight = document.getElementById('toggle-highlight');
+    const desc = document.getElementById('hero-description');
+
+    if(btnIndia && btnAbroad && highlight && desc) {
+        btnIndia.addEventListener('click', () => {
+            highlight.style.transform = 'translateX(0)';
+            highlight.className = 'absolute left-1 top-1 bottom-1 w-[160px] bg-emerald-500/20 border border-emerald-500/30 rounded-lg transition-transform duration-500 ease-out';
+            btnIndia.className = 'relative z-10 w-[160px] py-2.5 text-emerald-400 text-xs font-black uppercase tracking-widest transition-colors';
+            btnAbroad.className = 'relative z-10 w-[160px] py-2.5 text-slate-500 hover:text-white text-xs font-black uppercase tracking-widest transition-colors';
+            desc.innerHTML = `Medical success is not random. It's engineered. We decode complex Tier-A private medical admissions strictly through legally audited Management & NRI channels. <strong class="text-white block mt-2">Zero Agents. 100% Direct. Strictly ₹1.2 Cr+.</strong>`;
+        });
+
+        btnAbroad.addEventListener('click', () => {
+            highlight.style.transform = 'translateX(100%)';
+            highlight.className = 'absolute left-1 top-1 bottom-1 w-[160px] bg-blue-500/20 border border-blue-500/30 rounded-lg transition-transform duration-500 ease-out';
+            btnAbroad.className = 'relative z-10 w-[160px] py-2.5 text-blue-400 text-xs font-black uppercase tracking-widest transition-colors';
+            btnIndia.className = 'relative z-10 w-[160px] py-2.5 text-slate-500 hover:text-white text-xs font-black uppercase tracking-widest transition-colors';
+            desc.innerHTML = `If Indian budgets don't align, our blueprint extends globally. We secure admissions in World-class Government Medical Universities Abroad as a secure, affordable fallback option. <strong class="text-white block mt-2">NMC Approved. 100% English Taught.</strong>`;
+        });
+    }
   }
 </script>
