@@ -4,3 +4,26 @@
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
 }
+
+/* --- 🧬 DNA ENGINE ANIMATIONS 🚨 --- */
+  @keyframes floatData1 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+  @keyframes floatData2 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(15px); }
+  }
+  .animate-float-data-1 {
+    animation: floatData1 5s ease-in-out infinite;
+  }
+  .animate-float-data-2 {
+    animation: floatData2 6s ease-in-out infinite 1s;
+  }
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+  }
+  .animate-pulse-slow {
+    animation: pulseSlow 5s ease-in-out infinite;
+  }
