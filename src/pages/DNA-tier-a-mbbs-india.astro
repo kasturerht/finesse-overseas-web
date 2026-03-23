@@ -927,99 +927,91 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 </script>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- 🚨 SILICON VALLEY: HTML5 CANVAS 3D DNA ENGINE 🚨 ---
+  window.addEventListener('load', () => {
+    // 🚨 SILICON VALLEY HACK: Wait for page to be "Quiet"
+    // Gives 2 seconds for tracking codes and LCP to finish
+    setTimeout(initDNAEngine, 2000); 
+  });
+
+  function initDNAEngine() {
     const canvas = document.getElementById('dna-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    // Make canvas sharp on high-DPI (Retina) displays
     const setCanvasSize = () => {
         const rect = canvas.parentElement.getBoundingClientRect();
-        canvas.width = rect.width * 2; // 2x for retina
+        canvas.width = rect.width * 2;
         canvas.height = rect.height * 2;
         ctx.scale(2, 2);
     };
     setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
 
-    // 🧬 DNA Parameters
     const particles = [];
-    const numParticles = 120; // Number of base pairs
-    const radius = 60; // Helix radius
-    const ySpacing = 6; // Vertical distance between pairs
+    const numParticles = 120; // Original Look preserved
+    const radius = 60; 
+    const ySpacing = 6; 
     let rotation = 0;
 
-    // Generate DNA Data
     for (let i = 0; i < numParticles; i++) {
         const y = i * ySpacing - (numParticles * ySpacing) / 2;
-        const angle = i * 0.2; // Twist factor
-        
-        // Strand A (Emerald)
-        particles.push({ 
-            y: y, baseAngle: angle, color: '#10B981', radius: 2.5, type: 'strandA', pairId: i 
-        });
-        // Strand B (Amber)
-        particles.push({ 
-            y: y, baseAngle: angle + Math.PI, color: '#F59E0B', radius: 2.5, type: 'strandB', pairId: i 
-        });
+        const angle = i * 0.2;
+        particles.push({ y, baseAngle: angle, color: '#10B981', radius: 2.5, type: 'strandA', pairId: i });
+        particles.push({ y, baseAngle: angle + Math.PI, color: '#F59E0B', radius: 2.5, type: 'strandB', pairId: i });
     }
 
-    // Mouse Interaction
-    let mouse = { x: canvas.width, y: canvas.height };
-    canvas.addEventListener('mousemove', (e) => {
+    let mouse = { x: 9999, y: 9999 };
+    // Only track mouse movement if user actually moves it
+    document.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         mouse.x = e.clientX - rect.left;
         mouse.y = e.clientY - rect.top;
     });
-    canvas.addEventListener('mouseleave', () => {
-        mouse.x = 9999; mouse.y = 9999;
-    });
 
-    // Main 3D Render Loop
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
+
     const render = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const centerX = canvas.width / 4; // Adjusted for retina scale
-        const centerY = canvas.height / 4;
-        
-        rotation += 0.005; // Auto-spin speed
+        if (!isVisible) {
+            requestAnimationFrame(render);
+            return;
+        }
 
-        // Sort particles by Z-index to draw back ones first (True 3D depth)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const centerX = canvas.width / 4;
+        const centerY = canvas.height / 4;
+        rotation += 0.005;
+
         const projected = particles.map(p => {
             const currentAngle = p.baseAngle + rotation;
             const x3d = Math.cos(currentAngle) * radius;
             const z3d = Math.sin(currentAngle) * radius;
-            
-            // Perspective Projection
             const scale = 250 / (250 + z3d);
             const x2d = centerX + x3d * scale;
             const y2d = centerY + p.y * scale;
 
-            // Interactive Physics (Repulsion)
+            // Physics Repulsion
             const dx = mouse.x - x2d;
             const dy = mouse.y - y2d;
-            const dist = Math.sqrt(dx*dx + dy*dy);
+            const distSq = dx*dx + dy*dy;
             let repelX = 0, repelY = 0;
-            if (dist < 80) { // Repulsion radius
+            if (distSq < 6400) {
+                const dist = Math.sqrt(distSq);
                 const force = (80 - dist) / 80;
                 repelX = -(dx / dist) * force * 20;
                 repelY = -(dy / dist) * force * 20;
             }
-
-            return { 
-                ...p, x2d: x2d + repelX, y2d: y2d + repelY, z3d, scale 
-            };
+            return { ...p, x2d: x2d + repelX, y2d: y2d + repelY, z3d, scale };
         });
 
-        // Draw Connecting Lines (Base Pairs)
+        // Drawing Lines
         ctx.lineWidth = 0.5;
         for (let i = 0; i < numParticles; i++) {
             const pA = projected.find(p => p.type === 'strandA' && p.pairId === i);
             const pB = projected.find(p => p.type === 'strandB' && p.pairId === i);
-            
             if (pA && pB) {
-                // Fade lines that are in the back
                 const alpha = Math.max(0.1, (pA.scale + pB.scale) / 2 - 0.5);
                 ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.3})`;
                 ctx.beginPath();
@@ -1029,18 +1021,15 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
             }
         }
 
-        // Sort by Z to draw dots
         projected.sort((a, b) => b.z3d - a.z3d);
 
-        // Draw Particles with Glow
+        // 🚨 ORIGINAL LOOK: ShadowBlur Restored
         projected.forEach(p => {
-            const alpha = Math.max(0.2, p.scale); // Fade elements in the back
-            
+            const alpha = Math.max(0.2, p.scale);
             ctx.shadowBlur = 10;
             ctx.shadowColor = p.color;
             ctx.fillStyle = p.color;
             ctx.globalAlpha = alpha;
-            
             ctx.beginPath();
             ctx.arc(p.x2d, p.y2d, p.radius * p.scale, 0, Math.PI * 2);
             ctx.fill();
@@ -1048,37 +1037,12 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         
         ctx.globalAlpha = 1;
         ctx.shadowBlur = 0;
-
         requestAnimationFrame(render);
     };
 
+    // Make the canvas appear with a smooth fade
+    canvas.style.transition = 'opacity 1.5s ease-in-out';
+    canvas.style.opacity = '1';
     render();
-
-    // --- 🎛️ KEEPING THE TOGGLE LOGIC (AS DISCUSSED) ---
-    const btnIndia = document.getElementById('btn-target-india');
-    const btnAbroad = document.getElementById('btn-fallback-abroad');
-    const highlight = document.getElementById('toggle-highlight');
-    const desc = document.getElementById('hero-description');
-
-    btnIndia.addEventListener('click', () => {
-        highlight.style.transform = 'translateX(0)';
-        highlight.className = 'absolute left-1 top-1 bottom-1 w-[160px] bg-emerald-500/20 border border-emerald-500/30 rounded-lg transition-transform duration-500 ease-out';
-        btnIndia.className = 'relative z-10 w-[160px] py-2.5 text-emerald-400 text-xs font-black uppercase tracking-widest transition-colors';
-        btnAbroad.className = 'relative z-10 w-[160px] py-2.5 text-slate-500 hover:text-white text-xs font-black uppercase tracking-widest transition-colors';
-        
-        desc.innerHTML = `Medical success is not random. It's engineered. We decode complex Tier-A private medical admissions strictly through legally audited Management & NRI channels. <strong class="text-white block mt-2">Zero Agents. 100% Direct. Strictly ₹1.2 Cr+.</strong>`;
-        desc.className = 'text-slate-300 text-lg lg:text-xl font-medium leading-relaxed max-w-xl mb-8 border-l-4 border-emerald-500 pl-6 bg-gradient-to-r from-emerald-500/5 to-transparent py-2 transition-all duration-500';
-    });
-
-    btnAbroad.addEventListener('click', () => {
-        highlight.style.transform = 'translateX(100%)';
-        highlight.className = 'absolute left-1 top-1 bottom-1 w-[160px] bg-blue-500/20 border border-blue-500/30 rounded-lg transition-transform duration-500 ease-out';
-        btnAbroad.className = 'relative z-10 w-[160px] py-2.5 text-blue-400 text-xs font-black uppercase tracking-widest transition-colors';
-        btnIndia.className = 'relative z-10 w-[160px] py-2.5 text-slate-500 hover:text-white text-xs font-black uppercase tracking-widest transition-colors';
-        
-        desc.innerHTML = `If Indian budgets don't align, our blueprint extends globally. We secure admissions in World-class Government Medical Universities Abroad as a secure, affordable fallback option. <strong class="text-white block mt-2">NMC Approved. 100% English Taught.</strong>`;
-        desc.className = 'text-slate-300 text-lg lg:text-xl font-medium leading-relaxed max-w-xl mb-8 border-l-4 border-blue-500 pl-6 bg-gradient-to-r from-blue-500/5 to-transparent py-2 transition-all duration-500';
-    });
-
-  });
+  }
 </script>
