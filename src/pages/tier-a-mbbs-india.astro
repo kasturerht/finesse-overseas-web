@@ -973,12 +973,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
             // Simple breathing animation for mobile
             let size = 150;
             let growing = true;
-            setInterval(() => {
-                if(growing) size += 1; else size -= 1;
-                if(size > 180) growing = false;
-                if(size < 130) growing = true;
-                mask.style.setProperty('--spotlight-size', `${size}px`);
-            }, 30);
+            
         }
         if(hint) hint.style.display = 'none';
         return;
@@ -986,8 +981,8 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
     // --- 🎮 DESKTOP: SPOTLIGHT TRACKING LOGIC ---
     // Auto-Wander (Affordance): When not hovering, spotlight moves around slowly
-    let autoWander;
     let angle = 0;
+    let autoWanderId = null;
 
     const startAutoWander = () => {
         mask.style.opacity = '0.3'; // Dimmed when wandering
