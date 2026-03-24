@@ -50,53 +50,85 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     <script src="https://unpkg.com/three@0.136.0/build/three.min.js" is:inline></script>
     <script src="https://unpkg.com/globe.gl" is:inline></script>
 
-    <section id="global-network-hero" class="relative min-h-[100vh] lg:min-h-[850px] flex items-center bg-[#03070E] overflow-hidden">
+    <section id="spotlight-hero" class="relative min-h-[100vh] lg:min-h-[850px] flex items-center bg-[#010204] overflow-hidden selection:bg-emerald-500/30">
+  
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_50%,rgba(16,185,129,0.03)_0%,transparent_60%)]"></div>
+  </div>
+
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
       
-      <div id="globeViz" class="absolute top-1/2 -translate-y-1/2 right-[-20%] md:right-[-10%] w-[150%] md:w-[70%] h-[120%] z-0 cursor-move opacity-90 transition-opacity duration-1000"></div>
-      
-      <div class="absolute inset-0 bg-gradient-to-b from-[#03070E] via-transparent to-[#03070E] z-10 pointer-events-none"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-[#03070E] via-[#03070E]/80 to-transparent z-10 pointer-events-none"></div>
-
-      <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          <div class="lg:col-span-7 flex flex-col items-start text-left pt-20 pb-10">
-            
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/20 bg-amber-500/10 backdrop-blur-md mb-6 shadow-[0_0_30px_rgba(245,158,11,0.1)]">
-                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span class="text-amber-100 text-[10px] font-black uppercase tracking-[0.25em]">Finesse Overseas Network</span>
-            </div>
-            
-            <h1 class="text-5xl sm:text-6xl lg:text-[5rem] font-black text-white tracking-tighter leading-[1.02] mb-6 drop-shadow-2xl">
-              Borderless <br/>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-500 to-teal-700">Medical Futures.</span>
-            </h1>
-            
-            <p class="text-slate-300 text-lg lg:text-xl font-medium leading-relaxed max-w-xl mb-10 border-l-4 border-amber-500 pl-6 bg-gradient-to-r from-amber-500/5 to-transparent py-2">
-              From India's top Tier-A private institutions to Government Universities abroad. We legally navigate the world's most premium medical admissions for your child. <strong class="text-white block mt-2">Zero Agents. 100% Direct Allotment.</strong>
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <button type="button" onclick="document.getElementById('bouncer-form').scrollIntoView({ behavior: 'smooth' })" class="group relative inline-flex justify-center items-center gap-4 bg-gradient-to-r from-amber-500 to-amber-600 text-[#03070E] px-8 py-4.5 rounded-xl text-lg font-black transition-all duration-300 shadow-[0_15px_30px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(245,158,11,0.7)] hover:-translate-y-1 active:scale-95">
-                  Secure India Admission
-                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </button>
-                <a href="/mbbs-abroad" class="group relative inline-flex justify-center items-center gap-3 bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 px-8 py-4.5 rounded-xl text-lg font-bold transition-all backdrop-blur-md">
-                  Explore Abroad 
-                  <svg class="w-5 h-5 text-emerald-400 opacity-70 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                </a>
-            </div>
-
-            <div class="mt-12 flex items-center gap-8 opacity-60">
-                <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> Pan India</div>
-                <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Russia & CIS</div>
-                <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-amber-500"></div> Global Hubs</div>
-            </div>
-          </div>
-          
+      <div class="lg:col-span-6 relative z-30 flex flex-col items-start text-left py-20 lg:py-0 pointer-events-auto">
+        <div class="flex items-center gap-4 mb-8 opacity-0 animate-fade-in-up">
+            <div class="h-[1px] w-12 bg-emerald-500/50"></div>
+            <span class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.5em]">The Finesse Official Standard</span>
         </div>
+        
+        <h1 class="text-6xl sm:text-7xl lg:text-[7.5rem] font-extralight text-white tracking-tighter leading-[0.9] mb-10 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+          Clarity. <br/>
+          <span class="font-black italic text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-teal-500">Authority.</span>
+        </h1>
+        
+        <p class="text-slate-400 text-lg lg:text-xl font-light leading-relaxed max-w-md mb-12 opacity-0 animate-fade-in-up" id="hero-description" style="animation-delay: 0.2s;">
+          We decode the complex transition of elite medical profiles into Tier-A institutions with absolute transparency and legality. <br/>
+          <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm">Strictly Institutional: ₹1.2 Cr+ Outlay Only</span>
+        </p>
+
+        <div class="flex gap-10 border-b border-white/5 pb-5 mb-12 relative w-full opacity-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+           <button id="btn-target-india" class="group relative py-2 text-emerald-400 text-[10px] font-black uppercase tracking-[0.4em] transition-all">
+             Target: India
+             <div id="line-india" class="absolute bottom-[-21px] left-0 w-full h-[2px] bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+           </button>
+           <button id="btn-fallback-abroad" class="group relative py-2 text-slate-600 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all">
+             Plan B: Global
+             <div id="line-abroad" class="absolute bottom-[-21px] left-0 w-0 h-[2px] bg-amber-500"></div>
+           </button>
+        </div>
+
+        <button onclick="document.getElementById('bouncer-form').scrollIntoView({ behavior: 'smooth' })" class="group relative px-14 py-5 border border-white/20 rounded-full text-white text-[10px] font-black uppercase tracking-[0.4em] hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)] transition-all duration-500 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+            Initiate Verification
+        </button>
       </div>
-    </section>
+
+      <div id="spotlight-zone" class="lg:col-span-6 relative w-full h-[500px] lg:h-[750px] flex items-center justify-center cursor-crosshair overflow-hidden group select-none">
+          
+          <div class="absolute inset-0 flex flex-wrap content-center justify-center gap-x-6 gap-y-4 text-center opacity-40">
+              <span class="text-slate-800 text-4xl lg:text-6xl font-black uppercase tracking-tighter">100% Direct</span>
+              <span class="text-slate-800 text-3xl lg:text-5xl font-black uppercase tracking-tighter">Zero Agents</span>
+              <span class="text-slate-800 text-5xl lg:text-7xl font-black uppercase tracking-tighter italic">Audited</span>
+              <span class="text-slate-800 text-4xl lg:text-5xl font-black uppercase tracking-tighter">NRI Quota</span>
+              <span class="text-slate-800 text-5xl lg:text-6xl font-black uppercase tracking-tighter">Legality</span>
+              <span class="text-slate-800 text-3xl lg:text-5xl font-black uppercase tracking-tighter italic">NMC Approved</span>
+              <span class="text-slate-800 text-6xl lg:text-8xl font-black uppercase tracking-tighter">Tier-A</span>
+              <span class="text-slate-800 text-4xl lg:text-5xl font-black uppercase tracking-tighter">Zero Advance</span>
+              <span class="text-slate-800 text-5xl lg:text-6xl font-black uppercase tracking-tighter italic">Verified</span>
+          </div>
+
+          <div id="spotlight-mask" class="absolute inset-0 flex flex-wrap content-center justify-center gap-x-6 gap-y-4 text-center transition-opacity duration-700 opacity-0 lg:group-hover:opacity-100">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200 text-4xl lg:text-6xl font-black uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">100% Direct</span>
+              <span class="text-white text-3xl lg:text-5xl font-black uppercase tracking-tighter drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">Zero Agents</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200 text-5xl lg:text-7xl font-black uppercase tracking-tighter italic drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">Audited</span>
+              <span class="text-white text-4xl lg:text-5xl font-black uppercase tracking-tighter drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">NRI Quota</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200 text-5xl lg:text-6xl font-black uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">Legality</span>
+              <span class="text-amber-400 text-3xl lg:text-5xl font-black uppercase tracking-tighter italic drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">NMC Approved</span>
+              <span class="text-white text-6xl lg:text-8xl font-black uppercase tracking-tighter drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">Tier-A</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200 text-4xl lg:text-5xl font-black uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">Zero Advance</span>
+              <span class="text-white text-5xl lg:text-6xl font-black uppercase tracking-tighter italic drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">Verified</span>
+          </div>
+
+          <div id="hover-hint" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none transition-opacity duration-500 lg:group-hover:opacity-0">
+              <div class="w-16 h-16 rounded-full border border-emerald-500/30 flex items-center justify-center animate-ping-slow mb-2">
+                  <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+              </div>
+              <!-- <span class="text-emerald-500/50 text-[9px] font-black uppercase tracking-[0.5em] bg-[#010204]/80 px-4 py-1 rounded-full backdrop-blur-md">Explore Pipeline</span> -->
+          </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>
 
     
 
@@ -903,91 +935,123 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     
 </script>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+<style is:global>
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+  
+  @keyframes pingSlow { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+  .animate-ping-slow { animation: pingSlow 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+  /* 🚀 THE SILICON VALLEY CSS MASK MAGIC */
+  #spotlight-mask {
+    /* Set default variables for mobile fallback */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --spotlight-size: 250px;
     
-    // Check if Globe.gl is loaded successfully
-    if (typeof Globe === 'undefined') {
-        console.error("Globe.gl failed to load!");
+    /* Cross-browser masking */
+    -webkit-mask-image: radial-gradient(circle var(--spotlight-size) at var(--mouse-x) var(--mouse-y), black 10%, transparent 80%);
+    mask-image: radial-gradient(circle var(--spotlight-size) at var(--mouse-x) var(--mouse-y), black 10%, transparent 80%);
+    
+    /* Hardware acceleration for buttery smooth 120fps */
+    will-change: -webkit-mask-image, mask-image;
+  }
+</style>
+
+<script is:inline>
+  window.addEventListener('load', () => {
+    const isMobile = window.innerWidth < 768;
+    const zone = document.getElementById('spotlight-zone');
+    const mask = document.getElementById('spotlight-mask');
+    const hint = document.getElementById('hover-hint');
+
+    if (isMobile) {
+        // Mobile Optimization: Always show mask at center with a pulsing effect
+        if(mask) {
+            mask.style.opacity = '1';
+            mask.style.setProperty('--spotlight-size', '150px');
+            
+            // Simple breathing animation for mobile
+            let size = 150;
+            let growing = true;
+            setInterval(() => {
+                if(growing) size += 1; else size -= 1;
+                if(size > 180) growing = false;
+                if(size < 130) growing = true;
+                mask.style.setProperty('--spotlight-size', `${size}px`);
+            }, 30);
+        }
+        if(hint) hint.style.display = 'none';
         return;
     }
 
-    const container = document.getElementById('globeViz');
-    if (!container) return;
+    // --- 🎮 DESKTOP: SPOTLIGHT TRACKING LOGIC ---
+    // Auto-Wander (Affordance): When not hovering, spotlight moves around slowly
+    let autoWander;
+    let angle = 0;
 
-    // 📍 1. Data: The Medical Education Nodes (India + Abroad)
-    const medicalNodes = [
-      { lat: 18.5204, lng: 73.8567, name: 'Pune, India', type: 'Finesse Headquarters', color: 'amber' },
-      { lat: 19.0760, lng: 72.8777, name: 'Mumbai, India', type: 'Tier-A Hub', color: 'emerald' },
-      { lat: 12.9716, lng: 77.5946, name: 'Bangalore, India', type: 'Premium Colleges', color: 'emerald' },
-      { lat: 41.7151, lng: 44.8271, name: 'Tbilisi, Georgia', type: 'Top Abroad Destination', color: 'blue' },
-      { lat: 55.7558, lng: 37.6173, name: 'Moscow, Russia', type: 'Govt. Medical Universities', color: 'blue' },
-      { lat: 41.2995, lng: 69.2401, name: 'Tashkent, Uzbekistan', type: 'Affordable MBBS', color: 'blue' }
-    ];
+    const startAutoWander = () => {
+        mask.style.opacity = '0.3'; // Dimmed when wandering
+        autoWander = setInterval(() => {
+            angle += 0.02;
+            // Move in a gentle Lissajous curve or circle
+            const x = 50 + Math.cos(angle) * 20; 
+            const y = 50 + Math.sin(angle * 1.5) * 20;
+            
+            mask.style.setProperty('--mouse-x', `${x}%`);
+            mask.style.setProperty('--mouse-y', `${y}%`);
+        }, 20);
+    };
 
-    // 🔀 2. Data: Animated Connections (From Pune HQ to the World)
-    const connectionArcs = [
-      { startLat: 18.5204, startLng: 73.8567, endLat: 19.0760, endLng: 72.8777 }, // Pune -> Mumbai
-      { startLat: 18.5204, startLng: 73.8567, endLat: 12.9716, endLng: 77.5946 }, // Pune -> Bangalore
-      { startLat: 18.5204, startLng: 73.8567, endLat: 41.7151, endLng: 44.8271 }, // Pune -> Georgia
-      { startLat: 18.5204, startLng: 73.8567, endLat: 55.7558, endLng: 37.6173 }, // Pune -> Russia
-      { startLat: 18.5204, startLng: 73.8567, endLat: 41.2995, endLng: 69.2401 }  // Pune -> Uzbekistan
-    ];
+    const stopAutoWander = () => {
+        clearInterval(autoWander);
+        mask.style.opacity = '1'; // Full brightness when user takes control
+    };
 
-    // 🌍 3. Initialize the 3D Globe
-    const world = Globe()(container)
-      // Dark Earth textures for premium look
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
-      .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-      .backgroundColor('rgba(3, 7, 14, 0)') // Transparent to blend with CSS #03070E
-      
-      // Arc Settings (The lasers shooting across the globe)
-      .arcsData(connectionArcs)
-      .arcColor(() => '#10B981') // Emerald Green
-      .arcDashLength(0.4)
-      .arcDashGap(0.2)
-      .arcDashAnimateTime(2500)
-      .arcStroke(0.8)
+    // Start wandering on load
+    startAutoWander();
 
-      // Node Settings (The Glowing HTML dots)
-      .htmlElementsData(medicalNodes)
-      .htmlElement(d => {
-        const el = document.createElement('div');
-        
-        // Define color classes based on data
-        let bgColor = d.color === 'amber' ? 'bg-amber-500' : (d.color === 'emerald' ? 'bg-emerald-500' : 'bg-blue-500');
-        let pingColor = d.color === 'amber' ? 'bg-amber-400' : (d.color === 'emerald' ? 'bg-emerald-400' : 'bg-blue-400');
-        let textColor = d.color === 'amber' ? 'text-amber-400' : (d.color === 'emerald' ? 'text-emerald-400' : 'text-blue-400');
-
-        el.innerHTML = `
-          <div class="flex items-center gap-2 group cursor-pointer">
-            <div class="relative flex h-3 w-3 md:h-4 md:w-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${pingColor} opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 md:h-4 md:w-4 ${bgColor} border-2 border-[#03070E]"></span>
-            </div>
-            <div class="hidden group-hover:block absolute left-6 top-1/2 -translate-y-1/2 bg-[#0A0C10]/95 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-xl whitespace-nowrap shadow-[0_10px_30px_rgba(0,0,0,0.8)] z-50 transition-all">
-              <p class="text-white font-black text-xs md:text-sm mb-0.5">${d.name}</p>
-              <p class="${textColor} font-bold text-[9px] uppercase tracking-[0.15em]">${d.type}</p>
-            </div>
-          </div>
-        `;
-        return el;
-      });
-
-    // 🎯 4. Viewport & Controls Configuration
-    // Set initial view to focus on India / Asia region
-    world.pointOfView({ lat: 25, lng: 75, altitude: 1.8 }, 1000);
-    
-    // Auto-rotate the globe slowly
-    world.controls().autoRotate = true;
-    world.controls().autoRotateSpeed = 0.8;
-    world.controls().enableZoom = false; // Prevent user from zooming out too much and breaking the layout
-
-    // Responsive Resize Handling
-    window.addEventListener('resize', () => {
-      world.width(container.clientWidth);
-      world.height(container.clientHeight);
+    zone.addEventListener('mouseenter', () => {
+        stopAutoWander();
     });
-    
+
+    zone.addEventListener('mousemove', (e) => {
+        // Calculate exact pixel position relative to the zone
+        const rect = zone.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Directly update CSS variables for instant 0-lag tracking
+        mask.style.setProperty('--mouse-x', `${x}px`);
+        mask.style.setProperty('--mouse-y', `${y}px`);
+    });
+
+    zone.addEventListener('mouseleave', () => {
+        // Return to auto-wandering when mouse leaves
+        startAutoWander();
+    });
+
+    // --- 🎛️ BUSINESS LOGIC: COPYWRITING TOGGLE ---
+    const btnIndia = document.getElementById('btn-target-india');
+    const btnAbroad = document.getElementById('btn-fallback-abroad');
+    const lineIndia = document.getElementById('line-india');
+    const lineAbroad = document.getElementById('line-abroad');
+    const desc = document.getElementById('hero-description');
+
+    btnIndia.addEventListener('click', () => {
+        lineIndia.style.width = '100%'; lineAbroad.style.width = '0';
+        btnIndia.classList.add('text-emerald-400');
+        btnAbroad.classList.remove('text-amber-400', 'text-white');
+        
+        desc.innerHTML = `We decode the complex transition of elite medical profiles into Tier-A institutions with absolute transparency and legality. <br/> <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm">Strictly Institutional: ₹1.2 Cr+ Outlay Only</span>`;
+    });
+
+    btnAbroad.addEventListener('click', () => {
+        lineAbroad.style.width = '100%'; lineIndia.style.width = '0';
+        btnAbroad.classList.add('text-amber-400');
+        btnIndia.classList.remove('text-emerald-400');
+        
+        desc.innerHTML = `When institutional benchmarks shift, we activate validated Government pathways abroad. World-class infrastructure with 100% legal security. <br/> <span class="text-amber-400/80 font-serif italic mt-4 block text-sm">NMC Approved. 100% English Taught.</span>`;
+    });
   });
 </script>
