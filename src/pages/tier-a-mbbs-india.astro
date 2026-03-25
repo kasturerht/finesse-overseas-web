@@ -802,15 +802,12 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         };
 
         const switchStep = (currentId, nextId, direction, dotLevel) => {
-
-
-            // Force CSS Reflow
-            next.classList.remove('step-hide-left', 'step-hide-right');
-            next.classList.add('step-active');
+            const current = document.getElementById(currentId);
+            const next = document.getElementById(nextId);
             
-            if(dotLevel) updateDots(dotLevel);
+            if(!current || !next) return;
 
-            // 🚀 NEW: GTM Drop-off Tracking (God-Level)
+            // 🚀 GTM Drop-off Tracking (Correct Placement)
             if(direction === 'forward') {
                 window.dataLayer.push({ 
                     'event': 'form_step_reached', 
@@ -819,10 +816,6 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                     'selected_score': data.score || 'none'
                 });
             }
-
-            const current = document.getElementById(currentId);
-            const next = document.getElementById(nextId);
-            if(!current || !next) return;
             
             current.classList.remove('step-active');
             if(direction === 'forward') {
