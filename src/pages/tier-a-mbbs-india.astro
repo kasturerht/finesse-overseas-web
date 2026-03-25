@@ -226,11 +226,11 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                             </div>
                             <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-6 tracking-tight">Expected NEET 2026 Score?</h3>
                             <div class="grid gap-3">
-                                <button type="button" class="ug-score-btn group flex items-center w-full p-4 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Below 200">
+                                <button type="button" class="ug-score-btn group flex items-center w-full p-4 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Just Qualified - 200">
                                     <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
                                     <div>
-                                        <div class="text-slate-800 font-bold text-base mb-0.5">Below 200</div>
-                                        <div class="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Just Qualified</div>
+                                        <div class="text-slate-800 font-bold text-base mb-0.5">Just Qualified - 200</div>
+                                        <div class="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Borderline Score</div>
                                     </div>
                                 </button>
                                 <button type="button" class="ug-score-btn group flex items-center w-full p-4 rounded-xl border-2 border-emerald-100 bg-emerald-50 hover:border-emerald-500 transition-all shadow-sm text-left" data-val="200 to 450">
@@ -269,6 +269,80 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                                         <div class="text-slate-800 font-bold text-lg mb-0.5">Reserved</div>
                                         <div class="text-slate-400 text-[9px] uppercase tracking-widest font-bold">NRI / OBC / SC / ST</div>
                                     </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="step-ug-pathway" class="step-container step-hide-right">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] block">Step 03</span>
+                                <button type="button" class="back-btn flex items-center gap-1.5 text-slate-400 hover:text-slate-800 transition-colors text-[9px] font-bold uppercase tracking-widest" data-back="step-ug-score" data-dot="2">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg> Back
+                                </button>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-6 tracking-tight">Select Targeted Pathway</h3>
+                            <div class="grid gap-3">
+                                <button type="button" class="pathway-btn group flex items-center w-full p-4 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="India">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div>
+                                        <div class="text-slate-800 font-bold text-base mb-0.5">Tier-A Indian Institutes</div>
+                                        <div class="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Domestic Management Quota</div>
+                                    </div>
+                                </button>
+                                <button type="button" class="pathway-btn group flex items-center w-full p-4 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Abroad">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div>
+                                        <div class="text-slate-800 font-bold text-base mb-0.5">Premier Global Universities</div>
+                                        <div class="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Validated Overseas Programs</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="step-ug-state" class="step-container step-hide-right">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] block">Step 04</span>
+                                <button type="button" class="back-btn flex items-center gap-1.5 text-slate-400 hover:text-slate-800 transition-colors text-[9px] font-bold uppercase tracking-widest" data-back="step-ug-pathway" data-dot="2">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg> Back
+                                </button>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-6 tracking-tight">Preferred State?</h3>
+                            <div class="grid gap-3">
+                                <button type="button" class="state-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Karnataka">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Karnataka</div>
+                                </button>
+                                <button type="button" class="state-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Telangana">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Telangana</div>
+                                </button>
+                                <button type="button" class="state-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Andhra Pradesh">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Andhra Pradesh</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="step-ug-country" class="step-container step-hide-right">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] block">Step 04</span>
+                                <button type="button" class="back-btn flex items-center gap-1.5 text-slate-400 hover:text-slate-800 transition-colors text-[9px] font-bold uppercase tracking-widest" data-back="step-ug-pathway" data-dot="2">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg> Back
+                                </button>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-6 tracking-tight">Preferred Country?</h3>
+                            <div class="grid gap-3">
+                                <button type="button" class="country-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Romania">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Romania</div>
+                                </button>
+                                <button type="button" class="country-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Italy">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Italy</div>
+                                </button>
+                                <button type="button" class="country-btn group flex items-center w-full p-5 rounded-xl border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-amber-500 transition-all shadow-sm text-left" data-val="Lithuania">
+                                    <div class="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-amber-500 mr-4 flex items-center justify-center transition-colors"></div>
+                                    <div class="text-slate-800 font-bold text-lg">Lithuania</div>
                                 </button>
                             </div>
                         </div>
@@ -333,6 +407,8 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                                 <input type="hidden" name="Category" id="hidden_category">
                                 <input type="hidden" name="Specializations" id="hidden_spec">
                                 <input type="hidden" name="Lead_Type" id="hidden_tag">
+                                <input type="hidden" name="Pathway" id="hidden_pathway">
+                                <input type="hidden" name="Location_Preference" id="hidden_location">
 
                                 <div>
                                     <label for="contact_name" class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Parent/Doctor Name</label>
@@ -693,7 +769,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
         window.dataLayer = window.dataLayer || [];
 
         // Single Source of Truth for Data
-        const data = { course: '', score: '', category: '', specializations: [], tag: '' };
+        const data = { course: '', score: '', category: '', specializations: [], tag: '', pathway: '', location: '' };  
         
         // Helper: Safe Value Setter
         const safeSet = (id, val) => {
@@ -765,21 +841,63 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 data.score = e.currentTarget.getAttribute('data-val');
                 safeSet('hidden_score', data.score);
 
-                if(data.score === 'Below 200') {
-                    window.dataLayer.push({ 'event': 'lead_rejected_low_score' });
-                    switchStep('step-ug-score', 'step-reject', 'forward', 'reject');
-                } else if(data.score === '450+') {
-                    data.tag = 'Merit Counseling';
+                if(data.score === 'Just Qualified - 200') {
+                    data.tag = 'Alternative Pathway Target';
                     safeSet('hidden_tag', data.tag);
+                    data.category = 'N/A'; // Category is not needed for this flow
                     safeSet('hidden_category', 'N/A');
-                    switchStep('step-ug-score', 'step-lead', 'forward', 3);
+                    switchStep('step-ug-score', 'step-ug-pathway', 'forward', 2.5);
                 } else {
-                    data.tag = 'Management Quota Target';
+                    // For both '200 to 450' and '450+', ask Category next
+                    if(data.score === '450+') data.tag = 'Merit Counseling';
+                    else data.tag = 'Management Quota Target';
+                    
                     safeSet('hidden_tag', data.tag);
                     switchStep('step-ug-score', 'step-ug-category', 'forward', 2.5);
                 }
             });
         });
+
+
+
+        // 2A-1. Pathway Selection (India vs Abroad)
+        document.querySelectorAll('.pathway-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                data.pathway = e.currentTarget.getAttribute('data-val');
+                safeSet('hidden_pathway', data.pathway);
+                
+                if(data.pathway === 'India') {
+                    switchStep('step-ug-pathway', 'step-ug-state', 'forward', 2.7);
+                } else {
+                    switchStep('step-ug-pathway', 'step-ug-country', 'forward', 2.7);
+                }
+            });
+        });
+
+        // 2A-2. State Selection (India)
+        document.querySelectorAll('.state-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                data.location = e.currentTarget.getAttribute('data-val');
+                safeSet('hidden_location', data.location);
+                switchStep('step-ug-state', 'step-lead', 'forward', 3);
+            });
+        });
+
+        // 2A-3. Country Selection (Abroad)
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                data.location = e.currentTarget.getAttribute('data-val');
+                safeSet('hidden_location', data.location);
+                switchStep('step-ug-country', 'step-lead', 'forward', 3);
+            });
+        });
+
+
+
+
 
         // 3A. UG Category Selection
         document.querySelectorAll('.cat-btn').forEach(btn => {
@@ -843,9 +961,16 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 if(!currentId) return;
 
                 if(targetId === 'dynamic') {
-                    if(data.course === 'MD') switchStep(currentId, 'step-pg-spec', 'backward', 2.5);
-                    else if(data.score === '450+') switchStep(currentId, 'step-ug-score', 'backward', 2);
-                    else switchStep(currentId, 'step-ug-category', 'backward', 2.5);
+                    if(data.course === 'MD') {
+                        switchStep(currentId, 'step-pg-spec', 'backward', 2.5);
+                    } else if (data.score === 'Just Qualified - 200') {
+                        if (data.pathway === 'India') switchStep(currentId, 'step-ug-state', 'backward', 2.7);
+                        else if (data.pathway === 'Abroad') switchStep(currentId, 'step-ug-country', 'backward', 2.7);
+                        else switchStep(currentId, 'step-ug-pathway', 'backward', 2.5);
+                    } else {
+                        // For both 200-450 and 450+, they now come from step-ug-category
+                        switchStep(currentId, 'step-ug-category', 'backward', 2.5);
+                    }
                 } else {
                     switchStep(currentId, targetId, 'backward', dotLevel);
                 }
