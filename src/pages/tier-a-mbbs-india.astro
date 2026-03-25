@@ -75,7 +75,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
             
             <p class="text-slate-300 text-lg lg:text-xl font-light leading-relaxed max-w-md mb-12" id="hero-description">
               We decode the complex transition of elite medical profiles into Tier-A institutions with absolute transparency and legality.<br/>
-              <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm">Strictly Institutional: ₹1.2 Cr+ Outlay Only</span>
+              <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm">Aligned with Tier-A Institutional Benchmarks & High-Value Outlay Standards.</span>
             </p>
 
             <div class="flex gap-10 border-b border-white/5 pb-5 mb-12 relative w-full opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
@@ -1176,16 +1176,24 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
     if(btnIndia && btnAbroad) {
       btnIndia.addEventListener('click', () => {
           lineIndia.style.width = '100%'; lineAbroad.style.width = '0';
+          // Colors Update
           btnIndia.classList.add('text-emerald-400');
+          btnIndia.classList.remove('text-slate-400', 'text-white');
           btnAbroad.classList.remove('text-amber-400', 'text-white');
-          desc.innerHTML = `We decode the complex transition of elite medical profiles into Tier-A institutions with absolute transparency and legality. <br/> <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm">Strictly Institutional: ₹1.2 Cr+ Outlay Only</span>`;
+          btnAbroad.classList.add('text-slate-400');
+          // Text Update (SEO Friendly India)
+          desc.innerHTML = `We decode the complex transition of elite medical profiles into Tier-A institutions with absolute transparency and legality. <br/> <span class="text-emerald-400/80 font-serif italic mt-4 block text-sm tracking-wide">*Aligned with Tier-A Institutional Benchmarks & Premium Outlay Standards.</span>`;
       });
 
       btnAbroad.addEventListener('click', () => {
           lineAbroad.style.width = '100%'; lineIndia.style.width = '0';
+          // Colors Update
           btnAbroad.classList.add('text-amber-400');
-          btnIndia.classList.remove('text-emerald-400');
-          desc.innerHTML = `When institutional benchmarks shift, we activate validated Government pathways abroad. World-class infrastructure with 100% legal security. <br/> <span class="text-amber-400/80 font-serif italic mt-4 block text-sm">NMC Approved. 100% English Taught.</span>`;
+          btnAbroad.classList.remove('text-slate-400', 'text-white');
+          btnIndia.classList.remove('text-emerald-400', 'text-white');
+          btnIndia.classList.add('text-slate-400');
+          // Text Update (Premium Abroad)
+          desc.innerHTML = `When institutional benchmarks shift, we activate validated Government pathways abroad. World-class infrastructure with 100% legal security. <br/> <span class="text-amber-400/80 font-serif italic mt-4 block text-sm tracking-wide">*NMC Approved. 100% English Taught.</span>`;
       });
     }
   });
