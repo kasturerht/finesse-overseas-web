@@ -10,9 +10,9 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
     <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={seoDescription} />
-    <meta property="og:image" content="https://finesseoverseas.com/images/tier-a-mbbs-preview.jpg" />
-    <meta property="og:url" content="https://finesseoverseas.com/tier-a-mbbs-india" />
+    <meta property="og:image" content="https://finesseoverseas.com/tier-a-mbbs-preview.jpg" /> <meta property="og:url" content="https://finesseoverseas.com/tier-a-mbbs-india" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Finesse Overseas Advisory" />
 
   <script type="application/ld+json">
     {
@@ -45,8 +45,7 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
 
     <div class="absolute top-0 left-0 w-full z-50 px-6 py-6 lg:px-12 flex justify-between items-center pointer-events-auto">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded bg-emerald-500 text-white font-black flex items-center justify-center text-lg">F</div>
-            <span class="text-white font-black text-xl tracking-tight">Finesse.</span>
+            <object type="image/png" data="/logo.png" class="h-8 sm:h-10 w-auto logo-white-mask" aria-label="Finesse Overseas Logo"></object>
         </div>
         <button type="button" onclick="document.getElementById('bouncer-form').scrollIntoView({ behavior: 'smooth' })" class="text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-2.5 rounded-full backdrop-blur-md transition-all">
             Secure Seat
@@ -771,6 +770,8 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
   }
 </style>
 
+
+
 <script>
     const initMasterLogic = () => {
         window.dataLayer = window.dataLayer || [];
@@ -859,21 +860,20 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 data.score = e.currentTarget.getAttribute('data-val');
                 safeSet('hidden_score', data.score);
 
-                if (data.score === 'Just Qualified' || data.score === 'Just Qualified - 450') {
-                    if (data.score === 'Just Qualified') {
-                        data.tag = 'Alternative Pathway Target';
-                        data.category = 'N/A';
-                        safeSet('hidden_category', 'N/A');
-                    } else {
-                        data.tag = 'Management Quota Target';
-                    }
-                    safeSet('hidden_tag', data.tag);
-                    switchStep('step-ug-score', 'step-ug-pathway', 'forward', 2.5);
+                // टॅग्स सेट करणे
+                if (data.score === 'Just Qualified') {
+                    data.tag = 'Alternative Pathway Target';
+                    data.category = 'N/A';
+                    safeSet('hidden_category', 'N/A');
                 } else if (data.score === '450+') {
                     data.tag = 'Merit Counseling';
-                    safeSet('hidden_tag', data.tag);
-                    switchStep('step-ug-score', 'step-ug-category', 'forward', 2.5);
+                } else {
+                    data.tag = 'Management Quota Target'; // Just Qualified - 450
                 }
+                safeSet('hidden_tag', data.tag);
+                
+                // आता तिन्ही स्कोअरसाठी आपण युजरला Pathway वर पाठवणार
+                switchStep('step-ug-score', 'step-ug-pathway', 'forward', 2.5);
             });
         });
 
@@ -901,7 +901,8 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 data.location = e.currentTarget.getAttribute('data-val');
                 safeSet('hidden_location', data.location);
                 
-                if (data.score === 'Just Qualified - 450') {
+                // 450+ आणि Just Qualified - 450 दोघांनाही आता State नंतर Category विचारा
+                if (data.score === 'Just Qualified - 450' || data.score === '450+') {
                     switchStep('step-ug-state', 'step-ug-category', 'forward', 2.8);
                 } else {
                     switchStep('step-ug-state', 'step-lead', 'forward', 3);
@@ -916,7 +917,8 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                 data.location = e.currentTarget.getAttribute('data-val');
                 safeSet('hidden_location', data.location);
                 
-                if (data.score === 'Just Qualified - 450') {
+                // 450+ आणि Just Qualified - 450 दोघांनाही आता Country नंतर Category विचारा
+                if (data.score === 'Just Qualified - 450' || data.score === '450+') {
                     switchStep('step-ug-country', 'step-ug-category', 'forward', 2.8);
                 } else {
                     switchStep('step-ug-country', 'step-lead', 'forward', 3);
@@ -1001,13 +1003,9 @@ const seoDescription = "Secure your child's MBBS seat in India's top Tier-A priv
                         switchStep(currentId, 'step-ug-category', 'backward', 2.5);
                     }
                 } else if (targetId === 'dynamic-category') { // Back from step-ug-category
-                    if (data.score === 'Just Qualified - 450') {
-                        if (data.pathway === 'India') switchStep(currentId, 'step-ug-state', 'backward', 2.7);
-                        else switchStep(currentId, 'step-ug-country', 'backward', 2.7);
-                    } else {
-                        // 450+ goes back to score
-                        switchStep(currentId, 'step-ug-score', 'backward', 2);
-                    }
+                    // Now BOTH Just Qualified - 450 and 450+ come from state/country
+                    if (data.pathway === 'India') switchStep(currentId, 'step-ug-state', 'backward', 2.7);
+                    else switchStep(currentId, 'step-ug-country', 'backward', 2.7);
                 } else {
                     switchStep(currentId, targetId, 'backward', dotLevel);
                 }

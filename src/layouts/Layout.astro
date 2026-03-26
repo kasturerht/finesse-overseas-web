@@ -38,7 +38,6 @@ const ogImageURL = new URL(image, Astro.site).href;
     
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -67,6 +66,10 @@ const ogImageURL = new URL(image, Astro.site).href;
     </noscript>
 
     {schema && <script type="application/ld+json" set:html={schema} />}
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     </head>
   <body class="font-inter bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
