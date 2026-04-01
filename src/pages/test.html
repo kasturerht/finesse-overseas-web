@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Epidemic Simulator (SIR Model)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-950 text-white font-sans p-8">
+
+    <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+        <h2 class="text-3xl font-bold text-emerald-400 mb-2">साथीचा आजार सिम्युलेटर (SIR Model)</h2>
+        <p class="text-slate-400 mb-8">स्लायडर्स हलवून बघा की 'संसर्ग दर' आणि 'बरे होण्याचा दर' बदलल्यावर आजाराची लाट (Curve) कशी बदलते.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <div>
+                <label class="block text-sm font-bold text-amber-400 mb-2">संसर्ग दर (Infection Rate): <span id="infRateVal" class="text-white">0.3</span></label>
+                <input type="range" id="infectionRate" min="0.01" max="1.0" step="0.01" value="0.3" class="w-full accent-amber-500">
+                <p class="text-xs text-slate-400 mt-1">एका व्यक्तीकडून किती जणांना आजार पसरतो.</p>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-emerald-400 mb-2">बरे होण्याचा दर (Recovery Rate): <span id="recRateVal" class="text-white">0.1</span></label>
+                <input type="range" id="recoveryRate" min="0.01" max="0.5" step="0.01" value="0.1" class="w-full accent-emerald-500">
+                <p class="text-xs text-slate-400 mt-1">दररोज किती टक्के लोक आजारातून बरे होतात.</p>
+            </div>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <canvas id="sirChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Initial setup
+        const N = 1000; // Total Population
+        const days = 100;
+        let chartInstance = null;
+
+        function calculateSIR(beta, gamma) {
+            let S = [999]; // Susceptible (सुरक्षित)
+            let I = [1];   // Infected (संक्रमित)
+            let R = [0];   // Recovered (बरे झालेले)
+
+            for (let t = 0; t < days; t++) {
+                let currentS = S[t];
+                let currentI = I[t];
+                let currentR = R[t];
+
+                let newInfected = (beta * currentS * currentI) / N;
+                let newRecovered = gamma * currentI;
+
+                S.push(Math.max(0, currentS - newInfected));
+                I.push(Math.max(0, currentI + newInfected - newRecovered));
+                R.push(Math.min(N, currentR + newRecovered));
+            }
+            return { S, I, R };
+        }
+
+        function updateChart() {
+            let beta = parseFloat(document.getElementById('infectionRate').value);
+            let gamma = parseFloat(document.getElementById('recoveryRate').value);
+            
+            document.getElementById('infRateVal').innerText = beta;
+            document.getElementById('recRateVal').innerText = gamma;
+
+            let data = calculateSIR(beta, gamma);
+            let labels = Array.from({length: days + 1}, (_, i) => `दिवस ${i}`);
+
+            if (chartInstance) {
+                chartInstance.data.datasets[0].data = data.S;
+                chartInstance.data.datasets[1].data = data.I;
+                chartInstance.data.datasets[2].data = data.R;
+                chartInstance.update();
+            } else {
+                const ctx = document.getElementById('sirChart').getContext('2d');
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            { label: 'सुरक्षित (Susceptible)', data: data.S, borderColor: '#3b82f6', tension: 0.4, pointRadius: 0 },
+                            { label: 'संक्रमित (Infected)', data: data.I, borderColor: '#fbbf24', tension: 0.4, pointRadius: 0, borderWidth: 3 },
+                            { label: 'बरे झालेले (Recovered)', data: data.R, borderColor: '#10b981', tension: 0.4, pointRadius: 0 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        interaction: { intersect: false, mode: 'index' },
+                        plugins: { legend: { labels: { color: '#cbd5e1', font: { family: 'sans-serif', size: 14 } } } },
+                        scales: {
+                            x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } },
+                            y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' }, max: 1000 }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('infectionRate').addEventListener('input', updateChart);
+        document.getElementById('recoveryRate').addEventListener('input', updateChart);
+
+        // Initial Load
+        updateChart();
+    </script>
+</body>
+</html>
