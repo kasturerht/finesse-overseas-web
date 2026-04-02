@@ -1,0 +1,143 @@
+---
+// src/components/FAQMbbs.astro (Light Theme, MBBS Specific)
+
+const faqs = [
+  {
+    question: "Is the NMC 2021 Gazette really that strict?",
+    answer: "Absolutely. The National Medical Commission strictly mandates a minimum 54-month course, a 12-month internship, and 100% English as the medium of instruction. If a university fails even one parameter, your child's degree is invalid in India. Finesse audits and filters out all non-compliant universities."
+  },
+  {
+    question: "Why do you heavily emphasize 800+ bed government hospitals?",
+    answer: "Medicine is learned through live patient exposure, not just textbooks. Many private 'contractor-run' campuses look beautiful but lack attached high-volume hospitals. An 800+ bed mandate ensures your child gets the rigorous clinical practice necessary to clear the FMGE."
+  },
+  {
+    question: "Are there any hidden contractor or agent fees in your packages?",
+    answer: "Zero. Finesse operates on a '100% Direct Billing' protocol. This means you pay the tuition fees directly into the official bank account of the Government University. We charge a flat, transparent consulting fee with no middleman markups or surprise 'cash' demands."
+  },
+  {
+    question: "Do you offer bilingual (English + Russian) courses?",
+    answer: "No. Bilingual courses are a massive trap. Agents sell them because they are cheap, but students struggle to learn medical terminology in a foreign language, leading to massive FMGE failure rates. We strictly place students in 100% English-taught programs."
+  },
+  {
+    question: "What about hostel safety and food, especially for female students?",
+    answer: "We only partner with 100% State-Owned National Universities that provide secure, monitored on-campus government hostels. We also ensure the availability of hygienic Indian mess facilities so students can focus purely on academics without lifestyle stress."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section class="py-24 bg-slate-50 relative overflow-hidden border-t border-slate-200" id="faq-mbbs">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <div class="lg:col-span-5 lg:sticky lg:top-32">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 font-bold tracking-wider uppercase mb-6 text-[10px] shadow-sm">Total Transparency</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Got Questions?<br/><span class="text-emerald-600">We've Got Truths.</span></h2>
+        <p class="text-lg text-slate-600 mb-8 leading-relaxed font-medium">Clear your doubts before making the most crucial 6-year investment for your child.</p>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex items-center gap-5 hover:border-emerald-200 transition-colors group">
+          <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-lg">Still have doubts?</h4>
+            <a href="tel:+919850069600" class="relative z-20 text-emerald-600 font-bold text-sm hover:text-emerald-700 flex items-center mt-1">
+              Talk to our Senior Auditors 
+              <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-5">
+        {faqs.map((faq) => (
+          <div class="faq-item group bg-white border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200">
+            <button class="faq-button w-full px-6 md:px-8 py-6 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+              <span class="text-lg font-bold text-slate-800 pr-8 group-hover:text-emerald-600 transition-colors">{faq.question}</span>
+              <span class="faq-icon relative shrink-0 w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 transition-all duration-500 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-200">
+                <svg class="w-5 h-5 transition-transform duration-500 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+              </span>
+            </button>
+            <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out opacity-50">
+              <div class="overflow-hidden">
+                <p class="px-6 md:px-8 pb-6 text-slate-600 leading-relaxed font-medium">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const initFaqs = () => {
+    const faqItems = document.querySelectorAll('#faq-mbbs .faq-item');
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-button');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const iconSvg = icon?.querySelector('svg');
+
+      if (button && answer && icon && iconSvg) {
+        button.addEventListener('click', () => {
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherBtn = otherItem.querySelector('.faq-button');
+              const otherAns = otherItem.querySelector('.faq-answer');
+              const otherIc = otherItem.querySelector('.faq-icon');
+              const otherSvg = otherIc?.querySelector('svg');
+              if (otherBtn && otherAns && otherIc && otherSvg) {
+                otherBtn.setAttribute('aria-expanded', 'false');
+                otherAns.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                otherAns.classList.add('grid-rows-[0fr]', 'opacity-50');
+                otherIc.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-500');
+                otherSvg.classList.remove('rotate-45');
+                otherItem.classList.remove('border-emerald-500', 'shadow-md');
+              }
+            }
+          });
+
+          button.setAttribute('aria-expanded', (!isExpanded).toString());
+          if (!isExpanded) {
+            answer.classList.remove('grid-rows-[0fr]', 'opacity-50');
+            answer.classList.add('grid-rows-[1fr]', 'opacity-100');
+            icon.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+            iconSvg.classList.add('rotate-45'); 
+            item.classList.add('border-emerald-500', 'shadow-md');
+          } else {
+            answer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+            answer.classList.add('grid-rows-[0fr]', 'opacity-50');
+            icon.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-500');
+            iconSvg.classList.remove('rotate-45');
+            item.classList.remove('border-emerald-500', 'shadow-md');
+          }
+        });
+      }
+    });
+  };
+  initFaqs();
+  document.addEventListener('astro:after-swap', initFaqs);
+</script>
