@@ -41,9 +41,32 @@ const austriaFaqSchema = {
     }
   }))
 };
+
+const austriaSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://finesseoverseas.com/study-in-austria",
+      "url": "https://finesseoverseas.com/study-in-austria",
+      "name": seoTitle,
+      "description": seoDescription,
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://finesseoverseas.com" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://finesseoverseas.com" },
+          { "@type": "ListItem", "position": 2, "name": "Study in Austria", "item": "https://finesseoverseas.com/study-in-austria" }
+        ]
+      }
+    },
+    austriaFaqSchema
+  ]
+});
 ---
 
-<Layout title={seoTitle} description={seoDescription}>
+<Layout title={seoTitle} description={seoDescription} schema={austriaSchema}>
   <main class="pt-20 flex-grow bg-[#050505]">
 
     <section class="relative flex flex-col justify-center items-center overflow-hidden border-b border-white/5 pt-20 pb-40 lg:pt-32 lg:pb-48 xl:pt-40 xl:pb-56">

@@ -18,9 +18,12 @@ const seoTitle = "Study in Europe for Free | Finesse Overseas Education";
 const seoDescription = "Kolhapur's most trusted study abroad consultants. Specializing in zero tuition fee public universities in Germany and 100% scholarships in Italy.";
 const siteSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "EducationalOrganization"],
   "name": "Finesse Overseas Education",
   "description": seoDescription,
+  "url": "https://finesseoverseas.com",
+  "telephone": "+919850069600",
+  "email": "info@finesseoverseas.in",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Samarth Sakshi Plaza, First Floor, Above Sohala Showroom, Beside Lenskart, 4th Lane, Rajarampuri",
@@ -28,6 +31,21 @@ const siteSchema = JSON.stringify({
     "postalCode": "416008",
     "addressRegion": "Maharashtra",
     "addressCountry": "IN"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "10:30",
+    "closes": "18:30"
+  },
+  "sameAs": [
+    "https://www.instagram.com/finesseoverseas",
+    "https://www.facebook.com/finesseoverseas"
+  ],
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "State",
+    "name": "Maharashtra"
   }
 });
 

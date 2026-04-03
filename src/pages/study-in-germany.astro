@@ -2,9 +2,68 @@
 // src/pages/study-in-germany.astro
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+
+const germanySchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://finesseoverseas.com/study-in-germany",
+      "url": "https://finesseoverseas.com/study-in-germany",
+      "name": "Study in Germany for FREE | 2026 Intake | Finesse Overseas",
+      "description": "Zero tuition fee public universities, 18-month job seeker visa, and 1000+ successful students from Maharashtra. Start your German education journey today.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://finesseoverseas.com" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://finesseoverseas.com" },
+          { "@type": "ListItem", "position": 2, "name": "Study in Germany", "item": "https://finesseoverseas.com/study-in-germany" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is a study gap accepted in Germany?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, up to 2-3 years of gap is acceptable if justified with relevant work experience, courses, or internships."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the new Blocked Account amount for 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As of 2026, the blocked account requirement is €11,208 per year (approx. 10-11 Lakhs INR). This money remains yours and is disbursed back to you monthly (€934/month) for living expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I take my spouse along to Germany?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for Masters students, a dependent spouse visa is possible. However, it is strongly recommended to apply after you have settled in Germany, typically 6 months after arrival."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is German language compulsory for studying in Germany?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For English-taught Masters programs, German is not compulsory for admission. However, knowing A1/A2 level German helps immensely with part-time jobs and social integration."
+          }
+        }
+      ]
+    }
+  ]
+});
 ---
 
-<Layout title="Study in Germany for FREE | 2026 Intake | Finesse Overseas" description="Zero tuition fee public universities, 18-month job seeker visa, and 1000+ successful students from Maharashtra. Start your German education journey today.">
+<Layout title="Study in Germany for FREE | 2026 Intake | Finesse Overseas" description="Zero tuition fee public universities, 18-month job seeker visa, and 1000+ successful students from Maharashtra. Start your German education journey today." schema={germanySchema}>
   
   <main class="pt-20 flex-grow">
 
