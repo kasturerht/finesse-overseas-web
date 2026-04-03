@@ -110,7 +110,7 @@ const destinations = [
             ))}
           </ul>
           
-          <a href={dest.link} class={`mt-auto w-full block text-center bg-slate-50 border border-slate-200 text-slate-900 font-bold py-3.5 rounded-xl transition-colors relative z-10 ${dest.btnHover}`}>
+          <a href={dest.link} data-track="destination-card-click" data-destination={dest.name} class={`mt-auto w-full block text-center bg-slate-50 border border-slate-200 text-slate-900 font-bold py-3.5 rounded-xl transition-colors relative z-10 ${dest.btnHover}`}>
             Explore {dest.name}
           </a>
         </div>
