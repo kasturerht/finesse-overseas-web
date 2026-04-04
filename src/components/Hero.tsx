@@ -144,7 +144,7 @@ const Hero = () => {
 
 
               <div className="mb-8">
-                <h2 data-track="hero-eligibility-click" className="text-2xl font-bold text-white tracking-tight mb-2">Check Your Eligibility</h2>
+                <h2 className="text-2xl font-bold text-white tracking-tight mb-2">Check Your Eligibility</h2>
                 <p className="text-slate-400 text-sm font-medium">Get a personalized roadmap in under 60 seconds.</p>
               </div>
 

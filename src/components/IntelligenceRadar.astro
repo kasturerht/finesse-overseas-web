@@ -1,0 +1,149 @@
+---
+// src/components/IntelligenceRadar.astro
+// Location: Top Header of the "Finesse Intelligence Hub" (Blog Index)
+
+// 🚀 CMS Preparation
+const { 
+  tickerItems = [
+    "🚨 ALERT: 4 Universities in Kyrgyzstan Blacklisted by Finesse",
+    "🟢 LIVE: Georgia FMGE passing hits 42% for 2025",
+    "⚠️ WARNING: Avoid Bilingual Programs (English + Russian) disguised as 100% English"
+  ]
+} = Astro.props;
+---
+
+<section class="relative w-full bg-[#030712] font-sans pt-8 pb-12 overflow-hidden border-b border-slate-800/50">
+  
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none opacity-40"></div>
+
+  <div class="relative w-full border-y border-emerald-500/40 bg-slate-900/80 backdrop-blur-md flex items-center h-12 overflow-hidden mb-12 shadow-[0_5px_30px_rgba(0,0,0,0.5)]">
+    <div class="absolute left-0 top-0 bottom-0 z-20 bg-[#050b14] flex items-center px-4 lg:px-8 border-r border-emerald-500/40 shadow-[20px_0_30px_rgba(5,11,20,0.95)]">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_12px_rgba(16,185,129,1)]"></span>
+        <span class="text-[10px] font-mono font-black text-emerald-400 uppercase tracking-widest">NMC Radar Live</span>
+      </div>
+    </div>
+    
+    <div class="flex w-max animate-ticker pl-[220px] lg:pl-[250px] relative z-10">
+      <div class="flex gap-16 items-center pr-16">
+        {tickerItems.map(item => (
+          <span class="text-[13px] font-mono font-bold text-slate-200 tracking-wide whitespace-nowrap">{item}</span>
+        ))}
+      </div>
+      <div class="flex gap-16 items-center pr-16" aria-hidden="true">
+        {tickerItems.map(item => (
+          <span class="text-[13px] font-mono font-bold text-slate-200 tracking-wide whitespace-nowrap">{item}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-8 h-auto xl:h-[550px]">
+      
+      <a href="/intelligence/the-15-lakh-mbbs-trap" class="xl:col-span-8 relative rounded-3xl overflow-hidden group block h-[450px] xl:h-full border border-slate-700/80 hover:border-emerald-500/50 transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        
+        <div class="absolute inset-0 bg-slate-950">
+          <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1600&auto=format&fit=crop" alt="Financial Trap" class="w-full h-full object-cover opacity-70 group-hover:opacity-60 group-hover:scale-105 transition-all duration-[1500ms] ease-out" />
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#030712]/80 via-[#030712]/30 to-transparent"></div>
+
+        <div class="absolute inset-0 p-8 lg:p-12 flex flex-col justify-end">
+          
+          <div class="absolute top-8 left-8 flex gap-3">
+            <span class="bg-rose-500/20 border border-rose-500/30 text-rose-300 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded backdrop-blur-md shadow-lg">Exposé</span>
+            <span class="bg-slate-900/80 border border-slate-600 text-slate-200 text-[10px] font-mono uppercase tracking-widest px-3 py-1.5 rounded backdrop-blur-md flex items-center gap-1.5 shadow-lg">
+              <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              7 Min Read
+            </span>
+          </div>
+
+          <div class="relative transform transition-transform duration-500 group-hover:-translate-y-2">
+            <div class="flex items-center gap-2 mb-4 text-emerald-400 text-[10px] font-mono tracking-widest uppercase font-bold">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              1,204 Parents Audited This
+            </div>
+            
+            <h2 class="text-4xl lg:text-5xl font-serif text-white font-medium leading-[1.1] tracking-tight mb-6 max-w-3xl drop-shadow-2xl">
+              The ₹15 Lakh MBBS Trap: How Contractors Hide <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-rose-200">₹12L in Cash.</span>
+            </h2>
+            
+            <p class="text-slate-200 text-sm lg:text-base font-medium max-w-2xl mb-8 line-clamp-2 opacity-90 drop-shadow-md">
+              A deep-dive investigation into the murky world of medical contractors, hidden university fees, and how Indian parents are legally bound to pay double the promised amount in the 3rd year.
+            </p>
+
+            <div class="flex items-center gap-4 border-t border-slate-600/50 pt-6">
+              <div class="relative w-12 h-12 rounded-full border-2 border-emerald-400/50 overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <img src="/logo_finesse.png" alt="Finesse Expert" class="w-full h-full object-contain bg-slate-900 p-1" />
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold tracking-wide">Finesse Audit Team</p>
+                <p class="text-emerald-400/90 text-[10px] font-mono uppercase tracking-widest mt-0.5">Verified Medical Analysts</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </a>
+
+      <div class="xl:col-span-4 flex flex-col gap-6 h-[550px]">
+        
+        <a href="#" class="group flex-1 relative bg-slate-900/60 backdrop-blur-md border border-slate-700/80 rounded-3xl p-6 lg:p-8 overflow-hidden hover:border-emerald-500/50 transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_15px_30px_rgba(0,0,0,0.4)]">
+          <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/20 blur-[40px] rounded-full group-hover:bg-emerald-500/30 transition-all duration-700"></div>
+          <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-emerald-500/5 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col justify-between h-full">
+            <div>
+              <span class="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-950/50 px-2 py-1 rounded border border-slate-800">Data Release</span>
+              <h3 class="text-xl font-serif text-slate-100 mt-4 mb-3 leading-snug group-hover:text-emerald-400 transition-colors">Top 5 NMC Safe Universities in Eastern Europe (2026 Index)</h3>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-400 font-bold uppercase tracking-wider">
+              <span class="w-6 h-px bg-slate-600 group-hover:w-10 group-hover:bg-emerald-500 transition-all"></span> Read Report
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="group flex-1 relative bg-slate-900/60 backdrop-blur-md border border-slate-700/80 rounded-3xl p-6 lg:p-8 overflow-hidden hover:border-amber-500/50 transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_15px_30px_rgba(0,0,0,0.4)]">
+          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-amber-500/20 blur-[40px] rounded-full group-hover:bg-amber-500/30 transition-all duration-700"></div>
+          <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col justify-between h-full">
+            <div>
+              <span class="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-950/50 px-2 py-1 rounded border border-slate-800">Myth Buster</span>
+              <h3 class="text-xl font-serif text-slate-100 mt-4 mb-3 leading-snug group-hover:text-amber-400 transition-colors">"Scholarship in Russia?" The 100% Lie Agents Sell You.</h3>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-400 font-bold uppercase tracking-wider">
+              <span class="w-6 h-px bg-slate-600 group-hover:w-10 group-hover:bg-amber-500 transition-all"></span> Decrypt Fact
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="group flex-[1.2] relative bg-slate-950 border border-slate-700/80 rounded-3xl overflow-hidden hover:border-white/30 transition-all duration-500 shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop" alt="Parent Testimonial" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-all duration-[1000ms] group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/50 to-transparent"></div>
+          <div class="relative z-10 p-6 flex flex-col justify-end h-full">
+            <span class="bg-rose-500 border border-rose-400 text-white text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded w-max mb-3 flex items-center gap-1.5 shadow-[0_0_15px_rgba(225,29,72,0.6)]">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Video Diary
+            </span>
+            <h3 class="text-lg font-serif text-white font-medium leading-snug drop-shadow-md">"The 800-bed hospital rule saved my daughter's career."</h3>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
+  }
+  .animate-ticker:hover {
+    animation-play-state: paused; 
+  }
+</style>

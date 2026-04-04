@@ -1,0 +1,119 @@
+---
+// src/components/AuditVaultGrid.astro
+// UPGRADED: High Contrast & 2-Column Layout for 70/30 Split
+
+const vaultItems = [
+  {
+    type: "report",
+    category: "Ground Report",
+    color: "emerald",
+    title: "Inside Tbilisi State: A 360° Audit of Clinical Infrastructure.",
+    excerpt: "We traveled to Georgia to verify the 1200+ bed claim. Here is the raw, unedited truth about their hospital affiliations and FMGE prep.",
+    author: "Rohit K.",
+    readTime: "5 Min Read",
+    date: "Oct 12, 2025",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    type: "alert",
+    category: "NMC Alert",
+    color: "rose",
+    title: "Urgent: 3 Popular Universities in Central Asia Fail the 54-Month Rule.",
+    excerpt: "Official review indicates that the curriculum in these specific institutes falls short of the 2021 Gazette mandate. Degrees may be rendered invalid in India.",
+    author: "Finesse Legal",
+    readTime: "3 Min Read",
+    date: "Oct 10, 2025"
+  },
+  {
+    type: "report",
+    category: "Financial Truth",
+    color: "amber",
+    title: "Decoding the '₹15 Lakh Package' Scam in Russia.",
+    excerpt: "Step-by-step breakdown of how contractors artificially deflate 1st-year fees only to trap parents with hidden charges in the 3rd year.",
+    author: "Financial Desk",
+    readTime: "8 Min Read",
+    date: "Oct 05, 2025",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    type: "alert",
+    category: "FMGE Data",
+    color: "blue",
+    title: "NBE Releases 2025 Passing Rates: Why Eastern Europe Dominated.",
+    excerpt: "A complete statistical analysis of why students from Government Universities in Georgia and Russia scored 3x higher than private institutes.",
+    author: "Data Analytics",
+    readTime: "4 Min Read",
+    date: "Sep 28, 2025"
+  }
+];
+
+const getColorClasses = (color) => {
+  const map = {
+    emerald: { bg: "bg-emerald-500/15", border: "border-emerald-500/30", text: "text-emerald-400", hover: "hover:border-emerald-400/60" },
+    rose: { bg: "bg-rose-500/15", border: "border-rose-500/30", text: "text-rose-400", hover: "hover:border-rose-400/60" },
+    amber: { bg: "bg-amber-500/15", border: "border-amber-500/30", text: "text-amber-400", hover: "hover:border-amber-400/60" },
+    blue: { bg: "bg-blue-500/15", border: "border-blue-500/30", text: "text-blue-400", hover: "hover:border-blue-400/60" }
+  };
+  return map[color] || map.emerald;
+};
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full">
+  
+  {vaultItems.map((item) => {
+    const colors = getColorClasses(item.color);
+    
+    return item.type === "report" ? (
+      <a href={`/intelligence/${item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class={`group flex flex-col bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-700/80 ${colors.hover} transition-all duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-1`}>
+        <div class="relative h-60 w-full overflow-hidden bg-slate-800">
+          <img src={item.image} alt={item.title} class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] via-[#0a0f1c]/40 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class={`${colors.bg} ${colors.border} ${colors.text} text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg backdrop-blur-md border shadow-lg`}>
+              {item.category}
+            </span>
+          </div>
+        </div>
+        <div class="p-6 lg:p-8 flex flex-col flex-grow bg-[#0a0f1c] relative z-10 -mt-2">
+          <h3 class="text-xl font-serif text-white font-medium leading-snug mb-3 group-hover:text-emerald-300 transition-colors drop-shadow-md">{item.title}</h3>
+          <p class="text-sm text-slate-300 font-medium mb-6 line-clamp-3 leading-relaxed flex-grow opacity-90">{item.excerpt}</p>
+          <div class="flex items-center justify-between border-t border-slate-700/80 pt-5 mt-auto">
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-[10px] font-bold text-white shadow-inner">{item.author.charAt(0)}</div>
+              <span class="text-xs text-slate-400 font-bold">{item.author}</span>
+            </div>
+            <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {item.readTime}
+            </span>
+          </div>
+        </div>
+      </a>
+    ) : (
+      <a href={`/intelligence/${item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class={`group flex flex-col bg-slate-900/60 backdrop-blur-lg rounded-3xl overflow-hidden border border-slate-700 ${colors.hover} transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),_0_15px_30px_rgba(0,0,0,0.5)] p-6 lg:p-8 hover:-translate-y-1 relative`}>
+        <div class={`absolute -right-12 -top-12 w-48 h-48 ${colors.bg} blur-[60px] rounded-full pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700`}></div>
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none"></div>
+        
+        <div class="mb-6 relative z-10 flex justify-between items-start">
+          <span class={`${colors.text} bg-slate-950/50 border border-slate-800 text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-sm`}>
+            <span class={`w-1.5 h-1.5 rounded-full ${colors.bg.replace('/15', '')} animate-pulse`}></span>
+            {item.category}
+          </span>
+        </div>
+        
+        <div class="relative z-10 flex-grow">
+          <h3 class={`text-2xl font-serif text-white font-medium leading-[1.2] mb-4 group-hover:${colors.text} transition-colors drop-shadow-md`}>{item.title}</h3>
+          <p class="text-sm text-slate-300 font-medium mb-6 leading-relaxed opacity-90">{item.excerpt}</p>
+        </div>
+
+        <div class="relative z-10 flex items-center justify-between mt-auto border-t border-slate-700/50 pt-5">
+          <span class="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{item.date}</span>
+          <span class="text-xs font-bold text-white group-hover:underline decoration-slate-500 underline-offset-4 flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700 transition-all">
+            Decrypt Intel 
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </span>
+        </div>
+      </a>
+    );
+  })}
+</div>
