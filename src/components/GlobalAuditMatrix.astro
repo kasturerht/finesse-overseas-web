@@ -1,0 +1,283 @@
+---
+// src/components/GlobalAuditMatrix.astro
+// PART 3: The Complete Matrix with Functional Search & Dynamic Dossier Routing
+---
+
+<section class="relative w-full py-24 bg-[#030712] border-t border-slate-800/80 font-sans" id="audit-matrix-section">
+  
+  <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
+    
+    <div class="flex flex-col md:flex-row items-end justify-between border-b border-slate-800/80 pb-8 mb-10 gap-6">
+      <div>
+        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-[10px] font-bold uppercase tracking-[0.2em] mb-4 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+          <span class="text-slate-400">Live Database</span>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-serif text-white tracking-tight">
+          The Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500 font-bold">Safety Matrix.</span>
+        </h2>
+      </div>
+      <p class="text-sm text-slate-500 font-mono uppercase tracking-widest max-w-xs text-left md:text-right">
+        Select a territory to access the classified NMC compliance dossier.
+      </p>
+    </div>
+
+    <div class="w-full bg-[#0a0f1c]/90 backdrop-blur-2xl border border-slate-700/80 rounded-[2rem] p-4 lg:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row gap-6 h-auto lg:h-[750px] relative overflow-hidden">
+      
+      <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div class="w-full lg:w-[35%] flex flex-col h-[400px] lg:h-full bg-[#050b14] border border-slate-800/80 rounded-2xl overflow-hidden relative z-10 shadow-inner shrink-0">
+        
+        <div class="p-5 border-b border-slate-800/80 bg-slate-900/50">
+          <div class="relative">
+            <input type="text" id="country-search" placeholder="Search Territory..." class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-white text-xs font-mono placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all shadow-inner" />
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-2" id="country-list">
+          
+          <button data-target="dossier-georgia" class="country-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-transparent hover:bg-slate-900/80 focus:border-emerald-500/30 flex items-center justify-between group transition-all cursor-pointer relative overflow-hidden">
+            <div class="active-indicator absolute left-0 top-0 bottom-0 w-1 bg-emerald-500 rounded-l-xl opacity-0 transition-opacity"></div>
+            <div class="flex items-center gap-4 pl-2">
+              <div class="relative w-8 h-8 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center shadow-inner overflow-hidden">
+                <span class="text-sm">🇬🇪</span>
+              </div>
+              <div>
+                <h4 class="country-name text-white text-sm font-bold font-serif mb-0.5">Georgia</h4>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span class="text-[9px] text-emerald-400 font-mono uppercase tracking-widest">NMC Approved</span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button data-target="dossier-russia" class="country-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-transparent hover:bg-slate-900/80 focus:border-amber-500/30 flex items-center justify-between group transition-all cursor-pointer relative overflow-hidden">
+            <div class="active-indicator absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-l-xl opacity-0 transition-opacity"></div>
+            <div class="flex items-center gap-4 pl-2">
+              <div class="relative w-8 h-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center shadow-inner">
+                <span class="text-sm">🇷🇺</span>
+              </div>
+              <div>
+                <h4 class="country-name text-slate-300 group-hover:text-white text-sm font-bold font-serif mb-0.5">Russia</h4>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  <span class="text-[9px] text-amber-500/80 font-mono uppercase tracking-widest">High Risk Audit</span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button data-target="dossier-kyrgyzstan" class="country-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-transparent hover:bg-slate-900/80 focus:border-rose-500/30 flex items-center justify-between group transition-all cursor-pointer relative overflow-hidden">
+            <div class="active-indicator absolute left-0 top-0 bottom-0 w-1 bg-rose-500 rounded-l-xl opacity-0 transition-opacity"></div>
+            <div class="flex items-center gap-4 pl-2">
+              <div class="relative w-8 h-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center shadow-inner">
+                <span class="text-sm">🇰🇬</span>
+              </div>
+              <div>
+                <h4 class="country-name text-slate-300 group-hover:text-white text-sm font-bold font-serif mb-0.5">Kyrgyzstan</h4>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                  <span class="text-[9px] text-rose-500/80 font-mono uppercase tracking-widest">Blacklisted 2026</span>
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-[65%] h-[500px] lg:h-full bg-[#050b14] border border-slate-800/80 rounded-2xl relative z-10 shadow-inner overflow-hidden" id="dossier-container">
+        
+        <div id="standby-screen" class="dossier-panel absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 opacity-100 visible z-20">
+          <div class="relative w-64 h-64 flex items-center justify-center mb-8">
+            <div class="absolute inset-0 rounded-full border border-slate-700/30"></div>
+            <div class="absolute inset-8 rounded-full border border-slate-700/40"></div>
+            <div class="absolute inset-16 rounded-full border border-slate-700/50"></div>
+            <div class="absolute top-1/2 left-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent to-blue-500/50 origin-left animate-spin" style="animation-duration: 4s;"></div>
+            <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(0,0,0,1)]">
+              <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            </div>
+          </div>
+          <h3 class="text-slate-400 font-serif text-xl mb-2">Awaiting Selection</h3>
+          <p class="text-slate-600 text-[10px] font-mono uppercase tracking-widest flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-slate-600 rounded-full animate-pulse"></span> Select a territory from the left panel
+          </p>
+        </div>
+
+        <div id="dossier-georgia" class="dossier-panel absolute inset-0 flex flex-col transition-all duration-700 opacity-0 invisible translate-y-8 bg-[#050b14] z-10">
+          <div class="p-6 lg:p-8 border-b border-slate-800/80 bg-gradient-to-r from-slate-900 to-[#050b14] flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-5">
+              <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-slate-700 flex items-center justify-center text-3xl shadow-[0_10px_20px_rgba(0,0,0,0.5)]">🇬🇪</div>
+              <div>
+                <div class="flex items-center gap-3 mb-1">
+                  <h2 class="text-3xl font-serif text-white">Georgia</h2>
+                  <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded">Clearance Granted</span>
+                </div>
+                <p class="text-slate-400 text-xs font-mono uppercase tracking-widest">Sovereignty: 100% Independent State</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-8 space-y-8">
+            <div class="grid grid-cols-3 gap-4">
+              <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5">
+                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest block mb-2">Duration</span>
+                <span class="text-2xl font-serif text-white block mb-1">6 Years</span>
+              </div>
+              <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5">
+                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest block mb-2">Budget Avg.</span>
+                <span class="text-2xl font-serif text-white block mb-1">₹30L - ₹40L</span>
+              </div>
+              <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-5 relative overflow-hidden">
+                <span class="text-emerald-500/80 text-[10px] font-bold uppercase tracking-widest block mb-2">FMGE Success</span>
+                <span class="text-2xl font-serif text-emerald-400 block mb-1">42% +</span>
+              </div>
+            </div>
+            
+            <div>
+                 <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">FMGE Analytics</h3>
+                 <div class="bg-[#0a0f1c] border border-slate-700/80 rounded-2xl p-6 lg:p-8 flex items-end gap-6 h-56 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                    <div class="flex flex-col justify-between h-full text-[9px] font-mono text-slate-600 pb-8 pr-4 border-r border-slate-800">
+                      <span>50%</span><span>25%</span><span>0%</span>
+                    </div>
+                    <div class="flex-1 flex justify-around items-end h-full pb-8 relative">
+                      <div class="absolute bottom-8 left-0 w-full h-[1px] bg-slate-800"></div>
+                      <div class="relative group flex flex-col items-center w-12 lg:w-16">
+                         <div class="w-full bg-gradient-to-t from-emerald-600 to-emerald-400 rounded-t-lg h-36 border-t border-emerald-300"></div>
+                         <div class="absolute -top-8 bg-emerald-500/10 border border-emerald-500/50 px-2 py-1 rounded text-[10px] font-mono text-emerald-400 font-bold">42.8%</div>
+                         <span class="absolute -bottom-7 text-[11px] text-white font-bold uppercase tracking-widest">2025</span>
+                      </div>
+                    </div>
+                 </div>
+              </div>
+          </div>
+          <div class="p-6 bg-slate-900/80 border-t border-slate-800">
+            <button class="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-widest py-4 rounded-xl">Download Georgia PDF</button>
+          </div>
+        </div>
+
+        <div id="dossier-russia" class="dossier-panel absolute inset-0 flex flex-col transition-all duration-700 opacity-0 invisible translate-y-8 bg-[#050b14] z-10">
+          <div class="p-6 lg:p-8 border-b border-slate-800/80 bg-gradient-to-r from-slate-900 to-[#050b14] flex items-center gap-5">
+            <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-slate-700 flex items-center justify-center text-3xl">🇷🇺</div>
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <h2 class="text-3xl font-serif text-white">Russia</h2>
+                <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded">High Risk Zone</span>
+              </div>
+              <p class="text-slate-400 text-xs font-mono uppercase tracking-widest">Caution: Bilingual Programs Detected</p>
+            </div>
+          </div>
+          <div class="flex-1 p-6 lg:p-8 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-6">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            </div>
+            <h3 class="text-xl font-serif text-white mb-3">Proceed with Caution</h3>
+            <p class="text-slate-400 text-sm max-w-md">Many Russian universities offer "Bilingual" programs which violate the NMC 2021 Gazette. Ensure you only opt for 100% English Mandated Federal Universities.</p>
+          </div>
+        </div>
+
+        <div id="dossier-kyrgyzstan" class="dossier-panel absolute inset-0 flex flex-col transition-all duration-700 opacity-0 invisible translate-y-8 bg-[#050b14] z-10">
+          <div class="p-6 lg:p-8 border-b border-slate-800/80 bg-gradient-to-r from-slate-900 to-[#050b14] flex items-center gap-5">
+            <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-slate-700 flex items-center justify-center text-3xl">🇰🇬</div>
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <h2 class="text-3xl font-serif text-white">Kyrgyzstan</h2>
+                <span class="bg-rose-500/10 border border-rose-500/30 text-rose-400 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded">Blacklisted</span>
+              </div>
+              <p class="text-slate-400 text-xs font-mono uppercase tracking-widest">NMC Compliance Failed</p>
+            </div>
+          </div>
+          <div class="flex-1 p-6 lg:p-8 flex flex-col items-center justify-center text-center">
+            <div class="w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-500 mb-6">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+            </div>
+            <h3 class="text-xl font-serif text-white mb-3">Investment Rejected</h3>
+            <p class="text-slate-400 text-sm max-w-md">The 54-month duration rule is strictly violated by multiple universities here. Finesse has completely stopped processing applications for this territory to protect student careers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(30, 41, 59, 0.8); border-radius: 10px; }
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb { background: rgba(51, 65, 85, 0.8); }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Search Functionality
+    const searchInput = document.getElementById('country-search');
+    const countryBtns = document.querySelectorAll('.country-btn');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      
+      countryBtns.forEach(btn => {
+        const countryName = btn.querySelector('.country-name').innerText.toLowerCase();
+        if (countryName.includes(term)) {
+          btn.style.display = 'flex';
+        } else {
+          btn.style.display = 'none';
+        }
+      });
+    });
+
+    // 2. Tab Routing Functionality
+    const panels = document.querySelectorAll('.dossier-panel');
+
+    countryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        
+        // --- A. Reset all buttons ---
+        countryBtns.forEach(b => {
+          b.classList.remove('bg-emerald-500/10', 'bg-amber-500/10', 'bg-rose-500/10');
+          b.classList.add('bg-transparent');
+          
+          const indicator = b.querySelector('.active-indicator');
+          if(indicator) indicator.classList.remove('opacity-100');
+        });
+
+        // --- B. Highlight clicked button ---
+        const targetId = btn.getAttribute('data-target');
+        
+        // Match glow color based on country
+        if(targetId.includes('georgia')) btn.classList.add('bg-emerald-500/10');
+        if(targetId.includes('russia')) btn.classList.add('bg-amber-500/10');
+        if(targetId.includes('kyrgyzstan')) btn.classList.add('bg-rose-500/10');
+        
+        const myIndicator = btn.querySelector('.active-indicator');
+        if(myIndicator) myIndicator.classList.add('opacity-100');
+
+        // --- C. Hide all panels ---
+        panels.forEach(panel => {
+          panel.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          panel.classList.add('opacity-0', 'invisible', 'translate-y-8');
+          // Important: We must use z-index to make sure the visible panel is on top
+          panel.classList.remove('z-20');
+          panel.classList.add('z-10');
+        });
+
+        // --- D. Show the target panel ---
+        const targetPanel = document.getElementById(targetId);
+        if(targetPanel) {
+          // Bring to front
+          targetPanel.classList.remove('z-10');
+          targetPanel.classList.add('z-20');
+          
+          // Animate in
+          setTimeout(() => {
+            targetPanel.classList.remove('opacity-0', 'invisible', 'translate-y-8');
+            targetPanel.classList.add('opacity-100', 'visible', 'translate-y-0');
+          }, 50); // slight delay to allow display to set
+        }
+
+      });
+    });
+  });
+</script>
