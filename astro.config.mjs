@@ -14,7 +14,7 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
 
-  site: 'https://finesse-overseas-web.vercel.app',
+  site: 'https://finesseoverseas.com',
   vite: {
     plugins: [tailwindcss()]
   },
