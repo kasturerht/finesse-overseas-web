@@ -12,7 +12,10 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
 
   output: 'server',
-  adapter: vercel(),
+
+  adapter: vercel({
+    functionPerRoute: false
+  }),
 
   site: 'https://finesseoverseas.com',
   vite: {

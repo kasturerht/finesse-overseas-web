@@ -3,7 +3,7 @@ backend:
   name: github
   repo: kasturerht/finesse-overseas-web
   branch: main
-  base_url: https://finesse-overseas-web.vercel.app
+  base_url: https://finesseoverseas.com
   auth_endpoint: oauth/callback
 
 # आपण Cloudinary चं सेटिंग इथेच करून ठेवत आहोत (टप्पा २ साठी)
