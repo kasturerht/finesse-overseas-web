@@ -11,5 +11,45 @@
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "kasturerht/finesse-overseas-web",
+            branch: "main",
+            base_url: "https://finesseoverseas.com",
+            auth_endpoint: "oauth/callback"
+          },
+          media_library: {
+            name: "cloudinary",
+            config: {
+              cloud_name: "",
+              api_key: ""
+            }
+          },
+          collections: [
+            {
+              name: "intelligence",
+              label: "Intelligence Hub (Blogs)",
+              folder: "src/content/intelligence",
+              create: true,
+              slug: "{{year}}-{{month}}-{{slug}}",
+              fields: [
+                { label: "Blog Title", name: "title", widget: "string" },
+                { label: "Short Excerpt", name: "excerpt", widget: "text", hint: "Keep it under 200 characters for the cards." },
+                { label: "Category", name: "category", widget: "select", options: ["Ground Report", "NMC Alert", "Financial Truth", "FMGE Data"] },
+                { label: "Author Name", name: "author", widget: "string", default: "Finesse Audit Team" },
+                { label: "Read Time", name: "readTime", widget: "string", default: "5 Min Read" },
+                { label: "Publish Date", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false },
+                { label: "Cover Image", name: "image", widget: "image", required: false },
+                { label: "Blog Content", name: "body", widget: "markdown" }
+              ]
+            }
+          ]
+        }
+      });
+    </script>
   </body>
 </html>
