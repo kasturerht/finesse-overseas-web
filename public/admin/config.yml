@@ -1,9 +1,9 @@
 # public/admin/config.yml
 backend:
   name: github
-  repo: https://github.com/kasturerht/finesse-overseas-web # 🚨 लक्ष दे: इथे तुझा गिटहबचा युजरनेम आणि रिपोचं नाव टाक (उदा. rohit/finesse-overseas)
-  branch: main # किंवा master, जी तुझी मुख्य ब्रँच असेल
-  base_url: https://finesseoverseas.com # तुझी लाईव्ह वेबसाईट
+  repo: kasturerht/finesse-overseas-web
+  branch: main
+  base_url: https://finesse-overseas-web.vercel.app
   auth_endpoint: oauth/callback
 
 # आपण Cloudinary चं सेटिंग इथेच करून ठेवत आहोत (टप्पा २ साठी)
