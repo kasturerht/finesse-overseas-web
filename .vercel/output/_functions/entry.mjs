@@ -1,14 +1,14 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_BhbpaGY2.mjs';
-import { manifest } from './manifest_DWxYz-zn.mjs';
+import { manifest } from './manifest_D5ehTMa6.mjs';
 
 const serverIslandMap = new Map();;
 
 const _page0 = () => import('./pages/_image.astro.mjs');
 const _page1 = () => import('./pages/admin.astro.mjs');
 const _page2 = () => import('./pages/contact.astro.mjs');
-const _page3 = () => import('./pages/germany-admission01.astro.mjs');
-const _page4 = () => import('./pages/germany-admission02.astro.mjs');
+const _page3 = () => import('./pages/germany-admission.astro.mjs');
+const _page4 = () => import('./pages/germany-admission01.astro.mjs');
 const _page5 = () => import('./pages/intelligence.astro.mjs');
 const _page6 = () => import('./pages/mbbs-abroad.astro.mjs');
 const _page7 = () => import('./pages/oauth/callback.astro.mjs');
@@ -25,8 +25,8 @@ const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["node_modules/astro-decap-cms-oauth/src/admin.astro", _page1],
     ["src/pages/contact.astro", _page2],
-    ["src/pages/germany-admission01.astro", _page3],
-    ["src/pages/germany-admission02.astro", _page4],
+    ["src/pages/germany-admission.astro", _page3],
+    ["src/pages/germany-admission01.astro", _page4],
     ["src/pages/intelligence/index.astro", _page5],
     ["src/pages/mbbs-abroad.astro", _page6],
     ["node_modules/astro-decap-cms-oauth/src/oauth/callback.ts", _page7],
@@ -49,7 +49,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "77a593e1-b4a4-4e94-b4d0-d539b06fae87",
+    "middlewareSecret": "aeda5526-13c7-4695-bbf1-8d361400d8b1",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);
