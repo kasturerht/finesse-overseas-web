@@ -1,0 +1,47 @@
+---
+// src/pages/mbbs-in-abroad.astro
+import Layout from '../layouts/Layout.astro';
+import MBBSHero from '../components/MBBSHero.tsx';
+import TrustDataGrid from '../components/TrustDataGrid.tsx';
+import GlobalAdvantage from '../components/GlobalAdvantage.tsx';
+import DestinationPortals from '../components/DestinationPortals.tsx';
+import SeamlessBlueprint from '../components/SeamlessBlueprint.tsx';
+import ClarityDesk from '../components/ClarityDesk.tsx';
+import Footer from '../components/Footer.astro';
+
+const seoTitle = "MBBS Abroad 2026 | Authority Admissions | Finesse Overseas";
+---
+
+<Layout title={seoTitle}>
+  
+  <div class="relative z-40 bg-teal-500/5 backdrop-blur-md border-b border-white/[0.05] py-2.5">
+    <div class="max-w-7xl mx-auto px-4 overflow-hidden">
+      <div class="flex items-center justify-center gap-12 animate-marquee whitespace-nowrap text-[9px] font-black uppercase tracking-[0.3em] text-teal-400/80">
+        <span>● NMC 2026 Compliance Verified</span>
+        <span>● A-Grade Govt. Universities Only</span>
+        <span>● Zero Agency Commission Policy</span>
+        <span>● NExT Step-1 Integrated Coaching</span>
+        <span>● NMC 2026 Compliance Verified</span>
+        <span>● A-Grade Govt. Universities Only</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="bg-[#030712] overflow-x-hidden">
+    <MBBSHero client:load />
+  </main>
+  <TrustDataGrid client:visible />
+  <GlobalAdvantage client:visible />
+  <DestinationPortals client:visible />
+  <SeamlessBlueprint client:visible />
+  <ClarityDesk client:visible />
+  <Footer theme="dark" />
+</Layout>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 40s linear infinite; }
+</style>

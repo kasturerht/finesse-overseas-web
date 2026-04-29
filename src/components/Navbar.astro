@@ -1,80 +1,51 @@
 ---
 // src/components/Navbar.astro
-// The Navigation Array to keep code clean and scalable
 const navLinks = [
   { name: "Home", url: "/" },
-  { name: "Destinations", url: "#" }, // We will add dropdown logic later
+  { name: "Destinations", url: "#" },
   { name: "Services", url: "#" },
   { name: "Success Stories", url: "#" },
   { name: "Contact", url: "/contact" }
 ];
+
+const currentPath = Astro.url.pathname;
+const isDarkTheme = currentPath.includes('mbbs');
+
+// --- Dynamic Theme Logic (Fixed) ---
+const headerBg = isDarkTheme 
+  ? 'bg-[#030712]/80 border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+  : 'bg-white/90 border-slate-200 shadow-sm';
+
+const logoFilter = isDarkTheme ? 'brightness-0 invert opacity-90' : '';
+const linkColor = isDarkTheme ? 'text-slate-300 hover:text-teal-400' : 'text-slate-600 hover:text-teal-600';
+const btnClass = isDarkTheme
+  ? 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
+  : 'bg-teal-600 hover:bg-teal-700 text-white';
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+<header class={`sticky top-0 z-[100] w-full backdrop-blur-xl border-b transition-all duration-500 ${headerBg}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       
-      <div class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
+      <div class="flex-shrink-0 flex items-center transition-opacity duration-300">
         <a href="/" class="flex items-center">
-          <span class="sr-only">Finesse Overseas Education</span>
-          <img src="/logo.png" alt="Finesse Overseas Education Logo" class="h-10 md:h-12 w-auto object-contain" />
+          <img src="/logo.png" alt="Finesse Logo" class={`h-10 md:h-12 w-auto object-contain ${logoFilter}`} />
         </a>
       </div>
 
       <nav class="hidden md:flex space-x-8">
         {navLinks.map((link) => (
-          <a href={link.url} class="text-slate-600 hover:text-teal-600 font-medium transition-colors duration-200">
+          <a href={link.url} class={`text-sm font-bold uppercase tracking-widest transition-colors ${linkColor}`}>
             {link.name}
           </a>
         ))}
       </nav>
 
       <div class="hidden md:flex items-center">
-        <a href="#consultation" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
-          Book Free Consultation
+        <a href="#consultation" class={`px-6 py-2.5 rounded-xl font-bold text-xs tracking-widest uppercase transition-all ${btnClass}`}>
+          Book Audit
         </a>
       </div>
-
-      <div class="md:hidden flex items-center">
-        <button id="mobile-menu-btn" aria-label="Toggle Menu" class="text-slate-600 hover:text-teal-600 focus:outline-none">
-          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 absolute w-full left-0 top-20 shadow-lg">
-    <div class="px-4 pt-2 pb-6 space-y-2">
-      {navLinks.map((link) => (
-        <a href={link.url} class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-md">
-          {link.name}
-        </a>
-      ))}
-      <a href="#consultation" class="block w-full text-center mt-4 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-md">
-        Book Free Consultation
-      </a>
     </div>
   </div>
 </header>
-
-<script>
-  // Client-side JavaScript to toggle the mobile menu seamlessly
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const iconPath = document.getElementById('menu-icon-path');
-
-  if(btn && menu && iconPath) {
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      // Change icon from Hamburger to X
-      if (menu.classList.contains('hidden')) {
-        iconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-      } else {
-        iconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-      }
-    });
-  }
-</script>
