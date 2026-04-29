@@ -18,7 +18,7 @@ const destinations = [
       { label: "Hidden Fees", value: "Zero Donations" }
     ],
     // Tested medical professionals image
-    img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1600"
+    img: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=1600"
   },
   {
     id: "ITA",
@@ -32,7 +32,7 @@ const destinations = [
       { label: "Access", value: "Schengen Visa" }
     ],
     // Tested European architecture image
-    img: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&q=80&w=1600"
+    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=1600"
   },
   {
     id: "RUS",
@@ -88,7 +88,7 @@ const destinations = [
       { label: "Environment", value: "Student Friendly" }
     ],
     // Tested Bulgaria/European building image
-    img: "https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?auto=format&fit=crop&q=80&w=1600"
+    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1600"
   },
   {
     id: "LIT",
@@ -102,7 +102,7 @@ const destinations = [
       { label: "Focus", value: "Deep Clinical Research" }
     ],
     // Tested university campus image
-    img: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1600"
+    img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&q=80&w=1600"
   }
 ];
 

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const trustSlides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ce122?auto=format&fit=crop&q=80&w=1600", // Medical student studying/campus
+    image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1600", // Medical student studying/campus
     title: "1000+ Students Living Their Dream.",
     subtitle: "Join the largest community of successful medical graduates."
   },
@@ -18,7 +18,7 @@ const trustSlides = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&q=80&w=1600", // Doctor/Medical Theme
+    image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1600", // Doctor/Medical Theme
     title: "Zero Hidden Costs. Full Transparency.",
     subtitle: "What we commit is exactly what you pay. Complete clarity from Day 1."
   }
