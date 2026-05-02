@@ -109,13 +109,7 @@ const destinations = [
 export default function DestinationCanvas() {
   const [activeDest, setActiveDest] = useState(destinations[0]);
 
-  // Preload images to ensure there is zero lag when switching
-  useEffect(() => {
-    destinations.forEach((d) => {
-      const img = new Image();
-      img.src = d.img;
-    });
-  }, []);
+  
 
   return (
     // SEPARATION FIX: Changed to Pure White (bg-white) with a top inner shadow & border to clearly detach from the previous Ivory section.
@@ -193,10 +187,13 @@ export default function DestinationCanvas() {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
-                {/* Background Image */}
+                {/* Background Image - 🚀 PERFORMANCE FIX: Added lazy loading to save bandwidth */}
                 <img 
                   src={activeDest.img} 
-                  alt={activeDest.country} 
+                  /* 🚀 SEO FIX: Dynamic and Keyword Rich Alt Text */
+                  alt={`Top Government Medical University Campus for MBBS in ${activeDest.country} 2026`} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transform scale-100 hover:scale-105 transition-transform duration-[10s] ease-out"
                 />
                 
@@ -217,9 +214,16 @@ export default function DestinationCanvas() {
                       {activeDest.country} Approved Portfolio
                     </span>
                     
-                    <h3 className="text-3xl lg:text-4xl font-serif text-white leading-tight mb-4 drop-shadow-lg">
-                      {activeDest.headline}
-                    </h3>
+                    {/* 🚀 SEO FIX: DoFollow Link for internal Silo structure (Google Bot साठी) */}
+                    <a 
+                      href={`/mbbs-in-${activeDest.country.toLowerCase().replace(' ', '-')}`} 
+                      title={`Study MBBS in ${activeDest.country} 2026`}
+                      className="block hover:text-[#C5A059] transition-colors duration-300"
+                    >
+                      <h3 className="text-3xl lg:text-4xl font-serif text-white leading-tight mb-4 drop-shadow-lg">
+                        {activeDest.headline}
+                      </h3>
+                    </a>
                     
                     <p className="text-slate-200 font-sans text-sm leading-relaxed mb-10 max-w-md drop-shadow-md">
                       {activeDest.description}

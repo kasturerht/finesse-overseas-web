@@ -56,9 +56,9 @@ export default function TrustDataGrid() {
             <h3 className="text-2xl font-serif text-[#111111] mb-8">NMC 2026 Integrity</h3>
             <ul className="space-y-8">
               {[
-                { t: "54 + 12 Month Standard", d: "Strictly compliant course duration." },
-                { t: "Exclusive English Medium", d: "Zero bilingual or local language traps." },
-                { t: "Verified Practice Rights", d: "Guaranteed licensing in the host nation." }
+                { t: "NMC, WHO & ECFMG Approved", d: "Strictly compliant 54+12 month standard course duration." },
+                { t: "100% English Taught Programs", d: "Zero bilingual or local language traps for international students." },
+                { t: "Verified Practice Rights", d: "Guaranteed licensing in the host nation after graduation." }
               ].map((item, i) => (
                 <li key={i} className="relative pl-6">
                   {/* Custom Minimalist Check */}
@@ -124,9 +124,9 @@ export default function TrustDataGrid() {
             
             <div className="flex-grow flex flex-col justify-between space-y-6">
               {[
-                { l: "Institutional Tier", v: "Govt. Owned" },
-                { l: "NExT Success Rate", v: "Top 10%" },
-                { l: "Clinical Exposure", v: "High Inflow" }
+                { l: "Institutional Tier", v: "Govt. Medical Universities" },
+                { l: "FMGE / NExT Passing Rate", v: "Top 10% Globally" },
+                { l: "Clinical Exposure", v: "High Patient Inflow" }
               ].map((m, idx) => (
                 <div key={idx} className="flex justify-between items-center border-b border-white/10 pb-4 last:border-0">
                   <span className="text-[10px] font-medium text-[#AAAAAA] uppercase tracking-[0.15em]">{m.l}</span>

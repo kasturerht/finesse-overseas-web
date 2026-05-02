@@ -27,7 +27,7 @@ const faqs = [
   {
     id: "04",
     question: "Will there be any sudden 'Consulting Charges' midway?",
-    answer: "No. We operate on a zero-surprise policy. You will receive a legally binding document on Day 1 detailing every single expense down to the visa fees. No hidden margins, period.",
+    answer: "No. We operate on a zero-surprise policy. The total cost of MBBS abroad can be confusing, but you will receive a legally binding document on Day 1 detailing every single expense—from tuition fees to living costs and visa processing. No hidden margins, period.",
     highlight: "Zero Hidden Costs"
   }
 ];
@@ -132,10 +132,10 @@ export default function ClarityDesk() {
                         {faq.id}
                       </span>
                       
-                      {/* Question */}
-                      <span className={`font-serif text-2xl lg:text-3xl flex-grow transition-colors duration-500 pr-8 ${isOpen ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                      {/* Question - 🚀 SEO FIX: Changed from span to h3 for proper Semantic Outline */}
+                      <h3 className={`font-serif text-2xl lg:text-3xl flex-grow text-left transition-colors duration-500 pr-8 ${isOpen ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
                         {faq.question}
-                      </span>
+                      </h3>
 
                       {/* Animated Plus/Minus Icon */}
                       <div className="relative w-6 h-6 flex-shrink-0 mt-2 flex items-center justify-center">

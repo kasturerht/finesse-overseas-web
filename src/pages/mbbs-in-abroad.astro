@@ -9,10 +9,95 @@ import SeamlessBlueprint from '../components/SeamlessBlueprint.tsx';
 import ClarityDesk from '../components/ClarityDesk.tsx';
 import Footer from '../components/Footer.astro';
 
-const seoTitle = "MBBS Abroad 2026 | Authority Admissions | Finesse Overseas";
+// 🚀 1. SEO Meta Data (Google Ads Quality Score & Organic Ranking)
+const seoTitle = "MBBS Abroad 2026 | NMC Approved & Zero Donation | Finesse Overseas";
+const seoDesc = "Secure your child's medical career with MBBS abroad. 100% NMC 2026 approved, zero hidden fees, A-Grade Govt universities, and strict NExT coaching support.";
+const ogImage = "/images/mbbs-abroad-og.jpg"; // (हे तुझ्या public फोल्डरमध्ये असायला हवं)
+
+// 🧠 2. The JSON-LD Schema Magic (FAQ & Course Schema for Google AI Overviews)
+const pageSchema = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What about the NMC 2026 rules and NExT exam for MBBS abroad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We exclusively partner with universities that strictly follow the 54+12 months NMC guideline and English-medium mandates. Furthermore, our partner institutions have some of the highest NExT passing ratios globally."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are MBBS destinations abroad genuinely safe for female students?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolute safety is our baseline. We only select universities located in low-crime European and Eurasian zones with secure, restricted-access international hostels and 24/7 on-ground wardens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you assist with Education Loans for MBBS abroad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Because our partner universities are highly ranked government institutions, major Indian banks readily approve loans. We provide the necessary admission letters and financial structures to fast-track your approval."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will there be any sudden 'Consulting Charges' midway?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. We operate on a zero-surprise policy. You will receive a legally binding document on Day 1 detailing every single expense down to the visa fees. No hidden margins, period."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "MBBS in Abroad - Premium Medical Admissions",
+    "description": "Direct merit-based admissions in Top Government Medical Universities across Europe and Eurasia. 100% NMC compliant.",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Finesse Overseas Education",
+      "sameAs": "https://finesseoverseas.com"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Finesse Overseas Education",
+    "image": "https://finesseoverseas.com/images/mbbs-abroad-og.jpg",
+    "@id": "https://finesseoverseas.com/#organization",
+    "url": "https://finesseoverseas.com",
+    "telephone": "+91-0000000000", // 🔴 तुझा खरा ऑफिसचा नंबर इथे टाक
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Your Full Office Address Here", // 🔴 तुझा ऑफिस ॲड्रेस टाक
+      "addressLocality": "Kolhapur",
+      "addressRegion": "Maharashtra",
+      "postalCode": "416001", // पिनकोड अपडेट कर
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 16.7050, // Google Maps वरून तुझा अचूक Latitude टाक
+      "longitude": 74.2433 // Google Maps वरून तुझा अचूक Longitude टाक
+    },
+    "areaServed": ["Kolhapur", "Sangli", "Satara", "Pune", "Maharashtra"],
+    "priceRange": "$$"
+  }
+]);
 ---
 
-<Layout title={seoTitle}>
+<Layout 
+  title={seoTitle} 
+  description={seoDesc} 
+  image={ogImage} 
+  schema={pageSchema}
+>
   
   <div class="relative z-40 bg-teal-500/5 backdrop-blur-md border-b border-white/[0.05] py-2.5">
     <div class="max-w-7xl mx-auto px-4 overflow-hidden">
@@ -35,7 +120,8 @@ const seoTitle = "MBBS Abroad 2026 | Authority Admissions | Finesse Overseas";
   <DestinationPortals client:visible />
   <SeamlessBlueprint client:visible />
   <ClarityDesk client:visible />
-  <Footer theme="dark" />
+  {/* 🚀 SEO & UX FIX: Hiding Germany/Italy CTA on MBBS Page */}
+  <Footer theme="dark" hideCTA={true} />
 </Layout>
 
 <style>
