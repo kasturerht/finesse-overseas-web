@@ -3,11 +3,12 @@
 import Layout from '../layouts/Layout.astro';
 import MBBSHero from '../components/MBBSHero.tsx';
 import TrustDataGrid from '../components/TrustDataGrid.tsx';
-import GlobalAdvantage from '../components/GlobalAdvantage.tsx';
+import GlobalAdvantage from '../components/TopIndianHubs.tsx';
 import DestinationPortals from '../components/DestinationPortals.tsx';
 import SeamlessBlueprint from '../components/SeamlessBlueprint.tsx';
 import ClarityDesk from '../components/ClarityDesk.tsx';
 import Footer from '../components/Footer.astro';
+import TopIndianHubs from '../components/TopIndianHubs.tsx';
 
 // 🚀 1. SEO Meta Data (Google Ads Quality Score & Organic Ranking)
 const seoTitle = "MBBS Abroad 2026 | NMC Approved & Zero Donation | Finesse Overseas";
@@ -116,7 +117,7 @@ const pageSchema = JSON.stringify([
     <MBBSHero client:load />
   </main>
   <TrustDataGrid client:visible />
-  <GlobalAdvantage client:visible />
+  <TopIndianHubs client:visible />
   <DestinationPortals client:visible />
   <SeamlessBlueprint client:visible />
   <ClarityDesk client:visible />

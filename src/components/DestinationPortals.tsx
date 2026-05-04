@@ -1,254 +1,166 @@
 // src/components/DestinationPortals.tsx
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 // ============================================================================
-// DATA: Fixed & Tested 100% Working Image URLs + Zero Budget Focus
+// DATA: Top Safe Countries (No Specific Fees - Curiosity Based)
 // ============================================================================
 const destinations = [
   {
-    id: "IND",
-    index: "01",
-    country: "India",
-    flag: "🇮🇳",
-    headline: "The Donation-Free Pathway",
-    description: "Navigate the competitive Indian medical landscape with absolute clarity. Secure merit-based admissions in top Deemed and Private institutions.",
-    stats: [
-      { label: "Admission", value: "100% Merit & Legal" },
-      { label: "Hidden Fees", value: "Zero Donations" }
-    ],
-    // Tested medical professionals image
-    img: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=1600"
-  },
-  {
-    id: "ITA",
-    index: "02",
+    id: "italy",
     country: "Italy",
     flag: "🇮🇹",
-    headline: "The European Dream",
-    description: "Experience Europe's finest with Zero Tuition Fees in Public Universities, fully backed by Government Living Scholarships.",
-    stats: [
-      { label: "Tuition", value: "100% Free (Public)" },
-      { label: "Access", value: "Schengen Visa" }
-    ],
-    // Tested European architecture image
-    img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=1600"
+    image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=800",
+    flight: "Flights from Mumbai/Delhi",
+    food: "Pure Veg & Indian Options",
+    safety: "Highest European Safety",
+    colleges: ["Top Govt. Universities in Rome", "Premium Medical Colleges in Milan"]
   },
   {
-    id: "RUS",
-    index: "03",
+    id: "russia",
     country: "Russia",
     flag: "🇷🇺",
-    headline: "Clinical Supremacy",
-    description: "Gain unparalleled hands-on experience in 3000+ bed hospitals within centuries-old, globally ranked Government Medical Academies.",
-    stats: [
-      { label: "Exposure", value: "3000+ Bed Hospitals" },
-      { label: "Legacy", value: "Centuries Old" }
-    ],
-    // Tested Russian classical architecture image
-    img: "https://images.unsplash.com/photo-1547448415-e9f5b28e570d?auto=format&fit=crop&q=80&w=1600"
+    image: "https://images.unsplash.com/photo-1513326738677-b964603b136d?auto=format&fit=crop&q=80&w=800",
+    flight: "Direct Flights from Delhi",
+    food: "Indian Canteens in Campus",
+    safety: "Global Superpower Safety",
+    colleges: ["Kazan Federal University", "Bashkir State Medical Uni."]
   },
   {
-    id: "ROM",
-    index: "04",
+    id: "romania",
     country: "Romania",
     flag: "🇷🇴",
-    headline: "EU Excellence",
-    description: "State-of-the-art medical infrastructure with 100% English-medium curriculums and a direct pathway to practicing across the European Union.",
-    stats: [
-      { label: "Curriculum", value: "Exclusive English" },
-      { label: "Practice", value: "Direct EU Eligibility" }
-    ],
-    // Tested classic European street/university vibe
-    img: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&q=80&w=1600"
+    image: "https://thumbs.dreamstime.com/b/historic-university-bucharest-building-equestrian-statue-carol-i-city-center-grand-neoclassical-architecture-landmark-448739407.jpg",
+    flight: "European Standard Travel",
+    food: "Self-Cooking & Indian Mess",
+    safety: "Extremely Safe (EU Nation)",
+    colleges: ["Carol Davila Uni. of Medicine", "Victor Babes Uni. of Medicine"]
   },
   {
-    id: "POL",
-    index: "05",
+    id: "poland",
     country: "Poland",
     flag: "🇵🇱",
-    headline: "Baltic Prestige",
-    description: "Study in top globally ranked medical universities offering a rigorous, USMLE-aligned curriculum for students aiming for global dominance.",
-    stats: [
-      { label: "Ranking", value: "Top 500 Global" },
-      { label: "Pathway", value: "USMLE Aligned" }
-    ],
-    // Tested Poland architecture image
-    img: "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?auto=format&fit=crop&q=80&w=1600"
+    image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&q=80&w=800",
+    flight: "Connecting Flights to Warsaw",
+    food: "Indian Mess Available",
+    safety: "Top EU Quality of Life",
+    colleges: ["Medical University of Warsaw", "Jagiellonian University"]
   },
   {
-    id: "BUL",
-    index: "06",
+    id: "bulgaria",
     country: "Bulgaria",
     flag: "🇧🇬",
-    headline: "The Balanced EU Choice",
-    description: "The perfect balance of European lifestyle, featuring highly supportive academic environments and exceptional passing ratios for NExT.",
-    stats: [
-      { label: "Academics", value: "High NExT Ratio" },
-      { label: "Environment", value: "Student Friendly" }
-    ],
-    // Tested Bulgaria/European building image
-    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1600"
+    image: "https://thumbs.dreamstime.com/b/aerial-view-university-kliment-ohridski-sofia-bulgaria-aerial-view-university-kliment-ohridski-sofia-211019161.jpg",
+    flight: "Easy Connecting Flights",
+    food: "Indian Food Options",
+    safety: "Peaceful EU Country",
+    colleges: ["Sofia Medical University", "Plovdiv Medical University"]
   },
   {
-    id: "LIT",
-    index: "07",
+    id: "lithuania",
     country: "Lithuania",
     flag: "🇱🇹",
-    headline: "The Hidden Gem",
-    description: "An incredibly safe European nation offering pristine campuses, low student-to-professor ratios, and a deep focus on medical research.",
-    stats: [
-      { label: "Safety", value: "Amongst Highest" },
-      { label: "Focus", value: "Deep Clinical Research" }
-    ],
-    // Tested university campus image
-    img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&q=80&w=1600"
+    image: "https://thumbs.dreamstime.com/b/vilnius-university-8699353.jpg",
+    flight: "Connecting Flights to Vilnius",
+    food: "Self-Cooking & Indian Mess",
+    safety: "High Standard Baltic Safety",
+    colleges: ["Vilnius University", "Lithuanian Uni. of Health Sciences"]
   }
 ];
 
-export default function DestinationCanvas() {
-  const [activeDest, setActiveDest] = useState(destinations[0]);
-
-  
-
+export default function DestinationPortals() {
   return (
-    // SEPARATION FIX: Changed to Pure White (bg-white) with a top inner shadow & border to clearly detach from the previous Ivory section.
-    <section className="relative w-full min-h-[90vh] lg:h-[90vh] bg-white border-t border-slate-200 shadow-[inset_0_20px_30px_-20px_rgba(0,0,0,0.03)] flex items-center overflow-hidden py-12 lg:py-0 selection:bg-[#C5A059]/20">
-      
-      <div className="max-w-[1500px] w-full mx-auto px-6 lg:px-12 relative z-10 h-full flex flex-col justify-center">
+    <section className="relative py-24 bg-[#F8FAFC] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* --- HEADER --- */}
-        <div className="mb-8 lg:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 pt-6">
-          <div>
-            <span className="inline-block text-[#C5A059] font-sans font-bold tracking-[0.25em] text-[10px] uppercase mb-3">
-              The Finesse Portfolio
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-800 font-extrabold text-[10px] uppercase tracking-widest rounded-full mb-6">
+            MBBS Abroad Options
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+            Safe European Nations & <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">
+              Top Govt. Universities
             </span>
-            <h2 className="text-4xl lg:text-5xl font-serif text-[#002147] leading-tight tracking-tight">
-              Curated <span className="italic font-light text-[#C5A059]">Destinations.</span>
-            </h2>
-          </div>
-          <p className="text-slate-500 font-sans text-sm max-w-sm border-l border-[#C5A059]/30 pl-4">
-            We exclusively partner with institutions in these 7 audited regions. No overwhelming choices, just clear pathways.
+          </h2>
+          <p className="text-slate-600 font-medium text-base md:text-lg leading-relaxed">
+            Our only job is to secure your seat in the best, safest, and 100% NMC approved government universities abroad. <strong className="text-slate-900">We guide you to the right college; the hard work and studying is up to the student.</strong>
           </p>
         </div>
 
-        {/* --- THE MASTER CANVAS --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 h-full lg:h-[65vh] items-center">
-          
-          {/* LEFT: Compact Royal Index */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full py-4">
-            <div className="space-y-1">
-              {destinations.map((dest) => {
-                const isActive = activeDest.id === dest.id;
-                return (
-                  <div 
-                    key={dest.id}
-                    onMouseEnter={() => setActiveDest(dest)}
-                    onClick={() => setActiveDest(dest)}
-                    className="group cursor-pointer py-3 lg:py-[18px] border-b border-[#002147]/5 last:border-0 relative"
-                  >
-                    <div className="flex items-center gap-4 relative z-10">
-                      {/* Number */}
-                      <span className={`font-serif text-sm transition-colors duration-200 ${isActive ? 'text-[#C5A059]' : 'text-slate-300 group-hover:text-[#C5A059]/50'}`}>
-                        {dest.index}
-                      </span>
-                      
-                      {/* Flag & Country */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl opacity-90">{dest.flag}</span>
-                        {/* SPEED FIX: duration-500 changed to duration-200 for snappy feel */}
-                        <h3 className={`font-serif text-2xl lg:text-[1.65rem] tracking-wide transition-all duration-200 ${
-                          isActive ? 'text-[#002147] translate-x-2' : 'text-slate-400'
-                        }`}>
-                          {dest.country}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Gold Strike Line: SPEED FIX - duration-700 to duration-300 */}
-                    <div className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C5A059] transition-all duration-300 ease-out ${
-                      isActive ? 'w-full opacity-100' : 'w-0 opacity-0'
-                    }`}></div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* RIGHT: The Cinematic Master Canvas */}
-          <div className="lg:col-span-8 h-[450px] lg:h-full w-full relative rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,33,71,0.12)] border border-[#002147]/5">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeDest.id}
-                // SPEED FIX: blur removed, opacity fade sped up from 0.6s to 0.25s for instant snappy feel
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="absolute inset-0"
-              >
-                {/* Background Image - 🚀 PERFORMANCE FIX: Added lazy loading to save bandwidth */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {destinations.map((dest, index) => (
+            <motion.div 
+              key={dest.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-15px_rgba(13,148,136,0.2)] transition-all duration-500 border border-slate-100 flex flex-col h-[480px]"
+            >
+              <div className="relative h-[220px] overflow-hidden shrink-0">
                 <img 
-                  src={activeDest.img} 
-                  /* 🚀 SEO FIX: Dynamic and Keyword Rich Alt Text */
-                  alt={`Top Government Medical University Campus for MBBS in ${activeDest.country} 2026`} 
+                  src={dest.image} 
+                  alt={`MBBS in ${dest.country}`} 
+                  className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transform scale-100 hover:scale-105 transition-transform duration-[10s] ease-out"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
                 
-                {/* Clean, readable gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#001229]/95 via-[#001229]/50 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001229]/90 via-transparent to-transparent lg:hidden"></div>
-
-                {/* Text Content inside the image */}
-                <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] p-8 lg:p-14 flex flex-col justify-center">
-                  
-                  <motion.div
-                    // Instant text entry
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1, duration: 0.3 }}
-                  >
-                    <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-[#C5A059] font-bold text-[9px] uppercase tracking-widest rounded-sm mb-6">
-                      {activeDest.country} Approved Portfolio
-                    </span>
-                    
-                    {/* 🚀 SEO FIX: DoFollow Link for internal Silo structure (Google Bot साठी) */}
-                    <a 
-                      href={`/mbbs-in-${activeDest.country.toLowerCase().replace(' ', '-')}`} 
-                      title={`Study MBBS in ${activeDest.country} 2026`}
-                      className="block hover:text-[#C5A059] transition-colors duration-300"
-                    >
-                      <h3 className="text-3xl lg:text-4xl font-serif text-white leading-tight mb-4 drop-shadow-lg">
-                        {activeDest.headline}
-                      </h3>
-                    </a>
-                    
-                    <p className="text-slate-200 font-sans text-sm leading-relaxed mb-10 max-w-md drop-shadow-md">
-                      {activeDest.description}
-                    </p>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-8 pt-6 border-t border-white/20 max-w-md">
-                      {activeDest.stats.map((stat, idx) => (
-                        <div key={idx}>
-                          <p className="text-[9px] text-[#C5A059] font-bold uppercase tracking-[0.2em] mb-1">
-                            {stat.label}
-                          </p>
-                          <p className="text-white font-serif text-base tracking-wide">
-                            {stat.value}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                  
+                <div className="absolute bottom-4 left-5 flex items-center gap-3">
+                  <span className="text-3xl drop-shadow-md">{dest.flag}</span>
+                  <h3 className="text-2xl font-black text-white drop-shadow-md tracking-wide">
+                    {dest.country}
+                  </h3>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
 
+              <div className="p-6 flex-grow flex flex-col justify-start bg-white relative z-10 transition-transform duration-500 group-hover:-translate-y-4 group-hover:opacity-0">
+                <ul className="space-y-4 mt-2">
+                  <li className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                    <span className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">✈️</span>
+                    {dest.flight}
+                  </li>
+                  <li className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                    <span className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">🛡️</span>
+                    {dest.safety}
+                  </li>
+                  <li className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                    <span className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 shrink-0">🥗</span>
+                    {dest.food}
+                  </li>
+                </ul>
+                
+                <div className="mt-auto pt-4 text-center">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-teal-600/70">
+                    Hover to see Universities & Details
+                  </span>
+                </div>
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 top-[220px] bg-slate-900 p-6 flex flex-col justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-20">
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-teal-400 mb-3 border-b border-white/10 pb-2">
+                  Top Colleges We Offer
+                </h4>
+                <ul className="space-y-3 mb-6">
+                  {dest.colleges.map((college, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm font-bold text-white">
+                      <svg className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {college}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto bg-white/5 rounded-xl p-4 border border-white/10 text-center cursor-pointer hover:bg-white/10 transition-colors">
+                  <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Fee Structure</span>
+                  <span className="text-[15px] sm:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300 flex items-center justify-center gap-2">
+                    Request Official Details 🔒
+                  </span>
+                </div>
+              </div>
+
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
