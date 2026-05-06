@@ -1,0 +1,44 @@
+---
+// src/pages/mbbs-India-abroad.astro(किंवा तुला जे नाव द्यायचंय ते)
+
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+import HeroSection from '../components/HeroSection.tsx';
+import HeroSectionDark from '../components/HeroSectionDark.tsx';
+import BothPathsSection from '../components/BothPathsSection.tsx';
+import DetailedComparison from '../components/DetailedComparison.tsx';
+import SafeCountries from '../components/SafeCountries.tsx';
+import NMCRules from '../components/NMCRules.tsx';
+import AdmissionProcess from '../components/AdmissionProcess.tsx';
+import FAQSection from '../components/FAQSection.tsx';
+import CTABanner from '../components/CTABanner.tsx';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MBBS Admission Blueprint | Finesse Overseas Education</title>
+    <meta name="description" content="Clear, honest comparison for MBBS in India vs Abroad." />
+  </head>
+  
+  <body class="bg-slate-50 antialiased text-slate-900 overflow-x-hidden">
+    
+    <main>
+      <HeroSectionDark client:load />
+      <BothPathsSection client:visible />
+      <DetailedComparison client:visible />
+      <SafeCountries client:visible />
+      <NMCRules client:visible />
+      <AdmissionProcess client:visible />
+      <FAQSection client:visible />
+      <CTABanner client:visible />
+    </main>
+
+    <Footer theme="light" />
+
+  </body>
+</html>
