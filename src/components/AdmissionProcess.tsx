@@ -1,6 +1,6 @@
 // src/components/AdmissionProcess.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 // ─── Animation variants ────────────────────────────────────────────────────
 const stagger = {
@@ -68,7 +68,7 @@ function StepTag({ label }: { label: string }) {
 
 function Step({ step, index }: { step: typeof steps[0]; index: number }) {
   return (
-    <motion.div variants={fadeUp} className="flex gap-5 group">
+    <m.div variants={fadeUp} className="flex gap-5 group">
       {/* Number + connector line */}
       <div className="flex flex-col items-center shrink-0">
         <div className="w-9 h-9 rounded-full bg-teal-600/10 border-2 border-teal-600/30 flex items-center justify-center shrink-0 group-hover:border-teal-500 group-hover:bg-teal-600/20 transition-all duration-300">
@@ -89,13 +89,14 @@ function Step({ step, index }: { step: typeof steps[0]; index: number }) {
           ))}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
 // ─── Main component ────────────────────────────────────────────────────────
 export default function AdmissionProcess() {
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden selection:bg-teal-500/20 selection:text-teal-900">
 
       {/* Ambient blurs — matching MBBSHero */}
@@ -110,7 +111,7 @@ export default function AdmissionProcess() {
           {/* ══════════════════════════════════════════════
               LEFT — 4-Step Process
           ══════════════════════════════════════════════ */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -136,7 +137,7 @@ export default function AdmissionProcess() {
             </p>
 
             {/* Steps */}
-            <motion.div
+            <m.div
               variants={stagger}
               initial="hidden"
               whileInView="show"
@@ -145,13 +146,13 @@ export default function AdmissionProcess() {
               {steps.map((step, i) => (
                 <Step key={step.n} step={step} index={i} />
               ))}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* ══════════════════════════════════════════════
               RIGHT — DO / DON'T panels
           ══════════════════════════════════════════════ */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -170,7 +171,7 @@ export default function AdmissionProcess() {
             <div className="rounded-2xl overflow-hidden border border-teal-200/60 shadow-[0_8px_32px_-8px_rgba(20,184,166,0.12)]">
               {/* Panel header */}
               <div className="flex items-center gap-2.5 px-5 py-4 bg-teal-600">
-                <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                <svg aria-hidden="true" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-xs font-black uppercase tracking-widest text-white">What We DO</span>
@@ -179,7 +180,7 @@ export default function AdmissionProcess() {
               {/* Items */}
               <div className="bg-white px-5 py-4 space-y-3">
                 {doItems.map((item, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, x: 8 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -188,12 +189,12 @@ export default function AdmissionProcess() {
                     className="flex items-start gap-3"
                   >
                     <div className="shrink-0 mt-0.5 w-4 h-4 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
+                      <svg aria-hidden="true" className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     <p className="text-[12px] text-slate-600 font-medium leading-snug">{item}</p>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
@@ -202,7 +203,7 @@ export default function AdmissionProcess() {
             <div className="rounded-2xl overflow-hidden border border-red-200/60 shadow-[0_8px_32px_-8px_rgba(239,68,68,0.08)]">
               {/* Panel header */}
               <div className="flex items-center gap-2.5 px-5 py-4 bg-red-500">
-                <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                <svg aria-hidden="true" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 <span className="text-xs font-black uppercase tracking-widest text-white">What We DON'T Do</span>
@@ -211,7 +212,7 @@ export default function AdmissionProcess() {
               {/* Items */}
               <div className="bg-white px-5 py-4 space-y-3">
                 {dontItems.map((item, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, x: 8 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -220,20 +221,21 @@ export default function AdmissionProcess() {
                     className="flex items-start gap-3"
                   >
                     <div className="shrink-0 mt-0.5 w-4 h-4 rounded-full bg-red-50 border border-red-200 flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
+                      <svg aria-hidden="true" className="w-2.5 h-2.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </div>
                     <p className="text-[12px] text-slate-600 font-medium leading-snug">{item}</p>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
 
-          </motion.div>
+          </m.div>
 
         </div>
       </div>
     </section>
+    </LazyMotion>
   );
 }

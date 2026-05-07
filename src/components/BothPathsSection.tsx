@@ -1,6 +1,6 @@
 // src/components/BothPathsSection.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 const stagger = {
   hidden: {},
@@ -32,7 +32,7 @@ const abroadPoints = [
 
 function CheckIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+    <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
@@ -40,14 +40,41 @@ function CheckIcon({ className }: { className?: string }) {
 
 function StarIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 20 20">
+    <svg aria-hidden="true" className={className} fill="currentColor" viewBox="0 0 20 20">
       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
     </svg>
   );
 }
 
 export default function BothPathsSection() {
+
+  // ─── Custom Fast Scroll & Focus Logic ───
+  const handleEnquireClick = (destinationValue: string) => {
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'CTA_Click',
+        cta_text: `Enquire for ${destinationValue === 'india' ? 'India' : 'Abroad'} Seat`,
+      });
+    }
+    const destSelect = document.getElementById('destination') as HTMLSelectElement;
+    if (destSelect) {
+      destSelect.value = destinationValue;
+    }
+    const formSection = document.getElementById('consultation-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    setTimeout(() => {
+      const nameInput = document.getElementById('fullName') as HTMLInputElement;
+      if (nameInput) {
+        nameInput.focus({ preventScroll: true });
+      }
+    }, 350);
+  };
+
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative bg-slate-50 overflow-hidden py-20 lg:py-28 selection:bg-teal-500/20 selection:text-teal-900">
 
       {/* Background effects */}
@@ -61,7 +88,7 @@ export default function BothPathsSection() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,13 +104,13 @@ export default function BothPathsSection() {
           <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">
             Whether your child wants to study in India or Abroad — we have the right seat, at the right college, within your budget. Let us help you pick the best.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── Two Column Cards ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
 
           {/* ── LEFT: MBBS in India ── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -115,7 +142,7 @@ export default function BothPathsSection() {
                   WHY STUDENTS CHOOSE INDIA
                 </p>
 
-                <motion.ul
+                <m.ul
                   variants={stagger}
                   initial="hidden"
                   whileInView="show"
@@ -123,17 +150,17 @@ export default function BothPathsSection() {
                   className="space-y-4"
                 >
                   {indiaPoints.map((point, i) => (
-                    <motion.li key={i} variants={fadeUp} className="flex items-start gap-3">
+                    <m.li key={i} variants={fadeUp} className="flex items-start gap-3">
                       <div className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
                         <CheckIcon className="w-3 h-3 text-teal-400" />
                       </div>
                       <span className="text-sm text-slate-300 leading-snug font-medium">{point}</span>
-                    </motion.li>
+                    </m.li>
                   ))}
-                </motion.ul>
+                </m.ul>
 
                 {/* Best-for callout */}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -144,22 +171,25 @@ export default function BothPathsSection() {
                   <p className="text-xs font-semibold text-teal-300 leading-snug">
                     Best for families who prefer India, any NEET score and want a guaranteed admission without risking an international move
                   </p>
-                </motion.div>
+                </m.div>
               </div>
 
-              {/* CTA */}
+              {/* CTA - UPGRADED BUTTON */}
               <div className="px-7 pb-7">
-                <button className="w-full group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm rounded-xl overflow-hidden transition-all duration-300 shadow-[0_8px_24px_-6px_rgba(20,184,166,0.45)] hover:shadow-[0_12px_32px_-6px_rgba(20,184,166,0.6)] hover:-translate-y-0.5">
+                <button 
+                  onClick={() => handleEnquireClick('india')}
+                  className="w-full group cursor-pointer relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm rounded-xl overflow-hidden transition-all duration-300 shadow-[0_8px_24px_-6px_rgba(20,184,166,0.45)] hover:shadow-[0_12px_32px_-6px_rgba(20,184,166,0.6)] hover:-translate-y-1 active:scale-[0.97] active:translate-y-0"
+                >
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                   <span className="relative">Enquire for India Seat →</span>
                 </button>
               </div>
 
             </div>
-          </motion.div>
+          </m.div>
 
           {/* ── RIGHT: MBBS Abroad ── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -191,7 +221,7 @@ export default function BothPathsSection() {
                   WHY STUDENTS CHOOSE ABROAD
                 </p>
 
-                <motion.ul
+                <m.ul
                   variants={stagger}
                   initial="hidden"
                   whileInView="show"
@@ -199,17 +229,17 @@ export default function BothPathsSection() {
                   className="space-y-4"
                 >
                   {abroadPoints.map((point, i) => (
-                    <motion.li key={i} variants={fadeUp} className="flex items-start gap-3">
+                    <m.li key={i} variants={fadeUp} className="flex items-start gap-3">
                       <div className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
                         <CheckIcon className="w-3 h-3 text-amber-600" />
                       </div>
                       <span className="text-sm text-slate-700 leading-snug font-medium">{point}</span>
-                    </motion.li>
+                    </m.li>
                   ))}
-                </motion.ul>
+                </m.ul>
 
                 {/* Best-for callout */}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -220,22 +250,26 @@ export default function BothPathsSection() {
                   <p className="text-xs font-semibold text-amber-800 leading-snug">
                     Best for: Budget-conscious families who want a recognised degree, lower NEET scores, and are open to an international experience
                   </p>
-                </motion.div>
+                </m.div>
               </div>
 
-              {/* CTA */}
+              {/* CTA - UPGRADED BUTTON */}
               <div className="px-7 pb-7">
-                <button className="w-full group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm rounded-xl overflow-hidden transition-all duration-300 shadow-[0_8px_24px_-6px_rgba(245,158,11,0.4)] hover:shadow-[0_12px_32px_-6px_rgba(245,158,11,0.55)] hover:-translate-y-0.5">
+                <button 
+                  onClick={() => handleEnquireClick('abroad')}
+                  className="w-full group cursor-pointer relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm rounded-xl overflow-hidden transition-all duration-300 shadow-[0_8px_24px_-6px_rgba(245,158,11,0.4)] hover:shadow-[0_12px_32px_-6px_rgba(245,158,11,0.55)] hover:-translate-y-1 active:scale-[0.97] active:translate-y-0"
+                >
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                   <span className="relative">Enquire for Abroad Seat →</span>
                 </button>
               </div>
 
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>
     </section>
+    </LazyMotion>
   );
 }

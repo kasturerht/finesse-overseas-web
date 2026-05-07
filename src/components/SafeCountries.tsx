@@ -1,6 +1,6 @@
 // src/components/SafeCountries.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 const stagger = {
   hidden: {},
@@ -15,7 +15,7 @@ const cardFade = {
 // ─── Icons ─────────────────────────────────────────────────────────────────
 function PlaneIcon() {
   return (
-    <svg className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+    <svg aria-hidden="true" className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
     </svg>
   );
@@ -23,7 +23,7 @@ function PlaneIcon() {
 
 function SafetyIcon() {
   return (
-    <svg className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+    <svg aria-hidden="true" className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
       <path fillRule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clipRule="evenodd" />
     </svg>
   );
@@ -31,7 +31,7 @@ function SafetyIcon() {
 
 function FoodIcon() {
   return (
-    <svg className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+    <svg aria-hidden="true" className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
     </svg>
   );
@@ -92,7 +92,7 @@ const countries = [
 // ─── Card ──────────────────────────────────────────────────────────────────
 function CountryCard({ country }: { country: typeof countries[0] }) {
   return (
-    <motion.div
+    <m.div
       variants={cardFade}
       whileHover={{ y: -4, boxShadow: '0 20px 48px -12px rgba(15,23,42,0.12)' }}
       transition={{ duration: 0.3 }}
@@ -131,13 +131,14 @@ function CountryCard({ country }: { country: typeof countries[0] }) {
       <p className="text-[12px] font-semibold text-teal-600 group-hover:text-teal-700 leading-snug transition-colors duration-200">
         {country.universities}
       </p>
-    </motion.div>
+    </m.div>
   );
 }
 
 // ─── Section ───────────────────────────────────────────────────────────────
 export default function SafeCountries() {
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden selection:bg-teal-500/20 selection:text-teal-900">
 
       {/* Ambient blurs — matching MBBSHero palette */}
@@ -149,7 +150,7 @@ export default function SafeCountries() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Header ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -176,10 +177,10 @@ export default function SafeCountries() {
           <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed max-w-md">
             We only work with top government universities. Click any country to learn more.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── Country Grid ── */}
-        <motion.div
+        <m.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -189,9 +190,10 @@ export default function SafeCountries() {
           {countries.map((country) => (
             <CountryCard key={country.code} country={country} />
           ))}
-        </motion.div>
+        </m.div>
 
       </div>
     </section>
+    </LazyMotion>
   );
 }

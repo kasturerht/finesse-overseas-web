@@ -1,6 +1,6 @@
 // src/components/FAQSection.tsx
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
 
 // ─── FAQ data ──────────────────────────────────────────────────────────────
 const faqs = [
@@ -35,7 +35,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -66,7 +66,8 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
                 : 'bg-teal-600 group-hover:bg-teal-700'
             }`}
           >
-            <motion.svg
+            <m.svg
+              aria-hidden="true"
               animate={{ rotate: open ? 45 : 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="w-4 h-4 text-white"
@@ -76,14 +77,14 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
               strokeWidth="2.5"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-            </motion.svg>
+            </m.svg>
           </div>
         </button>
 
         {/* Answer panel */}
         <AnimatePresence initial={false}>
           {open && (
-            <motion.div
+            <m.div
               key="answer"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
@@ -96,17 +97,18 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
                   {faq.a}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
 // ─── Section ───────────────────────────────────────────────────────────────
 export default function FAQSection() {
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden selection:bg-teal-500/20 selection:text-teal-900">
 
       {/* Ambient blurs — matching MBBSHero */}
@@ -118,7 +120,7 @@ export default function FAQSection() {
       <div className="max-w-[860px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Header ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -145,7 +147,7 @@ export default function FAQSection() {
           <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">
             No vague answers. If we don't know, we'll say so.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── FAQ list ── */}
         <div className="flex flex-col gap-3">
@@ -156,5 +158,6 @@ export default function FAQSection() {
 
       </div>
     </section>
+    </LazyMotion>
   );
 }

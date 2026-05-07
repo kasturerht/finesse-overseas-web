@@ -1,6 +1,6 @@
 // src/components/NMCRules.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 // ─── Animation variants ────────────────────────────────────────────────────
 const stagger = {
@@ -16,7 +16,7 @@ const cardFade = {
 // ─── Icons ─────────────────────────────────────────────────────────────────
 function CalendarIcon() {
   return (
-    <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg aria-hidden="true" className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
   );
@@ -24,7 +24,7 @@ function CalendarIcon() {
 
 function GraduateIcon() {
   return (
-    <svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg aria-hidden="true" className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
     </svg>
@@ -33,7 +33,7 @@ function GraduateIcon() {
 
 function MedicalIcon() {
   return (
-    <svg className="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg aria-hidden="true" className="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
     </svg>
   );
@@ -41,7 +41,7 @@ function MedicalIcon() {
 
 function WarningIcon() {
   return (
-    <svg className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+    <svg aria-hidden="true" className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
     </svg>
   );
@@ -95,6 +95,7 @@ const rules = [
 // ─── Component ─────────────────────────────────────────────────────────────
 export default function NMCRules() {
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative py-20 lg:py-28 bg-slate-950 overflow-hidden selection:bg-amber-500/20 selection:text-amber-200">
 
       {/* ── Background grid ── */}
@@ -114,7 +115,7 @@ export default function NMCRules() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Header ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -141,10 +142,10 @@ export default function NMCRules() {
           <p className="text-sm md:text-base text-slate-400 font-medium leading-relaxed max-w-lg">
             India's National Medical Commission has strict rules. We physically verify every college to protect your investment.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ── Cards ── */}
-        <motion.div
+        <m.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -152,7 +153,7 @@ export default function NMCRules() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
         >
           {rules.map((rule, i) => (
-            <motion.div
+            <m.div
               key={i}
               variants={cardFade}
               whileHover={{ y: -4, borderColor: 'rgba(251,191,36,0.25)' }}
@@ -173,11 +174,12 @@ export default function NMCRules() {
               <p className="text-[13px] text-slate-400 leading-relaxed font-medium">
                 {rule.body}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
       </div>
     </section>
+    </LazyMotion>
   );
 }

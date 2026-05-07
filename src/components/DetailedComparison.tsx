@@ -1,6 +1,6 @@
 // src/components/DetailedComparison.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 const stagger = {
   hidden: {},
@@ -151,6 +151,7 @@ function Cell({ cell }: { cell: Cell }) {
 
 export default function DetailedComparison() {
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden selection:bg-teal-500/20 selection:text-teal-900">
 
       {/* Ambient blurs — matching MBBSHero */}
@@ -161,8 +162,10 @@ export default function DetailedComparison() {
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
+        <h2 className="sr-only">MBBS in India vs Abroad — Side-by-Side Comparison</h2>
+
         {/* ── Badge ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -173,10 +176,10 @@ export default function DetailedComparison() {
           <span className="text-[11px] font-black uppercase tracking-[0.22em] text-teal-700">
             Detailed Comparison
           </span>
-        </motion.div>
+        </m.div>
 
         {/* ── Table Card ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -210,14 +213,14 @@ export default function DetailedComparison() {
           </div>
 
           {/* Rows */}
-          <motion.div
+          <m.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-60px' }}
           >
             {rows.map((row, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 variants={rowFade}
                 className={`grid grid-cols-[180px_1fr_1fr] sm:grid-cols-[200px_1fr_1fr] border-t border-slate-100 ${
@@ -240,12 +243,12 @@ export default function DetailedComparison() {
                 <div className="px-5 py-5 flex items-start">
                   <Cell cell={row.abroad} />
                 </div>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
 
           {/* ── Footer Banner ── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -255,6 +258,7 @@ export default function DetailedComparison() {
             {/* Icon */}
             <div className="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center shadow-sm">
               <svg
+                aria-hidden="true"
                 className="w-4.5 h-4.5 w-[18px] h-[18px] text-teal-600"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -286,10 +290,11 @@ export default function DetailedComparison() {
                 </a>
               </p>
             </div>
-          </motion.div>
+          </m.div>
 
-        </motion.div>
+        </m.div>
       </div>
     </section>
+    </LazyMotion>
   );
 }

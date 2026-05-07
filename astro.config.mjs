@@ -8,6 +8,7 @@ import decapCmsOauth from 'astro-decap-cms-oauth';
 
 // 🚀 FIX 1: फालतू/जुनं Vercel Serverless काढून टाकलं आणि फक्त Latest Vercel ठेवलं
 import vercel from '@astrojs/vercel';
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,6 +43,15 @@ export default defineConfig({
     }
   },
 
-  integrations: [react(), sitemap(), decapCmsOauth()]
+  integrations: [
+    react(),
+    sitemap(),
+    decapCmsOauth(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ]
   
 });
