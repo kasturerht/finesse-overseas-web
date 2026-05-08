@@ -171,7 +171,7 @@ export default function AdmissionProcess() {
             <div className="rounded-2xl overflow-hidden border border-teal-200/60 shadow-[0_8px_32px_-8px_rgba(20,184,166,0.12)]">
               {/* Panel header */}
               <div className="flex items-center gap-2.5 px-5 py-4 bg-teal-600">
-                <svg aria-hidden="true" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                <svg aria-hidden="true" focusable="false" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-xs font-black uppercase tracking-widest text-white">What We DO</span>
@@ -189,7 +189,7 @@ export default function AdmissionProcess() {
                     className="flex items-start gap-3"
                   >
                     <div className="shrink-0 mt-0.5 w-4 h-4 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center">
-                      <svg aria-hidden="true" className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
+                      <svg aria-hidden="true" focusable="false" className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -203,7 +203,7 @@ export default function AdmissionProcess() {
             <div className="rounded-2xl overflow-hidden border border-red-200/60 shadow-[0_8px_32px_-8px_rgba(239,68,68,0.08)]">
               {/* Panel header */}
               <div className="flex items-center gap-2.5 px-5 py-4 bg-red-500">
-                <svg aria-hidden="true" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                <svg aria-hidden="true" focusable="false" className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 <span className="text-xs font-black uppercase tracking-widest text-white">What We DON'T Do</span>
@@ -221,7 +221,7 @@ export default function AdmissionProcess() {
                     className="flex items-start gap-3"
                   >
                     <div className="shrink-0 mt-0.5 w-4 h-4 rounded-full bg-red-50 border border-red-200 flex items-center justify-center">
-                      <svg aria-hidden="true" className="w-2.5 h-2.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
+                      <svg aria-hidden="true" focusable="false" className="w-2.5 h-2.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </div>

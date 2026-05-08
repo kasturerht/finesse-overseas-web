@@ -68,6 +68,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           >
             <m.svg
               aria-hidden="true"
+              focusable="false"
               animate={{ rotate: open ? 45 : 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="w-4 h-4 text-white"

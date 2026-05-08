@@ -259,6 +259,7 @@ export default function DetailedComparison() {
             <div className="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-teal-500/10 border border-teal-500/20 flex items-center justify-center shadow-sm">
               <svg
                 aria-hidden="true"
+                focusable="false"
                 className="w-4.5 h-4.5 w-[18px] h-[18px] text-teal-600"
                 fill="none"
                 viewBox="0 0 24 24"
