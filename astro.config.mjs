@@ -49,7 +49,7 @@ export default defineConfig({
     decapCmsOauth(),
     partytown({
       config: {
-        forward: ['dataLayer.push'],
+        // forward: ['dataLayer.push'],
       },
     }),
   ]
