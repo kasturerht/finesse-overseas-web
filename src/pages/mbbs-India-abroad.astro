@@ -111,13 +111,13 @@ const seoSchema = JSON.stringify({
   canonical={pageUrl}
   schema={seoSchema}
 >
-  <HeroSectionDark client:idle />
+  <HeroSectionDark client:load />
   <BothPathsSection client:visible />
   <DetailedComparison client:visible />
   <SafeCountries client:visible />
   <NMCRules client:visible />
   <AdmissionProcess client:visible />
   <FAQSection client:visible />
-  <CTABanner client:visible />
+  <CTABanner client:load />
   <Footer theme="light" />
 </Layout>
