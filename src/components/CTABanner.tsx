@@ -105,6 +105,12 @@ export default function CTABanner() {
           <a
             href="tel:+919850069600"
             aria-label="Call Finesse Overseas at +91 98500 69600"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({'event': 'Contact_Click', 'contact_type': 'phone', 'location': 'cta_banner'});
+              }
+            }}
             className="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 text-white font-bold text-sm rounded-xl backdrop-blur-sm hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-300"
           >
             <PhoneIcon />

@@ -204,10 +204,24 @@ export default function HeroSectionDark() {
                 action="https://formsubmit.co/finesseoverseaseducation@gmail.com" 
                 method="POST" 
                 className="space-y-5"
-                onSubmit={() => {
+                onSubmit={(e) => {
                   if (typeof window !== 'undefined') {
+                    const formData = new FormData(e.currentTarget);
+                    const neetScore = Number(formData.get('Expected_NEET_Score')) || 0;
+
                     window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({'event': 'Generate_Lead'});
+                    window.dataLayer.push({
+                      'event': 'Generate_Lead',
+                      'lead_type': 'mbbs_blueprint',
+                      'destination': formData.get('Preferred_Destination'),
+                      'neet_score_bucket': neetScore >= 400 ? 'High' : 'Low',
+                      'user_data': {
+                        'phone_number': formData.get('WhatsApp_Number'),
+                        'address': {
+                           'first_name': formData.get('Full_Name')
+                        }
+                      }
+                    });
                   }
                 }}
               >
