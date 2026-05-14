@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import decapCmsOauth from 'astro-decap-cms-oauth';
+import keystatic from '@keystatic/astro';
+import markdoc from '@astrojs/markdoc';
 
 // 🚀 FIX 1: फालतू/जुनं Vercel Serverless काढून टाकलं आणि फक्त Latest Vercel ठेवलं
 import vercel from '@astrojs/vercel';
@@ -13,12 +15,16 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
 
-  output: 'static',
+ 
   adapter: vercel(),
   
   site: 'https://finesseoverseas.com',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    // 🚀 THE FIX: Vite ला React नीट लोड करायला सांगणे
+    optimizeDeps: {
+      include: ['react', 'react-dom/client', 'react/jsx-runtime']
+    }
   },
 
   build: {
@@ -52,6 +58,8 @@ export default defineConfig({
         // forward: ['dataLayer.push'],
       },
     }),
+    keystatic(),
+    markdoc()
   ]
   
 });
