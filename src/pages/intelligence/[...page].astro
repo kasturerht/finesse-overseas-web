@@ -24,7 +24,7 @@ export async function getStaticPaths({ paginate }) {
 }
 
 // Astro आता आपल्याला 'page' नावाचा एक तयार ऑब्जेक्ट देईल
-const { page } = Astro.props;
+const { page = { data: [], url: {}, currentPage: 1, lastPage: 1 } } = Astro.props;
 
 
 const seoTitle = "Finesse Intelligence Hub | NMC Alerts & MBBS Abroad Audits";
@@ -125,14 +125,14 @@ const categoryColors: Record<string, string> = {
 
           <!-- MAIN GRID — bottom on mobile (order-last), left column on desktop (lg:order-first) -->
           <div class="order-last lg:order-first lg:col-span-8">
-            <DynamicAuditBoard client:load posts={page.data} />
+            <DynamicAuditBoard client:load posts={page?.data} />
 
             {/* 🛠️ FIX 1: Pagination चा डबा 'col-span-8' च्या आत घेतला आहे! */}
             <div class="flex items-center justify-between mt-16 pt-8 border-t border-slate-800/50">
               
               {/* Previous Button */}
-              {page.url.prev ? (
-                <a href={page.url.prev} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
+              {page?.url?.prev ? (
+                <a href={page?.url.prev} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
                   <svg class="w-4 h-4 -translate-x-1 group-hover:-translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                   Newer Audits
                 </a>
@@ -142,12 +142,12 @@ const categoryColors: Record<string, string> = {
 
               {/* Page Indicator */}
               <span class="text-slate-500 text-xs font-mono font-bold uppercase tracking-[0.2em] bg-[#0a0f1c] px-4 py-2 rounded-lg border border-slate-800/50">
-                Page {page.currentPage} <span class="text-slate-700 mx-1">/</span> {page.lastPage}
+                Page {page?.currentPage} <span class="text-slate-700 mx-1">/</span> {page?.lastPage}
               </span>
 
               {/* Next Button */}
-              {page.url.next ? (
-                <a href={page.url.next} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
+              {page?.url?.next ? (
+                <a href={page?.url?.next} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
                   Older Audits
                   <svg class="w-4 h-4 translate-x-1 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>

@@ -1,10 +1,12 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  // 'local' म्हणजे सध्या हे तुझ्या कॉम्प्युटरवर चालेल आणि आपोआप .md फाईल्स बनवेल
-  storage: {
-    kind: 'local', 
-  },
+  storage: process.env.NODE_ENV === 'production' 
+    ? { 
+        kind: 'github', 
+        repo: 'kasturerht/finesse-overseas-web', // तुझ्या repo चं नाव (username/repo)
+      } 
+    : { kind: 'local' },
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
