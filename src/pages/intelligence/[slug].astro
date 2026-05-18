@@ -5,6 +5,8 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import LeadCaptureModal from '../../components/LeadCaptureModal';
 
+export const prerender = true;
+
 // १. Dynamic Routing Setup
 export async function getStaticPaths() {
   const posts = await getCollection('intelligence');
