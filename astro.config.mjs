@@ -16,7 +16,9 @@ import partytown from '@astrojs/partytown';
 export default defineConfig({
 
  
-  adapter: vercel(),
+  adapter: vercel({
+    entrypointResolution: 'auto'
+  }),
   output: 'server',
   site: 'https://finesseoverseas.com',
   vite: {
