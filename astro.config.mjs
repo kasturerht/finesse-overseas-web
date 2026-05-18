@@ -17,7 +17,7 @@ export default defineConfig({
 
  
   adapter: vercel(),
-  output: 'hybrid',
+  output: 'server',
   site: 'https://finesseoverseas.com',
   vite: {
     plugins: [tailwindcss()],

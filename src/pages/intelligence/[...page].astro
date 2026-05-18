@@ -11,6 +11,7 @@ import RedNoticeAlert from '../../components/RedNoticeAlert.astro';
 import LeadCaptureModal from '../../components/LeadCaptureModal';
 import DynamicAuditBoard from '../../components/DynamicAuditBoard.tsx';
 
+export const prerender = true;
 
 export async function getStaticPaths({ paginate }) {
   // १. सर्व लेख ओढून आणा
