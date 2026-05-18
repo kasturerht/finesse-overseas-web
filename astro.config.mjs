@@ -15,11 +15,8 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
 
- 
-  adapter: vercel({
-    entrypointResolution: 'auto'
-  }),
   output: 'server',
+  adapter: vercel(),
   site: 'https://finesseoverseas.com',
   vite: {
     plugins: [tailwindcss()],
