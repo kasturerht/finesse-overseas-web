@@ -1,12 +1,14 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: process.env.NODE_ENV === 'production' 
-    ? { 
-        kind: 'github', 
-        repo: 'kasturerht/finesse-overseas-web', // तुझ्या repo चं नाव (username/repo)
-      } 
-    : { kind: 'local' },
+  // 🚀 जुना GitHub/Local चा कोड काढून हा नवीन Cloud चा कोड टाकला:
+  storage: {
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'skadas-team/finesse-overseas-web',
+  },
+  
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
