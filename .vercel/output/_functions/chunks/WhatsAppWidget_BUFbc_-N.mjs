@@ -1,6 +1,6 @@
-import { c as createComponent } from './astro-component_E7jURzWz.mjs';
+import { c as createComponent } from './astro-component_CWqRriDV.mjs';
 import 'piccolore';
-import { m as maybeRenderHead, b as addAttribute, r as renderTemplate } from './entrypoint_7hzf6NWb.mjs';
+import { m as maybeRenderHead, b as addAttribute, r as renderTemplate } from './entrypoint_CMIOVK-J.mjs';
 import 'clsx';
 
 const $$WhatsAppWidget = createComponent(($$result, $$props, $$slots) => {

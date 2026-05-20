@@ -1,12 +1,12 @@
-import { c as createComponent } from './astro-component_E7jURzWz.mjs';
+import { c as createComponent } from './astro-component_CWqRriDV.mjs';
 import 'piccolore';
-import { m as maybeRenderHead, r as renderTemplate, b as addAttribute, u as unescapeHTML, d as renderComponent } from './entrypoint_7hzf6NWb.mjs';
-import { r as renderScript } from './script_C1PYIWrQ.mjs';
-import { $ as $$Layout } from './Layout_CtWX_VCo.mjs';
+import { m as maybeRenderHead, r as renderTemplate, b as addAttribute, u as unescapeHTML, d as renderComponent } from './entrypoint_CMIOVK-J.mjs';
+import { r as renderScript } from './script_DN4DYcnF.mjs';
+import { $ as $$Layout } from './Layout_V9lh5Hgc.mjs';
 import 'clsx';
-import { $ as $$Footer } from './Footer_DOux2Csi.mjs';
-import { $ as $$WhatsAppWidget } from './WhatsAppWidget_TUk2iTF4.mjs';
-import { $ as $$Picture } from './_astro_assets_3DdedwNc.mjs';
+import { $ as $$Footer } from './Footer_RfPquZBC.mjs';
+import { $ as $$WhatsAppWidget } from './WhatsAppWidget_BUFbc_-N.mjs';
+import { $ as $$Picture } from './_astro_assets_TlwWPo-f.mjs';
 
 const $$ROICalculator = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<section class="py-16 bg-white relative overflow-hidden" id="roi-calculator"> <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-teal-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div> <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"> <div class="text-center mb-16"> <span class="text-teal-600 font-bold tracking-wider uppercase mb-3 block text-sm">Financial Transparency</span> <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Calculate Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">Actual Cost</span></h2> <p class="text-lg text-slate-600 max-w-2xl mx-auto">Don't guess your expenses. Use our live calculator to see exactly how part-time jobs and scholarships cover your living costs in Europe.</p> </div> <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 md:p-10 grid lg:grid-cols-2 gap-12 relative z-20"> <div class="flex flex-col justify-center space-y-8"> <div> <label class="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">1. Select Destination</label> <div class="grid grid-cols-2 gap-4"> <button id="btn-germany" data-track="roi-country-toggle" class="country-btn active bg-slate-900 text-white border-2 border-slate-900 py-3 rounded-xl font-semibold transition-all shadow-md">

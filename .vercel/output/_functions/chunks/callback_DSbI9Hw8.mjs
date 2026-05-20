@@ -1,4 +1,4 @@
-import { O as OAUTH_GITHUB_REPO_ID, a as OAUTH_GITHUB_CLIENT_SECRET, b as OAUTH_GITHUB_CLIENT_ID } from './server_UM1FaVb1.mjs';
+import { O as OAUTH_GITHUB_REPO_ID, a as OAUTH_GITHUB_CLIENT_SECRET, b as OAUTH_GITHUB_CLIENT_ID } from './server_CavG2AqR.mjs';
 
 const prerender = false;
 const GET = async ({ url, redirect }) => {

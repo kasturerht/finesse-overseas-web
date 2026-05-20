@@ -5,7 +5,7 @@ const intelligenceCollection = defineCollection({
   // Modern Astro v5/v6 Native Glob Loader Protocol
   loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/intelligence' }), 
   
-  // 🛡️ MAY-2026 ULTRA-PREMIUM ARCHITECTURE SCHEMA (SEO, AEO & GEO SHIELD)
+  // 🛡️ MAY-2026 ULTRA-PREMIUM ARCHITECTURE SCHEMA (SEO, AEO & 500 SERVER ERROR SHIELD)
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -20,6 +20,8 @@ const intelligenceCollection = defineCollection({
       
       // 🛡️ Phase 2: E-E-A-T Institutional Authority Nodes
       author: z.string().default('Rohit Kasture'),
+      authorRole: z.string().default('Senior Placement Strategist'), // ⚡ THE CORE 500 FIX: Allowed authorRole in schema validation
+      
       category: z.enum([
         'NMC Alerts',
         'Financial Truths',
