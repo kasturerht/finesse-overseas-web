@@ -2,25 +2,24 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders'; 
 
 const intelligenceCollection = defineCollection({
-  // Modern Astro Loader Protocol
+  // Modern Astro v5/v6 Native Glob Loader Protocol
   loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/intelligence' }), 
   
-  // 🛡️ The God-Level Zod Security Schema
+  // 🛡️ MAY-2026 ULTRA-PREMIUM ARCHITECTURE SCHEMA (SEO, AEO & GEO SHIELD)
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      excerpt: z.string().optional(),
+      excerpt: z.string(),
       
-      // 🧠 Phase 1: AI Executive Summary (AEO Engine)
-      keyTakeaways: z.array(z.string()).optional(),
+      // 🧠 Phase 1: AI Executive Summary Matrix (Structured Target for LLM Scraping)
+      keyTakeaways: z.array(z.string()).default([]),
       
-      // 🛡️ Phase 2: Freshness Schema (YMYL Trust Signals)
+      // 🛡️ Phase 2: Query Deserves Freshness (QDF) / YMYL Verification System
       publishDate: z.date(),
       lastModifiedDate: z.date().optional(),
       
-      // 🛡️ Phase 2: E-E-A-T Authority
+      // 🛡️ Phase 2: E-E-A-T Institutional Authority Nodes
       author: z.string().default('Rohit Kasture'),
-      authorRole: z.string().default('Senior Placement Strategist'),
       category: z.enum([
         'NMC Alerts',
         'Financial Truths',
@@ -30,12 +29,12 @@ const intelligenceCollection = defineCollection({
       ]),
       isFeatured: z.boolean().default(false),
       
-      // 🖼️ Phase 1 & 3: Accessibility & GEO (Google Engine Optimization)
-      coverImage: image().optional(),
-      coverImageAlt: z.string().optional(),
+      // 🖼️ Phase 1 & 3: Machine-Readable Computer Vision & Alt-Tree Anchors
+      coverImage: image(),
+      coverImageAlt: z.string().default('Finesse Overseas Education Intelligence Audit Payload'),
       
-      // 💰 Phase 4: Hub-Spoke Conversion (Strict URL Validation)
-      moneyPageLink: z.string().url("🚨 SEO Error: Must be a valid URL (e.g., https://finesseoverseas.com/...)").optional(),
+      // 💰 Phase 4: Contextual Hub-Spoke ROI Conversion Loop (Strict URL Validation)
+      moneyPageLink: z.string().url("🚨 Architectural Warning: moneyPageLink must be a legally binding full URL format.").optional(),
     }),
 });
 

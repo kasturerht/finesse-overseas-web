@@ -1,5 +1,6 @@
 ---
 // File: src/pages/intelligence/[slug].astro
+// PREMIUM ARCHITECTURE: 100% Original Look & Feel Preserved with Safe Bento Split-Pane Integration
 
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
@@ -11,7 +12,6 @@ export const prerender = true;
 export async function getStaticPaths() {
   const posts = await getCollection('intelligence');
   return posts.map(post => {
-    // Astro v6 मध्ये '.slug' नाहीये, म्हणून आपण '.id' मधून '.md' काढून टाकतोय
     const slugName = post.id.split('.')[0]; 
     return {
       params: { slug: slugName },
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
-// २. Related Posts (डबल डिक्लेरेशन काढलं)
+// २. Related Posts Engine
 const allPosts = await getCollection('intelligence');
 const relatedPosts = allPosts
   .filter((p) => p.id !== post.id) 
@@ -32,24 +32,26 @@ const relatedPosts = allPosts
 const { Content, headings } = await render(post);
 const filteredHeadings = headings.filter((h) => h.depth > 1 && h.depth < 4);
 
-// ३. Date ani Reading Time Formatting
+// ३. Date and Reading Time Formatting
 const formattedDate = post.data.publishDate.toLocaleDateString('en-US', {
-  year: 'numeric', month: 'long', day: 'numeric',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 
-// 🛡️ GOD LEVEL UPGRADE: Freshness Schema Fallback Protocol
+// 🛡️ Phase 2: Freshness Schema Fallback Protocol
 const finalModifiedDate = post.data.lastModifiedDate || post.data.publishDate;
 const formattedModifiedDate = finalModifiedDate.toLocaleDateString('en-US', {
-  year: 'numeric', month: 'long', day: 'numeric',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 
-// 🛠️ THE FIX 2: इथे आधी फक्त '/' होता, तो आता '//' केला आहे
-// Astro v6 मध्ये post.body नसतो, त्यामुळे हा सेफ Fallback
+// Reading Time Framework Safeguard
 const bodyText = post.body || "Reading time calculation fallback content";
 const wordCount = bodyText.split(/\s+/).length;
 const readingTime = Math.max(3, Math.ceil(wordCount / 200));
 
-// SEO / AEO: canonical URL and Article JSON-LD schema
 const slugPath = post.id.split('.')[0];
 const canonicalURL = new URL(`/intelligence/${slugPath}`, Astro.site).href;
 
@@ -57,6 +59,7 @@ const coverImageAbsURL = post.data.coverImage?.src
   ? new URL(post.data.coverImage.src, Astro.site).href
   : undefined;
 
+// 🧠 AEO / GEO Entity Graph Schema Matrix
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -64,7 +67,7 @@ const articleSchema = JSON.stringify({
   "description": post.data.excerpt,
   ...(coverImageAbsURL && { "image": coverImageAbsURL }),
   "datePublished": post.data.publishDate.toISOString(),
-  "dateModified": finalModifiedDate.toISOString(), // 🛡️ UPGRADED: Dynamic Modification Date for YMYL Schema
+  "dateModified": finalModifiedDate.toISOString(),
   "timeRequired": `PT${readingTime}M`,
   "author": {
     "@type": "Person",
@@ -124,7 +127,7 @@ const articleSchema = JSON.stringify({
             <span>{formattedDate}</span>
           </div>
           
-          {/* 🛡️ GOD LEVEL UPGRADE: Visual Last Modified Date */}
+          {/* 🛡️ Visual Last Modified Date Badge */}
           {post.data.lastModifiedDate && (
             <div class="flex items-center gap-2">
               <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
@@ -138,7 +141,7 @@ const articleSchema = JSON.stringify({
             <span>{readingTime} Min Read</span>
           </div>
           
-          {/* 🛡️ NEW: Fact-Checked Badge */}
+          {/* Fact-Checked Badge */}
           <div class="flex items-center gap-1.5 text-emerald-400/90 bg-emerald-400/10 px-2.5 py-1 rounded-md border border-emerald-400/20 font-bold">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             <span>Verified & Fact-Checked</span>
@@ -151,17 +154,14 @@ const articleSchema = JSON.stringify({
     {/* Content Section (70/30 Split) */}
     <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-12 lg:py-20">
       
-      {/* 🛠️ FIX 1: इथून 'items-start' काढून टाकला आहे.
-      आता साईडबारला शेवटपर्यंत हाईट मिळेल */}
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Column: Markdown Content */}
         <article class="lg:col-span-8 order-last lg:order-first audit-content">
           
-          {/* 🖼️ THE FIX: Cover Image Banner */}
+          {/* Cover Image Banner */}
           {post.data.coverImage && (
             <div class="mb-12 w-full rounded-3xl overflow-hidden border border-slate-800/80 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-              {/* 🧠 GOD LEVEL UPGRADE: Machine-Readable Alt Tags */}
               <img 
                 src={post.data.coverImage.src} 
                 alt={post.data.coverImageAlt || post.data.title}
@@ -170,17 +170,16 @@ const articleSchema = JSON.stringify({
             </div>
           )}
 
-          {/* 🧠 + 💰 THE MAY-2026 SEMANTIC PROTOCOL: AEO/GEO Compliant Luxury Split-Pane */}
+          {/* 🧠 + 💰 ULTRA-PREMIUM BENTO SPLIT-PANE: AEO/GEO Compliant and Protected from global.css */}
           {(post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
             <section 
-              class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden font-sans relative"
+              class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden relative font-sans"
               aria-label="Executive Intelligence Payload"
             >
               {/* Left Pane: Semantic AI Summary Target */}
               {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
                 <div class="md:col-span-2 p-6 lg:p-8 border-b md:border-b-0 md:border-r border-slate-800/60 relative">
                    
-                   {/* 🧠 AEO Core Title: Inline CSS Override logic to kill the Markdown CSS conflict */}
                    <div class="flex items-center gap-3 mb-6">
                       <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></div>
                       <h2 
@@ -191,16 +190,12 @@ const articleSchema = JSON.stringify({
                       </h2>
                    </div>
                    
-                   {/* 📜 GEO Scraper Target: Strict Semantic Ordered Structure */}
                    <ul class="space-y-4 m-0 p-0 list-none" style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;">
                      {post.data.keyTakeaways.map((takeaway: string) => (
-                       <li 
-                         class="flex items-start gap-4 m-0 p-0"
-                         style="margin: 0 !important; padding: 0 !important;"
-                       >
+                       <li class="flex items-start gap-4 m-0 p-0" style="margin: 0 !important; padding: 0 !important;">
                          <span class="mt-[9px] shrink-0 w-1.5 h-1.5 rounded-full bg-slate-700 block"></span>
                          <span 
-                           class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0"
+                           class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0 font-sans"
                            style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
                          >
                            {takeaway}
@@ -225,7 +220,6 @@ const articleSchema = JSON.stringify({
                      </h3>
                      
                      <div class="mt-auto">
-                       {/* 💰 GTM & CITATION SECURE: Data attributes fully injected for tracking */}
                        <a 
                          href={post.data.moneyPageLink} 
                          id="gtm-hub-spoke-conversion"
@@ -246,7 +240,7 @@ const articleSchema = JSON.stringify({
 
           <Content />
           
-          {/* 🏁 Article End Marker (The Elegant Divider) */}
+          {/* Article End Marker */}
           <div class="mt-24 mb-16 flex items-center justify-center gap-4 opacity-70">
             <div class="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent w-24 md:w-32"></div>
             <div class="flex gap-1.5">
@@ -257,36 +251,27 @@ const articleSchema = JSON.stringify({
             <div class="h-px bg-gradient-to-l from-transparent via-slate-700 to-transparent w-24 md:w-32"></div>
           </div>
 
-          {/* 💎 GOD LEVEL 4.0: Soft Editorial Bio Box */}
+          {/* Soft Editorial Bio Box */}
           <div class="bg-slate-900/40 rounded-3xl p-6 md:p-8 border border-slate-800/60 flex flex-col sm:flex-row gap-6 md:gap-8 items-start group relative">
-            
-            {/* Avatar - Slightly larger for presence */}
             <div class="flex-shrink-0 relative mt-1">
               <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-1 ring-slate-700/50 p-[2px] bg-slate-950 transition-all duration-500 group-hover:ring-emerald-500/40">
                 <img src="/images/rohit.jpg" alt={post.data.author} class="w-full h-full object-cover rounded-full bg-[#0a0f1c]" onerror="this.src='https://ui-avatars.com/api/?name=Rohit+Kasture&background=030712&color=10b981&size=128&bold=true'" />
               </div>
-              {/* Verified Tick */}
               <div class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-800">
                 <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
               </div>
             </div>
 
-            {/* Content - Distinct from article */}
             <div class="flex-1 w-full">
-              {/* Context Label (हे सांगेल की हा लेखकाचा भाग आहे) */}
-              <p class="text-[9px] uppercase tracking-[0.25em] text-slate-500 font-black mb-2">Audited By</p>
-              
+              <p class="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-black mb-2">Audited By</p>
               <div class="flex flex-wrap items-baseline gap-3 mb-2.5">
                 <h4 class="text-xl md:text-2xl font-serif text-slate-100 font-medium tracking-wide">{post.data.author}</h4>
                 <span class="text-slate-700 hidden sm:inline">|</span>
                 <span class="text-[10px] uppercase tracking-[0.15em] text-emerald-500/80 font-bold">Intelligence Strategist</span>
               </div>
-              
               <p class="text-slate-400/90 text-sm leading-relaxed mb-6 font-light max-w-2xl">
                 Rohit specializes in analyzing complex university data, debunking agent myths, and presenting transparent ground-reality audits. His deep-dive metrics have saved countless students from hidden academic and financial traps.
               </p>
-
-              {/* Subdued Metrics */}
               <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-[10px] md:text-[11px] font-mono text-slate-500 uppercase tracking-widest">
                 <span class="flex items-center gap-1.5"><strong class="text-slate-300 font-sans text-xs md:text-sm">150+</strong> Audits</span>
                 <span class="w-1 h-1 rounded-full bg-slate-700/50"></span>
@@ -298,11 +283,9 @@ const articleSchema = JSON.stringify({
                 </a>
               </div>
             </div>
-
           </div>
 
-
-          {/* 🔍 ULTRA-LUXURY: Next Intelligence Section */}
+          {/* Continue Your Audit Section */}
           <section class="mt-32 mb-20">
             <div class="flex items-center justify-between mb-10">
               <div>
@@ -317,13 +300,8 @@ const articleSchema = JSON.stringify({
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               {relatedPosts.map((relPost) => (
                 <a href={`/intelligence/${relPost.id.split('.')[0]}`} class="group relative block">
-                  {/* Card Container */}
                   <div class="relative z-10 h-full p-8 rounded-3xl bg-[#060913] border border-slate-800/50 transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
-                    
-                    {/* Subtle Internal Glow */}
                     <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Category & Date */}
                     <div class="flex items-center gap-4 mb-6">
                       <span class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/80 px-2.5 py-1 rounded bg-emerald-500/5 border border-emerald-500/10">
                         {relPost.data.category}
@@ -332,18 +310,12 @@ const articleSchema = JSON.stringify({
                         {relPost.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                       </span>
                     </div>
-
-                    {/* Title */}
                     <h4 class="text-xl font-serif text-slate-200 group-hover:text-white transition-colors duration-300 leading-snug mb-4">
                       {relPost.data.title}
                     </h4>
-
-                    {/* Excerpt - Subtle & Minimal */}
                     <p class="text-sm text-slate-500 line-clamp-2 font-light leading-relaxed mb-8 group-hover:text-slate-400 transition-colors">
                       {relPost.data.excerpt}
                     </p>
-
-                    {/* Premium Interaction Link */}
                     <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 group-hover:text-emerald-400 transition-all duration-300">
                       Access Report
                       <svg class="w-3.5 h-3.5 -translate-x-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -356,16 +328,13 @@ const articleSchema = JSON.stringify({
             </div>
           </section>
 
-
         </article>
 
         {/* Right Column: Sticky Sidebar (TOC + Lead Magnet) */}
         <aside class="lg:col-span-4 order-first lg:order-last">
-          
-          {/* 🛠️ FIX 2: 'top-32' केलं आहे जेणेकरून तुझ्या Navbar च्या खाली लपणार नाही, आणि 'pb-10' मुळे फुटरला धडकणार नाही */}
           <div class="sticky top-32 space-y-8 pb-10 z-10">
             
-            {/* 📍 Table of Contents (Audit Index) */}
+            {/* Table of Contents */}
             {filteredHeadings.length > 0 && (
               <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-sm hidden lg:block">
                 <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6 border-b border-slate-800 pb-3">
@@ -388,10 +357,9 @@ const articleSchema = JSON.stringify({
               </div>
             )}
 
-            {/* 🎯 Lead Magnet Modal Trigger */}
+            {/* Lead Magnet Card */}
             <div class="bg-gradient-to-b from-[#0a0f1c] to-slate-900/50 border border-emerald-500/20 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.05)]">
               <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
-              
               <div class="relative z-10">
                 <span class="inline-block bg-red-500/10 text-red-400 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 border border-red-500/20">
                   Critical Download
@@ -400,9 +368,7 @@ const articleSchema = JSON.stringify({
                 <p class="text-sm text-slate-400 mb-8 leading-relaxed">
                   Stop reading fake agent promises. Get the officially verified list of 100% safe government universities and the legally binding expense sheet.
                 </p>
-                
                 <LeadCaptureModal client:load pdfUrl="/downloads/NMC-2026-Checklist.pdf" />
-                
               </div>
             </div>
 
@@ -414,15 +380,13 @@ const articleSchema = JSON.stringify({
 
   </main>
 
-  {/* 🔍 THE BULLETPROOF FIX: Image Zoom Lightbox Overlay */}
-  {/* मी इथे style="z-index: 999999;" लावला आहे जेणेकरून जगातील कोणतीही गोष्ट याच्या वर येऊ शकणार नाही! */}
+  {/* Image Zoom Lightbox Overlay */}
   <div id="lightbox" class="fixed inset-0 bg-[#030712]/98 backdrop-blur-xl hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out" style="z-index: 999999;" aria-hidden="true">
     <img id="lightbox-img" src="" alt="Zoomed Audit Image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(16,185,129,0.15)] scale-95 transition-transform duration-300" />
   </div>
 
 </Layout>
 
-{/* 🚀 All JavaScript Logic */}
 <script>
   // 1. Progress Bar Logic
   const progressBar = document.getElementById('progress-bar');
@@ -468,19 +432,15 @@ const articleSchema = JSON.stringify({
     });
   }
 
-  // 3. Bulletproof Table of Contents Scrollspy Logic
+  // 3. Table of Contents Scrollspy Logic
   const headings = document.querySelectorAll('.audit-content h2, .audit-content h3');
   const tocLinks = document.querySelectorAll('#toc-nav a');
 
   if (headings.length > 0) {
-    // जेव्हा युजर स्क्रोल करेल तेव्हा हे फंक्शन चालेल
     window.addEventListener('scroll', () => {
       let currentId = '';
-      
-      // Navbar ची हाईट + थोडी एक्स्ट्रा जागा (Offset)
       const scrollPosition = window.scrollY + 250;
 
-      // कोणती हेडलाईन टॉपच्या सर्वात जवळ आहे ते शोधणे
       headings.forEach(heading => {
         const headingTop = heading.getBoundingClientRect().top + window.scrollY;
         if (headingTop <= scrollPosition) {
@@ -488,19 +448,14 @@ const articleSchema = JSON.stringify({
         }
       });
 
-      // 🔥 THE FIX: जर युजर पेजच्या एकदम तळाशी (Absolute Bottom) पोहोचला असेल, 
-      // तर आपोआप शेवटची हेडलाईन सिलेक्ट करा!
       if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
         currentId = headings[headings.length - 1].getAttribute('id');
       }
 
-      // TOC मधील लिंक्सचे कलर्स अपडेट करणे
       tocLinks.forEach(link => {
-        // आधी सगळ्यांना Normal (Gray) करा
         link.classList.remove('text-emerald-500', 'translate-x-1');
         link.classList.add('text-slate-400');
         
-        // जो ॲक्टिव्ह आहे त्याला Emerald Green करा
         if (currentId && link.getAttribute('href') === `#${currentId}`) {
           link.classList.remove('text-slate-400');
           link.classList.add('text-emerald-500', 'translate-x-1');
@@ -516,48 +471,42 @@ const articleSchema = JSON.stringify({
 
   if (lightbox && lightboxImg) {
     contentImages.forEach(img => {
-      // १. सर्व फोटोंवर 'zoom-in' कर्सर लावणे
       img.style.cursor = 'zoom-in';
       img.classList.add('hover:ring-2', 'hover:ring-emerald-500/50', 'transition-all', 'rounded-xl');
       
-      // २. क्लिक केल्यावर झूम करणे
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightbox.classList.remove('hidden');
         lightbox.classList.add('flex');
-        document.body.style.overflow = 'hidden'; // मागचं पेज स्क्रोल होऊ नये म्हणून
+        document.body.style.overflow = 'hidden';
         
-        // थोडा डिले देऊन opacity आणि scale ॲनिमेशन ट्रिगर करणे
         setTimeout(() => {
           lightbox.classList.remove('opacity-0');
+          lightboxImg.setTimeout;
           lightboxImg.classList.remove('scale-95');
           lightboxImg.classList.add('scale-100');
         }, 10);
       });
     });
 
-    // ३. बाहेर क्लिक केल्यावर परत नॉर्मल करणे
     lightbox.addEventListener('click', () => {
       lightbox.classList.add('opacity-0');
       lightboxImg.classList.remove('scale-100');
       lightboxImg.classList.add('scale-95');
-      document.body.style.overflow = 'auto'; // स्क्रोल परत चालू
+      document.body.style.overflow = 'auto';
       
       setTimeout(() => {
         lightbox.classList.add('hidden');
         lightbox.classList.remove('flex');
         lightboxImg.src = '';
-      }, 300); // ॲनिमेशन संपेपर्यंत थांबणे
+      }, 300);
     });
   }
-
 </script>
 
-{/* 🎨 CSS Styles */}
 <style is:global>
   @reference "tailwindcss";
 
-  /* Smooth Scrolling */
   html {
     scroll-behavior: smooth;
   }
@@ -588,7 +537,7 @@ const articleSchema = JSON.stringify({
     @apply border-l-4 border-emerald-500 pl-6 py-3 italic text-slate-400 bg-slate-900/50 my-8 rounded-r-xl;
   }
   
-  /* 🛡️ GOD LEVEL UPGRADE: HTML Tables Styling Matrix for AEO Data Extraction */
+  /* HTML Tables Styling Matrix for AEO Data Extraction */
   .audit-content table {
     @apply w-full text-left border-collapse border border-slate-800 rounded-xl overflow-hidden my-8 text-sm bg-slate-900/50 shadow-lg;
   }
