@@ -1,0 +1,406 @@
+import { c as createComponent } from './astro-component_E7jURzWz.mjs';
+import 'piccolore';
+import { d as renderComponent, r as renderTemplate, m as maybeRenderHead } from './entrypoint_7hzf6NWb.mjs';
+import { $ as $$Layout } from './Layout_CtWX_VCo.mjs';
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
+var _a;
+const $$GermanyAdmission = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Stop Being Misled by Agents | Finesse Overseas Education", "description": "Don't let agents push you into private universities for commissions. Get 100% transparent admission guidance for Germany's top Public Universities." }, { "default": ($$result2) => renderTemplate(_a || (_a = __template(["", `<div role="banner" class="w-full bg-white/95 backdrop-blur-xl border-b border-slate-100 fixed top-0 z-[100] transition-all duration-300"><div class="container mx-auto px-6 max-w-[85rem] h-20 flex justify-between items-center"><div class="flex items-center gap-3"><img src="/logo.png" alt="Finesse Overseas Education Logo" width="140" height="40" class="h-10 w-auto object-contain" fetchpriority="high" loading="eager"></div><div class="flex items-center gap-8"><a href="tel:+919850069600" aria-label="Call Finesse Education" class="flex items-center gap-2 text-[10px] font-extrabold text-slate-900 uppercase tracking-[0.25em] hover:text-teal-600 transition-colors font-jakarta group p-2"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 sm:hidden"><path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd"></path></svg><span class="hidden sm:inline">Need Help? Call Us</span></a></div></div></div><main><section class="relative bg-white pt-32 pb-16 lg:pt-40 lg:pb-24 selection:bg-teal-600 selection:text-white overflow-hidden"><div class="container mx-auto px-6 max-w-[85rem] relative z-10"><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative"><div class="lg:col-span-7 flex flex-col pt-2 lg:pr-4"><div class="flex items-center gap-4 mb-8"><span class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.25em] text-teal-600 bg-teal-50 px-3 py-1 border border-teal-100">Zero Tuition Fees</span><div class="h-px bg-slate-200 w-8"></div><span class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-slate-400">For B.E. / M.Com Students</span></div><h1 class="font-jakarta text-5xl sm:text-6xl lg:text-[5rem] font-extrabold text-slate-900 leading-[1.08] tracking-tighter mb-6">
+Is Your Agent Keeping Your <span class="text-teal-600">German Dream</span><br class="hidden lg:block"><span class="text-slate-400">In The Dark?</span></h1><p class="font-inter text-lg lg:text-xl text-slate-600 max-w-xl leading-relaxed mb-12">
+Don't settle for private universities just for agent commissions. Demand <span class="font-semibold text-slate-900 border-b-2 border-teal-200">100% transparent admission guidance</span> for Germany's top Public Universities.
+</p><div class="flex flex-col md:flex-row items-center md:items-start gap-8"><div class="relative w-full max-w-[280px] aspect-[9/16] bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[6px] border-slate-900 shrink-0 group/video"><video id="heroVideo" src="/hero-video.mp4" poster="/video-poster.jpg" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/video:opacity-100 transition-opacity duration-700"></video><div class="absolute inset-0 flex items-center justify-center cursor-pointer" role="button" aria-label="Toggle Video Sound" tabindex="0" onclick="toggleVideoMute()" onkeydown="if(event.key==='Enter') toggleVideoMute()"><div id="soundBtn" class="w-16 h-16 bg-slate-900/70 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/20 transition-opacity duration-300 opacity-100 group-hover/video:opacity-100"><svg id="soundIcon" aria-hidden="true" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg></div></div><div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 flex items-center gap-2 rounded-full border border-white/10 pointer-events-none"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span><span class="text-white text-[8px] font-bold uppercase tracking-widest font-inter">Live Case Study</span></div></div><div class="flex-1 flex flex-col justify-center"><div class="bg-slate-50 border-l-4 border-slate-900 p-5 lg:p-6 rounded-r-xl"><p class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-teal-600 mb-3">The Reality Check</p><p class="font-inter text-sm lg:text-base text-slate-700 leading-relaxed font-medium">
+"My local agent almost convinced me to pay ₹18 Lakhs for a private college. Finesse audited my profile and got me into a top <strong class="text-slate-900">Public University with ZERO tuition fees</strong>. They saved my career and my father's savings."
+</p><div class="mt-4 flex items-center gap-3"><div class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-[9px] font-bold text-slate-500" aria-hidden="true">Y</div><p class="text-[9px] font-bold uppercase tracking-widest font-jakarta text-slate-500">— Yash, <span class="font-normal text-slate-400">Pune to TU Munich</span></p></div></div></div></div></div><div class="lg:col-span-5 w-full relative lg:sticky lg:top-28 self-start pb-20 lg:pb-0 scroll-mt-24 z-20" id="consultation-form"><div class="bg-white border border-slate-100 p-8 lg:p-12 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.08)] relative overflow-hidden transition-all duration-500 hover:shadow-[0_50px_120px_-15px_rgba(0,0,0,0.1)] rounded-sm"><div class="mb-8"><p class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] font-jakarta mb-4">Step 1: Check Eligibility</p><h3 class="text-3xl font-extrabold font-jakarta text-slate-900 tracking-tight leading-tight mb-3">Claim Your <br><span class="text-teal-600">Free</span> Session.</h3><p class="text-xs font-inter font-medium text-slate-500 flex items-center gap-2"><svg aria-hidden="true" class="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+Takes only 30 seconds. No commitments.
+</p></div><form action="https://formsubmit.co/finesseoverseaseducation@gmail.com" method="POST" class="space-y-6" onsubmit="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Generate_Lead'});"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" aria-hidden="true"><input type="hidden" name="_subject" value="New Lead from Finesse Landing Page!"><input type="hidden" name="_next" id="form-redirect-url" value=""><div class="relative group"><label for="fullName" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Full Name</label><input id="fullName" type="text" name="Full_Name" placeholder="e.g. Yash Patil" class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:outline-none focus:border-teal-500 transition-colors font-inter text-[16px] sm:text-sm text-slate-900 placeholder:text-slate-300 rounded-none" required></div><div class="relative group"><label for="whatsappNumber" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">WhatsApp Number</label><input id="whatsappNumber" type="tel" name="WhatsApp_Number" pattern="[0-9]*" placeholder="+91" class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:outline-none focus:border-teal-500 transition-colors font-inter text-[16px] sm:text-sm text-slate-900 placeholder:text-slate-300 rounded-none" required></div><div class="flex flex-col w-full relative z-30"><div class="relative group custom-dropdown" id="level-dropdown-wrapper"><label for="edu-level" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Current Education Level</label><input type="hidden" id="edu-level" name="Education_Level" required><div class="dropdown-trigger w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 hover:border-slate-400 transition-colors font-inter text-[16px] sm:text-sm text-slate-400 flex justify-between items-center cursor-pointer" role="button" tabindex="0" aria-haspopup="listbox"><span class="selected-text">Select Level...</span><svg aria-hidden="true" class="w-4 h-4 text-slate-400 transition-transform duration-300 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div><div class="dropdown-menu absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] opacity-0 invisible translate-y-2 transition-all duration-300 z-50 overflow-hidden" role="listbox"><div class="p-1.5 flex flex-col gap-0.5"><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="12th_HSC">
+12th / HSC / Diploma
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="Bachelors">
+Bachelor's Degree (Pursuing / Completed)
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="Masters">
+Master's Degree (Pursuing / Completed)
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div></div></div></div><div id="stream-container" class="relative group transition-all duration-500 ease-out max-h-0 opacity-0 z-20"><div class="pt-6 custom-dropdown" id="stream-dropdown-wrapper"><label for="edu-stream" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Select Your Stream / Field</label><input type="hidden" id="edu-stream" name="Study_Stream" required disabled><div class="dropdown-trigger w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 hover:border-slate-400 transition-colors font-inter text-[16px] sm:text-sm text-slate-400 flex justify-between items-center cursor-pointer" role="button" tabindex="0" aria-haspopup="listbox"><span class="selected-text">Select Stream...</span><svg aria-hidden="true" class="w-4 h-4 text-slate-400 transition-transform duration-300 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div><div class="dropdown-menu absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] opacity-0 invisible translate-y-2 transition-all duration-300 z-50 overflow-hidden" role="listbox"><div class="p-1.5 flex flex-col gap-0.5" id="dynamic-stream-options"></div></div></div></div></div><div class="mt-6 p-4 bg-slate-50 border border-slate-100 flex items-start gap-3"><div class="mt-0.5 text-lg" aria-hidden="true">🎁</div><div><p class="text-[10px] font-extrabold text-slate-900 uppercase tracking-widest font-jakarta">Exclusive Enrollment Bonus</p><p class="text-xs text-slate-500 font-inter mt-1.5 leading-relaxed">
+Secure your session today to lock in a <strong class="text-slate-700">₹5000 University Shortlist Audit</strong>.<br><span class="block mt-1 text-[9px] text-teal-600 font-bold tracking-widest uppercase">(100% Free upon your final enrollment)</span></p></div></div><button type="submit" class="w-full bg-slate-900 text-white font-extrabold py-5 mt-2 hover:bg-teal-600 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.3)]"><span class="font-jakarta tracking-[0.15em] text-xs uppercase">Claim My Free Session</span></button><div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-5"><span class="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-jakarta font-extrabold text-slate-500"><span class="w-3 h-3 bg-teal-100 rounded-full flex items-center justify-center"><svg aria-hidden="true" class="w-2 h-2 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></span> No Spam Calls
+</span><span class="hidden lg:block w-1 h-1 rounded-full bg-slate-200" aria-hidden="true"></span><span class="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-jakarta font-extrabold text-slate-500"><span class="w-3 h-3 bg-teal-100 rounded-full flex items-center justify-center"><svg aria-hidden="true" class="w-2 h-2 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></span> 100% Transparent
+</span></div></form></div><div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-90 px-4 pb-10 lg:pb-0"><div class="flex flex-col items-center"><div class="flex items-center gap-2 mb-1"><span class="text-2xl font-jakarta font-extrabold text-slate-900 leading-none">4.9</span><div class="flex text-amber-400" aria-label="5 out of 5 stars"><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div></div><span class="text-[9px] lg:text-[10px] font-jakarta font-bold uppercase tracking-widest text-slate-500">Google Rating</span></div><div class="w-px h-8 bg-slate-200 hidden sm:block" aria-hidden="true"></div><div class="flex flex-col items-center"><div class="flex items-center gap-2 mb-1"><span class="text-2xl font-jakarta font-extrabold text-slate-900 leading-none">5000+</span><div class="flex items-center text-teal-500"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25z" clip-rule="evenodd"></path></svg></div></div><span class="text-[9px] lg:text-[10px] font-jakarta font-bold uppercase tracking-widest text-slate-500">Students Trusted</span></div></div></div></div></div></section><section class="py-8 lg:py-12 bg-white border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="max-w-4xl bg-red-50/40 border border-red-100 rounded-r-xl rounded-l-sm p-6 lg:p-8 relative overflow-hidden"><div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-red-500 to-teal-500" aria-hidden="true"></div><div class="flex flex-col sm:flex-row items-start gap-4"><svg aria-hidden="true" class="w-8 h-8 text-red-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg><div><h4 class="text-xs lg:text-[11px] font-jakarta font-extrabold uppercase tracking-[0.15em] text-red-600 mb-2">Beware of the "Bait & Switch" Trap</h4><p class="font-inter text-sm lg:text-base text-slate-700 leading-relaxed font-medium">
+Most agents commit German Public Universities to low-scoring students, only to slowly convert them to low-ranking Private options for commissions.
+<span class="block mt-2"><strong class="text-slate-900">Finesse guarantees 100% Free Public Universities to ALL deserving students</strong>, and recommends private options <span class="underline decoration-red-300 underline-offset-2">only</span> for low scores. Pure transparency.
+</span></p></div></div></div></div></section><section class="py-16 lg:py-24 bg-slate-50 border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="text-center max-w-2xl mx-auto mb-12"><p class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-teal-600 mb-4">Why Choose Finesse?</p><h2 class="text-3xl lg:text-4xl font-jakarta font-extrabold text-slate-900 tracking-tight">Your Pathway to <span class="text-teal-600">Zero Tuition</span></h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">100% Free Edu</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">No tuition fees at top-tier Public Universities. Save up to ₹20L in education costs.</p></div><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">18-Month Visa</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">Guaranteed post-study job search visa for all graduates to secure European careers.</p></div><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">Direct Access</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">You hold the university login credentials. Absolute zero hidden processing fees.</p></div></div></div></section><section class="bg-white pb-20 pt-16 lg:pt-24 border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="flex flex-col mb-12"><p class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] font-jakarta mb-2">The Reality Check</p><h2 class="text-3xl lg:text-4xl font-jakarta font-extrabold text-slate-900 tracking-tight">Typical Agents vs <span class="text-teal-600">Finesse Standard</span></h2></div><div class="grid grid-cols-1 md:grid-cols-2 border border-slate-200 rounded-sm overflow-hidden"><div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-200 bg-slate-50"><h3 class="font-jakarta font-bold text-red-500 mb-8 uppercase tracking-widest text-[11px]">Typical Local Agents</h3><ul class="space-y-6"><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="text-sm font-inter text-slate-600 leading-relaxed">Push you towards low-ranking Private Universities for commissions.</span></li><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="text-sm font-inter text-slate-600 leading-relaxed">Hide application passwords and rejection emails.</span></li></ul></div><div class="p-8 md:p-12 bg-slate-900"><h3 class="font-jakarta font-bold text-teal-400 mb-8 uppercase tracking-widest text-[11px]">Finesse Standard</h3><ul class="space-y-6"><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-teal-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm font-inter text-slate-300 leading-relaxed">Target top-tier German Public Universities with <strong class="text-white">Zero Tuition Fees</strong>.</span></li><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-teal-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm font-inter text-slate-300 leading-relaxed">100% transparent. Direct access to university portals.</span></li></ul></div></div></div></section></main><a href="https://wa.me/919850069600?text=Hi, I want transparent guidance for Germany." target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'WhatsApp_Click'});" class="fixed bottom-[100px] lg:bottom-8 right-6 lg:right-8 z-[95] flex items-center justify-center w-14 h-14 bg-[#25d366] rounded-full shadow-[0_10px_30px_-10px_rgba(37,211,102,0.6)] hover:-translate-y-2 hover:scale-[1.05] transition-all duration-300 group"><svg aria-hidden="true" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a><div id="live-toast" aria-live="polite" class="fixed bottom-[100px] lg:bottom-8 left-6 lg:left-8 z-[95] bg-slate-900 border border-slate-800 px-4 py-3 shadow-2xl flex items-center gap-3 transform translate-y-10 opacity-0 transition-all duration-700 pointer-events-none"><div class="w-2 h-2 rounded-full bg-teal-500 animate-pulse" aria-hidden="true"></div><div><p class="text-[10px] font-bold text-white font-jakarta uppercase tracking-widest"><span id="toast-name">Aniket</span> (<span id="toast-city">Pune</span>)</p><p class="text-[10px] text-slate-400 font-inter">Secured a session</p></div></div><div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200/60 p-4 pb-6 z-[100] lg:hidden flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.08)]"><div class="flex flex-col"><span class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest">3 Slots Left</span><span class="text-xs font-jakarta font-extrabold text-slate-900 uppercase tracking-widest">Free Session</span></div><a href="#consultation-form" aria-label="Book a free session" class="bg-slate-900 text-white font-extrabold py-3.5 px-7 text-[10px] uppercase tracking-widest font-jakarta hover:bg-teal-600 transition-colors">
+Book Now
+</a></div><script>
+    // 1. Live Toast Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const names = ["Aniket", "Priya", "Rahul", "Neha", "Saurabh", "Pooja", "Aditya"];
+      const cities = ["Pune", "Mumbai", "Kolhapur", "Nashik", "Nagpur", "Satara"];
+      const toast = document.getElementById('live-toast');
+      const nameEl = document.getElementById('toast-name');
+      const cityEl = document.getElementById('toast-city');
+
+      function showToast() {
+        if(!toast) return;
+        nameEl.innerText = names[Math.floor(Math.random() * names.length)];
+        cityEl.innerText = cities[Math.floor(Math.random() * cities.length)];
+        toast.classList.add('toast-show');
+        setTimeout(() => { toast.classList.remove('toast-show'); }, 4000);
+      }
+
+      setTimeout(() => {
+        showToast();
+        setInterval(showToast, 15000);
+      }, 5000);
+      
+      // 2. Form Redirect Logic
+      const redirectInput = document.getElementById('form-redirect-url');
+      if(redirectInput) {
+        redirectInput.value = window.location.href;
+      }
+    });
+
+    // 3. Video Mute/Unmute Logic
+    function toggleVideoMute() {
+      const v = document.getElementById('heroVideo');
+      const btn = document.getElementById('soundBtn');
+      const icon = document.getElementById('soundIcon');
+      
+      v.muted = !v.muted;
+      
+      if(v.muted) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />';
+          btn.classList.remove('opacity-0');
+          btn.classList.add('opacity-100');
+      } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.898a9 9 0 010 12.728M12 18.5V5.5L7 9H4v6h3l5 3.5z" />';
+          btn.classList.remove('opacity-100');
+          btn.classList.add('opacity-0');
+      }
+    }
+
+    // 4. Ultra Premium Custom Dropdown Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      const dynamicOptions = {
+          "12th_HSC": [
+            { value: "Science", label: "Science (PCM / PCB)" },
+            { value: "Commerce", label: "Commerce" },
+            { value: "Arts_Humanities", label: "Arts & Humanities" }
+          ],
+          "Bachelors": [
+            { value: "Engineering_IT", label: "Engineering, IT & Tech (B.E, BCA...)" },
+            { value: "Commerce_Mgt", label: "Commerce & Management (B.Com, BBA...)" },
+            { value: "Science_Med", label: "Science & Medical (B.Sc, Pharma...)" },
+            { value: "Arts_Design", label: "Arts, Humanities & Design (B.A, B.Des...)" }
+          ],
+          "Masters": [
+            { value: "Engineering_IT_Masters", label: "Engineering & IT (M.E, MCA...)" },
+            { value: "Management_Masters", label: "Management & Commerce (MBA...)" },
+            { value: "Science_Masters", label: "Science & Medical (M.Sc...)" },
+            { value: "Arts_Masters", label: "Arts & Humanities (M.A...)" }
+          ]
+      };
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.custom-dropdown')) {
+          closeAllDropdowns();
+        }
+      });
+
+      function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          menu.classList.add('opacity-0', 'invisible', 'translate-y-2');
+        });
+        document.querySelectorAll('.arrow-icon').forEach(arrow => {
+          arrow.classList.remove('-rotate-180');
+        });
+      }
+
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        const arrow = dropdown.querySelector('.arrow-icon');
+        const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+        const selectedText = dropdown.querySelector('.selected-text');
+
+        trigger.addEventListener('click', (e) => {
+          const isOpen = menu.classList.contains('opacity-100');
+          closeAllDropdowns();
+          
+          if (!isOpen) {
+            menu.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+            menu.classList.add('opacity-100', 'visible', 'translate-y-0');
+            arrow.classList.add('-rotate-180');
+          }
+        });
+
+        const setupOptions = () => {
+          const options = dropdown.querySelectorAll('.dropdown-option');
+          options.forEach(option => {
+            option.addEventListener('click', (e) => {
+              options.forEach(opt => opt.querySelector('.check-icon')?.classList.add('opacity-0'));
+              option.querySelector('.check-icon')?.classList.remove('opacity-0');
+              
+              selectedText.textContent = option.textContent.trim();
+              selectedText.classList.remove('text-slate-400');
+              selectedText.classList.add('text-slate-900');
+              hiddenInput.value = option.dataset.value;
+              
+              closeAllDropdowns();
+
+              if (hiddenInput.id === 'edu-level') {
+                 handleLevelChange(hiddenInput.value);
+              }
+            });
+            // Accessibility: Handle keyboard selection
+            option.addEventListener('keydown', (e) => {
+               if(e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  option.click();
+               }
+            });
+          });
+        };
+        setupOptions();
+        dropdown.setupOptions = setupOptions; 
+      });
+
+      function handleLevelChange(level) {
+        const streamContainer = document.getElementById('stream-container');
+        const streamInput = document.getElementById('edu-stream');
+        const dynamicStreamMenu = document.getElementById('dynamic-stream-options');
+        const streamDropdown = document.getElementById('stream-dropdown-wrapper');
+        const streamSelectedText = streamDropdown.querySelector('.selected-text');
+
+        streamInput.value = "";
+        streamSelectedText.textContent = "Select Stream...";
+        streamSelectedText.classList.add('text-slate-400');
+        streamSelectedText.classList.remove('text-slate-900');
+        dynamicStreamMenu.innerHTML = '';
+
+        if (dynamicOptions[level]) {
+            dynamicOptions[level].forEach(optionData => {
+                const optHtml = \`
+                  <div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" tabindex="0" data-value="\${optionData.value}">
+                    \${optionData.label}
+                    <svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                \`;
+                dynamicStreamMenu.insertAdjacentHTML('beforeend', optHtml);
+            });
+            
+            streamDropdown.setupOptions(); 
+            
+            streamContainer.classList.remove('max-h-0', 'opacity-0');
+            streamContainer.classList.add('max-h-[120px]', 'opacity-100');
+            streamInput.removeAttribute('disabled');
+        }
+      }
+    });
+  <\/script>`], ["", `<div role="banner" class="w-full bg-white/95 backdrop-blur-xl border-b border-slate-100 fixed top-0 z-[100] transition-all duration-300"><div class="container mx-auto px-6 max-w-[85rem] h-20 flex justify-between items-center"><div class="flex items-center gap-3"><img src="/logo.png" alt="Finesse Overseas Education Logo" width="140" height="40" class="h-10 w-auto object-contain" fetchpriority="high" loading="eager"></div><div class="flex items-center gap-8"><a href="tel:+919850069600" aria-label="Call Finesse Education" class="flex items-center gap-2 text-[10px] font-extrabold text-slate-900 uppercase tracking-[0.25em] hover:text-teal-600 transition-colors font-jakarta group p-2"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 sm:hidden"><path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd"></path></svg><span class="hidden sm:inline">Need Help? Call Us</span></a></div></div></div><main><section class="relative bg-white pt-32 pb-16 lg:pt-40 lg:pb-24 selection:bg-teal-600 selection:text-white overflow-hidden"><div class="container mx-auto px-6 max-w-[85rem] relative z-10"><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative"><div class="lg:col-span-7 flex flex-col pt-2 lg:pr-4"><div class="flex items-center gap-4 mb-8"><span class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.25em] text-teal-600 bg-teal-50 px-3 py-1 border border-teal-100">Zero Tuition Fees</span><div class="h-px bg-slate-200 w-8"></div><span class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-slate-400">For B.E. / M.Com Students</span></div><h1 class="font-jakarta text-5xl sm:text-6xl lg:text-[5rem] font-extrabold text-slate-900 leading-[1.08] tracking-tighter mb-6">
+Is Your Agent Keeping Your <span class="text-teal-600">German Dream</span><br class="hidden lg:block"><span class="text-slate-400">In The Dark?</span></h1><p class="font-inter text-lg lg:text-xl text-slate-600 max-w-xl leading-relaxed mb-12">
+Don't settle for private universities just for agent commissions. Demand <span class="font-semibold text-slate-900 border-b-2 border-teal-200">100% transparent admission guidance</span> for Germany's top Public Universities.
+</p><div class="flex flex-col md:flex-row items-center md:items-start gap-8"><div class="relative w-full max-w-[280px] aspect-[9/16] bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[6px] border-slate-900 shrink-0 group/video"><video id="heroVideo" src="/hero-video.mp4" poster="/video-poster.jpg" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/video:opacity-100 transition-opacity duration-700"></video><div class="absolute inset-0 flex items-center justify-center cursor-pointer" role="button" aria-label="Toggle Video Sound" tabindex="0" onclick="toggleVideoMute()" onkeydown="if(event.key==='Enter') toggleVideoMute()"><div id="soundBtn" class="w-16 h-16 bg-slate-900/70 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/20 transition-opacity duration-300 opacity-100 group-hover/video:opacity-100"><svg id="soundIcon" aria-hidden="true" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg></div></div><div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 flex items-center gap-2 rounded-full border border-white/10 pointer-events-none"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span><span class="text-white text-[8px] font-bold uppercase tracking-widest font-inter">Live Case Study</span></div></div><div class="flex-1 flex flex-col justify-center"><div class="bg-slate-50 border-l-4 border-slate-900 p-5 lg:p-6 rounded-r-xl"><p class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-teal-600 mb-3">The Reality Check</p><p class="font-inter text-sm lg:text-base text-slate-700 leading-relaxed font-medium">
+"My local agent almost convinced me to pay ₹18 Lakhs for a private college. Finesse audited my profile and got me into a top <strong class="text-slate-900">Public University with ZERO tuition fees</strong>. They saved my career and my father's savings."
+</p><div class="mt-4 flex items-center gap-3"><div class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-[9px] font-bold text-slate-500" aria-hidden="true">Y</div><p class="text-[9px] font-bold uppercase tracking-widest font-jakarta text-slate-500">— Yash, <span class="font-normal text-slate-400">Pune to TU Munich</span></p></div></div></div></div></div><div class="lg:col-span-5 w-full relative lg:sticky lg:top-28 self-start pb-20 lg:pb-0 scroll-mt-24 z-20" id="consultation-form"><div class="bg-white border border-slate-100 p-8 lg:p-12 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.08)] relative overflow-hidden transition-all duration-500 hover:shadow-[0_50px_120px_-15px_rgba(0,0,0,0.1)] rounded-sm"><div class="mb-8"><p class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] font-jakarta mb-4">Step 1: Check Eligibility</p><h3 class="text-3xl font-extrabold font-jakarta text-slate-900 tracking-tight leading-tight mb-3">Claim Your <br><span class="text-teal-600">Free</span> Session.</h3><p class="text-xs font-inter font-medium text-slate-500 flex items-center gap-2"><svg aria-hidden="true" class="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+Takes only 30 seconds. No commitments.
+</p></div><form action="https://formsubmit.co/finesseoverseaseducation@gmail.com" method="POST" class="space-y-6" onsubmit="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Generate_Lead'});"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" aria-hidden="true"><input type="hidden" name="_subject" value="New Lead from Finesse Landing Page!"><input type="hidden" name="_next" id="form-redirect-url" value=""><div class="relative group"><label for="fullName" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Full Name</label><input id="fullName" type="text" name="Full_Name" placeholder="e.g. Yash Patil" class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:outline-none focus:border-teal-500 transition-colors font-inter text-[16px] sm:text-sm text-slate-900 placeholder:text-slate-300 rounded-none" required></div><div class="relative group"><label for="whatsappNumber" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">WhatsApp Number</label><input id="whatsappNumber" type="tel" name="WhatsApp_Number" pattern="[0-9]*" placeholder="+91" class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:outline-none focus:border-teal-500 transition-colors font-inter text-[16px] sm:text-sm text-slate-900 placeholder:text-slate-300 rounded-none" required></div><div class="flex flex-col w-full relative z-30"><div class="relative group custom-dropdown" id="level-dropdown-wrapper"><label for="edu-level" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Current Education Level</label><input type="hidden" id="edu-level" name="Education_Level" required><div class="dropdown-trigger w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 hover:border-slate-400 transition-colors font-inter text-[16px] sm:text-sm text-slate-400 flex justify-between items-center cursor-pointer" role="button" tabindex="0" aria-haspopup="listbox"><span class="selected-text">Select Level...</span><svg aria-hidden="true" class="w-4 h-4 text-slate-400 transition-transform duration-300 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div><div class="dropdown-menu absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] opacity-0 invisible translate-y-2 transition-all duration-300 z-50 overflow-hidden" role="listbox"><div class="p-1.5 flex flex-col gap-0.5"><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="12th_HSC">
+12th / HSC / Diploma
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="Bachelors">
+Bachelor's Degree (Pursuing / Completed)
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div><div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" data-value="Masters">
+Master's Degree (Pursuing / Completed)
+<svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div></div></div></div><div id="stream-container" class="relative group transition-all duration-500 ease-out max-h-0 opacity-0 z-20"><div class="pt-6 custom-dropdown" id="stream-dropdown-wrapper"><label for="edu-stream" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Select Your Stream / Field</label><input type="hidden" id="edu-stream" name="Study_Stream" required disabled><div class="dropdown-trigger w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 hover:border-slate-400 transition-colors font-inter text-[16px] sm:text-sm text-slate-400 flex justify-between items-center cursor-pointer" role="button" tabindex="0" aria-haspopup="listbox"><span class="selected-text">Select Stream...</span><svg aria-hidden="true" class="w-4 h-4 text-slate-400 transition-transform duration-300 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div><div class="dropdown-menu absolute top-[100%] left-0 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] opacity-0 invisible translate-y-2 transition-all duration-300 z-50 overflow-hidden" role="listbox"><div class="p-1.5 flex flex-col gap-0.5" id="dynamic-stream-options"></div></div></div></div></div><div class="mt-6 p-4 bg-slate-50 border border-slate-100 flex items-start gap-3"><div class="mt-0.5 text-lg" aria-hidden="true">🎁</div><div><p class="text-[10px] font-extrabold text-slate-900 uppercase tracking-widest font-jakarta">Exclusive Enrollment Bonus</p><p class="text-xs text-slate-500 font-inter mt-1.5 leading-relaxed">
+Secure your session today to lock in a <strong class="text-slate-700">₹5000 University Shortlist Audit</strong>.<br><span class="block mt-1 text-[9px] text-teal-600 font-bold tracking-widest uppercase">(100% Free upon your final enrollment)</span></p></div></div><button type="submit" class="w-full bg-slate-900 text-white font-extrabold py-5 mt-2 hover:bg-teal-600 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:shadow-[0_15px_30px_rgba(13,148,136,0.3)]"><span class="font-jakarta tracking-[0.15em] text-xs uppercase">Claim My Free Session</span></button><div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-5"><span class="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-jakarta font-extrabold text-slate-500"><span class="w-3 h-3 bg-teal-100 rounded-full flex items-center justify-center"><svg aria-hidden="true" class="w-2 h-2 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></span> No Spam Calls
+</span><span class="hidden lg:block w-1 h-1 rounded-full bg-slate-200" aria-hidden="true"></span><span class="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-jakarta font-extrabold text-slate-500"><span class="w-3 h-3 bg-teal-100 rounded-full flex items-center justify-center"><svg aria-hidden="true" class="w-2 h-2 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></span> 100% Transparent
+</span></div></form></div><div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-90 px-4 pb-10 lg:pb-0"><div class="flex flex-col items-center"><div class="flex items-center gap-2 mb-1"><span class="text-2xl font-jakarta font-extrabold text-slate-900 leading-none">4.9</span><div class="flex text-amber-400" aria-label="5 out of 5 stars"><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div></div><span class="text-[9px] lg:text-[10px] font-jakarta font-bold uppercase tracking-widest text-slate-500">Google Rating</span></div><div class="w-px h-8 bg-slate-200 hidden sm:block" aria-hidden="true"></div><div class="flex flex-col items-center"><div class="flex items-center gap-2 mb-1"><span class="text-2xl font-jakarta font-extrabold text-slate-900 leading-none">5000+</span><div class="flex items-center text-teal-500"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25z" clip-rule="evenodd"></path></svg></div></div><span class="text-[9px] lg:text-[10px] font-jakarta font-bold uppercase tracking-widest text-slate-500">Students Trusted</span></div></div></div></div></div></section><section class="py-8 lg:py-12 bg-white border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="max-w-4xl bg-red-50/40 border border-red-100 rounded-r-xl rounded-l-sm p-6 lg:p-8 relative overflow-hidden"><div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-red-500 to-teal-500" aria-hidden="true"></div><div class="flex flex-col sm:flex-row items-start gap-4"><svg aria-hidden="true" class="w-8 h-8 text-red-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg><div><h4 class="text-xs lg:text-[11px] font-jakarta font-extrabold uppercase tracking-[0.15em] text-red-600 mb-2">Beware of the "Bait & Switch" Trap</h4><p class="font-inter text-sm lg:text-base text-slate-700 leading-relaxed font-medium">
+Most agents commit German Public Universities to low-scoring students, only to slowly convert them to low-ranking Private options for commissions.
+<span class="block mt-2"><strong class="text-slate-900">Finesse guarantees 100% Free Public Universities to ALL deserving students</strong>, and recommends private options <span class="underline decoration-red-300 underline-offset-2">only</span> for low scores. Pure transparency.
+</span></p></div></div></div></div></section><section class="py-16 lg:py-24 bg-slate-50 border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="text-center max-w-2xl mx-auto mb-12"><p class="text-[10px] font-jakarta font-extrabold uppercase tracking-[0.2em] text-teal-600 mb-4">Why Choose Finesse?</p><h2 class="text-3xl lg:text-4xl font-jakarta font-extrabold text-slate-900 tracking-tight">Your Pathway to <span class="text-teal-600">Zero Tuition</span></h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">100% Free Edu</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">No tuition fees at top-tier Public Universities. Save up to ₹20L in education costs.</p></div><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">18-Month Visa</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">Guaranteed post-study job search visa for all graduates to secure European careers.</p></div><div class="bg-white border border-slate-200 p-8 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 group"><div class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-100 transition-colors" aria-hidden="true"><svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><h4 class="font-jakarta text-sm lg:text-base font-extrabold text-slate-900 uppercase tracking-widest mb-3">Direct Access</h4><p class="font-inter text-sm text-slate-500 leading-relaxed">You hold the university login credentials. Absolute zero hidden processing fees.</p></div></div></div></section><section class="bg-white pb-20 pt-16 lg:pt-24 border-t border-slate-100"><div class="container mx-auto px-6 max-w-[85rem]"><div class="flex flex-col mb-12"><p class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] font-jakarta mb-2">The Reality Check</p><h2 class="text-3xl lg:text-4xl font-jakarta font-extrabold text-slate-900 tracking-tight">Typical Agents vs <span class="text-teal-600">Finesse Standard</span></h2></div><div class="grid grid-cols-1 md:grid-cols-2 border border-slate-200 rounded-sm overflow-hidden"><div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-200 bg-slate-50"><h3 class="font-jakarta font-bold text-red-500 mb-8 uppercase tracking-widest text-[11px]">Typical Local Agents</h3><ul class="space-y-6"><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="text-sm font-inter text-slate-600 leading-relaxed">Push you towards low-ranking Private Universities for commissions.</span></li><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="text-sm font-inter text-slate-600 leading-relaxed">Hide application passwords and rejection emails.</span></li></ul></div><div class="p-8 md:p-12 bg-slate-900"><h3 class="font-jakarta font-bold text-teal-400 mb-8 uppercase tracking-widest text-[11px]">Finesse Standard</h3><ul class="space-y-6"><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-teal-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm font-inter text-slate-300 leading-relaxed">Target top-tier German Public Universities with <strong class="text-white">Zero Tuition Fees</strong>.</span></li><li class="flex items-start gap-4"><svg aria-hidden="true" class="w-5 h-5 text-teal-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-sm font-inter text-slate-300 leading-relaxed">100% transparent. Direct access to university portals.</span></li></ul></div></div></div></section></main><a href="https://wa.me/919850069600?text=Hi, I want transparent guidance for Germany." target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'WhatsApp_Click'});" class="fixed bottom-[100px] lg:bottom-8 right-6 lg:right-8 z-[95] flex items-center justify-center w-14 h-14 bg-[#25d366] rounded-full shadow-[0_10px_30px_-10px_rgba(37,211,102,0.6)] hover:-translate-y-2 hover:scale-[1.05] transition-all duration-300 group"><svg aria-hidden="true" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a><div id="live-toast" aria-live="polite" class="fixed bottom-[100px] lg:bottom-8 left-6 lg:left-8 z-[95] bg-slate-900 border border-slate-800 px-4 py-3 shadow-2xl flex items-center gap-3 transform translate-y-10 opacity-0 transition-all duration-700 pointer-events-none"><div class="w-2 h-2 rounded-full bg-teal-500 animate-pulse" aria-hidden="true"></div><div><p class="text-[10px] font-bold text-white font-jakarta uppercase tracking-widest"><span id="toast-name">Aniket</span> (<span id="toast-city">Pune</span>)</p><p class="text-[10px] text-slate-400 font-inter">Secured a session</p></div></div><div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200/60 p-4 pb-6 z-[100] lg:hidden flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.08)]"><div class="flex flex-col"><span class="text-[10px] font-extrabold text-red-500 uppercase tracking-widest">3 Slots Left</span><span class="text-xs font-jakarta font-extrabold text-slate-900 uppercase tracking-widest">Free Session</span></div><a href="#consultation-form" aria-label="Book a free session" class="bg-slate-900 text-white font-extrabold py-3.5 px-7 text-[10px] uppercase tracking-widest font-jakarta hover:bg-teal-600 transition-colors">
+Book Now
+</a></div><script>
+    // 1. Live Toast Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const names = ["Aniket", "Priya", "Rahul", "Neha", "Saurabh", "Pooja", "Aditya"];
+      const cities = ["Pune", "Mumbai", "Kolhapur", "Nashik", "Nagpur", "Satara"];
+      const toast = document.getElementById('live-toast');
+      const nameEl = document.getElementById('toast-name');
+      const cityEl = document.getElementById('toast-city');
+
+      function showToast() {
+        if(!toast) return;
+        nameEl.innerText = names[Math.floor(Math.random() * names.length)];
+        cityEl.innerText = cities[Math.floor(Math.random() * cities.length)];
+        toast.classList.add('toast-show');
+        setTimeout(() => { toast.classList.remove('toast-show'); }, 4000);
+      }
+
+      setTimeout(() => {
+        showToast();
+        setInterval(showToast, 15000);
+      }, 5000);
+      
+      // 2. Form Redirect Logic
+      const redirectInput = document.getElementById('form-redirect-url');
+      if(redirectInput) {
+        redirectInput.value = window.location.href;
+      }
+    });
+
+    // 3. Video Mute/Unmute Logic
+    function toggleVideoMute() {
+      const v = document.getElementById('heroVideo');
+      const btn = document.getElementById('soundBtn');
+      const icon = document.getElementById('soundIcon');
+      
+      v.muted = !v.muted;
+      
+      if(v.muted) {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />';
+          btn.classList.remove('opacity-0');
+          btn.classList.add('opacity-100');
+      } else {
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.898a9 9 0 010 12.728M12 18.5V5.5L7 9H4v6h3l5 3.5z" />';
+          btn.classList.remove('opacity-100');
+          btn.classList.add('opacity-0');
+      }
+    }
+
+    // 4. Ultra Premium Custom Dropdown Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdowns = document.querySelectorAll('.custom-dropdown');
+      
+      const dynamicOptions = {
+          "12th_HSC": [
+            { value: "Science", label: "Science (PCM / PCB)" },
+            { value: "Commerce", label: "Commerce" },
+            { value: "Arts_Humanities", label: "Arts & Humanities" }
+          ],
+          "Bachelors": [
+            { value: "Engineering_IT", label: "Engineering, IT & Tech (B.E, BCA...)" },
+            { value: "Commerce_Mgt", label: "Commerce & Management (B.Com, BBA...)" },
+            { value: "Science_Med", label: "Science & Medical (B.Sc, Pharma...)" },
+            { value: "Arts_Design", label: "Arts, Humanities & Design (B.A, B.Des...)" }
+          ],
+          "Masters": [
+            { value: "Engineering_IT_Masters", label: "Engineering & IT (M.E, MCA...)" },
+            { value: "Management_Masters", label: "Management & Commerce (MBA...)" },
+            { value: "Science_Masters", label: "Science & Medical (M.Sc...)" },
+            { value: "Arts_Masters", label: "Arts & Humanities (M.A...)" }
+          ]
+      };
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.custom-dropdown')) {
+          closeAllDropdowns();
+        }
+      });
+
+      function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          menu.classList.add('opacity-0', 'invisible', 'translate-y-2');
+        });
+        document.querySelectorAll('.arrow-icon').forEach(arrow => {
+          arrow.classList.remove('-rotate-180');
+        });
+      }
+
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        const arrow = dropdown.querySelector('.arrow-icon');
+        const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+        const selectedText = dropdown.querySelector('.selected-text');
+
+        trigger.addEventListener('click', (e) => {
+          const isOpen = menu.classList.contains('opacity-100');
+          closeAllDropdowns();
+          
+          if (!isOpen) {
+            menu.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+            menu.classList.add('opacity-100', 'visible', 'translate-y-0');
+            arrow.classList.add('-rotate-180');
+          }
+        });
+
+        const setupOptions = () => {
+          const options = dropdown.querySelectorAll('.dropdown-option');
+          options.forEach(option => {
+            option.addEventListener('click', (e) => {
+              options.forEach(opt => opt.querySelector('.check-icon')?.classList.add('opacity-0'));
+              option.querySelector('.check-icon')?.classList.remove('opacity-0');
+              
+              selectedText.textContent = option.textContent.trim();
+              selectedText.classList.remove('text-slate-400');
+              selectedText.classList.add('text-slate-900');
+              hiddenInput.value = option.dataset.value;
+              
+              closeAllDropdowns();
+
+              if (hiddenInput.id === 'edu-level') {
+                 handleLevelChange(hiddenInput.value);
+              }
+            });
+            // Accessibility: Handle keyboard selection
+            option.addEventListener('keydown', (e) => {
+               if(e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  option.click();
+               }
+            });
+          });
+        };
+        setupOptions();
+        dropdown.setupOptions = setupOptions; 
+      });
+
+      function handleLevelChange(level) {
+        const streamContainer = document.getElementById('stream-container');
+        const streamInput = document.getElementById('edu-stream');
+        const dynamicStreamMenu = document.getElementById('dynamic-stream-options');
+        const streamDropdown = document.getElementById('stream-dropdown-wrapper');
+        const streamSelectedText = streamDropdown.querySelector('.selected-text');
+
+        streamInput.value = "";
+        streamSelectedText.textContent = "Select Stream...";
+        streamSelectedText.classList.add('text-slate-400');
+        streamSelectedText.classList.remove('text-slate-900');
+        dynamicStreamMenu.innerHTML = '';
+
+        if (dynamicOptions[level]) {
+            dynamicOptions[level].forEach(optionData => {
+                const optHtml = \\\`
+                  <div class="dropdown-option px-4 py-3 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors font-medium flex items-center justify-between" role="option" tabindex="0" data-value="\\\${optionData.value}">
+                    \\\${optionData.label}
+                    <svg aria-hidden="true" class="w-4 h-4 text-teal-500 opacity-0 check-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                \\\`;
+                dynamicStreamMenu.insertAdjacentHTML('beforeend', optHtml);
+            });
+            
+            streamDropdown.setupOptions(); 
+            
+            streamContainer.classList.remove('max-h-0', 'opacity-0');
+            streamContainer.classList.add('max-h-[120px]', 'opacity-100');
+            streamInput.removeAttribute('disabled');
+        }
+      }
+    });
+  <\/script>`])), maybeRenderHead()) })}`;
+}, "F:/Finesse/Website/Website/finesse-overseas/src/pages/germany-admission.astro", void 0);
+
+const $$file = "F:/Finesse/Website/Website/finesse-overseas/src/pages/germany-admission.astro";
+const $$url = "/germany-admission";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$GermanyAdmission,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

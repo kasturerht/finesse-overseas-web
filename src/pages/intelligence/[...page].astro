@@ -1,6 +1,6 @@
 ---
 // src/pages/intelligence/[...page].astro
-// 👑 MASTERPIECE EDITION: 100% Original Ultra-Luxury Layout Preserved with Advanced Semantic Node Schema & Bulletproof GTM DataLayer
+// 👑 THE ABSOLUTE MASTERPIECE EDITION: 100% Original Luxury 8:4 Grid Preserved with Advanced Semantic Node Schema & Bulletproof GTM DataLayer
 
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
@@ -24,12 +24,16 @@ const { page = { data: [], url: {}, currentPage: 1, lastPage: 1 } } = Astro.prop
 const seoTitle = "Finesse Intelligence Hub | NMC Alerts & MBBS Abroad Audits";
 const seoDescription = "Deep-dive research, NMC compliance updates, and financial exposes for Indian students planning to study MBBS in Europe.";
 
-// 🧠 May-2026 Semantic Knowledge Graph: Enhanced ItemList Matrix for AI Search Overviews
+// 🧠 MAY-2026 KNOWLEDGE GRAPH NODE: Enhanced Semantic ItemList for Generative Search Citation Engines
 const itemListElement = page.data.map((post, index) => ({
   "@type": "ListItem",
   "position": index + 1,
   "url": `${Astro.site}intelligence/${post.id.split('.')[0]}`,
-  "name": post.data.title
+  "name": post.data.title,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${Astro.site}intelligence/${post.id.split('.')[0]}`
+  }
 }));
 
 const listSchema = JSON.stringify({
@@ -53,7 +57,7 @@ const listSchema = JSON.stringify({
         <p class="text-slate-400 max-w-2xl text-lg">Unfiltered research, leaked institutional data, and financial truths that conventional agents hide from Indian students.</p>
       </div>
 
-      {/* 📣 Filter Container with Complete Categories */}
+      {/* 📣 Swis-Luxury Animated Category Filter System */}
       <div class="flex flex-wrap gap-2 lg:gap-3 justify-center md:justify-start mb-12" id="filter-container">
         {['All Data', 'NMC Alerts', 'Financial Truths', 'FMGE Data', 'Exposé', 'Myth Buster'].map((cat) => (
           <button
@@ -69,16 +73,16 @@ const listSchema = JSON.stringify({
         ))}
       </div>
 
-      {/* 👑 The 8:4 Luxury Grid Split */}
+      {/* 👑 The World-Class 8:4 Strategic Split Grid Layout */}
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         
-        {/* Left Column: Audits Matrix Grid (8 Columns) */}
+        {/* Left Column: Audits Processing Hub Feed (8 Columns) */}
         <div class="lg:col-span-8 w-full">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" id="audit-grid">
             {page.data.map((post) => {
               const slug = post.id.split('.')[0];
               
-              {/* 🛡️ Safe Reading Time Protection Protocol (Astro v5/v6 Native Body Fallback) */}
+              {/* 🛡️ Native Astro v5/v6 Raw Body Word-Count Compile Protection */}
               const bodyRawText = post.body || "";
               const totalWords = bodyRawText.trim().split(/\s+/).filter(Boolean).length;
               const readTime = Math.max(3, Math.ceil(totalWords / 200));
@@ -88,13 +92,13 @@ const listSchema = JSON.stringify({
                   data-category={post.data.category}
                   class="audit-card group relative bg-[#0a0f1c] border border-slate-800/80 rounded-3xl overflow-hidden hover:border-emerald-500/40 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(16,185,129,0.08)] hover:-translate-y-2 flex flex-col"
                 >
-                  <a href={`/intelligence/${slug}`} class="block relative h-56 w-full overflow-hidden bg-[#0a0f1c] finesse-grid-anchor" data-gtm-title={post.data.title} data-gtm-slug={slug}>
+                  <a href={`/intelligence/${slug}`} class="block relative h-56 w-full overflow-hidden bg-[#0a0f1c] finesse-master-anchor" data-gtm-title={post.data.title} data-gtm-slug={slug}>
                     
                     {post.data.coverImage ? (
                       <img 
                         src={post.data.coverImage.src} 
                         alt={post.data.coverImageAlt || post.data.title} 
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 origin-center"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 origin-center opacity-85 group-hover:opacity-100"
                         loading="lazy"
                         decoding="async"
                       />
@@ -110,11 +114,11 @@ const listSchema = JSON.stringify({
                   </a>
 
                   <div class="p-6 md:p-8 flex flex-col flex-grow relative z-20 bg-[#0a0f1c]">
-                    <a href={`/intelligence/${slug}`} class="block flex-grow finesse-grid-anchor" data-gtm-title={post.data.title} data-gtm-slug={slug}>
+                    <a href={`/intelligence/${slug}`} class="block flex-grow finesse-master-anchor" data-gtm-title={post.data.title} data-gtm-slug={slug}>
                       <h3 class="text-xl md:text-2xl font-serif text-white font-medium leading-[1.3] mb-4 group-hover:text-emerald-300 transition-colors line-clamp-3">
                         {post.data.title}
                       </h3>
-                      <p class="text-sm text-slate-400 line-clamp-3 leading-relaxed mb-8">
+                      <p class="text-sm text-slate-400 line-clamp-3 leading-relaxed mb-8 font-light">
                         {post.data.excerpt}
                       </p>
                     </a>
@@ -131,7 +135,7 @@ const listSchema = JSON.stringify({
                       </div>
                       <div class="flex items-center gap-1.5 text-[10px] text-slate-500 font-bold uppercase tracking-widest font-mono">
                         <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        {readTime} Min
+                        {readTime} Min Read
                       </div>
                     </div>
                   </div>
@@ -140,10 +144,10 @@ const listSchema = JSON.stringify({
             })}
           </div>
 
-          {/* Luxury Pagination Matrix */}
-          <div class="mt-16 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Luxury Symmetric Pagination Elements Matrix */}
+          <div class="mt-16 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-6 font-sans">
             {page?.url?.prev ? (
-              <a href={page?.url?.prev} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group font-sans">
+              <a href={page?.url?.prev} data-gtm-pagination-dir="newer" class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
                 <svg class="w-4 h-4 -translate-x-1 group-hover:-translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 Newer Audits
               </a>
@@ -156,7 +160,7 @@ const listSchema = JSON.stringify({
             </span>
 
             {page?.url?.next ? (
-              <a href={page?.url?.next} class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group font-sans">
+              <a href={page?.url?.next} data-gtm-pagination-dir="older" class="px-6 py-3 bg-slate-900 hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all font-bold text-sm tracking-wide flex items-center gap-2 group">
                 Older Audits
                 <svg class="w-4 h-4 translate-x-1 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
               </a>
@@ -166,7 +170,7 @@ const listSchema = JSON.stringify({
           </div>
         </div>
 
-        {/* Right Column: Sticky Sidebar Layout (4 Columns) */}
+        {/* Right Column: Original Premium Sidebar Node (4 Columns) */}
         <div class="lg:col-span-4 w-full mt-10 lg:mt-0">
           <div class="sticky top-32 space-y-8">
             <div class="p-8 bg-gradient-to-b from-[#0a0f1c] to-[#030712] border border-slate-800 rounded-[2rem] shadow-2xl relative overflow-hidden group font-sans">
@@ -196,17 +200,18 @@ const listSchema = JSON.stringify({
 </Layout>
 
 <script>
-  // ⚡ PURE VANILLA SWISS-UI PROTOCOL: High-Performance Filtering + Synchronous GTM Injection
+  // ⚡ HIGH-PERFORMANCE SWISS UI REGIME: Fluid Layout Compositor & Synchronous GTM Pipelines
   document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.audit-card');
-    const gridLinks = document.querySelectorAll('.finesse-grid-anchor');
+    const masterAnchors = document.querySelectorAll('.finesse-master-anchor');
+    const paginationBtns = document.querySelectorAll('[data-gtm-pagination-dir]');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const selectedCategory = btn.getAttribute('data-filter');
 
-        // 💰 GTM SYNCHRONOUS INJECTION: Push category click data before animation frames
+        // 💰 GTM CORE INJECTION: Push deterministic data object synchronously before animating paint threads
         if (typeof window !== 'undefined' && (window as any).dataLayer) {
           (window as any).dataLayer.push({
             'event': 'blog_filter_click',
@@ -214,17 +219,17 @@ const listSchema = JSON.stringify({
           });
         }
         
-        // 1. Reset all buttons
+        // 1. Reset all button visual structures
         filterBtns.forEach(b => {
           b.classList.remove('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/50', 'shadow-[0_0_15px_rgba(16,185,129,0.2)]');
           b.classList.add('bg-[#0a0f1c]', 'text-slate-400', 'border-slate-800/80');
         });
         
-        // 2. Activate clicked button
+        // 2. Arm clicked element with active classes
         btn.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/50', 'shadow-[0_0_15px_rgba(16,185,129,0.2)]');
         btn.classList.remove('bg-[#0a0f1c]', 'text-slate-400', 'border-slate-800/80');
 
-        // 3. Filter the cards with Hardware Accelerated Performance
+        // 3. Filter grid arrays with GPU-Accelerated Composite Interpolation
         cards.forEach(card => {
           const cardEl = card as HTMLElement;
           if (selectedCategory === 'All Data' || card.getAttribute('data-category') === selectedCategory) {
@@ -240,8 +245,8 @@ const listSchema = JSON.stringify({
       });
     });
 
-    // 💰 GTM INTERACTION PROTOCOL: Tracks exactly which luxury report card was selected
-    gridLinks.forEach(anchor => {
+    // 💰 GTM CLICK PIPELINE: Ingests specific report access actions seamlessly
+    masterAnchors.forEach(anchor => {
       anchor.addEventListener('click', () => {
         const auditTitle = anchor.getAttribute('data-gtm-title');
         const auditSlug = anchor.getAttribute('data-gtm-slug');
@@ -251,6 +256,19 @@ const listSchema = JSON.stringify({
             'event': 'blog_card_click',
             'blog_title': auditTitle,
             'blog_slug': auditSlug
+          });
+        }
+      });
+    });
+
+    // 💰 GTM PAGINATION PIPELINE: Tracking history batch index navigation
+    paginationBtns.forEach(pBtn => {
+      pBtn.addEventListener('click', () => {
+        const direction = pBtn.getAttribute('data-gtm-pagination-dir');
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            'event': 'blog_pagination_click',
+            'pagination_direction': direction
           });
         }
       });
