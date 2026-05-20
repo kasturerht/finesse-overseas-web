@@ -1,0 +1,75 @@
+import { c as createComponent } from './astro-component_BaJjBfT3.mjs';
+import 'piccolore';
+import { r as renderTemplate, d as renderComponent, m as maybeRenderHead, b as addAttribute } from './entrypoint_cDJa9kri.mjs';
+import { $ as $$Layout } from './Layout_Yrp0fTfb.mjs';
+import { $ as $$Footer } from './Footer_BEYyNOSd.mjs';
+import { $ as $$WhatsAppWidget } from './WhatsAppWidget_DkTe7WUO.mjs';
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
+var _a;
+const $$Contact = createComponent(async ($$result, $$props, $$slots) => {
+  const title = "Contact Us | Finesse Overseas Education";
+  const description = "Get in touch with Finesse Overseas Education. Start your journey to tuition-free universities in Germany, Italy, and Europe.";
+  const contactSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": "https://finesseoverseas.com/contact#webpage",
+        "url": "https://finesseoverseas.com/contact",
+        "name": "Contact Finesse Overseas Education",
+        "description": description,
+        "isPartOf": { "@id": "https://finesseoverseas.com/#website" }
+      },
+      {
+        "@type": ["LocalBusiness", "EducationalOrganization"],
+        "@id": "https://finesseoverseas.com/#organization",
+        "name": "Finesse Overseas Education",
+        "description": description,
+        "url": "https://finesseoverseas.com/contact",
+        "telephone": "+919850069600",
+        "email": "info@finesseoverseas.in",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sakshi Samarth Plaza, First Floor, Above Sohala Showroom, Beside Lenskart, 4th Lane, Rajarampuri",
+          "addressLocality": "Kolhapur",
+          "postalCode": "416008",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:30",
+          "closes": "18:30"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+919850069600",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Hindi", "Marathi"]
+        }
+      }
+    ]
+  });
+  return renderTemplate(_a || (_a = __template(["", " <script>\n  document.addEventListener('DOMContentLoaded', () => {\n    const form = document.getElementById('god-level-contact-form');\n    const formWrapper = document.getElementById('form-wrapper');\n    const successMessage = document.getElementById('success-message');\n    const submitBtn = document.getElementById('submit-btn');\n\n    if (form) {\n      form.addEventListener('submit', async (e) => {\n        e.preventDefault(); // Stop normal redirection\n        \n        // 1. Loading state on button\n        if (submitBtn) {\n          submitBtn.setAttribute('disabled', 'true');\n          submitBtn.innerHTML = '<span>Submitting Data...</span>';\n          submitBtn.classList.add('opacity-70');\n        }\n\n        // 2. 🚨 THE CORE FIX: Synchronously push event to GTM dataLayer\n        window.dataLayer = window.dataLayer || [];\n        window.dataLayer.push({\n          'event': 'generate_lead',\n          'lead_form_location': 'contact_page',\n          'lead_target_country': document.getElementById('destination').value,\n          'lead_education_level': document.getElementById('education').value\n        });\n\n        // 3. Process form data via Fetch API\n        const formData = new FormData(form);\n        const object = Object.fromEntries(formData);\n        const json = JSON.stringify(object);\n\n        try {\n          const response = await fetch('https://api.web3forms.com/submit', {\n            method: 'POST',\n            headers: {\n              'Content-Type': 'application/json',\n              'Accept': 'application/json'\n            },\n            body: json\n          });\n\n          const result = await response.json();\n          \n          if (response.status === 200 || result.success) {\n            // 4. Hide form and show success message smoothly\n            formWrapper.classList.add('hidden');\n            successMessage.classList.remove('hidden');\n            successMessage.classList.add('flex');\n          } else {\n            alert('Something went wrong. Please try again or call us directly.');\n            if (submitBtn) {\n              submitBtn.removeAttribute('disabled');\n              submitBtn.innerHTML = '<span>Get Expert Guidance Now</span>';\n              submitBtn.classList.remove('opacity-70');\n            }\n          }\n        } catch (error) {\n          console.error('Error submitting form:', error);\n          alert('Network issue. Please check your connection and try again.');\n          if (submitBtn) {\n            submitBtn.removeAttribute('disabled');\n            submitBtn.innerHTML = '<span>Get Expert Guidance Now</span>';\n            submitBtn.classList.remove('opacity-70');\n          }\n        }\n      });\n    }\n  });\n</script>"])), renderComponent($$result, "Layout", $$Layout, { "title": title, "description": description, "schema": contactSchema }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="bg-slate-900 text-white pt-32 pb-20 relative overflow-hidden"> <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-teal-300 via-transparent to-transparent"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"> <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">Let's Plan Your <span class="text-teal-400">Global Future</span></h1> <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+Stop worrying about the paperwork. Drop your details below and our expert counselors will reach out to map your profile to top European universities.
+</p> </div> </section> <section class="py-20 bg-slate-50"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 lg:grid-cols-2 gap-16"> <div class="space-y-10" itemscope itemtype="https://schema.org/LocalBusiness" itemid="https://finesseoverseas.com/#organization"> <div> <h2 itemprop="name" class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2> <p class="text-slate-600 text-lg leading-relaxed">
+Whether you have questions about the APS certificate, blocked accounts, or 100% scholarships in Italy, our doors are always open.
+</p> </div> <div class="space-y-6"> <div class="flex items-start gap-4"> <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 text-teal-600"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> </div> <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"> <h3 class="text-lg font-bold text-slate-900">Visit Our Office</h3> <p class="text-slate-600 mt-1"> <span itemprop="streetAddress">Sakshi Samarth Plaza, First Floor,<br>Above Sohala Showroom, Beside Lenskart</span>,<br> <span itemprop="addressLocality">Kolhapur</span>, <span itemprop="addressRegion">Maharashtra</span>, <span itemprop="addressCountry">India</span> </p> </div> </div> <div class="flex items-start gap-4"> <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 text-teal-600"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> </div> <div> <h3 class="text-lg font-bold text-slate-900">Call or WhatsApp</h3> <p class="text-slate-600 mt-1"><a href="tel:+919850069600" itemprop="telephone">+91 98500 69600</a></p> <span class="text-sm text-teal-600 font-semibold">Available Mon-Sat, 10:30 AM to 6:30 PM</span> </div> </div> <div class="flex items-start gap-4"> <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 text-teal-600"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> </div> <div> <h3 class="text-lg font-bold text-slate-900">Email Us</h3> <p class="text-slate-600 mt-1"><a href="mailto:info@finesseoverseas.in" itemprop="email">info@finesseoverseas.in</a></p> </div> </div> </div> <div class="w-full h-64 bg-slate-200 rounded-2xl overflow-hidden shadow-inner border border-slate-300 relative"> <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d337.7861994420013!2d74.24211130462123!3d16.696158689334506!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1006ab89dd1c1%3A0xd6e8f2f9a9dda50!2sFinesse%20Overseas%20Education!5e0!3m2!1sen!2sin!4v1779190028672!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </div> </div> <div class="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-100 h-fit relative"> <div id="success-message" class="hidden absolute inset-0 bg-white z-20 flex-col items-center justify-center text-center p-8 rounded-3xl animate-fade-in"> <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 mb-6 mx-auto"> <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg> </div> <h3 class="text-2xl font-bold text-slate-900 mb-2">Request Received Successfully!</h3> <p class="text-slate-600 text-lg">Our expert team will contact you shortly to guide you further.</p> </div> <div id="form-wrapper"> <h3 class="text-2xl font-bold text-slate-900 mb-6">Request a Free Callback</h3> <form id="god-level-contact-form" class="space-y-6"> <input type="hidden" name="access_key"${addAttribute("6935ed39-d49c-423b-9afa-93217f6f60d1", "value")}> <input type="checkbox" name="botcheck" class="hidden" style="display: none;"> <div> <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Student Name *</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="Enter full name"> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div> <label for="phone" class="block text-sm font-semibold text-slate-700 mb-2">WhatsApp Number *</label> <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="+91"> </div> <div> <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label> <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" placeholder="you@example.com"> </div> </div> <div> <label for="destination" class="block text-sm font-semibold text-slate-700 mb-2">Target Destination</label> <select id="destination" name="destination" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all bg-white"> <option value="germany">Germany (Tuition-Free)</option> <option value="italy">Italy (100% Scholarship)</option> <option value="other_europe">Other European Countries</option> <option value="not_sure">Not Sure Yet</option> </select> </div> <div> <label for="education" class="block text-sm font-semibold text-slate-700 mb-2">Highest Qualification</label> <select id="education" name="education" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all bg-white"> <option value="12th">12th Standard</option> <option value="bachelors">Bachelor's Degree</option> <option value="masters">Master's Degree</option> </select> </div> <button type="submit" id="submit-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"> <span>Get Expert Guidance Now</span> </button> <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[10px] font-bold uppercase tracking-wider text-slate-400"> <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg> 100% Data Privacy</span> <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg> No Spam, Ever</span> <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Response &lt; 2 Hrs</span> </div> </form> </div> </div> </div> </div> </section> ${renderComponent($$result2, "Footer", $$Footer, {})} ${renderComponent($$result2, "WhatsAppWidget", $$WhatsAppWidget, {})} ` }));
+}, "F:/Finesse/Website/Website/finesse-overseas/src/pages/contact.astro", void 0);
+const $$file = "F:/Finesse/Website/Website/finesse-overseas/src/pages/contact.astro";
+const $$url = "/contact";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Contact,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
