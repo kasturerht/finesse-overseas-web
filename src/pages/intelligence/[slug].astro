@@ -37,6 +37,12 @@ const formattedDate = post.data.publishDate.toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
 
+// 🛡️ GOD LEVEL UPGRADE: Freshness Schema Fallback Protocol
+const finalModifiedDate = post.data.lastModifiedDate || post.data.publishDate;
+const formattedModifiedDate = finalModifiedDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
 // 🛠️ THE FIX 2: इथे आधी फक्त '/' होता, तो आता '//' केला आहे
 // Astro v6 मध्ये post.body नसतो, त्यामुळे हा सेफ Fallback
 const bodyText = post.body || "Reading time calculation fallback content";
@@ -58,6 +64,7 @@ const articleSchema = JSON.stringify({
   "description": post.data.excerpt,
   ...(coverImageAbsURL && { "image": coverImageAbsURL }),
   "datePublished": post.data.publishDate.toISOString(),
+  "dateModified": finalModifiedDate.toISOString(), // 🛡️ UPGRADED: Dynamic Modification Date for YMYL Schema
   "timeRequired": `PT${readingTime}M`,
   "author": {
     "@type": "Person",
@@ -116,6 +123,14 @@ const articleSchema = JSON.stringify({
             <svg class="w-4 h-4 text-emerald-500/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             <span>{formattedDate}</span>
           </div>
+          
+          {/* 🛡️ GOD LEVEL UPGRADE: Visual Last Modified Date */}
+          {post.data.lastModifiedDate && (
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span class="text-emerald-400 font-bold">Updated: {formattedModifiedDate}</span>
+            </div>
+          )}
 
           {/* ⏳ Reading Time */}
           <div class="flex items-center gap-1.5 text-amber-400/90 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-bold">
@@ -129,7 +144,6 @@ const articleSchema = JSON.stringify({
             <span>Verified & Fact-Checked</span>
           </div>
 
-
         </div>
       </div>
     </div>
@@ -137,7 +151,8 @@ const articleSchema = JSON.stringify({
     {/* Content Section (70/30 Split) */}
     <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-12 lg:py-20">
       
-      {/* 🛠️ FIX 1: इथून 'items-start' काढून टाकला आहे. आता साईडबारला शेवटपर्यंत हाईट मिळेल */}
+      {/* 🛠️ FIX 1: इथून 'items-start' काढून टाकला आहे.
+      आता साईडबारला शेवटपर्यंत हाईट मिळेल */}
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Column: Markdown Content */}
@@ -146,37 +161,87 @@ const articleSchema = JSON.stringify({
           {/* 🖼️ THE FIX: Cover Image Banner */}
           {post.data.coverImage && (
             <div class="mb-12 w-full rounded-3xl overflow-hidden border border-slate-800/80 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+              {/* 🧠 GOD LEVEL UPGRADE: Machine-Readable Alt Tags */}
               <img 
                 src={post.data.coverImage.src} 
-                alt={post.data.title}
+                alt={post.data.coverImageAlt || post.data.title}
                 class="w-full h-[300px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700" 
               />
             </div>
           )}
 
-          {/* 🧠 AEO Executive Summary — AI/LLM scraping target */}
-          {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
-            <div class="mb-10 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-6 md:p-8 shadow-[0_0_30px_rgba(16,185,129,0.06)]">
-              <div class="flex items-center gap-3 mb-5">
-                <div class="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
+          {/* 🧠 + 💰 THE MAY-2026 SEMANTIC PROTOCOL: AEO/GEO Compliant Luxury Split-Pane */}
+          {(post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
+            <section 
+              class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden font-sans relative"
+              aria-label="Executive Intelligence Payload"
+            >
+              {/* Left Pane: Semantic AI Summary Target */}
+              {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
+                <div class="md:col-span-2 p-6 lg:p-8 border-b md:border-b-0 md:border-r border-slate-800/60 relative">
+                   
+                   {/* 🧠 AEO Core Title: Inline CSS Override logic to kill the Markdown CSS conflict */}
+                   <div class="flex items-center gap-3 mb-6">
+                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></div>
+                      <h2 
+                        class="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-400 m-0 p-0 leading-none border-none border-b-0 inline-block font-sans"
+                        style="margin: 0 !important; padding: 0 !important; border: none !important; font-size: 11px !important; letter-spacing: 0.25em !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
+                      >
+                        Executive Summary
+                      </h2>
+                   </div>
+                   
+                   {/* 📜 GEO Scraper Target: Strict Semantic Ordered Structure */}
+                   <ul class="space-y-4 m-0 p-0 list-none" style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;">
+                     {post.data.keyTakeaways.map((takeaway: string) => (
+                       <li 
+                         class="flex items-start gap-4 m-0 p-0"
+                         style="margin: 0 !important; padding: 0 !important;"
+                       >
+                         <span class="mt-[9px] shrink-0 w-1.5 h-1.5 rounded-full bg-slate-700 block"></span>
+                         <span 
+                           class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0"
+                           style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
+                         >
+                           {takeaway}
+                         </span>
+                       </li>
+                     ))}
+                   </ul>
                 </div>
-                <div>
-                  <p class="text-[9px] uppercase tracking-[0.25em] text-emerald-500/60 font-black mb-0.5">Executive Summary</p>
-                  <h2 class="text-base font-bold text-emerald-300 leading-none" style="margin:0;border:none;padding:0">Key Takeaways</h2>
+              )}
+
+              {/* Right Pane: Hub-Spoke Conversion Gateway (GTM Protected) */}
+              {post.data.moneyPageLink && (
+                <div class="md:col-span-1 p-6 lg:p-8 flex flex-col justify-center relative bg-gradient-to-br from-slate-900/40 to-[#02040a] group">
+                   <div class="relative z-10 flex flex-col h-full">
+                     <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 block font-mono">Action Hub</span>
+                     
+                     <h3 
+                       class="text-[15px] md:text-[16px] font-serif text-slate-200 mb-8 leading-snug m-0 p-0 border-none font-medium"
+                       style="margin: 0 0 2rem 0 !important; padding: 0 !important; border: none !important; font-size: 16px !important;"
+                     >
+                       Map credentials directly to verified EU universities.
+                     </h3>
+                     
+                     <div class="mt-auto">
+                       {/* 💰 GTM & CITATION SECURE: Data attributes fully injected for tracking */}
+                       <a 
+                         href={post.data.moneyPageLink} 
+                         id="gtm-hub-spoke-conversion"
+                         data-conversion-type="hub-spoke"
+                         data-target-slug={post.id.split('.')[0]}
+                         class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-sm font-sans"
+                         style="font-size: 10px !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
+                       >
+                         Explore Hub
+                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                       </a>
+                     </div>
+                   </div>
                 </div>
-              </div>
-              <ul class="space-y-3 list-none pl-0 mb-0">
-                {post.data.keyTakeaways.map((takeaway: string) => (
-                  <li class="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
-                    <span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
-                    <span>{takeaway}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              )}
+            </section>
           )}
 
           <Content />
@@ -355,13 +420,7 @@ const articleSchema = JSON.stringify({
     <img id="lightbox-img" src="" alt="Zoomed Audit Image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(16,185,129,0.15)] scale-95 transition-transform duration-300" />
   </div>
 
-
 </Layout>
-
-{/* 🔍 THE FIX 1: Image Zoom Lightbox Overlay (Hidden by default) */}
-<div id="lightbox" class="fixed inset-0 z-[999999] bg-[#030712]/95 backdrop-blur-md hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out" aria-hidden="true">
-  <img id="lightbox-img" src="" alt="Zoomed Audit Image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] scale-95 transition-transform duration-300" />
-</div>
 
 {/* 🚀 All JavaScript Logic */}
 <script>
@@ -379,7 +438,7 @@ const articleSchema = JSON.stringify({
   // 2. Share Buttons Logic
   const shareWa = document.getElementById('share-wa');
   const shareCopy = document.getElementById('share-copy');
-  
+
   if(shareWa) {
     shareWa.addEventListener('click', () => {
       const currentUrl = window.location.href;
@@ -449,7 +508,6 @@ const articleSchema = JSON.stringify({
       });
     });
   }
-
 
   // 4. Image Zoom (Lightbox) Logic
   const lightbox = document.getElementById('lightbox');
@@ -529,7 +587,22 @@ const articleSchema = JSON.stringify({
   .audit-content blockquote {
     @apply border-l-4 border-emerald-500 pl-6 py-3 italic text-slate-400 bg-slate-900/50 my-8 rounded-r-xl;
   }
+  
+  /* 🛡️ GOD LEVEL UPGRADE: HTML Tables Styling Matrix for AEO Data Extraction */
+  .audit-content table {
+    @apply w-full text-left border-collapse border border-slate-800 rounded-xl overflow-hidden my-8 text-sm bg-slate-900/50 shadow-lg;
+  }
+  .audit-content th {
+    @apply bg-slate-800/80 text-slate-200 font-bold p-4 border-b border-slate-700 uppercase tracking-wider text-xs;
+  }
+  .audit-content td {
+    @apply p-4 border-b border-slate-800/60 text-slate-300;
+  }
+  .audit-content tr:hover td {
+    @apply bg-slate-800/30 transition-colors;
+  }
+
   .group:hover .h-full {
-  background: linear-gradient(145deg, #080c17 0%, #030712 100%);
-}
+    background: linear-gradient(145deg, #080c17 0%, #030712 100%);
+  }
 </style>
