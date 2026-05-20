@@ -18,35 +18,65 @@ const seoTitle = "Study in Europe for Free | Finesse Overseas Education";
 const seoDescription = "Kolhapur's most trusted study abroad consultants. Specializing in zero tuition fee public universities in Germany and 100% scholarships in Italy.";
 const siteSchema = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "EducationalOrganization"],
-  "name": "Finesse Overseas Education",
-  "description": seoDescription,
-  "url": "https://finesseoverseas.com",
-  "telephone": "+919850069600",
-  "email": "info@finesseoverseas.in",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Samarth Sakshi Plaza, First Floor, Above Sohala Showroom, Beside Lenskart, 4th Lane, Rajarampuri",
-    "addressLocality": "Kolhapur",
-    "postalCode": "416008",
-    "addressRegion": "Maharashtra",
-    "addressCountry": "IN"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-    "opens": "10:30",
-    "closes": "18:30"
-  },
-  "sameAs": [
-    "https://www.instagram.com/finesseoverseas",
-    "https://www.facebook.com/finesseoverseas"
-  ],
-  "priceRange": "$$",
-  "areaServed": {
-    "@type": "State",
-    "name": "Maharashtra"
-  }
+  "@graph": [
+    {
+      // WebSite schema enables Sitelinks Search Box in Google SERPs.
+      // Replace the urlTemplate with your actual site search URL once implemented.
+      "@type": "WebSite",
+      "@id": `${Astro.site}#website`,
+      "name": "Finesse Overseas Education",
+      "url": String(Astro.site),
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${Astro.site}search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      // @id matches Layout.astro's Organization schema so Google merges both nodes
+      // into a single entity in the Knowledge Graph.
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": `${Astro.site}#organization`,
+      "name": "Finesse Overseas Education",
+      "description": seoDescription,
+      "url": String(Astro.site),
+      "telephone": "+919850069600",
+      "email": "info@finesseoverseas.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Samarth Sakshi Plaza, First Floor, Above Sohala Showroom, Beside Lenskart, 4th Lane, Rajarampuri",
+        "addressLocality": "Kolhapur",
+        "postalCode": "416008",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:30",
+        "closes": "18:30"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "61",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": [
+        "https://www.instagram.com/finesseoverseas",
+        "https://www.facebook.com/finesseoverseas"
+      ],
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "State",
+        "name": "Maharashtra"
+      }
+    }
+  ]
 });
 
 // Destination Data Array (Mapping from your PDF)
@@ -108,6 +138,22 @@ const destinations = [
         Check Your Eligibility - Free
         <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
       </a>
+    </div>
+
+    <!-- LSI trust signals: visible to users and indexable by AI/LLM crawlers -->
+    <div class="flex flex-wrap gap-2 justify-center mt-6" aria-label="Compliance and process credentials">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/60 border border-slate-700/40 rounded-full text-xs font-medium text-slate-300 backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5 text-teal-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15 3.293 9.879a1 1 0 111.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        NMC FMGL 2021 Compliant Admissions
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/60 border border-slate-700/40 rounded-full text-xs font-medium text-slate-300 backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5 text-teal-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15 3.293 9.879a1 1 0 111.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        APS Certification Guidance
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/60 border border-slate-700/40 rounded-full text-xs font-medium text-slate-300 backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5 text-teal-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15 3.293 9.879a1 1 0 111.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        European Public Universities Only
+      </span>
     </div>
   </div>
 </section>

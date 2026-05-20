@@ -42,9 +42,40 @@ const formattedDate = post.data.publishDate.toLocaleDateString('en-US', {
 const bodyText = post.body || "Reading time calculation fallback content";
 const wordCount = bodyText.split(/\s+/).length;
 const readingTime = Math.max(3, Math.ceil(wordCount / 200));
+
+// SEO / AEO: canonical URL and Article JSON-LD schema
+const slugPath = post.id.split('.')[0];
+const canonicalURL = new URL(`/intelligence/${slugPath}`, Astro.site).href;
+
+const coverImageAbsURL = post.data.coverImage?.src
+  ? new URL(post.data.coverImage.src, Astro.site).href
+  : undefined;
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.excerpt,
+  ...(coverImageAbsURL && { "image": coverImageAbsURL }),
+  "datePublished": post.data.publishDate.toISOString(),
+  "timeRequired": `PT${readingTime}M`,
+  "author": {
+    "@type": "Person",
+    "name": post.data.author,
+  },
+  "publisher": {
+    "@id": `${Astro.site}#organization`,
+  },
+});
 ---
 
-<Layout title={`${post.data.title} | Finesse Audit Vault`} description={post.data.excerpt}>
+<Layout
+  title={`${post.data.title} | Finesse Audit Vault`}
+  description={post.data.excerpt}
+  image={post.data.coverImage?.src}
+  canonical={canonicalURL}
+  schema={articleSchema}
+>
   
   {/* ⏳ Reading Progress Bar */}
   <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-emerald-500 z-[99999] w-0 transition-all duration-150 ease-out"></div>
@@ -120,6 +151,31 @@ const readingTime = Math.max(3, Math.ceil(wordCount / 200));
                 alt={post.data.title}
                 class="w-full h-[300px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700" 
               />
+            </div>
+          )}
+
+          {/* 🧠 AEO Executive Summary — AI/LLM scraping target */}
+          {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
+            <div class="mb-10 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-6 md:p-8 shadow-[0_0_30px_rgba(16,185,129,0.06)]">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-[9px] uppercase tracking-[0.25em] text-emerald-500/60 font-black mb-0.5">Executive Summary</p>
+                  <h2 class="text-base font-bold text-emerald-300 leading-none" style="margin:0;border:none;padding:0">Key Takeaways</h2>
+                </div>
+              </div>
+              <ul class="space-y-3 list-none pl-0 mb-0">
+                {post.data.keyTakeaways.map((takeaway: string) => (
+                  <li class="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                    <span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                    <span>{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
 

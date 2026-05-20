@@ -18,6 +18,10 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Audit Title' } }),
         excerpt: fields.text({ label: 'Short Excerpt (SEO Description)', multiline: true }),
+        keyTakeaways: fields.array(
+          fields.text({ label: 'Takeaway' }),
+          { label: 'Key Takeaways (For AI & AEO)', itemLabel: props => props.value || 'Takeaway' }
+        ),
         publishDate: fields.date({ label: 'Publish Date' }),
         
         // तुझा डिफॉल्ट ऑथर म्हणून मी तुझं नाव टाकलं आहे
