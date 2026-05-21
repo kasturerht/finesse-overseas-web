@@ -1,19 +1,26 @@
 import { config, fields, collection } from '@keystatic/core';
 
+// 👈 १. सिस्टीम लोकलहोस्टवर धावतेय की व्हर्सेलवर हे आपोआप ओळखण्यासाठी एन्व्हायर्नमेंट व्हेरिएबल चेक!
+const isProd = process.env.NODE_ENV === 'production';
+
 export default config({
-  storage: {
-    kind: 'local',
+  // 👈 २. सर्वात महत्त्वाचा बदल: लोकलवर असताना 'local' आणि व्हर्सेलवर गेल्यावर आपोआप 'cloud' (GitHub) मोड ऑन होईल!
+  storage: isProd
+    ? { kind: 'cloud' }
+    : { kind: 'local' },
+    
+  cloud: { 
+    project: 'skadas-team/finesse-overseas-web' 
   },
-  cloud: { project: 'skadas-team/finesse-overseas-web' },
   
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'title', // 👈 १. टायटलवरूनच स्लग ऑटो-जनरेट होईल!
-      path: 'src/content/intelligence/*', // 👈 २. कन्सोल एररनुसार क्लीन पाथ!
+      slugField: 'title', // 👈 ३. टायटलवरूनच स्लग ऑटो-जनरेट होईल!
+      path: 'src/content/intelligence/*', // 👈 ४. पाथ कडक क्लीन '/*'
       format: { contentField: 'content' },
       schema: {
-        // 👈 ३. सर्वात महत्त्वाचे: टायटलला 'fields.slug' केल्यामुळे ते डॅशबोर्डवर टायटल लिहिताच बॅकग्राउंडला आपोआप 'testing-blog' असा कडक स्लग बनवून सेव्ह करेल!
+        // 👈 ५. टायटलला fields.slug केल्यामुळे डॅशबोर्डवर टायटल लिहिताच आपोआप 'testing-blog' असा लोअरकेस आणि डॅशसह परफेक्ट स्लग बॅकएंडला सेव्ह होईल!
         title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }), 
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
