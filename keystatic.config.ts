@@ -11,10 +11,13 @@ export default config({
     intelligence: collection({
       label: 'Intelligence Audits',
       slugField: 'title',
-      path: 'src/content/intelligence/[slug]', // 👈 कीस्टॅटिक डॉक्सचा नियम: फ्लॅट फाईल्ससाठी कंसात [slug] असणे अनिवार्य आहे!
+      // 👈 १. फ्लॅट फाईल्स थेट वाचण्यासाठी कीस्टॅटिकचा अधिकृत [slug] पाथ!
+      path: 'src/content/intelligence/[slug]', 
       entryLayout: 'content',
-      format: { data: 'mdoc' }, // 👈 contentField ऐवजी 'data: mdoc' केल्यामुळे थेट फ्लॅट फाईल वाचली जाईल!
+      // 👈 २. contentField ऐवजी थेट 'data: mdoc' केल्यामुळे संपूर्ण फाईल शुद्ध मार्कडॉक म्हणून वाचली जाईल!
+      format: { data: 'mdoc' }, 
       schema: {
+        // 👈 ३. सर्वात महत्त्वाचं: टायटलला fields.slug ठेवलंय, जेणेकरून स्लग जनरेशन मॅच होईल!
         title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }),
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
