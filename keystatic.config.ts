@@ -10,12 +10,12 @@ export default config({
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'title', // 👈 कीस्टॅटिकचा अधिकृत नियम: याला टायटलवर ठेवा!
-      path: 'src/content/intelligence/[slug]', // 👈 फ्लॅट फाईल्ससाठी कंसात [slug] असणे अनिवार्य आहे!
+      slugField: 'title',
+      path: 'src/content/intelligence/[slug]', // 👈 कीस्टॅटिक डॉक्सचा नियम: फ्लॅट फाईल्ससाठी कंसात [slug] असणे अनिवार्य आहे!
       entryLayout: 'content',
-      format: { contentField: 'content' },
+      format: { data: 'mdoc' }, // 👈 contentField ऐवजी 'data: mdoc' केल्यामुळे थेट फ्लॅट फाईल वाचली जाईल!
       schema: {
-        title: fields.slug({ name: { label: 'Audit Title (This creates the filename)' } }), // 👈 टायटल फील्डच फाईलचं नाव मॅप करेल!
+        title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }),
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
