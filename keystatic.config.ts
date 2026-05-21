@@ -12,7 +12,7 @@ export default config({
     intelligence: collection({
       label: 'Intelligence Audits',
       slugField: 'title',
-      path: 'src/content/intelligence/*', 
+      path: 'src/content/intelligence/*.mdoc',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }),
