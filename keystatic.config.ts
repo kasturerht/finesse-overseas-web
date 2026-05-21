@@ -15,7 +15,7 @@ export default config({
       path: 'src/content/intelligence/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }),
+        title: fields.slug({ name: { label: 'Audit Title' } }),
         
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
