@@ -11,12 +11,12 @@ export default config({
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'title',
-      path: 'src/content/intelligence/[slug]',
-      entryLayout: 'content',
-      format: { data: 'mdoc' },
+      slugField: 'slug', // 👈 टायटल ऐवजी 'slug' केला!
+      path: 'src/content/intelligence/*', // 👈 क्लिन पाथ!
+      format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }),
+        slug: fields.slug({ name: { label: 'Slug (Keep same as filename without .mdoc)' } }), // 👈 नवीन स्लग फील्ड जोडले!
+        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), // 👈 टायटल आता साधा टेक्स्ट राहील!
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
