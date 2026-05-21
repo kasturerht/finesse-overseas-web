@@ -11,7 +11,20 @@
       "Bash(node -e \"const {collection, config, fields} = require\\('@keystatic/core'\\); console.log\\('OK'\\)\")",
       "Bash(node -e ' *)",
       "Bash(xargs grep -l \"getCollectionPath\\\\|collectionPath\\\\|slugToPath\\\\|pathToSlug\")",
-      "Bash(Get-ChildItem F:\\\\Finesse\\\\Website\\\\Website\\\\finesse-overseas\\\\src\\\\content\\\\intelligence *)"
+      "Bash(Get-ChildItem F:\\\\Finesse\\\\Website\\\\Website\\\\finesse-overseas\\\\src\\\\content\\\\intelligence *)",
+      "Bash(Get-ChildItem \"F:\\\\Finesse\\\\Website\\\\Website\\\\finesse-overseas\\\\src\\\\content\\\\intelligence\\\\\" -Recurse | Select-Object FullName, Name *)",
+      "Bash(xargs grep -l \"keystatic\")",
+      "Bash(grep -n 'nameField\\\\|_args$name\\\\|args.name\\\\|args\\\\.slug\\\\|args\\\\.name\\\\|\"name\",.*\"slug\"\\\\|slug.*field.*name' F:/Finesse/Website/Website/finesse-overseas/node_modules/@keystatic/core/dist/index-e205248e.js)",
+      "Bash(grep -n \"_args\\\\\\\\.name\\\\|_args\\\\\\\\.slug\\\\|args\\\\\\\\.name\\\\\\\\.label\\\\|nameArgs\\\\|slugArgs\\\\|nameLabel\\\\|slugLabel\" \"F:/Finesse/Website/Website/finesse-overseas/node_modules/@keystatic/core/dist/index-a8452c26.js\")",
+      "Bash(ls node_modules/@keystatic/astro/dist/)",
+      "Bash(dir node_modules/@keystatic/astro/dist/)",
+      "Bash(node --input-type=module)",
+      "Bash(find node_modules/@keystatic/astro -name \"keystatic-astro-page.astro\")",
+      "Bash(ls node_modules/@keystatic/astro/internal/)",
+      "Bash(npm show *)",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(Remove-Item -Recurse -Force node_modules/.vite -ErrorAction SilentlyContinue)",
+      "Bash(curl -s -H \"no-cors: 1\" \"http://127.0.0.1:4322/api/keystatic/tree\")"
     ]
   }
 }
