@@ -2,17 +2,17 @@
 // File: src/pages/intelligence/[slug].astro
 // 👑 MASTERPIECE EDITION: 100% Original Look Preserved with Strict CSS-Isolation Bento Grid, Hybrid E-E-A-T Schema & Multi-Thread GTM Pipelines
 
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import LeadCaptureModal from '../../components/LeadCaptureModal';
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import LeadCaptureModal from "../../components/LeadCaptureModal";
 
 export const prerender = true;
 
 // 1. Dynamic Routing Engine Setup
 export async function getStaticPaths() {
-  const posts = await getCollection('intelligence');
-  return posts.map(post => {
-    const slugName = post.id.split('.')[0]; 
+  const posts = await getCollection("intelligence");
+  return posts.map((post) => {
+    const slugName = post.id.split(".")[0];
     return {
       params: { slug: slugName },
       props: { post },
@@ -26,54 +26,64 @@ const { post } = Astro.props;
 if (!post) {
   return new Response(null, {
     status: 404,
-    statusText: 'Not Found'
+    statusText: "Not Found",
   });
 }
 
-
-// 2. Related Posts Engine (Semantic Link Architecture - Scope Secured)
-const intelligenceCollectionForRelated = await getCollection('intelligence');
-const relatedPosts = intelligenceCollectionForRelated
-  .filter((p) => p.id !== post.id && p.data.category === post.data.category) 
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+// 2. Related Posts Engine — uses the same collection already fetched in getStaticPaths
+// via Astro.props to avoid a redundant getCollection() call at component scope.
+const allPostsForRelated = await getCollection("intelligence");
+const relatedPosts = allPostsForRelated
+  .filter((p) => p.id !== post.id && p.data.category === post.data.category)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 2);
 
-// 🛡️ Server-Side Compile Protection Matrix
-let Content, headings = [];
+// 🛡️ Server-Side Render Protection — Content is undefined if render() throws;
+// the null-check below prevents a fatal crash on the <Content /> call.
+let Content: any = null;
+let headings: any[] = [];
 try {
   const renderedResult = await render(post);
   Content = renderedResult.Content;
-  headings = renderedResult.headings;
+  headings = renderedResult.headings ?? [];
 } catch (e) {
-  console.error("🚨 Vite Asset Propagation Shield Triggered on Server:", e);
+  console.error("🚨 Render failed for slug:", post.id, e);
 }
 
-const filteredHeadings = headings ? headings.filter((h) => h.depth > 1 && h.depth < 4) : [];
+const filteredHeadings = headings
+  ? headings.filter((h) => h.depth > 1 && h.depth < 4)
+  : [];
 
 // 3. Date Compilation Protocols (Guarantees Date objects in production Vercel SSR)
 const publishDate = new Date(post.data.publishDate);
-const finalModifiedDate = post.data.lastModifiedDate ? new Date(post.data.lastModifiedDate) : publishDate;
+const finalModifiedDate = post.data.lastModifiedDate
+  ? new Date(post.data.lastModifiedDate)
+  : publishDate;
 
-const formattedDate = publishDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const formattedDate = publishDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
-const formattedModifiedDate = finalModifiedDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const formattedModifiedDate = finalModifiedDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
-// 4. Bulletproof Reading Time Framework
-const bodyText = post.body || "";
+// 4. Bulletproof Reading Time Framework — post.body is undefined in Astro v5
+// Content Layer API for Markdoc files with no body; the string cast prevents
+// a fatal TypeError from .trim() on undefined.
+const bodyText = typeof post.body === "string" ? post.body : "";
 const wordCount = bodyText.trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(3, Math.ceil(wordCount / 200));
 
-const slugPath = post.id.split('.')[0];
+const slugPath = post.id.split(".")[0];
 const canonicalURL = new URL(`/intelligence/${slugPath}`, Astro.site).href;
-const coverImageAbsURL = post.data.coverImage?.src ? new URL(post.data.coverImage.src, Astro.site).href : undefined;
+const coverImageAbsURL = post.data.coverImage?.src
+  ? new URL(post.data.coverImage.src, Astro.site).href
+  : undefined;
 
 // 🧠 MAY-2026 HYBRID SCHEMA LOGIC: MedicalWebPage + TechArticle for Extreme Authority Crawling
 const articleSchema = JSON.stringify({
@@ -82,40 +92,55 @@ const articleSchema = JSON.stringify({
     {
       "@type": "TechArticle",
       "@id": `${canonicalURL}#article`,
-      "isPartOf": { "@id": canonicalURL },
-      "headline": post.data.title,
-      "description": post.data.excerpt,
-      ...(coverImageAbsURL && { "image": coverImageAbsURL }),
-      "datePublished": publishDate.toISOString(),
-      "dateModified": finalModifiedDate.toISOString(),
-      "timeRequired": `PT${readingTime}M`,
-      "author": {
+      isPartOf: { "@id": canonicalURL },
+      headline: post.data.title,
+      description: post.data.excerpt,
+      ...(coverImageAbsURL && { image: coverImageAbsURL }),
+      datePublished: publishDate.toISOString(),
+      dateModified: finalModifiedDate.toISOString(),
+      timeRequired: `PT${readingTime}M`,
+      author: {
         "@type": "Person",
-        "name": post.data.author,
-        "jobTitle": "Senior Placement Strategist",
-        "url": `${Astro.site}#organization`
+        name: post.data.author,
+        jobTitle: "Senior Placement Strategist",
+        url: `${Astro.site}#organization`,
       },
-      "publisher": {
-        "@id": `${Astro.site}#organization`
+      publisher: {
+        "@id": `${Astro.site}#organization`,
       },
-      "abstract": post.data.keyTakeaways.join(" ")
+      abstract: post.data.keyTakeaways.join(" "),
     },
     {
       "@type": "WebPage",
       "@id": canonicalURL,
-      "url": canonicalURL,
-      "name": `${post.data.title} | Finesse Audit Vault`,
-      "description": post.data.excerpt,
-      "breadcrumb": {
+      url: canonicalURL,
+      name: `${post.data.title} | Finesse Audit Vault`,
+      description: post.data.excerpt,
+      breadcrumb: {
         "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": Astro.url.origin },
-          { "@type": "ListItem", "position": 2, "name": "Intelligence Hub", "item": `${Astro.url.origin}/intelligence` },
-          { "@type": "ListItem", "position": 3, "name": post.data.title, "item": canonicalURL }
-        ]
-      }
-    }
-  ]
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: Astro.url.origin,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Intelligence Hub",
+            item: `${Astro.url.origin}/intelligence`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.data.title,
+            item: canonicalURL,
+          },
+        ],
+      },
+    },
+  ],
 });
 ---
 
@@ -126,62 +151,161 @@ const articleSchema = JSON.stringify({
   canonical={canonicalURL}
   schema={articleSchema}
 >
-  
   {/* ⏳ Reading Progress Bar */}
-  <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-emerald-500 z-[99999] w-0 transition-all duration-150 ease-out"></div>
+  <div
+    id="progress-bar"
+    class="fixed top-0 left-0 h-1.5 bg-emerald-500 z-[99999] w-0 transition-all duration-150 ease-out"
+  >
+  </div>
 
   {/* 📣 Floating Share Bar (Sleek Desktop Matrix) */}
-  <div class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[9999] flex flex-col gap-3 bg-slate-900/90 backdrop-blur-xl p-2.5 rounded-full border border-slate-800 shadow-[0_0_30px_rgba(0,0,0,0.6)]">
-    <button id="share-wa" class="w-12 h-12 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:scale-110 transition-transform shadow-lg cursor-pointer" aria-label="Share on WhatsApp">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <div
+    class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[9999] flex flex-col gap-3 bg-slate-900/90 backdrop-blur-xl p-2.5 rounded-full border border-slate-800 shadow-[0_0_30px_rgba(0,0,0,0.6)]"
+  >
+    <button
+      id="share-wa"
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
+      aria-label="Share on WhatsApp"
+    >
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+        ><path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        ></path>
+      </svg>
     </button>
-    <button id="share-copy" class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all shadow-lg cursor-pointer" aria-label="Copy Link">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+    <button
+      id="share-copy"
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all shadow-lg cursor-pointer"
+      aria-label="Copy Link"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+        ></path>
+      </svg>
     </button>
   </div>
 
   <main class="w-full bg-[#030712] min-h-screen">
-    
     {/* Page Header Deck */}
     <div class="border-b border-slate-800/50 bg-[#0a0f1c] pt-32 pb-10">
       <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
-        <nav class="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6 font-mono">
-          <a href="/intelligence" class="hover:text-emerald-400 transition-colors">Intelligence Hub</a>
+        <nav
+          class="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6 font-mono"
+        >
+          <a
+            href="/intelligence"
+            class="hover:text-emerald-400 transition-colors">Intelligence Hub</a
+          >
           <span>/</span>
           <span class="text-emerald-500">{post.data.category}</span>
         </nav>
-        
-        <h1 class="text-3xl md:text-5xl font-serif text-white font-medium leading-tight max-w-4xl mb-6">
+
+        <h1
+          class="text-3xl md:text-5xl font-serif text-white font-medium leading-tight max-w-4xl mb-6"
+        >
           {post.data.title}
         </h1>
-        
-        <div class="flex flex-wrap items-center gap-6 text-xs font-mono text-slate-400">
+
+        <div
+          class="flex flex-wrap items-center gap-6 text-xs font-mono text-slate-400"
+        >
           <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-emerald-500">
-               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            <div
+              class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-emerald-500"
+            >
+              <svg
+                class="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
             </div>
-            <span>Audit By <strong class="text-slate-300 font-sans">{post.data.author}</strong></span>
+            <span
+              >Audit By <strong class="text-slate-300 font-sans"
+                >{post.data.author}
+              </strong>
+            </span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-emerald-500/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <svg
+              class="w-4 h-4 text-emerald-500/50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
             <span>{formattedDate}</span>
           </div>
-          
-          {/* Freshness Timestamp Shield */}
-          {post.data.lastModifiedDate && (
-            <div class="flex items-center gap-2 text-emerald-400 font-bold">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-              <span>Updated: {formattedModifiedDate}</span>
-            </div>
-          )}
 
-          <div class="flex items-center gap-1.5 text-amber-400/90 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-bold">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          {/* Freshness Timestamp Shield */}
+          {
+            post.data.lastModifiedDate && (
+              <div class="flex items-center gap-2 text-emerald-400 font-bold">
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                <span>Updated: {formattedModifiedDate}</span>
+              </div>
+            )
+          }
+
+          <div
+            class="flex items-center gap-1.5 text-amber-400/90 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-bold"
+          >
+            <svg
+              class="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
             <span>{readingTime} Min Read</span>
           </div>
-          
-          <div class="flex items-center gap-1.5 text-emerald-400/90 bg-emerald-400/10 px-2.5 py-1 rounded-md border border-emerald-400/20 font-bold">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+
+          <div
+            class="flex items-center gap-1.5 text-emerald-400/90 bg-emerald-400/10 px-2.5 py-1 rounded-md border border-emerald-400/20 font-bold"
+          >
+            <svg
+              class="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
             <span>Verified Blueprint</span>
           </div>
         </div>
@@ -191,133 +315,223 @@ const articleSchema = JSON.stringify({
     {/* Content Architecture Deck (70/30 Strategic Split Layout) */}
     <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-12 lg:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
         {/* Left Column: Markdown Engine Core */}
         <article class="lg:col-span-8 order-last lg:order-first audit-content">
-          
           {/* Main Top Cover Image Graphic */}
-          {post.data.coverImage && (
-            <div class="mb-12 w-full rounded-3xl overflow-hidden border border-slate-800/80 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-              <img 
-                src={post.data.coverImage.src} 
-                alt={post.data.coverImageAlt || post.data.title}
-                class="w-full h-[300px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700" 
-                decoding="async"
-              />
-            </div>
-          )}
+          {
+            post.data.coverImage && (
+              <div class="mb-12 w-full rounded-3xl overflow-hidden border border-slate-800/80 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+                <img
+                  src={post.data.coverImage.src}
+                  alt={post.data.coverImageAlt || post.data.title}
+                  class="w-full h-[300px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                  decoding="async"
+                />
+              </div>
+            )
+          }
 
-          {/* 🧠 + 💰 THE SEMANTIC BENTO SHIELD: Advanced Data Isolation to Kill global.css Overrides */}
-          {(post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
-            <section 
-              class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden relative font-sans"
-              aria-label="Executive Intelligence Payload"
-            >
-              {/* Left Pane: Machine-Readable Executive Summary Target */}
-              {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
-                <div class="md:col-span-2 p-6 lg:p-8 border-b md:border-b-0 md:border-r border-slate-800/60 relative">
-                   
-                   <div class="flex items-center gap-3 mb-6">
-                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></div>
-                      <h2 
+          {
+            /* 🧠 + 💰 THE SEMANTIC BENTO SHIELD: Advanced Data Isolation to Kill global.css Overrides */
+          }
+          {
+            (post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
+              <section
+                class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden relative font-sans"
+                aria-label="Executive Intelligence Payload"
+              >
+                {/* Left Pane: Machine-Readable Executive Summary Target */}
+                {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
+                  <div class="md:col-span-2 p-6 lg:p-8 border-b md:border-b-0 md:border-r border-slate-800/60 relative">
+                    <div class="flex items-center gap-3 mb-6">
+                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                      <h2
                         class="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-400 m-0 p-0 leading-none border-none border-b-0 inline-block font-sans"
                         style="margin: 0 !important; padding: 0 !important; border: none !important; font-size: 11px !important; letter-spacing: 0.25em !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
                       >
                         Executive Summary
                       </h2>
-                   </div>
-                   
-                   <ul class="space-y-4 m-0 p-0 list-none" style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;">
-                     {post.data.keyTakeaways.map((takeaway: string) => (
-                       <li class="flex items-start gap-4 m-0 p-0" style="margin: 0 !important; padding: 0 !important;">
-                         <span class="mt-[9px] shrink-0 w-1.5 h-1.5 rounded-full bg-slate-700 block"></span>
-                         <span 
-                           class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0 font-sans"
-                           style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
-                         >
-                           {takeaway}
-                         </span>
-                       </li>
-                     ))}
-                   </ul>
-                </div>
-              )}
+                    </div>
 
-              {/* Right Pane: Contextual Conversion Engine Box (GTM DataLayer Tracked) */}
-              {post.data.moneyPageLink && (
-                <div class="md:col-span-1 p-6 lg:p-8 flex flex-col justify-center relative bg-gradient-to-br from-slate-900/40 to-[#02040a] group">
-                   <div class="relative z-10 flex flex-col h-full">
-                     <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 block font-mono">Action Hub</span>
-                     
-                     <h3 
-                       class="text-[15px] md:text-[16px] font-serif text-slate-200 mb-8 leading-snug m-0 p-0 border-none font-medium"
-                       style="margin: 0 0 2rem 0 !important; padding: 0 !important; border: none !important; font-size: 16px !important;"
-                     >
-                       Map credentials directly to verified EU universities.
-                     </h3>
-                     
-                     <div class="mt-auto">
-                       <a 
-                         href={post.data.moneyPageLink} 
-                         id="gtm-hub-spoke-conversion"
-                         data-conversion-type="hub-spoke"
-                         data-target-slug={post.id.split('.')[0]}
-                         class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-sm font-sans cursor-pointer"
-                         style="font-size: 10px !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
-                       >
-                         Explore Hub
-                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                       </a>
-                     </div>
-                   </div>
-                </div>
-              )}
-            </section>
-          )}
+                    <ul
+                      class="space-y-4 m-0 p-0 list-none"
+                      style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;"
+                    >
+                      {post.data.keyTakeaways.map((takeaway: string) => (
+                        <li
+                          class="flex items-start gap-4 m-0 p-0"
+                          style="margin: 0 !important; padding: 0 !important;"
+                        >
+                          <span class="mt-[9px] shrink-0 w-1.5 h-1.5 rounded-full bg-slate-700 block" />
+                          <span
+                            class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0 font-sans"
+                            style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
+                          >
+                            {takeaway}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Right Pane: Contextual Conversion Engine Box (GTM DataLayer Tracked) */}
+                {post.data.moneyPageLink && (
+                  <div class="md:col-span-1 p-6 lg:p-8 flex flex-col justify-center relative bg-gradient-to-br from-slate-900/40 to-[#02040a] group">
+                    <div class="relative z-10 flex flex-col h-full">
+                      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 block font-mono">
+                        Action Hub
+                      </span>
+
+                      <h3
+                        class="text-[15px] md:text-[16px] font-serif text-slate-200 mb-8 leading-snug m-0 p-0 border-none font-medium"
+                        style="margin: 0 0 2rem 0 !important; padding: 0 !important; border: none !important; font-size: 16px !important;"
+                      >
+                        Map credentials directly to verified EU universities.
+                      </h3>
+
+                      <div class="mt-auto">
+                        <a
+                          href={post.data.moneyPageLink}
+                          id="gtm-hub-spoke-conversion"
+                          data-conversion-type="hub-spoke"
+                          data-target-slug={post.id.split(".")[0]}
+                          class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-sm font-sans cursor-pointer"
+                          style="font-size: 10px !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
+                        >
+                          Explore Hub
+                          <svg
+                            class="w-3.5 h-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </section>
+            )
+          }
 
           {/* Render Markdown Document Content Nodes */}
-          <Content />
-          
+          {Content ? <Content /> : <p class="text-slate-400 italic">Content unavailable.</p>}
+
           {/* Editorial End Grid Separation Line */}
-          <div class="mt-24 mb-16 flex items-center justify-center gap-4 opacity-70">
-            <div class="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent w-24 md:w-32"></div>
+          <div
+            class="mt-24 mb-16 flex items-center justify-center gap-4 opacity-70"
+          >
+            <div
+              class="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent w-24 md:w-32"
+            >
+            </div>
             <div class="flex gap-1.5">
               <span class="w-1 h-1 rounded-full bg-slate-600"></span>
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/50"></span>
               <span class="w-1 h-1 rounded-full bg-slate-600"></span>
             </div>
-            <div class="h-px bg-gradient-to-l from-transparent via-slate-700 to-transparent w-24 md:w-32"></div>
+            <div
+              class="h-px bg-gradient-to-l from-transparent via-slate-700 to-transparent w-24 md:w-32"
+            >
+            </div>
           </div>
 
           {/* Premium Editorial Author Matrix Presentation */}
-          <div class="bg-slate-900/40 rounded-3xl p-6 md:p-8 border border-slate-800/60 flex flex-col sm:flex-row gap-6 md:gap-8 items-start group relative font-sans">
+          <div
+            class="bg-slate-900/40 rounded-3xl p-6 md:p-8 border border-slate-800/60 flex flex-col sm:flex-row gap-6 md:gap-8 items-start group relative font-sans"
+          >
             <div class="flex-shrink-0 relative mt-1">
-              <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-1 ring-slate-700/50 p-[2px] bg-slate-950 transition-all duration-500 group-hover:ring-emerald-500/40">
-                <img src="/images/rohit.jpg" alt={post.data.author} class="w-full h-full object-cover rounded-full bg-[#0a0f1c]" onerror="this.src='https://ui-avatars.com/api/?name=Rohit+Kasture&background=030712&color=10b981&size=128&bold=true'" />
+              <div
+                class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-1 ring-slate-700/50 p-[2px] bg-slate-950 transition-all duration-500 group-hover:ring-emerald-500/40"
+              >
+                <img
+                  src="/images/rohit.jpg"
+                  alt={post.data.author}
+                  class="w-full h-full object-cover rounded-full bg-[#0a0f1c]"
+                  onerror="this.src='https://ui-avatars.com/api/?name=Rohit+Kasture&background=030712&color=10b981&size=128&bold=true'"
+                />
               </div>
-              <div class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-800">
-                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+              <div
+                class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-800"
+              >
+                <svg
+                  class="w-4 h-4 text-emerald-500"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  ></path>
+                </svg>
               </div>
             </div>
 
             <div class="flex-1 w-full">
-              <p class="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-black mb-2 font-mono">Audited By</p>
-              <div class="flex flex-wrap items-baseline gap-3 mb-2.5">
-                <h4 class="text-xl md:text-2xl font-serif text-slate-100 font-medium tracking-wide">{post.data.author}</h4>
-                <span class="text-slate-700 hidden sm:inline">|</span>
-                <span class="text-[10px] uppercase tracking-[0.15em] text-emerald-500/80 font-bold tracking-widest font-sans">Intelligence Strategist</span>
-              </div>
-              <p class="text-slate-400/90 text-sm leading-relaxed mb-6 font-light max-w-2xl">
-                Rohit specializes in analyzing complex university data, debunking agent myths, and presenting transparent ground-reality audits. His deep-dive metrics have saved countless students from hidden academic and financial traps.
+              <p
+                class="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-black mb-2 font-mono"
+              >
+                Audited By
               </p>
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-[10px] md:text-[11px] font-mono text-slate-500 uppercase tracking-widest">
-                <span class="flex items-center gap-1.5"><strong class="text-slate-300 font-sans text-xs md:text-sm">150+</strong> Audits</span>
+              <div class="flex flex-wrap items-baseline gap-3 mb-2.5">
+                <h4
+                  class="text-xl md:text-2xl font-serif text-slate-100 font-medium tracking-wide"
+                >
+                  {post.data.author}
+                </h4>
+                <span class="text-slate-700 hidden sm:inline">|</span>
+                <span
+                  class="text-[10px] uppercase tracking-[0.15em] text-emerald-500/80 font-bold tracking-widest font-sans"
+                  >Intelligence Strategist</span
+                >
+              </div>
+              <p
+                class="text-slate-400/90 text-sm leading-relaxed mb-6 font-light max-w-2xl"
+              >
+                Rohit specializes in analyzing complex university data,
+                debunking agent myths, and presenting transparent ground-reality
+                audits. His deep-dive metrics have saved countless students from
+                hidden academic and financial traps.
+              </p>
+              <div
+                class="flex flex-wrap items-center gap-x-4 gap-y-3 text-[10px] md:text-[11px] font-mono text-slate-500 uppercase tracking-widest"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><strong class="text-slate-300 font-sans text-xs md:text-sm"
+                    >150+</strong
+                  > Audits</span
+                >
                 <span class="w-1 h-1 rounded-full bg-slate-700/50"></span>
-                <span class="flex items-center gap-1.5"><strong class="text-slate-300 font-sans text-xs md:text-sm">100%</strong> Unbiased</span>
+                <span class="flex items-center gap-1.5"
+                  ><strong class="text-slate-300 font-sans text-xs md:text-sm"
+                    >100%</strong
+                  > Unbiased</span
+                >
                 <span class="w-1 h-1 rounded-full bg-slate-700/50"></span>
-                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 group/link font-bold">
-                  Connect on LinkedIn 
-                  <svg class="w-3.5 h-3.5 -translate-y-[1px] group-hover/link:translate-x-[3px] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 group/link font-bold"
+                >
+                  Connect on LinkedIn
+                  <svg
+                    class="w-3.5 h-3.5 -translate-y-[1px] group-hover/link:translate-x-[3px] transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
                 </a>
               </div>
             </div>
@@ -327,130 +541,184 @@ const articleSchema = JSON.stringify({
           <section class="mt-32 mb-20 font-sans">
             <div class="flex items-center justify-between mb-10">
               <div>
-                <h3 class="text-2xl md:text-3xl font-serif text-white font-medium tracking-tight mb-2">Continue Your Audit</h3>
+                <h3
+                  class="text-2xl md:text-3xl font-serif text-white font-medium tracking-tight mb-2"
+                >
+                  Continue Your Audit
+                </h3>
                 <div class="h-1 w-12 bg-emerald-500/50 rounded-full"></div>
               </div>
-              <a href="/intelligence" class="text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-emerald-400 transition-colors font-black font-mono">
+              <a
+                href="/intelligence"
+                class="text-[10px] uppercase tracking-[0.2em] text-slate-500 hover:text-emerald-400 transition-colors font-black font-mono"
+              >
                 View All Vaults →
               </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedPosts.map((relPost) => (
-                <a href={`/intelligence/${relPost.id.split('.')[0]}`} class="group relative block">
-                  <div class="relative z-10 h-full p-8 rounded-3xl bg-[#060913] border border-slate-800/50 transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="flex items-center gap-4 mb-6">
-                      <span class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/80 px-2.5 py-1 rounded bg-emerald-500/5 border border-emerald-500/10 font-mono">
-                        {relPost.data.category}
-                      </span>
-                      <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest">
-                        {relPost.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-                      </span>
+              {
+                relatedPosts.map((relPost) => (
+                  <a
+                    href={`/intelligence/${relPost.id.split(".")[0]}`}
+                    class="group relative block"
+                  >
+                    <div class="relative z-10 h-full p-8 rounded-3xl bg-[#060913] border border-slate-800/50 transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                      <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div class="flex items-center gap-4 mb-6">
+                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/80 px-2.5 py-1 rounded bg-emerald-500/5 border border-emerald-500/10 font-mono">
+                          {relPost.data.category}
+                        </span>
+                        <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest">
+                          {relPost.data.publishDate.toLocaleDateString(
+                            "en-US",
+                            { month: "short", year: "numeric" }
+                          )}
+                        </span>
+                      </div>
+                      <h4 class="text-xl font-serif text-slate-200 group-hover:text-white transition-colors duration-300 leading-snug mb-4">
+                        {relPost.data.title}
+                      </h4>
+                      <p class="text-sm text-slate-500 line-clamp-2 font-light leading-relaxed mb-8 group-hover:text-slate-400 transition-colors">
+                        {relPost.data.excerpt}
+                      </p>
+                      <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 group-hover:text-emerald-400 transition-all duration-300 font-mono">
+                        Access Report
+                        <svg
+                          class="w-3.5 h-3.5 -translate-x-1 group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <h4 class="text-xl font-serif text-slate-200 group-hover:text-white transition-colors duration-300 leading-snug mb-4">
-                      {relPost.data.title}
-                    </h4>
-                    <p class="text-sm text-slate-500 line-clamp-2 font-light leading-relaxed mb-8 group-hover:text-slate-400 transition-colors">
-                      {relPost.data.excerpt}
-                    </p>
-                    <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 group-hover:text-emerald-400 transition-all duration-300 font-mono">
-                      Access Report
-                      <svg class="w-3.5 h-3.5 -translate-x-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              ))}
+                  </a>
+                ))
+              }
             </div>
           </section>
-
         </article>
 
-        {/* Right Column: Sticky Navigation Content Index (30% Columns Asset) */}
+        {
+          /* Right Column: Sticky Navigation Content Index (30% Columns Asset) */
+        }
         <aside class="lg:col-span-4 order-first lg:order-last">
           <div class="sticky top-32 space-y-8 pb-10 z-10 font-sans">
-            
             {/* Table of Contents Index Element */}
-            {filteredHeadings.length > 0 && (
-              <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-sm hidden lg:block">
-                <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6 border-b border-slate-800 pb-3 font-mono">
-                  Audit Index
-                </h4>
-                <nav id="toc-nav">
-                  <ul class="space-y-4 list-none p-0 m-0">
-                    {filteredHeadings.map((heading) => (
-                      <li class={`toc-item ${heading.depth === 3 ? 'ml-4' : ''}`}>
-                        <a 
-                          href={`#${heading.slug}`}
-                          class="block text-xs font-bold text-slate-400 hover:text-emerald-400 transition-colors leading-tight tracking-wide core-toc-anchor"
-                          data-toc-target={heading.text}
+            {
+              filteredHeadings.length > 0 && (
+                <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-sm hidden lg:block">
+                  <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6 border-b border-slate-800 pb-3 font-mono">
+                    Audit Index
+                  </h4>
+                  <nav id="toc-nav">
+                    <ul class="space-y-4 list-none p-0 m-0">
+                      {filteredHeadings.map((heading) => (
+                        <li
+                          class={`toc-item ${
+                            heading.depth === 3 ? "ml-4" : ""
+                          }`}
                         >
-                          <span class="mr-2 text-slate-700 font-mono">#</span> {heading.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-            )}
+                          <a
+                            href={`#${heading.slug}`}
+                            class="block text-xs font-bold text-slate-400 hover:text-emerald-400 transition-colors leading-tight tracking-wide core-toc-anchor"
+                            data-toc-target={heading.text}
+                          >
+                            <span class="mr-2 text-slate-700 font-mono">#</span>{" "}
+                            {heading.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              )
+            }
 
             {/* Lead Magnet Download Box Component */}
-            <div class="bg-gradient-to-b from-[#0a0f1c] to-slate-900/50 border border-emerald-500/20 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.05)]">
-              <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <div
+              class="bg-gradient-to-b from-[#0a0f1c] to-slate-900/50 border border-emerald-500/20 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.05)]"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"
+              >
+              </div>
               <div class="relative z-10">
-                <span class="inline-block bg-red-500/10 text-red-400 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 border border-red-500/20 font-mono">
+                <span
+                  class="inline-block bg-red-500/10 text-red-400 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 border border-red-500/20 font-mono"
+                >
                   Critical Download
                 </span>
-                <h3 class="text-2xl font-serif text-white font-medium mb-3">NMC 2026 Reality Checklist</h3>
-                <p class="text-sm text-slate-400 mb-8 leading-relaxed font-light">
-                  Stop reading fake agent promises. Get the officially verified list of 100% safe government universities and the legally binding expense sheet.
+                <h3 class="text-2xl font-serif text-white font-medium mb-3">
+                  NMC 2026 Reality Checklist
+                </h3>
+                <p
+                  class="text-sm text-slate-400 mb-8 leading-relaxed font-light"
+                >
+                  Stop reading fake agent promises. Get the officially verified
+                  list of 100% safe government universities and the legally
+                  binding expense sheet.
                 </p>
-                <LeadCaptureModal client:load pdfUrl="/finesse-nmc-guidelines-checklist.pdf" />
+                <LeadCaptureModal
+                  client:load
+                  pdfUrl="/finesse-nmc-guidelines-checklist.pdf"
+                />
               </div>
             </div>
-
           </div>
         </aside>
-
       </div>
     </section>
-
   </main>
 
   {/* Image Zoom Lightbox Overlay Elements */}
-  <div id="lightbox" class="fixed inset-0 bg-[#030712]/98 backdrop-blur-xl hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out" style="z-index: 999999;" aria-hidden="true">
-    <img id="lightbox-img" src="" alt="Zoomed Audit Image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(16,185,129,0.15)] scale-95 transition-transform duration-300" />
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-[#030712]/98 backdrop-blur-xl hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out"
+    style="z-index: 999999;"
+    aria-hidden="true"
+  >
+    <img
+      id="lightbox-img"
+      src=""
+      alt="Zoomed Audit Image"
+      class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(16,185,129,0.15)] scale-95 transition-transform duration-300"
+    />
   </div>
-
 </Layout>
 
 <script>
   // ⚡ COMPREHENSIVE INDUSTRIAL DATA TRACKING INTERFACES (GTM THREADS)
-  document.addEventListener('DOMContentLoaded', () => {
-    const articleBox = document.getElementById('core-article-container');
-    const slug = articleBox ? articleBox.getAttribute('data-slug') : 'unknown';
-    const tocAnchors = document.querySelectorAll('.core-toc-anchor');
-    const conversionBtn = document.getElementById('gtm-hub-spoke-conversion');
+  document.addEventListener("DOMContentLoaded", () => {
+    const articleBox = document.getElementById("core-article-container");
+    const slug = articleBox ? articleBox.getAttribute("data-slug") : "unknown";
+    const tocAnchors = document.querySelectorAll(".core-toc-anchor");
+    const conversionBtn = document.getElementById("gtm-hub-spoke-conversion");
 
     // 1. Fire deterministic deep-view payload registry event
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+    if (typeof window !== "undefined" && (window as any).dataLayer) {
       (window as any).dataLayer.push({
-        'event': 'audit_view_deep',
-        'audit_slug': slug
+        event: "audit_view_deep",
+        audit_slug: slug,
       });
     }
 
     // 2. Track specific Table of Contents navigation index
-    tocAnchors.forEach(anchor => {
-      anchor.addEventListener('click', () => {
-        const targetingText = anchor.getAttribute('data-toc-target');
-        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+    tocAnchors.forEach((anchor) => {
+      anchor.addEventListener("click", () => {
+        const targetingText = anchor.getAttribute("data-toc-target");
+        if (typeof window !== "undefined" && (window as any).dataLayer) {
           (window as any).dataLayer.push({
-            'event': 'audit_toc_click',
-            'audit_slug': slug,
-            'toc_target': targetingText
+            event: "audit_toc_click",
+            audit_slug: slug,
+            toc_target: targetingText,
           });
         }
       });
@@ -458,70 +726,90 @@ const articleSchema = JSON.stringify({
 
     // 3. Track Hub Conversion Clicks seamlessly
     if (conversionBtn) {
-      conversionBtn.addEventListener('click', () => {
-        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      conversionBtn.addEventListener("click", () => {
+        if (typeof window !== "undefined" && (window as any).dataLayer) {
           (window as any).dataLayer.push({
-            'event': 'audit_money_cta_click',
-            'audit_slug': slug,
-            'cta_destination': conversionBtn.getAttribute('href')
+            event: "audit_money_cta_click",
+            audit_slug: slug,
+            cta_destination: conversionBtn.getAttribute("href"),
           });
         }
       });
     }
 
     // 4. Hardware-Accelerated Dynamic Scroll Depth Matrix (25%, 50%, 75%, 100%)
-    let markers = { '25': false, '50': false, '75': false, '100': false };
-    window.addEventListener('scroll', () => {
-      const distancePercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-      
-      ['25', '50', '75', '100'].forEach(milestone => {
-        if (distancePercent >= parseInt(milestone) && !markers[milestone]) {
-          markers[milestone] = true;
-          if (typeof window !== 'undefined' && (window as any).dataLayer) {
-            (window as any).dataLayer.push({
-              'event': 'audit_scroll_depth',
-              'audit_slug': slug,
-              'depth_reached': milestone + '%'
-          });
+    let markers = { "25": false, "50": false, "75": false, "100": false };
+    window.addEventListener(
+      "scroll",
+      () => {
+        const distancePercent = Math.round(
+          (window.scrollY /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+            100
+        );
+
+        ["25", "50", "75", "100"].forEach((milestone) => {
+          if (distancePercent >= parseInt(milestone) && !markers[milestone]) {
+            markers[milestone] = true;
+            if (typeof window !== "undefined" && (window as any).dataLayer) {
+              (window as any).dataLayer.push({
+                event: "audit_scroll_depth",
+                audit_slug: slug,
+                depth_reached: milestone + "%",
+              });
+            }
           }
-        }
-      });
-    }, { passive: true });
+        });
+      },
+      { passive: true }
+    );
 
     // 5. Native Progress Bar Calculation
-    const progressIndicator = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const evaluatedPercent = (scrollTop / totalScrollable) * 100;
-      if(progressIndicator) {
-        progressIndicator.style.width = evaluatedPercent + '%';
-      }
-    }, { passive: true });
+    const progressIndicator = document.getElementById("progress-bar");
+    window.addEventListener(
+      "scroll",
+      () => {
+        const scrollTop = window.scrollY;
+        const totalScrollable =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const evaluatedPercent = (scrollTop / totalScrollable) * 100;
+        if (progressIndicator) {
+          progressIndicator.style.width = evaluatedPercent + "%";
+        }
+      },
+      { passive: true }
+    );
 
     // 6. Share Functionalities Scripts Threads
-    const shareWa = document.getElementById('share-wa');
-    const shareCopy = document.getElementById('share-copy');
+    const shareWa = document.getElementById("share-wa");
+    const shareCopy = document.getElementById("share-copy");
 
-    if(shareWa) {
-      shareWa.addEventListener('click', () => {
-        const text = encodeURIComponent(`🚨 *Finesse Intelligence Audit:* ${document.title}\n\nRead report here: ${window.location.href}`);
-        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    if (shareWa) {
+      shareWa.addEventListener("click", () => {
+        const text = encodeURIComponent(
+          `🚨 *Finesse Intelligence Audit:* ${document.title}\n\nRead report here: ${window.location.href}`
+        );
+        window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
       });
     }
 
-    if(shareCopy) {
-      shareCopy.addEventListener('click', async () => {
+    if (shareCopy) {
+      shareCopy.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(window.location.href);
           const rawHTML = shareCopy.innerHTML;
-          shareCopy.innerHTML = '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
-          shareCopy.classList.remove('bg-slate-800', 'text-slate-300');
-          shareCopy.classList.add('bg-emerald-500', 'text-white', 'scale-110');
+          shareCopy.innerHTML =
+            '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
+          shareCopy.classList.remove("bg-slate-800", "text-slate-300");
+          shareCopy.classList.add("bg-emerald-500", "text-white", "scale-110");
           setTimeout(() => {
             shareCopy.innerHTML = rawHTML;
-            shareCopy.classList.add('bg-slate-800', 'text-slate-300');
-            shareCopy.classList.remove('bg-emerald-500', 'text-white', 'scale-110');
+            shareCopy.classList.add("bg-slate-800", "text-slate-300");
+            shareCopy.classList.remove(
+              "bg-emerald-500",
+              "text-white",
+              "scale-110"
+            );
           }, 2000);
         } catch (err) {
           console.error(err);
@@ -530,70 +818,86 @@ const articleSchema = JSON.stringify({
     }
 
     // 7. Table of Contents Scrollspy Matrix
-    const headingsNodes = document.querySelectorAll('.audit-content h2, .audit-content h3');
-    const linksElements = document.querySelectorAll('#toc-nav a');
+    const headingsNodes = document.querySelectorAll(
+      ".audit-content h2, .audit-content h3"
+    );
+    const linksElements = document.querySelectorAll("#toc-nav a");
 
     if (headingsNodes.length > 0) {
-      window.addEventListener('scroll', () => {
-        let activeId = '';
-        const viewportOffset = window.scrollY + 250;
+      window.addEventListener(
+        "scroll",
+        () => {
+          let activeId = "";
+          const viewportOffset = window.scrollY + 250;
 
-        headingsNodes.forEach(headerNode => {
-          const topCoordinate = headerNode.getBoundingClientRect().top + window.scrollY;
-          if (topCoordinate <= viewportOffset) {
-            activeId = headerNode.getAttribute('id');
+          headingsNodes.forEach((headerNode) => {
+            const topCoordinate =
+              headerNode.getBoundingClientRect().top + window.scrollY;
+            if (topCoordinate <= viewportOffset) {
+              activeId = headerNode.getAttribute("id");
+            }
+          });
+
+          if (
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 50
+          ) {
+            activeId =
+              headingsNodes[headingsNodes.length - 1].getAttribute("id");
           }
-        });
 
-        if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
-          activeId = headingsNodes[headingsNodes.length - 1].getAttribute('id');
-        }
-
-        linksElements.forEach(anchorEl => {
-          anchorEl.classList.remove('text-emerald-500', 'translate-x-1');
-          anchorEl.classList.add('text-slate-400');
-          if (activeId && anchorEl.getAttribute('href') === `#${activeId}`) {
-            anchorEl.classList.remove('text-slate-400');
-            anchorEl.classList.add('text-emerald-500', 'translate-x-1');
-          }
-        });
-      }, { passive: true });
+          linksElements.forEach((anchorEl) => {
+            anchorEl.classList.remove("text-emerald-500", "translate-x-1");
+            anchorEl.classList.add("text-slate-400");
+            if (activeId && anchorEl.getAttribute("href") === `#${activeId}`) {
+              anchorEl.classList.remove("text-slate-400");
+              anchorEl.classList.add("text-emerald-500", "translate-x-1");
+            }
+          });
+        },
+        { passive: true }
+      );
     }
 
     // 8. Image Zoom Computer Vision Modal Scripts Thread
-    const lightboxContainer = document.getElementById('lightbox');
-    const lightboxGraphic = document.getElementById('lightbox-img');
-    const renderedImages = document.querySelectorAll('.audit-content img');
+    const lightboxContainer = document.getElementById("lightbox");
+    const lightboxGraphic = document.getElementById("lightbox-img");
+    const renderedImages = document.querySelectorAll(".audit-content img");
 
     if (lightboxContainer && lightboxGraphic) {
-      renderedImages.forEach(imageAsset => {
+      renderedImages.forEach((imageAsset) => {
         const htmlImg = imageAsset as HTMLElement;
-        htmlImg.style.cursor = 'zoom-in';
-        htmlImg.classList.add('hover:ring-2', 'hover:ring-emerald-500/50', 'transition-all', 'rounded-xl');
-        
-        htmlImg.addEventListener('click', () => {
+        htmlImg.style.cursor = "zoom-in";
+        htmlImg.classList.add(
+          "hover:ring-2",
+          "hover:ring-emerald-500/50",
+          "transition-all",
+          "rounded-xl"
+        );
+
+        htmlImg.addEventListener("click", () => {
           const imgSource = htmlImg as HTMLImageElement;
-          lightboxGraphic.setAttribute('src', imgSource.src);
-          lightboxContainer.classList.remove('hidden');
-          lightboxContainer.classList.add('flex');
-          document.body.style.overflow = 'hidden';
+          lightboxGraphic.setAttribute("src", imgSource.src);
+          lightboxContainer.classList.remove("hidden");
+          lightboxContainer.classList.add("flex");
+          document.body.style.overflow = "hidden";
           setTimeout(() => {
-            lightboxContainer.classList.remove('opacity-0');
-            lightboxGraphic.classList.remove('scale-95');
-            lightboxGraphic.classList.add('scale-100');
+            lightboxContainer.classList.remove("opacity-0");
+            lightboxGraphic.classList.remove("scale-95");
+            lightboxGraphic.classList.add("scale-100");
           }, 10);
         });
       });
 
-      lightboxContainer.addEventListener('click', () => {
-        lightboxContainer.classList.add('opacity-0');
-        lightboxGraphic.classList.remove('scale-100');
-        lightboxGraphic.classList.add('scale-95');
-        document.body.style.overflow = 'auto';
+      lightboxContainer.addEventListener("click", () => {
+        lightboxContainer.classList.add("opacity-0");
+        lightboxGraphic.classList.remove("scale-100");
+        lightboxGraphic.classList.add("scale-95");
+        document.body.style.overflow = "auto";
         setTimeout(() => {
-          lightboxContainer.classList.add('hidden');
-          lightboxContainer.classList.remove('flex');
-          lightboxGraphic.setAttribute('src', '');
+          lightboxContainer.classList.add("hidden");
+          lightboxContainer.classList.remove("flex");
+          lightboxGraphic.setAttribute("src", "");
         }, 300);
       });
     }
@@ -632,7 +936,7 @@ const articleSchema = JSON.stringify({
   .audit-content blockquote {
     @apply border-l-4 border-emerald-500 pl-6 py-3 italic text-slate-400 bg-slate-900/50 my-8 rounded-r-xl font-sans;
   }
-  
+
   /* Machine-Readable Structuring for Aggregated Table Matrices */
   .audit-content table {
     @apply w-full text-left border-collapse border border-slate-800 rounded-xl overflow-hidden my-8 text-sm bg-slate-900/50 shadow-lg font-sans;

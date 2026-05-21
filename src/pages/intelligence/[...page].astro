@@ -82,8 +82,8 @@ const listSchema = JSON.stringify({
             {page.data.map((post) => {
               const slug = post.id.split('.')[0];
               
-              {/* 🛡️ Native Astro v5/v6 Raw Body Word-Count Compile Protection */}
-              const bodyRawText = post.body || "";
+              {/* 🛡️ post.body is undefined in Content Layer API for empty Markdoc */}
+              const bodyRawText = typeof post.body === "string" ? post.body : "";
               const totalWords = bodyRawText.trim().split(/\s+/).filter(Boolean).length;
               const readTime = Math.max(3, Math.ceil(totalWords / 200));
 

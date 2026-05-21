@@ -3,6 +3,11 @@ dist/
 # generated types
 .astro/
 
+# Vercel build output — NEVER commit; it embeds Windows-absolute paths
+# (file:///F:/...) that break Vercel Linux serverless at runtime.
+# Vercel must rebuild from source on its own Linux runners.
+.vercel/
+
 # dependencies
 node_modules/
 

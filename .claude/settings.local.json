@@ -4,7 +4,10 @@
       "Bash(npm install:*)",
       "Bash(npm view:*)",
       "Bash(node -e \"const v=require\\(''''fs''''\\).readFileSync\\(''''/dev/stdin'''',''''utf8''''\\); const arr=JSON.parse\\(v\\); console.log\\(arr.slice\\(-20\\).join\\(''''\\\\n''''\\)\\)\")",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(dir F:\\\\Finesse\\\\Website\\\\Website\\\\finesse-overseas\\\\src\\\\pages\\\\intelligence *)",
+      "Bash(python3 -c ' *)",
+      "Bash(git rm *)"
     ]
   }
 }

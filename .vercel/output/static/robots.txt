@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /_DNA-tier-a-mbbs-india
-Disallow: /_glob-tier-a-mbbs-india
-Disallow: /_tier-a-mbbs-india
-
-Sitemap: https://finesseoverseas.com/sitemap-index.xml
