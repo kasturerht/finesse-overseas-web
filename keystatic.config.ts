@@ -12,10 +12,10 @@ export default config({
     intelligence: collection({
       label: 'Intelligence Audits',
       slugField: 'title',
-      path: 'src/content/intelligence/*.mdoc',
+      path: 'src/content/intelligence/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }),
+        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }),
         
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 

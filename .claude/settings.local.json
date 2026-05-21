@@ -10,7 +10,8 @@
       "Bash(git rm *)",
       "Bash(node -e \"const {collection, config, fields} = require\\('@keystatic/core'\\); console.log\\('OK'\\)\")",
       "Bash(node -e ' *)",
-      "Bash(xargs grep -l \"getCollectionPath\\\\|collectionPath\\\\|slugToPath\\\\|pathToSlug\")"
+      "Bash(xargs grep -l \"getCollectionPath\\\\|collectionPath\\\\|slugToPath\\\\|pathToSlug\")",
+      "Bash(Get-ChildItem F:\\\\Finesse\\\\Website\\\\Website\\\\finesse-overseas\\\\src\\\\content\\\\intelligence *)"
     ]
   }
 }
