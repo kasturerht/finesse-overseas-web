@@ -2,21 +2,20 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'local', // जेव्हा व्हीएस कोडमध्ये काम करशील तेव्हा लोकल, व्हर्सेलवर असताना क्लाउड आपोआप सिंक होईल
+    kind: 'local',
   },
   cloud: {
     project: 'skadas-team/finesse-overseas-web',
   },
-  
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'slug', // 👈 टायटल ऐवजी 'slug' केला!
-      path: 'src/content/intelligence/*', // 👈 क्लिन पाथ!
+      slugField: 'title', // 👈 कीस्टॅटिकचा अधिकृत नियम: याला टायटलवर ठेवा!
+      path: 'src/content/intelligence/[slug]', // 👈 फ्लॅट फाईल्ससाठी कंसात [slug] असणे अनिवार्य आहे!
+      entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
-        slug: fields.slug({ name: { label: 'Slug (Keep same as filename without .mdoc)' } }), // 👈 नवीन स्लग फील्ड जोडले!
-        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), // 👈 टायटल आता साधा टेक्स्ट राहील!
+        title: fields.slug({ name: { label: 'Audit Title (This creates the filename)' } }), // 👈 टायटल फील्डच फाईलचं नाव मॅप करेल!
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
