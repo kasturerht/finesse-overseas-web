@@ -1,6 +1,6 @@
-import { c as createComponent } from './astro-component_CWqRriDV.mjs';
+import { c as createComponent } from './astro-component_DgDkKiMC.mjs';
 import 'piccolore';
-import { r as renderTemplate, b as addAttribute, c as renderHead } from './entrypoint_CMIOVK-J.mjs';
+import { r as renderTemplate, b as addAttribute, c as renderHead } from './entrypoint_U5r9_E1T.mjs';
 import 'clsx';
 
 const PUBLIC_DECAP_CMS_VERSION = "3.11.0";

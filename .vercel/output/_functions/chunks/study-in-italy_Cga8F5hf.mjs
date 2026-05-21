@@ -1,10 +1,10 @@
-import { c as createComponent } from './astro-component_CWqRriDV.mjs';
+import { c as createComponent } from './astro-component_DgDkKiMC.mjs';
 import 'piccolore';
-import { d as renderComponent, r as renderTemplate, m as maybeRenderHead } from './entrypoint_CMIOVK-J.mjs';
-import { r as renderScript } from './script_DN4DYcnF.mjs';
-import { $ as $$Layout } from './Layout_V9lh5Hgc.mjs';
-import { $ as $$Footer } from './Footer_RfPquZBC.mjs';
-import { $ as $$Picture } from './_astro_assets_TlwWPo-f.mjs';
+import { d as renderComponent, r as renderTemplate, m as maybeRenderHead } from './entrypoint_U5r9_E1T.mjs';
+import { r as renderScript } from './script_D2aRzpLT.mjs';
+import { $ as $$Layout } from './Layout_D1AbGySA.mjs';
+import { $ as $$Footer } from './Footer_CXtGVqeN.mjs';
+import { $ as $$Picture } from './_astro_assets_DWdkwNoo.mjs';
 
 const heroImage = new Proxy({"src":"/media/italy-hero.6NZ5JnNT.avif","width":3168,"height":1344,"format":"avif"}, {
 						get(target, name, receiver) {
