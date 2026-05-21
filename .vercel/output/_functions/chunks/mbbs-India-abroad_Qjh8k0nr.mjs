@@ -1,11 +1,11 @@
-import { c as createComponent } from './astro-component_Bfv_yF32.mjs';
+import { c as createComponent } from './astro-component_DwOxENhp.mjs';
 import 'piccolore';
-import { d as renderComponent, r as renderTemplate } from './entrypoint_Cr6qC6xI.mjs';
-import { $ as $$Layout } from './Layout_QX_5LIGL.mjs';
+import { d as renderComponent, r as renderTemplate } from './entrypoint_CPl1C0ic.mjs';
+import { $ as $$Layout } from './Layout_DsHDMsg5.mjs';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion';
-import { $ as $$Footer } from './Footer_DQn27t-Y.mjs';
+import { $ as $$Footer } from './Footer_Ca3gk1w9.mjs';
 
 const stagger$5 = {
   hidden: {},
