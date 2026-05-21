@@ -9,12 +9,12 @@ export default config({
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'slug', // 👈 POINT 1: Title varun badlun strictly 'slug' kela!
-      path: 'src/content/intelligence/*', // 👈 POINT 2: Console error nusar clean '/*' mhnje No White Screen!
-      format: { contentField: 'content' }, // 👈 POINT 3: Standard frontmatter + markdown single file loader
+      slugField: 'title', // 👈 १. टायटलवरूनच स्लग ऑटो-जनरेट होईल!
+      path: 'src/content/intelligence/*', // 👈 २. कन्सोल एररनुसार क्लीन पाथ!
+      format: { contentField: 'content' },
       schema: {
-        slug: fields.slug({ name: { label: 'Slug (Must match filename exactly)' } }), // 👈 POINT 4: Hidden safe slug validation resolver
-        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), // 👈 POINT 5: Title la text kelya mule string cha mismatch sampala!
+        // 👈 ३. सर्वात महत्त्वाचे: टायटलला 'fields.slug' केल्यामुळे ते डॅशबोर्डवर टायटल लिहिताच बॅकग्राउंडला आपोआप 'testing-blog' असा कडक स्लग बनवून सेव्ह करेल!
+        title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }), 
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
