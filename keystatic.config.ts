@@ -9,16 +9,12 @@ export default config({
   collections: {
     intelligence: collection({
       label: 'Intelligence Audits',
-      slugField: 'title',
-      
-      // 👈 १. कन्सोल एररनुसार पाथच्या शेवटी '/*' असणे बंधनकारक आहे!
-      path: 'src/content/intelligence/*', 
-      
-      // 👈 २. सर्वात महत्त्वाचा बदल: 'format: mdoc' केल्यामुळे फ्रंटमॅटरमधील साधे टायटल (String) कीस्टॅटिकला परफेक्ट वाचता येईल!
-      format: 'mdoc', 
-      
+      slugField: 'slug', // 👈 POINT 1: Title varun badlun strictly 'slug' kela!
+      path: 'src/content/intelligence/*', // 👈 POINT 2: Console error nusar clean '/*' mhnje No White Screen!
+      format: { contentField: 'content' }, // 👈 POINT 3: Standard frontmatter + markdown single file loader
       schema: {
-        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), // 👈 fields.slug काढून fields.text केले!
+        slug: fields.slug({ name: { label: 'Slug (Must match filename exactly)' } }), // 👈 POINT 4: Hidden safe slug validation resolver
+        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), // 👈 POINT 5: Title la text kelya mule string cha mismatch sampala!
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
