@@ -1,9 +1,9 @@
-import { c as createComponent } from './astro-component_DgDkKiMC.mjs';
+import { c as createComponent } from './astro-component_Bfv_yF32.mjs';
 import 'piccolore';
-import { d as renderComponent, r as renderTemplate, m as maybeRenderHead } from './entrypoint_U5r9_E1T.mjs';
-import { r as renderScript } from './script_D2aRzpLT.mjs';
-import { $ as $$Layout } from './Layout_D1AbGySA.mjs';
-import { $ as $$Footer } from './Footer_CXtGVqeN.mjs';
+import { d as renderComponent, r as renderTemplate, m as maybeRenderHead } from './entrypoint_Cr6qC6xI.mjs';
+import { r as renderScript } from './script_Bg7HxDW9.mjs';
+import { $ as $$Layout } from './Layout_QX_5LIGL.mjs';
+import { $ as $$Footer } from './Footer_DQn27t-Y.mjs';
 
 const $$StudyInGermany = createComponent(($$result, $$props, $$slots) => {
   const germanySchema = JSON.stringify({

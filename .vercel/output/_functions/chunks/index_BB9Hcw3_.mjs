@@ -1,4 +1,4 @@
-import { b as OAUTH_GITHUB_CLIENT_ID } from './server_CIi9pE_7.mjs';
+import { b as OAUTH_GITHUB_CLIENT_ID } from './server_DDOaAnU6.mjs';
 
 const prerender = false;
 const GET = ({ redirect }) => {
