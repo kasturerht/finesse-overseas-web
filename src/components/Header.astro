@@ -48,7 +48,7 @@
   </div>
 
   {/* --- 📱 MOBILE MENU (High Visibility Update) --- */}
-  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all rounded-b-3xl">
+  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-2xl origin-top transition-all duration-300 ease-out transform opacity-0 -translate-y-4 scale-y-95 rounded-b-3xl pointer-events-none">
     <div class="px-5 pt-6 pb-8 space-y-3 flex flex-col">
       
       {/* Primary Mobile Call-to-Action for MBBS */}
@@ -76,7 +76,7 @@
       </a>
       
       <div class="pt-4 mt-2 border-t border-slate-100">
-        <a href="/contact" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Contact_Click', 'contact_type': 'book_counseling', 'location': 'header_mobile'});" class="relative z-20 flex justify-center items-center gap-2 w-full bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-xl text-lg font-semibold transition-all shadow-md active:scale-95">
+        <a href="/contact" onclick="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Contact_Click', 'contact_type': 'book_counseling', 'location': 'header_mobile'});" class="mobile-link relative z-20 flex justify-center items-center gap-2 w-full bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-xl text-lg font-semibold transition-all shadow-md active:scale-95">
           Book Free Counseling
           <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
         </a>
@@ -85,3 +85,95 @@
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+    let isOpen = false;
+    let isTransitioning = false;
+
+    if (!btn || !menu || !menuIcon || !closeIcon) return;
+
+    function openMenu() {
+      if (isOpen || isTransitioning) return;
+      isTransitioning = true;
+      isOpen = true;
+
+      // Toggle hamburger menu icons
+      menuIcon.classList.add('hidden');
+      closeIcon.classList.remove('hidden');
+
+      // Make the container active in the DOM layout
+      menu.classList.remove('hidden');
+      
+      // Request an animation frame to trigger the hardware-accelerated transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          menu.classList.remove('opacity-0', '-translate-y-4', 'scale-y-95', 'pointer-events-none');
+          menu.classList.add('opacity-100', 'translate-y-0', 'scale-y-100', 'pointer-events-auto');
+        });
+      });
+
+      // Seamlessly lock background document scrolling
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 300);
+    }
+
+    function closeMenu() {
+      if (!isOpen || isTransitioning) return;
+      isTransitioning = true;
+      isOpen = false;
+
+      // Reset menu icons
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+
+      // Transition out gracefully
+      menu.classList.remove('opacity-100', 'translate-y-0', 'scale-y-100', 'pointer-events-auto');
+      menu.classList.add('opacity-0', '-translate-y-4', 'scale-y-95', 'pointer-events-none');
+
+      // Restore scrolling to the body
+      document.body.style.overflow = '';
+
+      setTimeout(() => {
+        // Remove from DOM render tree only after exit transition completes
+        if (!isOpen) {
+          menu.classList.add('hidden');
+        }
+        isTransitioning = false;
+      }, 300);
+    }
+
+    // Toggle click event
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close menu when clicking on any mobile navigation link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Auto-close menu if a click occurs outside of the active menu or header
+    document.addEventListener('click', (e) => {
+      if (isOpen && !menu.contains(e.target as Node) && !btn.contains(e.target as Node)) {
+        closeMenu();
+      }
+    });
+  });
+</script>

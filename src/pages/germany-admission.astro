@@ -117,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
                 <input type="hidden" name="_captcha" value="false">
                 <input type="text" name="_honey" style="display:none" aria-hidden="true">
                 <input type="hidden" name="_subject" value="New Lead from Finesse Landing Page!">
-                <input type="hidden" name="_next" id="form-redirect-url" value="">
+                <input type="hidden" name="_next" id="form-redirect-url" value="https://www.finesseoverseas.com/thank-you">
 
                 <div class="relative group">
                   <label for="fullName" class="block text-[10px] font-extrabold text-slate-900 mb-2 font-jakarta uppercase tracking-widest transition-colors group-focus-within:text-teal-600">Full Name</label>
@@ -379,12 +379,6 @@ import Layout from '../layouts/Layout.astro';
         showToast();
         setInterval(showToast, 15000);
       }, 5000);
-      
-      // 2. Form Redirect Logic
-      const redirectInput = document.getElementById('form-redirect-url');
-      if(redirectInput) {
-        redirectInput.value = window.location.href;
-      }
     });
 
     // 3. Video Mute/Unmute Logic

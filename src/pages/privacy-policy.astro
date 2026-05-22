@@ -1,0 +1,212 @@
+---
+// src/pages/privacy-policy.astro
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = "May 22, 2026";
+---
+
+<Layout title="Privacy Policy | Finesse Overseas Education" description="Privacy policy, data collection terms, and cookie usage guidelines for Finesse Overseas Education. Learn how we secure your academic and personal information.">
+  
+  <main class="flex-grow bg-slate-50">
+    
+    {/* --- HERO SECTION --- */}
+    <section class="relative bg-slate-950 pt-32 pb-24 overflow-hidden border-b border-slate-800">
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz4KCTwvc3ZnPg==')] opacity-50"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/50 border border-slate-700 text-slate-300 font-bold tracking-widest uppercase mb-6 text-[10px] shadow-sm backdrop-blur-md">
+          <svg class="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          Privacy and Security Framework
+        </span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-6">
+          Privacy <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">Policy</span>
+        </h1>
+        <p class="text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto mb-8">
+          Your trust is our greatest asset. Learn how we safeguard your personal and academic data.
+        </p>
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm font-bold text-slate-500 shadow-inner">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          Last Updated: <span class="text-slate-300">{lastUpdated}</span>
+        </div>
+      </div>
+    </section>
+
+    {/* --- TWO-COLUMN TOC & CONTENT GRID --- */}
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        {/* Table of Contents - Left Column (Desktop sticky nav) */}
+        <div class="hidden lg:block lg:col-span-3 lg:sticky lg:top-32">
+          <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-6">Table of Contents</h4>
+          <nav class="space-y-1 toc-nav">
+            <a href="#intro" class="block px-4 py-2.5 text-sm font-bold text-teal-600 bg-teal-50 rounded-lg transition-colors">1. Introduction & Overview</a>
+            <a href="#collection" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">2. Information We Collect</a>
+            <a href="#usage" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">3. How We Use Your Data</a>
+            <a href="#sharing" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">4. Data Sharing & Mandates</a>
+            <a href="#security" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">5. Retention & Security</a>
+            <a href="#cookies" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">6. Cookies & Analytics</a>
+            <a href="#contact" class="block px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">7. Your Rights & Contacts</a>
+          </nav>
+        </div>
+
+        {/* Content - Right Column */}
+        <div class="lg:col-span-9">
+          <div class="bg-white rounded-[2rem] p-8 md:p-12 lg:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200 text-slate-600 leading-relaxed space-y-16">
+
+            <section id="intro" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">1</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Introduction & Overview</h2>
+              </div>
+              <p class="mb-4">At Finesse Overseas Education ("Finesse", "we", "our", "us"), we are deeply committed to protecting the privacy of our students, applicants, and visitors. This Privacy Policy details how we collect, use, share, and protect your personal information when you use our website, consultation services, and enrollment platforms.</p>
+              <p>By engaging with us, submitting inquiries, or registering for counseling, you consent to the data collection and processing methods outlined in this policy.</p>
+            </section>
+
+            <section id="collection" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">2</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Information We Collect</h2>
+              </div>
+              <p class="mb-4">To successfully navigate your university applications and visa procedures, we collect various categories of information:</p>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Personal Identifiers:</strong> Name, age, email address, telephone number, residential address, and passport copies.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Academic & Profile Details:</strong> Marksheets, degrees, language proficiency scores (IELTS/TOEFL/TestAS), CGPA, profile gaps, academic references, and Statements of Purpose (SOP).</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Financial Records (for Visa Processing):</strong> Blocked account setups, education loan applications, parent's financial sponsorship details, and regional scholarship applications (e.g. Italian DSU).</span>
+                </li>
+              </ul>
+            </section>
+
+            <section id="usage" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">3</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">How We Use Your Data</h2>
+              </div>
+              <p class="mb-5">We utilize your personal information strictly for the purpose of helping you achieve admission to European universities and processing your visa.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-teal-50 border border-teal-100 p-5 rounded-xl">
+                  <svg class="w-6 h-6 text-teal-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                  <p class="text-teal-900 font-bold text-sm">University Strategy & Shortlisting</p>
+                  <p class="text-teal-800 text-xs mt-1">To match your academic profile to public/private universities and submit official applications on your behalf.</p>
+                </div>
+                <div class="bg-blue-50 border border-blue-100 p-5 rounded-xl">
+                  <svg class="w-6 h-6 text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                  <p class="text-blue-900 font-bold text-sm">APS & Visa Documentation</p>
+                  <p class="text-blue-800 text-xs mt-1">To submit documents to German APS offices, embassy portals, and regional scholarship offices (e.g. CIMEA, DOV).</p>
+                </div>
+              </div>
+            </section>
+
+            <section id="sharing" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">4</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Data Sharing & Mandates</h2>
+              </div>
+              <p class="mb-4">Finesse does not sell, rent, or trade your personal information to third parties. We share your information strictly with official entities involved in your global education process:</p>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                  <span><strong class="text-slate-900">Admissions Boards & Verification Bodies:</strong> Relevant European universities, APS India, Uni-Assist (Germany), CIMEA and Universitaly (Italy), and respective Consulates/Embassies.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Legal Compliance:</strong> We may share data when mandated by Indian or European laws, courts, or law enforcement bodies.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section id="security" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">5</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Retention & Security</h2>
+              </div>
+              <p class="mb-4">We maintain top-tier digital and physical security protocols to prevent unauthorized access, alteration, or disclosure of your academic documents.</p>
+              <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800">
+                <h4 class="font-black text-lg mb-2 text-teal-400">Data Retention Limits</h4>
+                <p class="text-slate-300 text-sm leading-relaxed">Your data is stored for the active duration of your university admission processes and visa applications. Post-departure, we retain a secure record of your study details for compliance and testimonial purposes, strictly in accordance with statutory guidelines.</p>
+              </div>
+            </section>
+
+            <section id="cookies" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">6</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Cookies & Analytics</h2>
+              </div>
+              <p class="mb-4">Our website uses cookies and tracking technologies to analyze site traffic, optimize user flows, and improve lead generation conversion tracking.</p>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Google Tag Manager & Google Analytics:</strong> Used to monitor navigation patterns, conversion statistics, and site performance.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-teal-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                  <span><strong class="text-slate-900">Meta Pixel (Facebook Ads Pixel):</strong> Used strictly for optimizing and tracking advertising conversions on platforms like Facebook and Instagram.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section id="contact" class="scroll-mt-32">
+              <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-black text-sm shadow-md">7</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Your Rights & Contacts</h2>
+              </div>
+              <p class="mb-4">Under relevant data privacy laws, you possess the right to access, edit, or request the deletion of your personal data from Finesse's active database.</p>
+              <p class="mb-6">For any queries regarding this Privacy Policy or to request deletion of your information, please contact us directly:</p>
+              
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                <h5 class="text-slate-900 font-bold text-base mb-2">Finesse Overseas Education - Grievance Cell</h5>
+                <p class="text-sm">First Floor, Sakshi Samarth Plaza, Above Sohala Showroom, Rajarampuri 4th Lane, Kolhapur.</p>
+                <p class="text-sm mt-2"><strong>Email:</strong> admission@finesseoverseas.com</p>
+                <p class="text-sm"><strong>Phone:</strong> +91 98500 69600</p>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer theme="light" />
+
+  <script>
+    function initTOC() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-nav a').forEach(link => {
+              link.classList.remove('text-teal-600', 'bg-teal-50');
+              link.classList.add('text-slate-500');
+            });
+            const id = entry.target.getAttribute('id');
+            const activeLink = document.querySelector(`.toc-nav a[href="#${id}"]`);
+            if (activeLink) {
+              activeLink.classList.remove('text-slate-500');
+              activeLink.classList.add('text-teal-600', 'bg-teal-50');
+            }
+          }
+        });
+      }, { rootMargin: '-20% 0px -80% 0px' });
+
+      document.querySelectorAll('section[id]').forEach((section) => {
+        observer.observe(section);
+      });
+    }
+
+    initTOC();
+    document.addEventListener('astro:page-load', initTOC);
+  </script>
+
+</Layout>

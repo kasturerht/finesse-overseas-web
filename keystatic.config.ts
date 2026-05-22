@@ -20,8 +20,8 @@ export default config({
       path: 'src/content/intelligence/*', // 👈 ४. पाथ कडक क्लीन '/*'
       format: { contentField: 'content' },
       schema: {
-        // 👈 ५. टायटलला fields.slug केल्यामुळे डॅशबोर्डवर टायटल लिहिताच आपोआप 'testing-blog' असा लोअरकेस आणि डॅशसह परफेक्ट स्लग बॅकएंडला सेव्ह होईल!
-        title: fields.slug({ name: { label: 'Audit Title (H1 - Entity Trigger)' } }), 
+        // 👈 ५. टायटलवरूनच स्लग ऑटो-जनरेट होईल आणि फ्रंटमॅटरमध्ये स्ट्रिंग म्हणून सेव्ह होईल!
+        title: fields.text({ label: 'Audit Title (H1 - Entity Trigger)' }), 
         excerpt: fields.text({ 
           label: 'SEO Meta Description (AI Prompt Abstract Summary)', 
           multiline: true,
@@ -42,6 +42,10 @@ export default config({
             { label: 'FMGE Data', value: 'FMGE Data' },
             { label: 'Exposé', value: 'Exposé' },
             { label: 'Myth Buster', value: 'Myth Buster' },
+            { label: 'Study in Germany', value: 'Study in Germany' },
+            { label: 'Study in Italy', value: 'Study in Italy' },
+            { label: 'Study in Austria', value: 'Study in Austria' },
+            { label: 'MBBS Abroad', value: 'MBBS Abroad' },
           ],
           defaultValue: 'NMC Alerts',
         }),

@@ -21,6 +21,10 @@ export async function getStaticPaths({ paginate }) {
 
 const { page = { data: [], url: {}, currentPage: 1, lastPage: 1 } } = Astro.props;
 
+// 🧠 Dynamic category compilation for automated filter synchronization
+const allPostsForFilters = await getCollection('intelligence');
+const categoriesList = ['All Data', ...new Set(allPostsForFilters.map(post => post.data.category).filter(Boolean))];
+
 const seoTitle = "Finesse Intelligence Hub | NMC Alerts & MBBS Abroad Audits";
 const seoDescription = "Deep-dive research, NMC compliance updates, and financial exposes for Indian students planning to study MBBS in Europe.";
 
@@ -59,7 +63,7 @@ const listSchema = JSON.stringify({
 
       {/* 📣 Swis-Luxury Animated Category Filter System */}
       <div class="flex flex-wrap gap-2 lg:gap-3 justify-center md:justify-start mb-12" id="filter-container">
-        {['All Data', 'NMC Alerts', 'Financial Truths', 'FMGE Data', 'Exposé', 'Myth Buster'].map((cat) => (
+        {categoriesList.map((cat) => (
           <button
             data-filter={cat}
             class={`filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
