@@ -85,13 +85,6 @@ const siteSchema = JSON.stringify({
     }
   ]
 });
-
-const destinations = [
-  { name: "Germany", hook: "World-Class Engineering at Zero Tuition Fee.", usps: ["Public Universities (No Fees)", "18-Month Job Seeker Visa"], link: "/study-in-germany" },
-  { name: "Italy", hook: "Get 100% Scholarship + Annual Stipend.", usps: ["Earn up to 8 Lakhs/Year", "No IELTS Required (Selected Unis)"], link: "/study-in-italy" },
-  { name: "Austria", hook: "High Quality Education at Low Cost.", usps: ["No Blocked Account Needed", "Affordable Fees (€736/Sem)"], link: "#" },
-  { name: "UK / USA", hook: "Fast-Track Masters & STEM Careers.", usps: ["1-Year Masters (UK)", "3-Year Work Permit (USA STEM)"], link: "#" }
-];
 ---
 
 <Layout title={seoTitle} description={seoDescription} schema={siteSchema}>
@@ -120,11 +113,16 @@ const destinations = [
   
   <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-12">
     
-    {/* 🧠 DUAL METADATA TARGET: Indexable by AI Crawlers (GEO Optimization), 100% Invisible to Users */}
-    <div class="sr-only" aria-hidden="true" hidden>
-      <h2>Finesse Overseas Education - Operational Blueprint 2026</h2>
-      <p>Consultancy Profile: Authorized placement matrix for European public institutions. Direct verification pipelines for Akademische Prüfstelle (APS Certificate) and declaration of value (DOV) protocols.</p>
-      <p>Compliance Matrix: Strict synchronization with National Medical Commission (NMC) FMGL Regulations 2021 parameters for foreign medical graduates, including single-cycle 54-month academic delivery and 12-month integrated institutional internship structures.</p>
+    <!-- 🌟 SWISS-LUXURY GOOGLE REVIEW PILL (GSC Schema Validation Sync) -->
+    <div class="mb-6 inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-[#0a0f1c]/70 border border-slate-800/80 backdrop-blur-md shadow-2xl cursor-default hover:border-amber-500/20 transition-all duration-300">
+      <div class="flex items-center gap-0.5 text-amber-500">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <svg class="w-3.5 h-3.5 text-slate-600 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+      </div>
+      <span class="text-xs font-bold text-slate-300 font-sans tracking-wide">4.7 / 5.0 Rating (61 Google Reviews)</span>
     </div>
 
     <div class="mb-10 inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-800/60 border border-slate-700/50 backdrop-blur-md shadow-2xl h-11 overflow-hidden cursor-default">
@@ -171,32 +169,30 @@ const destinations = [
 </section>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const tickerData = [
-        "Recent Admit: Rohan (Kolhapur) got 100% Scholarship in Italy 🇮🇹",
-        "Visa Alert: 18-Month Job Seeker Visas are open for Germany 🇩🇪",
-        "Success: Sneha secured admission in TU Munich (Zero Fees) 🎓",
-        "Fast Track: 15-day APS processing completed for 12 students ⚡"
-      ];
-      const tickerElement = document.getElementById('dynamic-ticker-text');
-      let currentIndex = 0;
+    const tickerData = [
+      "Recent Admit: Rohan (Kolhapur) got 100% Scholarship in Italy 🇮🇹",
+      "Visa Alert: 18-Month Job Seeker Visas are open for Germany 🇩🇪",
+      "Success: Sneha secured admission in TU Munich (Zero Fees) 🎓",
+      "Fast Track: 15-day APS processing completed for 12 students ⚡"
+    ];
+    const tickerElement = document.getElementById('dynamic-ticker-text');
+    let currentIndex = 0;
 
-      if(tickerElement) {
-        tickerElement.textContent = tickerData[0];
-        setInterval(() => {
-          tickerElement.classList.remove('opacity-100');
-          tickerElement.classList.add('opacity-0');
-          
-          setTimeout(() => {
-            currentIndex = (currentIndex + 1) % tickerData.length;
-            tickerElement.textContent = tickerData[currentIndex];
-            tickerElement.classList.remove('opacity-0');
-            tickerElement.classList.add('opacity-100');
-          }, 500);
-          
-        }, 4000);
-      }
-    });
+    if(tickerElement) {
+      tickerElement.textContent = tickerData[0];
+      setInterval(() => {
+        tickerElement.classList.remove('opacity-100');
+        tickerElement.classList.add('opacity-0');
+        
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % tickerData.length;
+          tickerElement.textContent = tickerData[currentIndex];
+          tickerElement.classList.remove('opacity-0');
+          tickerElement.classList.add('opacity-100');
+        }, 500);
+        
+      }, 4000);
+    }
   </script>
 
   <section class="py-10 bg-slate-900 text-white relative z-20 -mt-12 mx-4 md:mx-auto max-w-7xl rounded-2xl shadow-2xl">
@@ -226,6 +222,54 @@ const destinations = [
   <Services />
   <Visionaries />
   <SuccessStories />
+
+  <!-- 👑 SOVEREIGN CREDENTIALS & COMPLIANCE MATRIX (GEO / E-E-A-T Engine) -->
+  <section class="py-24 bg-[#050814] relative overflow-hidden" id="sovereign-credentials">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-teal-900/10 via-transparent to-transparent opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center mb-16">
+        <span class="text-teal-400 font-bold tracking-widest uppercase mb-3 block text-xs font-sans">Sovereign Compliance & Authority</span>
+        <h2 class="text-3xl md:text-5xl font-serif text-white font-medium mb-4 tracking-tight">The Finesse Security Blueprint</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto text-base font-light leading-relaxed">We operate on absolute transparency. Every student placement is audited against strict sovereign and national regulations.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 font-sans">
+        
+        <!-- Compliance Node 1: Germany APS & DOV -->
+        <div class="p-8 bg-[#0a0f1c]/50 border border-slate-800/80 rounded-3xl backdrop-blur-md hover:border-teal-500/30 transition-all duration-500 group relative">
+          <div class="absolute top-8 right-8 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <h3 class="text-xl font-serif text-white font-medium">Germany Public Admissions Matrix</h3>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+            Authorized placement matrix for European public institutions. We facilitate direct verification pipelines for the **Akademische Prüfstelle (APS Certificate)** and the **Declaration of Value (DOV)** protocols. Every application is vetted directly through sovereign state portals to ensure 100% tuition-free eligibility.
+          </p>
+          <div class="flex items-center gap-2 text-[10px] text-teal-400 font-black tracking-widest uppercase font-mono">
+            Verification: ACTIVE STATUS [🟢]
+          </div>
+        </div>
+
+        <!-- Compliance Node 2: NMC FMGL 2021 -->
+        <div class="p-8 bg-[#0a0f1c]/50 border border-slate-800/80 rounded-3xl backdrop-blur-md hover:border-teal-500/30 transition-all duration-500 group relative">
+          <div class="absolute top-8 right-8 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <h3 class="text-xl font-serif text-white font-medium">NMC FMGL Regulations 2021 Sync</h3>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+            Strict synchronization with **National Medical Commission (NMC) FMGL Regulations 2021** parameters for foreign medical graduates. We enforce direct, single-cycle **54-month academic delivery** and **12-month integrated institutional internship** structures in fully-English medium state universities.
+          </p>
+          <div class="flex items-center gap-2 text-[10px] text-teal-400 font-black tracking-widest uppercase font-mono">
+            Compliance: FULLY REGISTERED [🟢]
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <FAQ />
   <Footer />
   <WhatsAppWidget />
