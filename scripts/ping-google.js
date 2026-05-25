@@ -20,11 +20,28 @@ const IGNORED_PATTERNS = [
 async function run() {
   console.log('\n🚀 Starting God-Level Google Indexing Pipeline...');
 
-  // 1. Check if GCP Service Account key exists
-  if (!fs.existsSync(KEY_FILE)) {
-    console.error('❌ ERROR: service-account-key.json not found in the root directory!');
-    console.log('💡 Please complete Step 1 and make sure the key is placed in the project root.\n');
-    process.exit(1);
+  // 1. Load GCP Service Account Key (from file or environment variable)
+  let key;
+  if (process.env.GOOGLE_INDEXING_KEY) {
+    console.log('🔑 Loading Google Indexing Key from environment variable...');
+    try {
+      key = JSON.parse(process.env.GOOGLE_INDEXING_KEY);
+    } catch (err) {
+      console.error('❌ ERROR parsing GOOGLE_INDEXING_KEY environment variable:', err.message);
+      process.exit(0); // Exit safely to prevent breaking Vercel builds
+    }
+  } else if (fs.existsSync(KEY_FILE)) {
+    console.log('🔑 Loading Google Indexing Key from service-account-key.json...');
+    try {
+      key = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+    } catch (err) {
+      console.error('❌ ERROR parsing service-account-key.json:', err.message);
+      process.exit(0); // Exit safely
+    }
+  } else {
+    console.warn('⚠️ WARNING: Google Indexing key not found (no service-account-key.json or GOOGLE_INDEXING_KEY environment variable).');
+    console.log('💡 Real-time indexation skipped. (Astro build succeeded safely)\n');
+    process.exit(0); // Exit safely to prevent breaking Vercel builds
   }
 
   // 2. Check if the production build and sitemap exist
@@ -38,11 +55,8 @@ async function run() {
   console.log('🔑 Authenticating with Google Cloud Indexing API...');
   let auth;
   try {
-    const rawKey = fs.readFileSync(KEY_FILE, 'utf8');
-    const key = JSON.parse(rawKey);
-    
     // 🛡️ Fix OpenSSL private key parsing / DECODER unsupported issues (strictly formats to standard 64-char PEM)
-    if (key.private_key) {
+    if (key && key.private_key) {
       const cleanBody = key.private_key
         .replace('-----BEGIN PRIVATE KEY-----', '')
         .replace('-----END PRIVATE KEY-----', '')
