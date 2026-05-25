@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @reference "tailwindcss"; 
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
 }
