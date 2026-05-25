@@ -28,9 +28,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Google Indexing API service key
+# Google Indexing API service key and OAuth credentials
 service-account-key.json
 finesse-indexer-f732effb568d.json
+oauth-client-secret.json
+oauth-tokens.json
 
 # Scratch files
 scratch/

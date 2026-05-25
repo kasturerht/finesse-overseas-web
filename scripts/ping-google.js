@@ -20,29 +20,111 @@ const IGNORED_PATTERNS = [
 async function run() {
   console.log('\n🚀 Starting God-Level Google Indexing Pipeline...');
 
-  // 1. Load GCP Service Account Key (from file or environment variable)
-  let key;
-  if (process.env.GOOGLE_INDEXING_KEY) {
-    console.log('🔑 Loading Google Indexing Key from environment variable...');
+  // 1. Authenticate with Google Cloud APIs (Supports both User OAuth2 & Service Account)
+  let auth;
+  let authType = 'NONE';
+
+  const OAUTH_CLIENT_FILE = path.join(process.cwd(), 'oauth-client-secret.json');
+  const OAUTH_TOKENS_FILE = path.join(process.cwd(), 'oauth-tokens.json');
+
+  if (process.env.GOOGLE_OAUTH_TOKENS && process.env.GOOGLE_OAUTH_CLIENT) {
+    console.log('🔑 Loading User OAuth2 Credentials from environment variables...');
     try {
-      key = JSON.parse(process.env.GOOGLE_INDEXING_KEY);
+      const clientConfig = JSON.parse(process.env.GOOGLE_OAUTH_CLIENT);
+      const web = clientConfig.installed || clientConfig.web;
+      const tokens = JSON.parse(process.env.GOOGLE_OAUTH_TOKENS);
+
+      const oauth2Client = new google.auth.OAuth2(
+        web.client_id,
+        web.client_secret
+      );
+      oauth2Client.setCredentials(tokens);
+      auth = oauth2Client;
+      authType = 'USER_OAUTH2';
     } catch (err) {
-      console.error('❌ ERROR parsing GOOGLE_INDEXING_KEY environment variable:', err.message);
-      process.exit(0); // Exit safely to prevent breaking Vercel builds
+      console.error('❌ ERROR parsing User OAuth2 environment variables:', err.message);
+      process.exit(0);
     }
-  } else if (fs.existsSync(KEY_FILE)) {
-    console.log('🔑 Loading Google Indexing Key from service-account-key.json...');
+  } else if (fs.existsSync(OAUTH_TOKENS_FILE) && fs.existsSync(OAUTH_CLIENT_FILE)) {
+    console.log('🔑 Loading User OAuth2 Credentials from local json files...');
     try {
-      key = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+      const clientConfig = JSON.parse(fs.readFileSync(OAUTH_CLIENT_FILE, 'utf8'));
+      const web = clientConfig.installed || clientConfig.web;
+      const tokens = JSON.parse(fs.readFileSync(OAUTH_TOKENS_FILE, 'utf8'));
+
+      const oauth2Client = new google.auth.OAuth2(
+        web.client_id,
+        web.client_secret,
+        'http://localhost:3000/oauth2callback'
+      );
+      oauth2Client.setCredentials(tokens);
+      auth = oauth2Client;
+      authType = 'USER_OAUTH2';
     } catch (err) {
-      console.error('❌ ERROR parsing service-account-key.json:', err.message);
-      process.exit(0); // Exit safely
+      console.error('❌ ERROR parsing local User OAuth2 files:', err.message);
+      process.exit(0);
     }
   } else {
-    console.warn('⚠️ WARNING: Google Indexing key not found (no service-account-key.json or GOOGLE_INDEXING_KEY environment variable).');
-    console.log('💡 Real-time indexation skipped. (Astro build succeeded safely)\n');
-    process.exit(0); // Exit safely to prevent breaking Vercel builds
+    // Fallback to Service Account Key
+    let key;
+    if (process.env.GOOGLE_INDEXING_KEY) {
+      console.log('🔑 Loading Google Service Account Key from environment variable...');
+      try {
+        key = JSON.parse(process.env.GOOGLE_INDEXING_KEY);
+      } catch (err) {
+        console.error('❌ ERROR parsing GOOGLE_INDEXING_KEY environment variable:', err.message);
+        process.exit(0);
+      }
+    } else if (fs.existsSync(KEY_FILE)) {
+      console.log('🔑 Loading Google Service Account Key from service-account-key.json...');
+      try {
+        key = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+      } catch (err) {
+        console.error('❌ ERROR parsing service-account-key.json:', err.message);
+        process.exit(0);
+      }
+    }
+
+    if (key) {
+      try {
+        // Fix OpenSSL private key parsing
+        if (key.private_key) {
+          const cleanBody = key.private_key
+            .replace('-----BEGIN PRIVATE KEY-----', '')
+            .replace('-----END PRIVATE KEY-----', '')
+            .replace(/\s+/g, '');
+          key.private_key = [
+            '-----BEGIN PRIVATE KEY-----',
+            ...cleanBody.match(/.{1,64}/g),
+            '-----END PRIVATE KEY-----'
+          ].join('\n');
+        }
+
+        auth = new google.auth.GoogleAuth({
+          credentials: key,
+          scopes: ['https://www.googleapis.com/auth/indexing'],
+        });
+        authType = 'SERVICE_ACCOUNT';
+      } catch (error) {
+        console.error('❌ Service Account authentication configuration failed:', error.message);
+        process.exit(1);
+      }
+    }
   }
+
+  if (authType === 'NONE') {
+    console.warn('⚠️ WARNING: Google Indexing credentials not found!');
+    console.log('💡 To enable indexation, either add a verified Service Account Key OR configure User OAuth2.');
+    console.log('💡 Real-time indexation skipped. (Astro build succeeded safely)\n');
+    process.exit(0);
+  }
+
+  console.log(`🔐 Successfully authenticated using ${authType} flow.`);
+
+  const indexing = google.indexing({
+    version: 'v3',
+    auth: auth,
+  });
 
   // 2. Check if the production build and sitemap exist
   if (!fs.existsSync(SITEMAP_FILE)) {
@@ -51,40 +133,7 @@ async function run() {
     process.exit(1);
   }
 
-  // 3. Authenticate with Google Cloud APIs
-  console.log('🔑 Authenticating with Google Cloud Indexing API...');
-  let auth;
-  try {
-    // 🛡️ Fix OpenSSL private key parsing / DECODER unsupported issues (strictly formats to standard 64-char PEM)
-    if (key && key.private_key) {
-      const cleanBody = key.private_key
-        .replace('-----BEGIN PRIVATE KEY-----', '')
-        .replace('-----END PRIVATE KEY-----', '')
-        .replace(/\s+/g, ''); // strip all whitespaces/newlines
-
-      // Reconstruct standard 64-character PEM format
-      key.private_key = [
-        '-----BEGIN PRIVATE KEY-----',
-        ...cleanBody.match(/.{1,64}/g),
-        '-----END PRIVATE KEY-----'
-      ].join('\n');
-    }
-
-    auth = new google.auth.GoogleAuth({
-      credentials: key,
-      scopes: ['https://www.googleapis.com/auth/indexing'],
-    });
-  } catch (error) {
-    console.error('❌ Authentication configuration failed:', error.message);
-    process.exit(1);
-  }
-
-  const indexing = google.indexing({
-    version: 'v3',
-    auth: auth,
-  });
-
-  // 4. Parse URLs from sitemap-0.xml
+  // 3. Parse URLs from sitemap-0.xml
   console.log('📄 Parsing sitemap-0.xml for valid production URLs...');
   const sitemapContent = fs.readFileSync(SITEMAP_FILE, 'utf8');
   const locRegex = /<loc>(https:\/\/finesseoverseas\.com\/[^<]+)<\/loc>/g;

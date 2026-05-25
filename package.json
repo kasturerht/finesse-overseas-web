@@ -7,7 +7,8 @@
     "build": "astro build && node scripts/ping-google.js",
     "preview": "astro preview",
     "astro": "astro",
-    "ping-google": "node scripts/ping-google.js"
+    "ping-google": "node scripts/ping-google.js",
+    "authorize-user": "node scripts/authorize-user.js"
   },
   "dependencies": {
     "@astrojs/markdoc": "^1.0.4",
