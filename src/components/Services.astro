@@ -9,7 +9,7 @@ const services = [
     features: ["Profile & GAP Justification", "English-Taught Course Mapping", "Elite SOP & LOR Drafting"],
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
     // Dark Theme for Card 1
-    themeClasses: "bg-slate-900 border-slate-700 text-white",
+    themeClasses: "bg-slate-900 border-slate-700 text-white hover:border-slate-500 hover:shadow-[0_40px_70px_-15px_rgba(20,184,166,0.15)]",
     numberColor: "text-slate-800",
     featureIcon: "bg-slate-800 text-teal-400 border-slate-700",
     descColor: "text-slate-400",
@@ -22,7 +22,7 @@ const services = [
     features: ["APS Document Notarization", "Embassy Appointment Booking", "Mock Visa Interviews"],
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop",
     // Teal Brand Theme for Card 2
-    themeClasses: "bg-teal-600 border-teal-500 text-white",
+    themeClasses: "bg-teal-600 border-teal-500 text-white hover:border-teal-400 hover:shadow-[0_40px_70px_-15px_rgba(20,184,166,0.35)]",
     numberColor: "text-teal-700",
     featureIcon: "bg-teal-700 text-white border-teal-500",
     descColor: "text-teal-100",
@@ -36,7 +36,7 @@ const services = [
     // 🌟 FIX 1: Changed w=2015 to w=800 (Saves ~300 KiB)
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     // Light/White Theme for Card 3
-    themeClasses: "bg-white border-slate-200 text-slate-900",
+    themeClasses: "bg-white border-slate-200 text-slate-900 hover:border-teal-300 hover:shadow-[0_40px_70px_-15px_rgba(0,0,0,0.15)]",
     numberColor: "text-slate-100",
     featureIcon: "bg-teal-50 text-teal-600 border-teal-100",
     descColor: "text-slate-600",
@@ -62,7 +62,7 @@ const services = [
         const zIndexes = ['z-10', 'z-20', 'z-30'];
         
         return (
-          <div class={`sticky ${topOffsets[index]} ${zIndexes[index]} w-full rounded-[2rem] overflow-hidden shadow-[0_30px_50px_-15px_rgba(0,0,0,0.5)] border ${service.themeClasses} flex flex-col md:flex-row min-h-[500px] transform transition-all duration-500 ease-out`}>
+          <div class={`sticky ${topOffsets[index]} ${zIndexes[index]} w-full rounded-[2rem] overflow-hidden shadow-[0_30px_50px_-15px_rgba(0,0,0,0.5)] border ${service.themeClasses} flex flex-col md:flex-row min-h-[500px] transform transition-all duration-500 ease-out hover:scale-[1.008] hover:-translate-y-1`}>
             
             <div class="p-10 md:p-16 flex flex-col justify-center w-full md:w-1/2 relative">
               <span class={`absolute top-4 right-10 text-8xl md:text-[150px] font-black opacity-50 ${service.numberColor} select-none pointer-events-none`}>

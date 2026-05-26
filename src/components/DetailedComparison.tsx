@@ -284,7 +284,7 @@ export default function DetailedComparison() {
                 secure direct admission into recognised private colleges through institutional quota
                 channels — so your child doesn't lose a year.{' '}
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-teal-600 font-bold hover:text-teal-700 hover:underline underline-offset-2 inline-flex items-center gap-0.5 transition-colors"
                 >
                   Talk to us confidentially →
