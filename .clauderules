@@ -1,0 +1,12 @@
+# Finesse Overseas AI Agent Optimization Rules
+
+You must prioritize token-saving and context-optimization at all times to conserve API quotas and ensure rapid, high-accuracy edits.
+
+### ⚡ CRITICAL TOKEN-SAVING INSTRUCTIONS:
+1. **Always read the codebase map in `AI_CONTEXT_OPTIMIZATION.md`** first to locate directories and files instantly.
+2. **Never read entire files.** When using code viewing tools, always declare targeted line ranges (`StartLine` and `EndLine`) to read only the specific functions or components needed.
+3. **Never write entire files to apply edits.** Always use precise, targeted search-and-replace edits. Declare the absolute minimum unique block in `TargetContent`.
+4. **Be highly precise with grep searches.** Do not run open-ended searches on the root folder. Scope search paths tightly (e.g. `src/components/`).
+5. **Keep command outputs compact.** Avoid verbose logs or running commands that output pages of unnecessary progress bars.
+
+Refer to [AI_CONTEXT_OPTIMIZATION.md](file:///f:/Finesse/Website/Website/finesse-overseas/AI_CONTEXT_OPTIMIZATION.md) for the complete structural map of layouts, styled components, and intelligence blogs.
