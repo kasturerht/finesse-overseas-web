@@ -150,7 +150,16 @@ let references = [
   { name: "UNESCO Global Recognition Convention", url: "https://www.unesco.org/en/education/higher-education/global-convention", description: "Global convention on recognition of higher education qualifications." }
 ];
 
-if (categoryUpper.includes('NMC') || categoryUpper.includes('MBBS') || post.id.includes('nmc')) {
+if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || categoryUpper.includes('EXPOSE')) {
+  references = [
+    { name: "National Medical Commission (NMC) India", url: "https://www.nmc.org.in/", description: "Official regulatory body for medical education standards & FMGL Gazette regulations." },
+    { name: "DAAD Germany (German Academic Exchange Service)", url: "https://www.daad.de/en/", description: "Official German national agency for international academic exchange & degree database." },
+    { name: "Universitaly Portal (Ministry of Universities & Research)", url: "https://www.universitaly.it/", description: "Official portal of the Italian government for international university pre-enrollment." },
+    { name: "German Federal Foreign Office (Auswärtiges Amt)", url: "https://www.auswaertiges-amt.de/en", description: "Official federal office specifying Blocked Account rates & national student visa rules." },
+    { name: "Italian Ministry of Foreign Affairs (Esteri)", url: "https://www.esteri.it/en/", description: "Official guidelines for national study visas and regional DSU scholarship directives." },
+    { name: "National Board of Examinations (NBE)", url: "https://natboard.edu.in/", description: "Official board administering FMGE Screening Test & NExT licensing exams." }
+  ];
+} else if (categoryUpper.includes('NMC') || categoryUpper.includes('MBBS') || post.id.includes('nmc')) {
   references = [
     { name: "National Medical Commission (NMC) India", url: "https://www.nmc.org.in/", description: "Official regulatory body for medical education standards & FMGL Gazette regulations." },
     { name: "Ministry of Health & Family Welfare, Govt of India", url: "https://www.mohfw.gov.in/", description: "Union ministerial guidelines and official circulars for foreign medical graduates." },
