@@ -184,6 +184,10 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
     { name: "Austrian Federal Ministry of European and International Affairs (BMEIA)", url: "https://www.bmeia.gv.at/en/", description: "Official ministry detailing Austrian student visas, residence permits & D-visa requirements." }
   ];
 }
+
+const authorInitials = post.data.author
+  ? post.data.author.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+  : 'FI';
 ---
 
 <Layout
@@ -379,14 +383,14 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
           {
             (post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
               <section
-                class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-2xl border border-slate-800/60 bg-[#04070e] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)] overflow-hidden relative font-sans"
+                class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-3xl border border-slate-800/80 bg-gradient-to-b from-[#090e20] to-[#04070e] shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_1px_1px_rgba(255,255,255,0.05)] overflow-hidden relative font-sans"
                 aria-label="Executive Intelligence Payload"
               >
                 {/* Left Pane: Machine-Readable Executive Summary Target */}
                 {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
-                  <div class="md:col-span-2 p-6 lg:p-8 border-b md:border-b-0 md:border-r border-slate-800/60 relative">
+                  <div class="md:col-span-2 p-6 lg:p-9 border-b md:border-b-0 md:border-r border-slate-800/80 relative">
                     <div class="flex items-center gap-3 mb-6">
-                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                      <div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
                       <h2
                         class="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-400 m-0 p-0 leading-none border-none border-b-0 inline-block font-sans"
                         style="margin: 0 !important; padding: 0 !important; border: none !important; font-size: 11px !important; letter-spacing: 0.25em !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
@@ -396,17 +400,17 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
                     </div>
 
                     <ul
-                      class="space-y-4 m-0 p-0 list-none"
+                      class="space-y-4.5 m-0 p-0 list-none"
                       style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;"
                     >
                       {post.data.keyTakeaways.map((takeaway: string) => (
                         <li
-                          class="flex items-start gap-4 m-0 p-0"
+                          class="flex items-start gap-4.5 m-0 p-0"
                           style="margin: 0 !important; padding: 0 !important;"
                         >
-                          <span class="mt-[9px] shrink-0 w-1.5 h-1.5 rounded-full bg-slate-700 block" />
+                          <span class="mt-[8px] shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500/80 shadow-[0_0_6px_rgba(16,185,129,0.5)] block" />
                           <span
-                            class="text-[14px] text-slate-300 leading-relaxed font-light m-0 p-0 font-sans"
+                            class="text-[14px] md:text-[15px] text-slate-300 leading-relaxed font-normal m-0 p-0 font-sans"
                             style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
                           >
                             {takeaway}
@@ -419,7 +423,7 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
 
                 {/* Right Pane: Contextual Conversion Engine Box (GTM DataLayer Tracked) */}
                 {post.data.moneyPageLink && (
-                  <div class="md:col-span-1 p-6 lg:p-8 flex flex-col justify-center relative bg-gradient-to-br from-slate-900/40 to-[#02040a] group">
+                  <div class="md:col-span-1 p-6 lg:p-9 flex flex-col justify-center relative bg-gradient-to-br from-[#0c142c]/50 to-[#020409] group">
                     <div class="relative z-10 flex flex-col h-full">
                       <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 block font-mono">
                         Action Hub
@@ -438,7 +442,7 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
                           id="gtm-hub-spoke-conversion"
                           data-conversion-type="hub-spoke"
                           data-target-slug={post.id.split(".")[0]}
-                          class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-sm font-sans cursor-pointer"
+                          class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] shadow-sm font-sans cursor-pointer"
                           style="font-size: 10px !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
                         >
                           Explore Hub
@@ -529,15 +533,10 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
           {/* Premium Editorial Author Matrix Presentation */}
           <div class="bg-slate-900/10 rounded-2xl p-5 md:p-6 border border-slate-800/40 flex flex-col sm:flex-row gap-5 md:gap-6 items-center sm:items-start group relative font-sans">
             <div class="flex-shrink-0 relative">
-              <div class="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden ring-1 ring-slate-800 p-[2px] bg-slate-950 transition-all duration-500 group-hover:ring-emerald-500/30">
-                <img
-                  src="/images/rohit.jpg"
-                  alt={post.data.author}
-                  class="w-full h-full object-cover rounded-full bg-[#0a0f1c]"
-                  onerror="this.src='https://ui-avatars.com/api/?name=Rohit+Kasture&background=030712&color=10b981&size=128&bold=true'"
-                />
+              <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-lg md:text-xl font-bold tracking-wider select-none shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:from-emerald-500/30 group-hover:to-teal-500/20 group-hover:border-emerald-500/50 group-hover:text-emerald-300 transition-all duration-500">
+                {authorInitials}
               </div>
-              <div class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-900">
+              <div class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-900 shadow-sm">
                 <svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
                 </svg>
@@ -952,25 +951,30 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
 
   /* Core Markdown Document Typography Profiles Mapping */
   .audit-content h2 {
-    @apply text-2xl md:text-3xl font-serif text-white mt-12 mb-6 border-b border-slate-800 pb-3 scroll-mt-28 font-bold;
+    @apply text-2xl md:text-3xl font-serif text-white mt-16 md:mt-24 mb-6 border-b border-slate-800 pb-4 scroll-mt-28 font-bold tracking-tight;
   }
   .audit-content h3 {
-    @apply text-xl md:text-2xl font-serif text-emerald-400 mt-8 mb-4 scroll-mt-28 font-semibold;
+    @apply text-xl md:text-2xl font-serif text-emerald-400 mt-12 md:mt-16 mb-4 scroll-mt-28 font-semibold;
   }
   .audit-content p {
-    @apply text-slate-300 leading-relaxed mb-6 text-base md:text-lg font-sans font-light;
+    @apply text-slate-300 mb-7 text-base md:text-lg font-sans font-light;
+    line-height: 1.8;
   }
   .audit-content ul {
-    @apply list-disc pl-6 text-slate-300 mb-6 space-y-2 text-base md:text-lg font-sans;
+    @apply list-disc pl-6 text-slate-300 mb-7 space-y-3 text-base md:text-lg font-sans font-light;
+    line-height: 1.8;
   }
   .audit-content ul li::marker {
     @apply text-emerald-500;
   }
   .audit-content ol {
-    @apply list-decimal pl-6 text-slate-300 mb-6 space-y-2 text-base md:text-lg font-sans;
+    @apply list-decimal pl-6 text-slate-300 mb-7 space-y-3 text-base md:text-lg font-sans font-light;
+    line-height: 1.8;
   }
-  .audit-content strong {
-    @apply text-emerald-400 font-semibold;
+  .audit-content strong,
+  .audit-content b {
+    color: #ffffff !important;
+    font-weight: 700 !important;
   }
   .audit-content blockquote {
     @apply border-l-4 border-emerald-500 pl-6 py-3 italic text-slate-400 bg-slate-900/50 my-8 rounded-r-xl font-sans;
@@ -978,15 +982,18 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
 
   /* Machine-Readable Structuring for Aggregated Table Matrices */
   .audit-content table {
-    @apply w-full text-left border-collapse border border-slate-800 rounded-xl overflow-hidden my-8 text-sm bg-slate-900/50 shadow-lg font-sans;
+    @apply w-full text-left border-collapse border border-slate-800/80 rounded-2xl overflow-hidden my-12 text-sm bg-slate-900/20 shadow-2xl font-sans;
   }
   .audit-content th {
-    @apply bg-slate-800/80 text-slate-200 font-bold p-4 border-b border-slate-700 uppercase tracking-wider text-xs font-mono;
+    @apply bg-[#0b0f19] text-slate-200 font-bold p-4 md:p-5 border-b border-slate-800 uppercase tracking-wider text-xs font-mono;
   }
   .audit-content td {
-    @apply p-4 border-b border-slate-800/60 text-slate-300 font-light;
+    @apply p-4 md:p-5 border-b border-slate-800/50 text-slate-300 font-light leading-relaxed;
+  }
+  .audit-content tr:nth-child(even) td {
+    @apply bg-slate-950/20;
   }
   .audit-content tr:hover td {
-    @apply bg-slate-800/30 transition-colors;
+    @apply bg-slate-900/40 transition-colors;
   }
 </style>
