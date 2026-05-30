@@ -64,6 +64,34 @@ The Italian tax police, the **Guardia di Finanza**, works closely with universit
 2.  **The Data Sync:** Once you arrive in Italy, the financial records submitted to the consulate for your visa are cross-referenced with the low-income claims submitted to the CAF for your scholarship.
 3.  **The Fraud Detection:** If you showed a ₹15 Lakh bank balance and ₹10 Lakh family ITR to get your visa, but claimed a ₹1.5 Lakh family income to get a scholarship, the system instantly flags a mismatch. The Italian Consulate then contacts the Indian Income Tax Department or the local Tehsildar to verify the documents.
 
+```mermaid
+graph TD
+    subgraph India [1. Indian Document Procurement & Verification]
+        A[Local Financial Records] -->|Gross Income, Bank Balance, Property sq.m.| B[State/SDM Authentication]
+        B -->|Verified Originals| C[MEA digital Apostille Sticker]
+        C -->|Consular Pipeline| D[Sworn Italian Translation]
+    end
+
+    subgraph Submission [2. Italian CAF Integration]
+        D -->|Legalized Files| E[Official Partner CAF Portal]
+        F[Consular Codice Fiscale] -->|Registered Active Tax ID| E
+        E -->|Calculation Engine| G[Official ISEE Parificato Certificate]
+    end
+
+    subgraph Security [3. Cross-Border Security Audit]
+        H[Italian Consulate Visa File] -->|Financial Solvency Proofs| I{Guardia di Finanza Cross-Check}
+        G -->|Scholarship Application Claims| I
+    end
+
+    subgraph Outcome [4. Final Evaluation]
+        I -->|100% Match & Compliant| J[✔ Successful €8,000/Yr Scholarship & Free Housing]
+        I -->|Discrepancy/Forgery Flagged| K[✘ Deportation, University Expulsion & Schengen Ban]
+    end
+
+    style J fill:#10B981,stroke:#047857,stroke-width:2px,color:#fff
+    style K fill:#EF4444,stroke:#B91C1C,stroke-width:2px,color:#fff
+```
+
 ### The Cost of Getting Caught
 If Italian authorities flag a document as forged or mismatched:
 *   **Immediate University Expulsion:** You are immediately expelled, and your enrollment is declared null and void.
