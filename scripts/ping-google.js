@@ -20,57 +20,14 @@ const IGNORED_PATTERNS = [
 async function run() {
   console.log('\n🚀 Starting God-Level Google Indexing Pipeline...');
 
-  // 1. Authenticate with Google Cloud APIs (Prioritize Service Account for production robustness)
+  // 1. Authenticate with Google Cloud APIs (Supports both User OAuth2 & Service Account)
   let auth;
   let authType = 'NONE';
 
   const OAUTH_CLIENT_FILE = path.join(process.cwd(), 'oauth-client-secret.json');
   const OAUTH_TOKENS_FILE = path.join(process.cwd(), 'oauth-tokens.json');
 
-  let key;
-  if (process.env.GOOGLE_INDEXING_KEY) {
-    console.log('🔑 Loading Google Service Account Key from environment variable...');
-    try {
-      key = JSON.parse(process.env.GOOGLE_INDEXING_KEY);
-    } catch (err) {
-      console.error('❌ ERROR parsing GOOGLE_INDEXING_KEY environment variable:', err.message);
-      process.exit(0);
-    }
-  } else if (fs.existsSync(KEY_FILE)) {
-    console.log('🔑 Loading Google Service Account Key from service-account-key.json...');
-    try {
-      key = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
-    } catch (err) {
-      console.error('❌ ERROR parsing service-account-key.json:', err.message);
-      process.exit(0);
-    }
-  }
-
-  if (key) {
-    try {
-      // Fix OpenSSL private key parsing
-      if (key.private_key) {
-        const cleanBody = key.private_key
-          .replace('-----BEGIN PRIVATE KEY-----', '')
-          .replace('-----END PRIVATE KEY-----', '')
-          .replace(/\s+/g, '');
-        key.private_key = [
-          '-----BEGIN PRIVATE KEY-----',
-          ...cleanBody.match(/.{1,64}/g),
-          '-----END PRIVATE KEY-----'
-        ].join('\n');
-      }
-
-      auth = new google.auth.GoogleAuth({
-        credentials: key,
-        scopes: ['https://www.googleapis.com/auth/indexing'],
-      });
-      authType = 'SERVICE_ACCOUNT';
-    } catch (error) {
-      console.error('❌ Service Account authentication configuration failed:', error.message);
-      process.exit(1);
-    }
-  } else if (process.env.GOOGLE_OAUTH_TOKENS && process.env.GOOGLE_OAUTH_CLIENT) {
+  if (process.env.GOOGLE_OAUTH_TOKENS && process.env.GOOGLE_OAUTH_CLIENT) {
     console.log('🔑 Loading User OAuth2 Credentials from environment variables...');
     try {
       const clientConfig = JSON.parse(process.env.GOOGLE_OAUTH_CLIENT);
@@ -106,6 +63,52 @@ async function run() {
     } catch (err) {
       console.error('❌ ERROR parsing local User OAuth2 files:', err.message);
       process.exit(0);
+    }
+  } else {
+    // Fallback to Service Account Key
+    let key;
+    if (process.env.GOOGLE_INDEXING_KEY) {
+      console.log('🔑 Loading Google Service Account Key from environment variable...');
+      try {
+        key = JSON.parse(process.env.GOOGLE_INDEXING_KEY);
+      } catch (err) {
+        console.error('❌ ERROR parsing GOOGLE_INDEXING_KEY environment variable:', err.message);
+        process.exit(0);
+      }
+    } else if (fs.existsSync(KEY_FILE)) {
+      console.log('🔑 Loading Google Service Account Key from service-account-key.json...');
+      try {
+        key = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+      } catch (err) {
+        console.error('❌ ERROR parsing service-account-key.json:', err.message);
+        process.exit(0);
+      }
+    }
+
+    if (key) {
+      try {
+        // Fix OpenSSL private key parsing
+        if (key.private_key) {
+          const cleanBody = key.private_key
+            .replace('-----BEGIN PRIVATE KEY-----', '')
+            .replace('-----END PRIVATE KEY-----', '')
+            .replace(/\s+/g, '');
+          key.private_key = [
+            '-----BEGIN PRIVATE KEY-----',
+            ...cleanBody.match(/.{1,64}/g),
+            '-----END PRIVATE KEY-----'
+          ].join('\n');
+        }
+
+        auth = new google.auth.GoogleAuth({
+          credentials: key,
+          scopes: ['https://www.googleapis.com/auth/indexing'],
+        });
+        authType = 'SERVICE_ACCOUNT';
+      } catch (error) {
+        console.error('❌ Service Account authentication configuration failed:', error.message);
+        process.exit(1);
+      }
     }
   }
 
