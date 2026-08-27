@@ -84,11 +84,12 @@ const organizationSchema = JSON.stringify({
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" />
     </noscript>
 
-    <!-- Global Organization + EducationalOrganization schema (every page) -->
-    <script type="application/ld+json" set:html={organizationSchema} />
-
-    <!-- Page-specific schema injected from individual pages (Article, FAQ, etc.) -->
-    {schema && <script type="application/ld+json" set:html={schema} />}
+    <!-- Schema injection: Render full page-specific graph if provided, otherwise fall back to default organization schema -->
+    {schema ? (
+      <script type="application/ld+json" set:html={schema} />
+    ) : (
+      <script type="application/ld+json" set:html={organizationSchema} />
+    )}
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

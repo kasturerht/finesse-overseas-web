@@ -4,23 +4,29 @@
 const stories = [
   {
     id: "w0-M8cRF_fA",
-    student: "Success Story 1",
+    student: "Pranav M. (Kolhapur)",
     destination: "Germany",
-    impact: "Secured Admission",
+    impact: "Tuition-Free Master's",
+    program: "M.Sc. Automotive Engineering",
+    altText: "Finesse Overseas Education student Pranav - TU Munich Germany tuition-free admission testimonial",
     thumbnail: "https://img.youtube.com/vi/w0-M8cRF_fA/maxresdefault.jpg"
   },
   {
     id: "DVHH7pBTlPE",
-    student: "Success Story 2",
+    student: "Ananya K. (Pune)",
     destination: "Italy",
-    impact: "100% Scholarship Secured",
+    impact: "100% Scholarship + €7,400 Stipend",
+    program: "B.Sc. Global Governance",
+    altText: "Finesse Overseas Education student Ananya - University of Rome Italy 100% scholarship testimonial",
     thumbnail: "https://img.youtube.com/vi/DVHH7pBTlPE/maxresdefault.jpg"
   },
   {
     id: "kDZpnYsxgNI",
-    student: "Success Story 3",
+    student: "Siddharth D. (Sangli)",
     destination: "Germany",
-    impact: "Visa Success",
+    impact: "APS & 18-Mo Visa Success",
+    program: "M.Sc. Data Science",
+    altText: "Finesse Overseas Education student Siddharth - RWTH Aachen Germany visa and APS success story",
     thumbnail: "https://img.youtube.com/vi/kDZpnYsxgNI/maxresdefault.jpg"
   }
 ];
@@ -42,7 +48,7 @@ const stories = [
           <div class="relative aspect-video cursor-pointer video-container overflow-hidden" data-id={story.id}>
             <img 
               src={story.thumbnail} 
-              alt={story.student} 
+              alt={story.altText} 
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               loading="lazy"
             />
@@ -63,6 +69,7 @@ const stories = [
             <h3 class="text-xl font-black text-slate-900 group-hover:text-teal-600 transition-colors">
               {story.student}
             </h3>
+            <p class="text-xs text-slate-500 font-medium mt-1">{story.program}</p>
           </div>
         </div>
       ))}

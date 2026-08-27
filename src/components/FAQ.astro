@@ -1,26 +1,38 @@
 ---
-// src/components/FAQ.astro
+interface Props {
+  renderSchema?: boolean;
+}
 
-const faqs = [
+const { renderSchema = true } = Astro.props;
+
+export const faqs = [
   {
     question: "Is education really free in Germany for international students?",
-    answer: "Yes. The vast majority of public universities in Germany do not charge tuition fees for Bachelor's and Master's programs, even for international students. You only need to pay a small semester contribution (usually €150 - €300) which often includes a public transport ticket."
+    answer: "Yes. In 16 German federal states, public universities charge €0 tuition fees for Bachelor's and Master's degrees. Students only pay a minor administrative semester fee (€150 - €350) which typically includes a regional public transit pass."
   },
   {
-    question: "How does the 100% Scholarship in Italy work?",
-    answer: "Italy offers the scholarship, which is a regional need-based scholarship. If you qualify, it covers your full tuition fee, provides free hostel accommodation (or allowance), free daily meals, and an annual stipend of up to €7,000 to €8,000."
+    question: "How does the 100% Scholarship in Italy (DSU / ISEE Parificato) work?",
+    answer: "Italy provides regional need-based scholarships (DSU) based on family income calculated via the ISEE Parificato document. Eligible Indian students receive a 100% tuition waiver, free university dining, student housing access, and an annual cash stipend of up to €7,400 to €8,000."
   },
   {
-    question: "What is an APS Certificate and why is it required?",
-    answer: "The APS (Akademische Prüfstelle) certificate is a mandatory document for Indian students applying to German universities. It verifies the authenticity of your Indian academic documents. Finesse handles the entire APS notarization and application process to ensure zero delays."
+    question: "What are the mandatory NMC FMGL 2021 rules for MBBS Abroad?",
+    answer: "Under the National Medical Commission (NMC) FMGL Regulations 2021, foreign medical degrees must feature a minimum 54-month theoretical course, 12 months of integrated internship at the same institution, 100% English instruction medium, and confer a valid license to practice in the awarding country."
   },
   {
-    question: "Do I need to speak German or Italian to study there?",
-    answer: "Not necessarily. We map your profile to 100% English-taught programs. However, learning the basics of the local language (A1/A2 level) is highly recommended for daily life, part-time jobs, and future post-study work opportunities."
+    question: "Can Indian students study in Austria without a Blocked Account?",
+    answer: "Yes! Unlike Germany, Austrian public universities do not mandate a German-style blocked account upfront. Tuition fees are highly subsidized at approximately €736 per semester, making Austria one of Europe's most economical English-taught study destinations."
   },
   {
-    question: "What is a Blocked Account for Germany?",
-    answer: "To get a German student visa, you must prove you can support yourself financially. You do this by depositing around €11,208 into a 'Blocked Account' (Sperrkonto) in Germany. This money remains yours, and you receive a monthly payout of €934 to cover your living expenses."
+    question: "What is an APS Certificate and why is it mandatory for Germany?",
+    answer: "The APS (Akademische Prüfstelle) certificate issued by the German Embassy in New Delhi verifies the authenticity of Indian academic credentials. It is a compulsory prerequisite for German student visa applications and Uni-Assist university admissions."
+  },
+  {
+    question: "Do I need to speak German or Italian to study in Europe?",
+    answer: "No. All programs recommended by Finesse are 100% taught in English. However, learning foundational local language (A1/A2 level) is strongly recommended for seamless daily living, student part-time jobs, and post-study career integration."
+  },
+  {
+    question: "What is the Blocked Account (Sperrkonto) requirement for Germany in 2026?",
+    answer: "For a German student visa in 2026, students deposit €11,208 into a regulated blocked account (such as Expatrio or Fintiba). This remains the student's personal money, paid back automatically in monthly installments of €934 for living expenses."
   }
 ];
 
@@ -39,7 +51,7 @@ const faqSchema = {
 ---
 
 <section class="py-24 bg-slate-50 relative overflow-hidden" id="faq">
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  {renderSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
