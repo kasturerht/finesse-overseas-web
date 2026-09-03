@@ -996,4 +996,18 @@ const authorInitials = post.data.author
   .audit-content tr:hover td {
     @apply bg-slate-900/40 transition-colors;
   }
+
+  /* High-Contrast Code Block & Snippet Styling */
+  .audit-content pre {
+    @apply bg-[#0a0f1d] border border-slate-700/80 rounded-2xl p-5 md:p-6 overflow-x-auto my-8 text-sm md:text-base font-mono shadow-2xl;
+    color: #a7f3d0 !important;
+    line-height: 1.7;
+  }
+  .audit-content pre code {
+    @apply bg-transparent p-0 border-0 font-mono text-sm md:text-base;
+    color: #a7f3d0 !important;
+  }
+  .audit-content :not(pre) > code {
+    @apply bg-slate-800/90 text-emerald-400 px-2.5 py-1 rounded-md text-xs md:text-sm font-mono border border-slate-700/60;
+  }
 </style>
