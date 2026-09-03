@@ -32,8 +32,8 @@ export default config({
         ),
         publishDate: fields.date({ label: 'Initial Publish Date' }),
         lastModifiedDate: fields.date({ label: 'Last Modified Date' }),
-        author: fields.text({ label: 'Author Name', defaultValue: 'Rohit Kasture' }),
-        authorRole: fields.text({ label: 'Author Role / Designation', defaultValue: 'Senior Placement Strategist' }),
+        author: fields.text({ label: 'Author Name', defaultValue: 'Mr. Jayant Patil' }),
+        authorRole: fields.text({ label: 'Author Role / Designation', defaultValue: 'Founder & CEO' }),
         category: fields.select({
           label: 'Category',
           options: [

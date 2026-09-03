@@ -13,8 +13,8 @@ const intelligenceCollection = defineCollection({
       keyTakeaways: z.array(z.string()).default([]),
       publishDate: z.date(),
       lastModifiedDate: z.date().optional(),
-      author: z.string().default('Rohit Kasture'),
-      authorRole: z.string().optional().default('Consulting Expert'),
+      author: z.string().default('Mr. Jayant Patil'),
+      authorRole: z.string().optional().default('Founder & CEO'),
       category: z.string().default('NMC Alerts'), // ⚡ FLEXIBLE FIX: Allowed dynamic string to prevent enum crashes on server
       isFeatured: z.boolean().default(false),
       coverImage: image(),
