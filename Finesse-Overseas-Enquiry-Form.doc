@@ -18,7 +18,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 14mm 16mm 14mm 16mm;
+      margin: 12mm 15mm 12mm 15mm;
     }
     
     * {
@@ -34,14 +34,14 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: #0f172a;
       background-color: #ffffff;
-      font-size: 10.5pt;
+      font-size: 10pt;
       line-height: 1.4;
     }
 
     .page-container {
       height: 100%;
-      min-height: 268mm;
-      max-height: 269mm;
+      min-height: 272mm;
+      max-height: 273mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -50,13 +50,13 @@
     /* HEADER */
     .header-table {
       width: 100%;
-      border-bottom: 2.5px solid #0f766e;
-      padding-bottom: 12px;
-      margin-bottom: 6px;
+      border-bottom: 2px solid #0f766e;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
     }
 
     .logo-img {
-      height: 52px;
+      height: 48px;
       width: auto;
       object-fit: contain;
     }
@@ -67,7 +67,7 @@
 
     .form-main-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 18pt;
+      font-size: 17pt;
       font-weight: 800;
       color: #0f172a;
       letter-spacing: 1.5px;
@@ -87,16 +87,16 @@
     .date-box {
       text-align: right;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5pt;
+      font-size: 10pt;
       font-weight: 700;
       color: #1e293b;
     }
 
     .date-line {
       display: inline-block;
-      border-bottom: 1.8px solid #0f172a;
-      width: 120px;
-      height: 20px;
+      border-bottom: 1.5px solid #0f172a;
+      width: 110px;
+      height: 18px;
       vertical-align: bottom;
       margin-left: 6px;
     }
@@ -107,9 +107,9 @@
       flex-direction: column;
       justify-content: space-between;
       flex: 1;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      gap: 16px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      gap: 15px;
     }
 
     .field-row {
@@ -128,7 +128,7 @@
     .label {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      font-size: 10.5pt;
+      font-size: 10pt;
       color: #0f172a;
       white-space: nowrap;
       margin-right: 8px;
@@ -137,31 +137,31 @@
 
     .line {
       flex: 1;
-      border-bottom: 1.5px dotted #64748b;
-      height: 24px;
+      border-bottom: 1.3px dotted #64748b;
+      height: 22px;
       margin-bottom: 2px;
     }
 
     /* OFFICE USE ONLY BOX */
     .office-box {
-      border: 1.8px solid #0f766e;
-      border-radius: 8px;
+      border: 1.5px solid #0f766e;
+      border-radius: 6px;
       background: #f8fafc;
-      padding: 12px 16px;
-      margin-top: 6px;
+      padding: 10px 14px;
+      margin-top: 4px;
       margin-bottom: 8px;
     }
 
     .office-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 9.5pt;
+      font-size: 9pt;
       font-weight: 800;
       color: #0f766e;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      border-bottom: 1.2px solid #cbd5e1;
-      padding-bottom: 5px;
-      margin-bottom: 12px;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -170,29 +170,48 @@
     .office-fields {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
-    /* FOOTER BAR */
+    /* CORPORATE FOOTER (CLEANLY STRUCTURED & CENTERED) */
     .footer-bar {
-      border-top: 1.8px solid #0f766e;
-      padding-top: 8px;
-      font-size: 8pt;
-      color: #475569;
+      border-top: 1.5px solid #0f766e;
+      padding-top: 7px;
+      text-align: center;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      line-height: 1.4;
+      flex-direction: column;
+      gap: 3px;
+      line-height: 1.35;
     }
 
-    .footer-brand {
-      font-weight: 800;
+    .footer-line-1 {
+      font-size: 8pt;
+      color: #334155;
+    }
+
+    .footer-line-1 strong {
       color: #0f766e;
+      font-weight: 800;
+      letter-spacing: 0.5px;
     }
 
-    .contact-badge {
-      font-weight: 700;
+    .footer-line-2 {
+      font-size: 8pt;
       color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-line-2 strong {
+      color: #0f766e;
+      font-weight: 700;
+    }
+
+    .sep {
+      color: #94a3b8;
+      font-size: 7.5pt;
     }
   </style>
 </head>
@@ -365,13 +384,17 @@
     </div>
   </div>
 
-  <!-- CORPORATE FOOTER -->
+  <!-- CORPORATE FOOTER (PROPERLY ARRANGE) -->
   <div class="footer-bar">
-    <div>
-      <span class="footer-brand">FINESSE OVERSEAS EDUCATION</span> | Samarth Sakshi Plaza, 1st Floor, 4th Lane, Rajarampuri, Kolhapur - 416008
+    <div class="footer-line-1">
+      <strong>FINESSE OVERSEAS EDUCATION</strong> &nbsp;|&nbsp; Samarth Sakshi Plaza, 1st Floor, 4th Lane, Rajarampuri, Kolhapur - 416008
     </div>
-    <div>
-      📞 <span class="contact-badge">+91-9850069600</span> | 🌐 <span class="contact-badge">finesseoverseas.com</span>
+    <div class="footer-line-2">
+      <span>📞 <strong>+91-9850069600</strong></span>
+      <span class="sep">•</span>
+      <span>✉️ <strong>info@finesseoverseas.in</strong></span>
+      <span class="sep">•</span>
+      <span>🌐 <strong>finesseoverseas.com</strong></span>
     </div>
   </div>
 
