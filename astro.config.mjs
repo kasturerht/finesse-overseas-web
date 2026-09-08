@@ -20,9 +20,17 @@ export default defineConfig({
   site: 'https://finesseoverseas.com',
   vite: {
     plugins: [tailwindcss()],
-    // 🚀 THE FIX: Vite ला React नीट लोड करायला सांगणे
     optimizeDeps: {
-      include: ['react', 'react-dom/client', 'react/jsx-runtime']
+      include: ['react', 'react-dom/client', 'react/jsx-runtime'],
+      exclude: [
+        '@keystatic/astro',
+        'astro-decap-cms-oauth',
+        'virtual:keystatic-config',
+        'virtual:decap-cms-config'
+      ]
+    },
+    ssr: {
+      external: ['virtual:keystatic-config', 'virtual:decap-cms-config']
     }
   },
 
