@@ -1,180 +1,256 @@
 ---
 // src/components/IntelligenceRadar.astro
-// UPGRADED & FIXED: SEO H1 Tag, Breadcrumbs, and Fixed Navbar Overlap Bug
+// 👑 THE MASTERPIECE EDITORIAL HERO: 7:5 Split Magazine Layout (High-Trust Academic Journal)
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('intelligence');
-// Sort by date descending
 const sortedPosts = allPosts.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
-// Map the posts to our featured slots based on our actual V2.0 blogs
-const germanyPost = sortedPosts.find(p => p.id.includes('bilingual-degree-trap'));
-const nmcPost = sortedPosts.find(p => p.id.includes('nmc-approved-colleges-list-scam'));
-const neetPost = sortedPosts.find(p => p.id.includes('trapped-in-neet-2026-re-exam-loop'));
-
-// Fallback logic to protect the page from breaking if slugs don't match
-const mainPost = germanyPost || sortedPosts[0];
-const secondPost = nmcPost || sortedPosts[1] || sortedPosts[0];
-const thirdPost = neetPost || sortedPosts[2] || sortedPosts[0];
-
-// Dynamic URL slugs
+// Select Lead Cover Story: Featured post or latest
+const mainPost = sortedPosts.find(p => p.data.isFeatured) || sortedPosts[0];
 const mainSlug = mainPost ? mainPost.id.split('.')[0] : '';
-const secondSlug = secondPost ? secondPost.id.split('.')[0] : '';
-const thirdSlug = thirdPost ? thirdPost.id.split('.')[0] : '';
 
-// Calculate dynamic read time for main post
+// 3 Trending Investigation Stories (excluding mainPost)
+const trendingPosts = sortedPosts.filter(p => p.id !== mainPost?.id).slice(0, 3);
+
+// Dynamic Read Time
 const mainBodyRaw = mainPost && typeof mainPost.body === "string" ? mainPost.body : "";
 const mainTotalWords = mainBodyRaw.trim().split(/\s+/).filter(Boolean).length;
 const mainReadTime = Math.max(3, Math.ceil(mainTotalWords / 200));
 
-// Image fallbacks
-const mainImgSrc = mainPost && mainPost.data.coverImage ? mainPost.data.coverImage.src : "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1600&auto=format&fit=crop";
+// Key Takeaways preview (first 2 points)
+const keyPoints = mainPost?.data?.keyTakeaways?.slice(0, 2) || [];
 
 const { 
   tickerItems = [
     "🚨 ALERT: 4 Universities in Kyrgyzstan Blacklisted by Finesse",
-    "🟢 LIVE: Georgia FMGE passing hits 42% for 2025",
-    "⚠️ WARNING: Avoid Bilingual Programs (English + Russian) disguised as 100% English"
+    "🟢 LIVE: Germany 2026 Chancenkarte quota for Indian STEM graduates expanded",
+    "⚠️ WARNING: Avoid Bilingual Programs (English + Russian) disguised as 100% English",
+    "🏛️ UPDATE: Italy DSU Scholarship 2026/27 ISEE thresholds published"
   ]
 } = Astro.props;
 ---
 
-<section class="relative w-full bg-[#030712] font-sans pt-28 pb-12 overflow-hidden border-b border-slate-800/50">
+<section class="relative w-full bg-[#FAFAFA] font-sans pt-28 pb-12 overflow-hidden border-b border-slate-200">
   
   <h1 class="sr-only">MBBS Abroad Intelligence Hub: NMC Alerts, University Audits & Scams Revealed</h1>
 
-  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none opacity-40"></div>
+  <!-- Subtle Editorial Grid & Accent Glow -->
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+  <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
+  <!-- Breadcrumbs & Edition Tag -->
   <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-20 mb-6">
-    <nav class="flex items-center text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-emerald-400 transition-colors">Home</a>
-      <span class="mx-2 text-slate-700">/</span>
-      <span class="text-emerald-500">Intelligence Hub</span>
-    </nav>
-  </div>
-
-  <div class="relative w-full border-y border-emerald-500/40 bg-slate-900/80 backdrop-blur-md flex items-center h-12 overflow-hidden mb-12 shadow-[0_5px_30px_rgba(0,0,0,0.5)]">
-    <div class="absolute left-0 top-0 bottom-0 z-20 bg-[#050b14] flex items-center px-4 lg:px-8 border-r border-emerald-500/40 shadow-[20px_0_30px_rgba(5,11,20,0.95)]">
-      <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_12px_rgba(16,185,129,1)]"></span>
-        <span class="text-[10px] font-mono font-black text-emerald-400 uppercase tracking-widest hidden sm:inline-block">NMC Radar Live</span>
-        <span class="text-[10px] font-mono font-black text-emerald-400 uppercase tracking-widest sm:hidden">Live</span>
-      </div>
-    </div>
-    
-    <div class="flex w-max animate-ticker pl-[150px] sm:pl-[220px] lg:pl-[250px] relative z-10">
-      <div class="flex gap-16 items-center pr-16">
-        {tickerItems.map(item => (
-          <span class="text-[13px] font-mono font-bold text-slate-200 tracking-wide whitespace-nowrap">{item}</span>
-        ))}
-      </div>
-      <div class="flex gap-16 items-center pr-16" aria-hidden="true">
-        {tickerItems.map(item => (
-          <span class="text-[13px] font-mono font-bold text-slate-200 tracking-wide whitespace-nowrap">{item}</span>
-        ))}
+    <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-500 pb-4 border-b border-slate-200/80">
+      <nav class="flex items-center gap-2 font-bold uppercase tracking-wider" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-emerald-700 transition-colors">Home</a>
+        <span class="text-slate-300">/</span>
+        <span class="text-emerald-700 font-semibold">Intelligence Hub</span>
+      </nav>
+      <div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-600">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Vol. 2026 • Sovereign Admissions Journal</span>
       </div>
     </div>
   </div>
 
-  <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-8 h-auto xl:h-[550px]">
+  <!-- Breaking Institutional Marquee Bar -->
+  <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-20 mb-10">
+    <div class="relative w-full bg-white border border-slate-200 rounded-2xl flex items-center h-12 overflow-hidden shadow-sm">
+      <div class="absolute left-0 top-0 bottom-0 z-20 bg-slate-900 text-white flex items-center px-4 lg:px-5 rounded-l-2xl shadow-md">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-300">NMC Live Radar</span>
+        </div>
+      </div>
       
-      {/* Slot 1: Germany Bilingual Trap Blog (Dynamic Left Giant Card) */}
-      {mainPost && (
-        <a href={`/intelligence/${mainSlug}`} class="xl:col-span-8 relative rounded-3xl overflow-hidden group block h-[450px] xl:h-full border border-slate-700/80 hover:border-emerald-500/50 transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          
-          <div class="absolute inset-0 bg-slate-950">
-            <img src={mainImgSrc} alt={mainPost.data.coverImageAlt || mainPost.data.title} class="w-full h-full object-cover opacity-70 group-hover:opacity-60 group-hover:scale-105 transition-all duration-[1500ms] ease-out" />
-          </div>
-          
-          <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent"></div>
-          <div class="absolute inset-0 bg-gradient-to-r from-[#030712]/80 via-[#030712]/30 to-transparent"></div>
+      <div class="flex w-max animate-ticker pl-[135px] sm:pl-[170px] relative z-10">
+        <div class="flex gap-12 items-center pr-12 py-2">
+          {tickerItems.map(item => (
+            <span class="text-xs font-medium text-slate-700 tracking-normal whitespace-nowrap flex items-center gap-2">
+              {item}
+            </span>
+          ))}
+        </div>
+        <div class="flex gap-12 items-center pr-12 py-2" aria-hidden="true">
+          {tickerItems.map(item => (
+            <span class="text-xs font-medium text-slate-700 tracking-normal whitespace-nowrap flex items-center gap-2">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <div class="absolute inset-0 p-8 lg:p-12 flex flex-col justify-end">
+  <!-- Hero Editorial Grid (7:5 Split) -->
+  <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+      
+      <!-- Left Column: Lead Cover Story Spotlight (7 Columns) -->
+      {mainPost && (
+        <article class="lg:col-span-7 bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          
+          <!-- Image Section with Category & Badge -->
+          <a href={`/intelligence/${mainSlug}`} class="block relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100 finesse-master-anchor" data-gtm-title={mainPost.data.title} data-gtm-slug={mainSlug}>
+            {mainPost.data.coverImage ? (
+              <img 
+                src={mainPost.data.coverImage.src} 
+                alt={mainPost.data.coverImageAlt || mainPost.data.title} 
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                loading="eager"
+              />
+            ) : (
+              <div class="w-full h-full bg-slate-200"></div>
+            )}
             
-            <div class="absolute top-8 left-8 flex gap-3">
-              <span class="bg-rose-500/20 border border-rose-500/30 text-rose-300 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded backdrop-blur-md shadow-lg">{mainPost.data.category}</span>
-              <span class="bg-slate-900/80 border border-slate-600 text-slate-200 text-[10px] font-mono uppercase tracking-widest px-3 py-1.5 rounded backdrop-blur-md flex items-center gap-1.5 shadow-lg">
-                <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                {mainReadTime} Min Read
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+
+            <div class="absolute top-5 left-5 flex items-center gap-2 z-20">
+              <span class="bg-emerald-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                Lead Investigation
+              </span>
+              <span class="bg-white/95 backdrop-blur-md text-slate-800 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                {mainPost.data.category}
               </span>
             </div>
 
-            <div class="relative transform transition-transform duration-500 group-hover:-translate-y-2">
-              <div class="flex items-center gap-2 mb-4 text-emerald-400 text-[10px] font-mono tracking-widest uppercase font-bold">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                Verified Intelligence Report
-              </div>
-              
-              <h2 class="text-3xl lg:text-4xl font-serif text-white font-medium leading-[1.2] tracking-tight mb-6 max-w-3xl drop-shadow-2xl">
-                {mainPost.data.title}
-              </h2>
-              
-              <p class="text-slate-200 text-sm lg:text-base font-medium max-w-2xl mb-8 line-clamp-2 opacity-90 drop-shadow-md">
+            <div class="absolute bottom-4 right-4 z-20 bg-black/60 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1 rounded-full flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {mainReadTime} Min In-Depth Read
+            </div>
+          </a>
+
+          <!-- Content Section -->
+          <div class="p-6 sm:p-8 flex flex-col flex-grow justify-between">
+            <div>
+              <a href={`/intelligence/${mainSlug}`} class="block group-hover:text-emerald-700 transition-colors">
+                <h2 class="text-2xl sm:text-3xl font-serif text-slate-900 font-medium leading-[1.25] tracking-tight mb-3">
+                  {mainPost.data.title}
+                </h2>
+              </a>
+              <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6 font-normal">
                 {mainPost.data.excerpt}
               </p>
 
-              <div class="flex items-center gap-4 border-t border-slate-600/50 pt-6">
-                <div class="relative w-12 h-12 rounded-full border-2 border-emerald-400/50 overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                  <img src="/logo_finesse.png" alt="Finesse Expert" class="w-full h-full object-contain bg-slate-900 p-1" />
+              <!-- Key Takeaways Snippet -->
+              {keyPoints.length > 0 && (
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 mb-6 space-y-2.5">
+                  <div class="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-800 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Audited Takeaways Preview
+                  </div>
+                  {keyPoints.map((point) => (
+                    <div class="text-xs text-slate-700 flex items-start gap-2 leading-relaxed">
+                      <span class="text-emerald-600 font-bold">•</span>
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <!-- Author Byline & CTA Row -->
+            <div class="flex items-center justify-between pt-5 border-t border-slate-100 mt-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 p-0.5 shadow-sm">
+                  <img src="/logo_finesse.png" alt="Jayant Patil" class="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <p class="text-white text-sm font-bold tracking-wide">{mainPost.data.author}</p>
-                  <p class="text-emerald-400/90 text-[10px] font-mono uppercase tracking-widest mt-0.5">{mainPost.data.authorRole}</p>
+                  <p class="text-slate-900 text-xs font-bold leading-tight">{mainPost.data.author || 'Mr. Jayant Patil'}</p>
+                  <p class="text-slate-500 text-[10px] font-mono uppercase tracking-wider">{mainPost.data.authorRole || 'Founder & CEO'}</p>
                 </div>
               </div>
+
+              <a 
+                href={`/intelligence/${mainSlug}`} 
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm group-hover:shadow-md"
+              >
+                Read Investigation
+                <svg class="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
             </div>
 
           </div>
-        </a>
+        </article>
       )}
 
-      <div class="xl:col-span-4 flex flex-col gap-6 h-[550px]">
+      <!-- Right Column: 3 Curated Trending Investigation Cards (5 Columns) -->
+      <div class="lg:col-span-5 flex flex-col justify-between gap-4">
         
-        {/* Slot 2: NMC Approved Colleges list Scam Blog (Dynamic Right Top Card) */}
-        {secondPost && (
-          <a href={`/intelligence/${secondSlug}`} class="group flex-1 relative bg-slate-900/60 backdrop-blur-md border border-slate-700/80 rounded-3xl p-6 lg:p-8 overflow-hidden hover:border-emerald-500/50 transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_15px_30px_rgba(0,0,0,0.4)]">
-            <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/20 blur-[40px] rounded-full group-hover:bg-emerald-500/30 transition-all duration-700"></div>
-            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-emerald-500/5 to-transparent pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col justify-between h-full text-left">
-              <div>
-                <span class="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-950/50 px-2 py-1 rounded border border-slate-800">{secondPost.data.category}</span>
-                <h3 class="text-lg font-serif text-slate-100 mt-4 mb-3 leading-snug group-hover:text-emerald-400 transition-colors line-clamp-3">{secondPost.data.title}</h3>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-400 font-bold uppercase tracking-wider">
-                <span class="w-6 h-px bg-slate-600 group-hover:w-10 group-hover:bg-emerald-500 transition-all"></span> Read Report
-              </div>
-            </div>
-          </a>
-        )}
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
+          <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-800 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            Trending Investigations
+          </h3>
+          <span class="text-[11px] font-mono text-slate-400">Institutional Feed</span>
+        </div>
 
-        {/* Slot 3: NEET Re-Exam Loop Blog (Dynamic Right Middle Card) */}
-        {thirdPost && (
-          <a href={`/intelligence/${thirdSlug}`} class="group flex-1 relative bg-slate-900/60 backdrop-blur-md border border-slate-700/80 rounded-3xl p-6 lg:p-8 overflow-hidden hover:border-amber-500/50 transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_15px_30px_rgba(0,0,0,0.4)]">
-            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-amber-500/20 blur-[40px] rounded-full group-hover:bg-amber-500/30 transition-all duration-700"></div>
-            <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col justify-between h-full text-left">
-              <div>
-                <span class="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-950/50 px-2 py-1 rounded border border-slate-800">{thirdPost.data.category}</span>
-                <h3 class="text-lg font-serif text-slate-100 mt-4 mb-3 leading-snug group-hover:text-amber-400 transition-colors line-clamp-3">{thirdPost.data.title}</h3>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-400 font-bold uppercase tracking-wider">
-                <span class="w-6 h-px bg-slate-600 group-hover:w-10 group-hover:bg-amber-500 transition-all"></span> Decrypt Fact
-              </div>
-            </div>
-          </a>
-        )}
+        {trendingPosts.map((post, idx) => {
+          const postSlug = post.id.split('.')[0];
+          const postTotalWords = typeof post.body === "string" ? post.body.trim().split(/\s+/).filter(Boolean).length : 0;
+          const postReadTime = Math.max(3, Math.ceil(postTotalWords / 200));
 
-        {/* Slot 4: Video Diary (Highly Safe Outbound Link to Finesse Official YouTube) */}
-        <a href="https://youtube.com/@finesseoverseaseducation1272?si=BCKfbpbBlf8PM86L" target="_blank" rel="noopener noreferrer" class="group flex-[1.2] relative bg-slate-950 border border-slate-700/80 rounded-3xl overflow-hidden hover:border-white/30 transition-all duration-500 shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop" alt="Parent Testimonial" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-all duration-[1000ms] group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/50 to-transparent"></div>
-          <div class="relative z-10 p-6 flex flex-col justify-end h-full text-left">
-            <span class="bg-rose-500 border border-rose-400 text-white text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded w-max mb-3 flex items-center gap-1.5 shadow-[0_0_15px_rgba(225,29,72,0.6)]">
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Video Diary
-            </span>
-            <h3 class="text-lg font-serif text-white font-medium leading-snug drop-shadow-md">"The 800-bed hospital rule saved my daughter's career."</h3>
+          return (
+            <a 
+              href={`/intelligence/${postSlug}`}
+              class="group bg-white border border-slate-200/90 hover:border-emerald-500/70 rounded-2xl p-5 transition-all duration-300 shadow-sm hover:shadow-md flex items-start gap-4 finesse-master-anchor"
+              data-gtm-title={post.data.title}
+              data-gtm-slug={postSlug}
+            >
+              <!-- Thumbnail -->
+              <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100">
+                {post.data.coverImage ? (
+                  <img 
+                    src={post.data.coverImage.src} 
+                    alt={post.data.title} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-slate-200"></div>
+                )}
+              </div>
+
+              <!-- Text Content -->
+              <div class="flex flex-col justify-between h-full flex-grow">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
+                      {post.data.category}
+                    </span>
+                    <span class="text-[10px] font-mono text-slate-400">{postReadTime}m read</span>
+                  </div>
+                  <h4 class="text-sm sm:text-base font-serif text-slate-900 font-medium leading-snug group-hover:text-emerald-700 transition-colors line-clamp-2 mb-1">
+                    {post.data.title}
+                  </h4>
+                </div>
+
+                <div class="flex items-center gap-1 text-[11px] font-bold text-slate-500 group-hover:text-emerald-700 pt-1 transition-colors">
+                  Read Audit <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+
+        <!-- Outbound Official Video Link Card -->
+        <a 
+          href="https://youtube.com/@finesseoverseaseducation1272?si=BCKfbpbBlf8PM86L" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="bg-slate-900 hover:bg-slate-950 text-white rounded-2xl p-4 flex items-center justify-between gap-4 transition-all shadow-sm border border-slate-800 group"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-rose-600 flex items-center justify-center text-white shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold leading-tight">Watch Video Expose Series</p>
+              <p class="text-[10px] font-mono text-slate-400">NMC rules explained on YouTube</p>
+            </div>
           </div>
+          <span class="text-xs font-bold text-rose-400 group-hover:translate-x-1 transition-transform pr-2">Watch →</span>
         </a>
 
       </div>
@@ -189,7 +265,7 @@ const {
     100% { transform: translateX(-50%); }
   }
   .animate-ticker {
-    animation: ticker 30s linear infinite;
+    animation: ticker 35s linear infinite;
   }
   .animate-ticker:hover {
     animation-play-state: paused; 

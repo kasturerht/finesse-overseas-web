@@ -1,9 +1,11 @@
 ---
 // File: src/pages/intelligence/[slug].astro
-// 👑 MASTERPIECE EDITION: 100% Original Look Preserved with Strict CSS-Isolation Bento Grid, Hybrid E-E-A-T Schema & Multi-Thread GTM Pipelines
+// 👑 MASTERPIECE EDITORIAL EDITION: World-Class Think-Tank & Academic Journal Layout
+// Pixel-Perfect Container Alignment, 100% Light Luxury Theme, Responsive Tables & E-E-A-T Compliance
 
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
 import LeadCaptureModal from "../../components/LeadCaptureModal";
 
 export const prerender = true;
@@ -22,7 +24,6 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
-// 🛡️ Gracefully handle SSR / Dynamic Render Undefined Boundary Bug (Prevent 500 error on Vercel)
 if (!post) {
   return new Response(null, {
     status: 404,
@@ -30,16 +31,23 @@ if (!post) {
   });
 }
 
-// 2. Related Posts Engine — uses the same collection already fetched in getStaticPaths
-// via Astro.props to avoid a redundant getCollection() call at component scope.
-const allPostsForRelated = await getCollection("intelligence");
-const relatedPosts = allPostsForRelated
+// 2. Guaranteed 2 Related Posts Engine (Zero Empty Gaps)
+const allPosts = await getCollection("intelligence");
+let relatedPosts = allPosts
   .filter((p) => p.id !== post.id && p.data.category === post.data.category)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 2);
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 
-// 🛡️ Server-Side Render Protection — Content is undefined if render() throws;
-// the null-check below prevents a fatal crash on the <Content /> call.
+// If fewer than 2 in the same category, backfill from other categories
+if (relatedPosts.length < 2) {
+  const others = allPosts
+    .filter((p) => p.id !== post.id && !relatedPosts.some((r) => r.id === p.id))
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  relatedPosts = [...relatedPosts, ...others].slice(0, 2);
+} else {
+  relatedPosts = relatedPosts.slice(0, 2);
+}
+
+// 3. Render Markdown Content & Headings
 let Content: any = null;
 let headings: any[] = [];
 try {
@@ -54,7 +62,7 @@ const filteredHeadings = headings
   ? headings.filter((h) => h.depth > 1 && h.depth < 4)
   : [];
 
-// 3. Date Compilation Protocols (Guarantees Date objects in production Vercel SSR)
+// 4. Date & Reading Time Calculations
 const publishDate = new Date(post.data.publishDate);
 const finalModifiedDate = post.data.lastModifiedDate
   ? new Date(post.data.lastModifiedDate)
@@ -72,9 +80,6 @@ const formattedModifiedDate = finalModifiedDate.toLocaleDateString("en-US", {
   day: "numeric",
 });
 
-// 4. Bulletproof Reading Time Framework — post.body is undefined in Astro v5
-// Content Layer API for Markdoc files with no body; the string cast prevents
-// a fatal TypeError from .trim() on undefined.
 const bodyText = typeof post.body === "string" ? post.body : "";
 const wordCount = bodyText.trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(3, Math.ceil(wordCount / 200));
@@ -85,7 +90,7 @@ const coverImageAbsURL = post.data.coverImage?.src
   ? new URL(post.data.coverImage.src, Astro.site).href
   : undefined;
 
-// 🧠 MAY-2026 HYBRID SCHEMA LOGIC: MedicalWebPage + TechArticle for Extreme Authority Crawling
+// 5. Schema.org Structured Data
 const articleSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
@@ -108,7 +113,7 @@ const articleSchema = JSON.stringify({
       publisher: {
         "@id": `${Astro.site}#organization`,
       },
-      abstract: post.data.keyTakeaways.join(" "),
+      abstract: post.data.keyTakeaways?.join(" ") || post.data.excerpt,
     },
     {
       "@type": "WebPage",
@@ -143,7 +148,7 @@ const articleSchema = JSON.stringify({
   ],
 });
 
-// ⚡ Dynamic Verification Citations for GEO/AEO
+// 6. Dynamic Verification Citations
 const categoryUpper = (post.data.category ?? '').toUpperCase();
 let references = [
   { name: "Schengen Visa Information Portal", url: "https://www.schengenvisainfo.com/", description: "Official European Schengen Zone travel & student visa regulations database." },
@@ -187,7 +192,7 @@ if (post.id.includes('scams-guide') || categoryUpper.includes('EXPOSÉ') || cate
 
 const authorInitials = post.data.author
   ? post.data.author.split(' ').map((n: string) => n[0]).join('').toUpperCase()
-  : 'FI';
+  : 'JP';
 ---
 
 <Layout
@@ -200,317 +205,239 @@ const authorInitials = post.data.author
   {/* ⏳ Reading Progress Bar */}
   <div
     id="progress-bar"
-    class="fixed top-0 left-0 h-1.5 bg-emerald-500 z-[99999] w-0 transition-all duration-150 ease-out"
+    class="fixed top-0 left-0 h-1 bg-emerald-600 z-[99999] w-0 transition-all duration-150 ease-out"
   >
   </div>
 
-  {/* 📣 Floating Share Bar (Sleek Desktop Matrix) */}
+  {/* 📣 Floating Share Bar (Sleek Desktop Light Edition) */}
   <div
-    class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[9999] flex flex-col gap-3 bg-slate-900/90 backdrop-blur-xl p-2.5 rounded-full border border-slate-800 shadow-[0_0_30px_rgba(0,0,0,0.6)]"
+    class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[9999] flex flex-col gap-2.5 bg-white/95 backdrop-blur-xl p-2 rounded-full border border-slate-200 shadow-xl"
   >
     <button
       id="share-wa"
-      class="w-12 h-12 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:scale-110 transition-transform shadow-lg cursor-pointer"
+      class="w-11 h-11 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:scale-105 transition-transform shadow-md cursor-pointer"
       aria-label="Share on WhatsApp"
+      title="Share on WhatsApp"
     >
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
-        ><path
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path
           d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-        ></path>
+        />
       </svg>
     </button>
     <button
       id="share-copy"
-      class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all shadow-lg cursor-pointer"
-      aria-label="Copy Link"
+      class="w-11 h-11 flex items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-900 hover:text-white transition-all shadow-md cursor-pointer"
+      aria-label="Copy Article Link"
+      title="Copy Link"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        ><path
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
           stroke-linecap="round"
           stroke-linejoin="round"
-          stroke-width="2.5"
+          stroke-width="2.2"
           d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-        ></path>
+        />
       </svg>
     </button>
   </div>
 
-  <main class="w-full bg-[#030712] min-h-screen">
-    {/* Page Header Deck */}
-    <div class="border-b border-slate-800/50 bg-[#0a0f1c] pt-32 pb-10">
-      <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
+  <main class="w-full bg-[#FAFAFA] min-h-screen font-sans" id="core-article-container" data-slug={slugPath}>
+    
+    {/* Page Header Deck (Consistent Max-W-7xl Alignment Across Entire Page) */}
+    <header class="border-b border-slate-200/90 bg-white pt-28 sm:pt-32 pb-10 sm:pb-14 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+      
+      <div class="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
+        
+        {/* Navigation Breadcrumb */}
         <nav
-          class="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6 font-mono"
+          class="flex flex-wrap items-center gap-2 text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-6"
+          aria-label="Breadcrumb"
         >
-          <a
-            href="/intelligence"
-            class="hover:text-emerald-400 transition-colors">Intelligence Hub</a
-          >
+          <a href="/" class="hover:text-emerald-700 transition-colors">Home</a>
           <span>/</span>
-          <span class="text-emerald-500">{post.data.category}</span>
+          <a href="/intelligence" class="hover:text-emerald-700 transition-colors">Intelligence Hub</a>
+          <span>/</span>
+          <span class="text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 font-semibold">
+            {post.data.category}
+          </span>
         </nav>
 
+        {/* Title */}
         <h1
-          class="text-3xl md:text-5xl font-serif text-white font-medium leading-tight max-w-4xl mb-6"
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif text-slate-900 font-medium leading-[1.18] tracking-tight mb-6 max-w-5xl"
         >
           {post.data.title}
         </h1>
 
+        {/* Excerpt Briefing */}
+        {post.data.excerpt && (
+          <p class="text-slate-600 text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8 max-w-5xl">
+            {post.data.excerpt}
+          </p>
+        )}
+
+        {/* Metadata Byline Strip */}
         <div
-          class="flex flex-wrap items-center gap-6 text-xs font-mono text-slate-400"
+          class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-slate-100 text-xs text-slate-500 font-sans max-w-5xl"
         >
-          <div class="flex items-center gap-2">
-            <div
-              class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-emerald-500"
-            >
-              <svg
-                class="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                ></path>
-              </svg>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800 text-xs font-bold shadow-xs">
+              {authorInitials}
             </div>
-            <span
-              >Audit By <strong class="text-slate-300 font-sans"
-                >{post.data.author}
-              </strong>
-            </span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg
-              class="w-4 h-4 text-emerald-500/50"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              ></path>
-            </svg>
-            <span>{formattedDate}</span>
+            <div>
+              <p class="text-slate-900 font-bold leading-tight">
+                {post.data.author || 'Mr. Jayant Patil'}
+              </p>
+              <p class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                {post.data.authorRole || 'Founder & CEO'}
+              </p>
+            </div>
           </div>
 
-          {/* Freshness Timestamp Shield */}
-          {
-            post.data.lastModifiedDate && (
-              <div class="flex items-center gap-2 text-emerald-400 font-bold">
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
-                </svg>
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+            <div class="flex items-center gap-1.5 text-slate-500">
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>{formattedDate}</span>
+            </div>
+
+            {post.data.lastModifiedDate && (
+              <div class="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Updated: {formattedModifiedDate}</span>
               </div>
-            )
-          }
+            )}
 
-          <div
-            class="flex items-center gap-1.5 text-amber-400/90 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-bold"
-          >
-            <svg
-              class="w-3.5 h-3.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>{readingTime} Min Read</span>
-          </div>
-
-          <div
-            class="flex items-center gap-1.5 text-emerald-400/90 bg-emerald-400/10 px-2.5 py-1 rounded-md border border-emerald-400/20 font-bold"
-          >
-            <svg
-              class="w-3.5 h-3.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-              ></path>
-            </svg>
-            <span>Verified Blueprint</span>
+            <div class="flex items-center gap-1.5 text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md font-bold">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{readingTime} Min Read</span>
+            </div>
           </div>
         </div>
+
       </div>
-    </div>
+    </header>
 
-    {/* Content Architecture Deck (70/30 Strategic Split Layout) */}
-    <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-12 lg:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* Left Column: Markdown Engine Core */}
-        <article class="lg:col-span-8 order-last lg:order-first audit-content">
-          {/* Main Top Cover Image Graphic */}
-          {
-            post.data.coverImage && (
-              <div class="mb-12 w-full rounded-3xl overflow-hidden border border-slate-800/80 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-                <img
-                  src={post.data.coverImage.src}
-                  alt={post.data.coverImageAlt || post.data.title}
-                  class="w-full h-[300px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700"
-                  decoding="async"
-                />
+    {/* Content Layout (Consistent max-w-7xl) */}
+    <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-10 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        
+        {/* Left Column: Markdown Article Body (8 Cols) */}
+        <article class="lg:col-span-8 audit-content w-full min-w-0">
+          
+          {/* Main Top Cover Image */}
+          {post.data.coverImage && (
+            <div class="mb-10 w-full rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100">
+              <img
+                src={post.data.coverImage.src}
+                alt={post.data.coverImageAlt || post.data.title}
+                class="w-full h-auto max-h-[480px] object-cover hover:scale-102 transition-transform duration-700"
+                decoding="async"
+              />
+            </div>
+          )}
+
+          {/* Executive Summary Bento Box (100% Light Luxury Editorial) */}
+          {(post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
+            <section
+              class="mb-12 rounded-3xl border border-emerald-200/80 bg-gradient-to-br from-emerald-50/40 via-white to-emerald-50/20 p-6 sm:p-8 shadow-sm font-sans"
+              aria-label="Executive Intelligence Payload"
+            >
+              <div class="flex items-center gap-2 mb-4 pb-3 border-b border-emerald-100">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <h2
+                  class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-900 m-0 p-0 border-none"
+                >
+                  Executive Takeaways & Audited Summary
+                </h2>
               </div>
-            )
-          }
 
-          {
-            /* 🧠 + 💰 THE SEMANTIC BENTO SHIELD: Advanced Data Isolation to Kill global.css Overrides */
-          }
-          {
-            (post.data.keyTakeaways?.length > 0 || post.data.moneyPageLink) && (
-              <section
-                class="mb-14 grid grid-cols-1 md:grid-cols-3 gap-0 rounded-3xl border border-slate-800/80 bg-gradient-to-b from-[#090e20] to-[#04070e] shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_1px_1px_rgba(255,255,255,0.05)] overflow-hidden relative font-sans"
-                aria-label="Executive Intelligence Payload"
-              >
-                {/* Left Pane: Machine-Readable Executive Summary Target */}
-                {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
-                  <div class="md:col-span-2 p-6 lg:p-9 border-b md:border-b-0 md:border-r border-slate-800/80 relative">
-                    <div class="flex items-center gap-3 mb-6">
-                      <div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
-                      <h2
-                        class="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-400 m-0 p-0 leading-none border-none border-b-0 inline-block font-sans"
-                        style="margin: 0 !important; padding: 0 !important; border: none !important; font-size: 11px !important; letter-spacing: 0.25em !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
-                      >
-                        Executive Summary
-                      </h2>
-                    </div>
+              {post.data.keyTakeaways && post.data.keyTakeaways.length > 0 && (
+                <ul class="space-y-3.5 m-0 p-0 list-none mb-6">
+                  {post.data.keyTakeaways.map((takeaway: string) => (
+                    <li class="flex items-start gap-3 m-0 p-0 text-sm sm:text-base text-slate-800 leading-relaxed font-normal">
+                      <span class="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-600 block"></span>
+                      <span>{takeaway}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-                    <ul
-                      class="space-y-4.5 m-0 p-0 list-none"
-                      style="margin: 0 !important; padding: 0 !important; list-style-type: none !important;"
-                    >
-                      {post.data.keyTakeaways.map((takeaway: string) => (
-                        <li
-                          class="flex items-start gap-4.5 m-0 p-0"
-                          style="margin: 0 !important; padding: 0 !important;"
-                        >
-                          <span class="mt-[8px] shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500/80 shadow-[0_0_6px_rgba(16,185,129,0.5)] block" />
-                          <span
-                            class="text-[14px] md:text-[15px] text-slate-300 leading-relaxed font-normal m-0 p-0 font-sans"
-                            style="font-size: 14px !important; line-height: 1.625 !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
-                          >
-                            {takeaway}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+              {post.data.moneyPageLink && (
+                <div class="pt-4 border-t border-emerald-100/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div class="text-xs text-slate-600">
+                    <strong class="text-slate-900 font-semibold">Sovereign Direct Pathway:</strong> Zero agent markups • 100% direct university billing.
                   </div>
-                )}
-
-                {/* Right Pane: Contextual Conversion Engine Box (GTM DataLayer Tracked) */}
-                {post.data.moneyPageLink && (
-                  <div class="md:col-span-1 p-6 lg:p-9 flex flex-col justify-center relative bg-gradient-to-br from-[#0c142c]/50 to-[#020409] group">
-                    <div class="relative z-10 flex flex-col h-full">
-                      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 block font-mono">
-                        Action Hub
-                      </span>
-
-                      <h3
-                        class="text-[15px] md:text-[16px] font-serif text-slate-200 mb-8 leading-snug m-0 p-0 border-none font-medium"
-                        style="margin: 0 0 2rem 0 !important; padding: 0 !important; border: none !important; font-size: 16px !important;"
-                      >
-                        Map credentials directly to verified EU universities.
-                      </h3>
-
-                      <div class="mt-auto">
-                        <a
-                          href={post.data.moneyPageLink}
-                          id="gtm-hub-spoke-conversion"
-                          data-conversion-type="hub-spoke"
-                          data-target-slug={post.id.split(".")[0]}
-                          class="inline-flex w-full items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white border border-emerald-500/20 hover:border-emerald-400 text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] shadow-sm font-sans cursor-pointer"
-                          style="font-size: 10px !important; font-family: ui-sans-serif, system-ui, sans-serif !important;"
-                        >
-                          Explore Hub
-                          <svg
-                            class="w-3.5 h-3.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </section>
-            )
-          }
+                  <a
+                    href={post.data.moneyPageLink}
+                    id="gtm-hub-spoke-conversion"
+                    data-conversion-type="hub-spoke"
+                    data-target-slug={slugPath}
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-sm shrink-0"
+                  >
+                    Access Sovereign Hub →
+                  </a>
+                </div>
+              )}
+            </section>
+          )}
 
           {/* Render Markdown Document Content Nodes */}
-          {Content ? <Content /> : <p class="text-slate-400 italic">Content unavailable.</p>}
+          <div class="prose-content min-w-0">
+            {Content ? <Content /> : <p class="text-slate-500 italic">Audit report content is loading...</p>}
+          </div>
 
-          {/* 🧠 AEO & GEO CITATION HUB: VERIFIED REFERENCE SOURCES (Collapsible, Collapsed by Default, Highly Compact & Google-Indexed) */}
-          <details class="group mt-12 bg-slate-900/10 border border-slate-800/40 rounded-xl overflow-hidden font-sans transition-all duration-300">
-            <summary class="flex items-center justify-between gap-3 p-3 cursor-pointer select-none hover:bg-slate-900/30 transition-colors list-none [&::-webkit-details-marker]:hidden">
-              <div class="flex items-center gap-2">
-                <svg aria-hidden="true" class="w-4 h-4 text-emerald-500/80 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* 🧠 Verified Reference Sources (Collapsible Accordion) */}
+          <details class="group mt-14 bg-white border border-slate-200 rounded-2xl overflow-hidden font-sans shadow-sm transition-all duration-300">
+            <summary class="flex items-center justify-between gap-3 p-4 cursor-pointer select-none hover:bg-slate-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+              <div class="flex items-center gap-2.5">
+                <svg aria-hidden="true" class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
-                <span class="text-xs font-bold text-slate-400 group-hover:text-slate-200 transition-colors">Verified Reference Sources</span>
-                <span class="text-[9px] text-slate-600 font-mono uppercase tracking-wider hidden sm:inline">(E-E-A-T Data Audit)</span>
+                <span class="text-xs sm:text-sm font-bold text-slate-800">Verified Reference Sources & Statutory Citations</span>
+                <span class="text-[10px] text-slate-500 font-mono uppercase tracking-wider hidden sm:inline">(E-E-A-T Compliance)</span>
               </div>
-              <div class="flex items-center gap-1.5 text-[9px] text-slate-500 font-mono uppercase tracking-wider">
+              <div class="flex items-center gap-1.5 text-xs text-slate-500 font-mono uppercase tracking-wider">
                 <span class="group-open:hidden flex items-center gap-1">
-                  Show References
-                  <svg class="w-3 h-3 text-slate-500 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"></path>
+                  View Sources
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </span>
                 <span class="hidden group-open:flex items-center gap-1">
-                  Hide References
-                  <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"></path>
+                  Collapse
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                   </svg>
                 </span>
               </div>
             </summary>
-            <div class="px-4 pb-4 pt-2.5 border-t border-slate-800/40 bg-[#04070e]/80">
-              <p class="text-slate-400 text-xs leading-relaxed mb-4 font-light">
-                To align with Google's E-E-A-T and AI engine citation frameworks, the data detailed in this audit are verified against official records from the following bodies:
+            
+            <div class="px-5 pb-5 pt-3 border-t border-slate-100 bg-slate-50/50">
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                To satisfy stringent institutional due diligence and Google E-E-A-T standards, all figures, tuition rates, and legal frameworks in this investigation are cross-referenced with primary government registries:
               </p>
               <div class="grid grid-cols-1 gap-2.5">
                 {references.map((ref) => (
-                  <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group/ref">
+                  <div class="p-3.5 rounded-xl bg-white border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
                     <div class="flex flex-col">
-                      <span class="text-xs font-bold text-slate-300 group-hover/ref:text-white transition-colors">{ref.name}</span>
-                      <span class="text-[11px] text-slate-500 font-light mt-0.5 leading-relaxed">{ref.description}</span>
+                      <span class="text-xs font-bold text-slate-900">{ref.name}</span>
+                      <span class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{ref.description}</span>
                     </div>
-                    <a href={ref.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 shrink-0 text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-500 hover:text-emerald-400 transition-colors">
-                      Official Site
-                      <svg aria-hidden="true" class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    <a 
+                      href={ref.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="inline-flex items-center gap-1 shrink-0 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-700 hover:text-emerald-800"
+                    >
+                      Official Registry
+                      <svg aria-hidden="true" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
                     </a>
                   </div>
@@ -519,211 +446,190 @@ const authorInitials = post.data.author
             </div>
           </details>
 
-          {/* Editorial End Grid Separation Line */}
-          <div class="my-12 flex items-center justify-center gap-4 opacity-50">
-            <div class="h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent w-24 md:w-32"></div>
-            <div class="flex gap-1.5">
-              <span class="w-1 h-1 rounded-full bg-slate-700"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/40"></span>
-              <span class="w-1 h-1 rounded-full bg-slate-700"></span>
-            </div>
-            <div class="h-px bg-gradient-to-l from-transparent via-slate-800 to-transparent w-24 md:w-32"></div>
-          </div>
-
-          {/* Premium Editorial Author Matrix Presentation */}
-          <div class="bg-slate-900/10 rounded-2xl p-5 md:p-6 border border-slate-800/40 flex flex-col sm:flex-row gap-5 md:gap-6 items-center sm:items-start group relative font-sans">
-            <div class="flex-shrink-0 relative">
-              <div class="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-lg md:text-xl font-bold tracking-wider select-none shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:from-emerald-500/30 group-hover:to-teal-500/20 group-hover:border-emerald-500/50 group-hover:text-emerald-300 transition-all duration-500">
+          {/* Author Byline Card */}
+          <div class="mt-14 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row gap-6 items-center sm:items-start font-sans">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center bg-emerald-100 border border-emerald-300 text-emerald-800 font-serif text-xl font-bold shadow-xs">
                 {authorInitials}
               </div>
-              <div class="absolute bottom-0 right-0 bg-[#0a0f1c] rounded-full p-0.5 border border-slate-900 shadow-sm">
-                <svg class="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                </svg>
-              </div>
             </div>
 
-            <div class="flex-1 w-full text-center sm:text-left">
-              <span class="text-[9px] uppercase tracking-[0.25em] text-slate-500 font-bold block mb-1.5 font-mono">Audited & Verified By</span>
-              <div class="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-2.5 mb-2.5">
-                <h4 class="text-lg font-serif text-slate-200 font-medium tracking-wide">
+            <div class="flex-1 text-center sm:text-left">
+              <span class="text-[10px] uppercase tracking-widest text-emerald-700 font-bold block mb-1 font-mono">
+                Audited & Published By
+              </span>
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-2">
+                <h4 class="text-xl font-serif text-slate-900 font-medium">
                   {post.data.author || 'Mr. Jayant Patil'}
                 </h4>
-                <span class="text-slate-700 hidden sm:inline">|</span>
-                <span class="text-[9px] uppercase tracking-[0.15em] text-emerald-500/80 font-bold tracking-widest font-sans">
+                <span class="text-slate-300 hidden sm:inline">|</span>
+                <span class="text-xs uppercase tracking-wider text-slate-500 font-bold font-mono">
                   {post.data.authorRole || 'Founder & CEO'}
                 </span>
               </div>
-              <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-4.5 font-light max-w-2xl">
-                Mr. Jayant Patil (Alumni of VJTI &amp; JBIMS) is the Founder &amp; CEO of Finesse Overseas Education with 22+ years of leadership in European higher education, German public admissions, and sovereign compliance.
+              <p class="text-slate-600 text-sm leading-relaxed mb-4 font-normal">
+                Mr. Jayant Patil (Alumni of VJTI &amp; JBIMS) is the Founder &amp; CEO of Finesse Overseas Education with 22+ years of leadership in European higher education, German public admissions, and sovereign NMC compliance.
               </p>
-              <div class="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-2 text-[9px] font-mono text-slate-500 uppercase tracking-widest">
-                <span class="flex items-center gap-1"><strong class="text-slate-300 font-sans text-xs">22+</strong> Years Exp</span>
-                <span class="w-1 h-1 rounded-full bg-slate-800"></span>
-                <span class="flex items-center gap-1"><strong class="text-slate-300 font-sans text-xs">1000+</strong> Placed</span>
-                <span class="w-1 h-1 rounded-full bg-slate-800"></span>
-                <span class="flex items-center gap-1"><strong class="text-slate-300 font-sans text-xs">100%</strong> Unbiased</span>
+              <div class="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-2 text-[10px] font-mono text-slate-500 uppercase tracking-wider border-t border-slate-100 pt-3">
+                <span><strong class="text-slate-900 font-sans">22+</strong> Years Experience</span>
+                <span>•</span>
+                <span><strong class="text-slate-900 font-sans">1,000+</strong> Students Placed</span>
+                <span>•</span>
+                <span><strong class="text-slate-900 font-sans">100%</strong> Sovereign Direct Billing</span>
               </div>
             </div>
           </div>
 
-          {/* Continue Your Audit Grid Loop Layout */}
-          <section class="mt-20 mb-12 font-sans">
-            <div class="flex items-center justify-between mb-8">
+          {/* Related Audits Section (Always 2 Balanced Cards) */}
+          <section class="mt-16 mb-8 font-sans">
+            <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-200">
               <div>
-                <h3 class="text-xl md:text-2xl font-serif text-white font-medium tracking-tight mb-1.5">
-                  Continue Your Audit
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-700 block mb-1">
+                  Further Reading
+                </span>
+                <h3 class="text-2xl font-serif text-slate-900 font-medium tracking-tight">
+                  Related Sovereign Audits
                 </h3>
-                <div class="h-0.5 w-10 bg-emerald-500/40 rounded-full"></div>
               </div>
               <a
                 href="/intelligence"
-                class="text-[9px] uppercase tracking-[0.2em] text-slate-500 hover:text-emerald-400 transition-colors font-black font-mono"
+                class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 hover:text-emerald-700 transition-colors"
               >
-                View All Vaults →
+                All Audits →
               </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {
-                relatedPosts.map((relPost) => (
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {relatedPosts.map((relPost) => {
+                const relSlug = relPost.id.split(".")[0];
+                return (
                   <a
-                    href={`/intelligence/${relPost.id.split(".")[0]}`}
-                    class="group relative block"
+                    href={`/intelligence/${relSlug}`}
+                    class="group block bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div class="relative z-10 h-full p-6 rounded-2xl bg-[#060913]/30 border border-slate-800/40 transition-all duration-500 group-hover:border-emerald-500/20 group-hover:shadow-[0_15px_35px_rgba(0,0,0,0.4)] overflow-hidden">
-                      <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div class="flex items-center gap-3.5 mb-4">
-                        <span class="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/80 px-2 rounded bg-emerald-500/5 border border-emerald-500/10 font-mono">
-                          {relPost.data.category}
-                        </span>
-                        <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest">
-                          {relPost.data.publishDate.toLocaleDateString(
-                            "en-US",
-                            { month: "short", year: "numeric" }
-                          )}
-                        </span>
-                      </div>
-                      <h4 class="text-lg font-serif text-slate-200 group-hover:text-white transition-colors duration-300 leading-snug mb-3">
-                        {relPost.data.title}
-                      </h4>
-                      <p class="text-xs text-slate-500 line-clamp-2 font-light leading-relaxed mb-6 group-hover:text-slate-400 transition-colors">
-                        {relPost.data.excerpt}
-                      </p>
-                      <div class="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-600 group-hover:text-emerald-400 transition-all duration-300 font-mono">
-                        Access Report
-                        <svg
-                          class="w-3 h-3 -translate-x-0.5 group-hover:translate-x-0.5 transition-transform duration-300"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2.5"
-                            d="M9 5l7 7-7 7"
+                    <div>
+                      {relPost.data.coverImage && (
+                        <div class="relative h-48 w-full overflow-hidden bg-slate-100">
+                          <img
+                            src={relPost.data.coverImage.src}
+                            alt={relPost.data.title}
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
                           />
-                        </svg>
+                          <span class="absolute top-3 left-3 bg-white/95 text-slate-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-slate-200 shadow-xs">
+                            {relPost.data.category}
+                          </span>
+                        </div>
+                      )}
+                      <div class="p-5">
+                        <h4 class="text-base font-serif text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 mb-2 font-medium leading-snug">
+                          {relPost.data.title}
+                        </h4>
+                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                          {relPost.data.excerpt}
+                        </p>
                       </div>
                     </div>
+                    <div class="p-5 pt-0 mt-auto">
+                      <span class="text-xs font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center gap-1">
+                        Read Investigation →
+                      </span>
+                    </div>
                   </a>
-                ))
-              }
+                );
+              })}
             </div>
           </section>
+
         </article>
 
-        {
-          /* Right Column: Sticky Navigation Content Index (30% Columns Asset) */
-        }
-        <aside class="lg:col-span-4 order-first lg:order-last">
-          <div class="sticky top-32 space-y-8 pb-10 z-10 font-sans">
-            {/* Table of Contents Index Element */}
-            {
-              filteredHeadings.length > 0 && (
-                <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-sm hidden lg:block">
-                  <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6 border-b border-slate-800 pb-3 font-mono">
+        {/* Right Column: Sticky Navigation Index & Lead Magnet (4 Cols) */}
+        <aside class="lg:col-span-4 w-full">
+          <div class="sticky top-28 space-y-6 pb-10 z-10 font-sans">
+            
+            {/* Table of Contents Box */}
+            {filteredHeadings.length > 0 && (
+              <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm hidden lg:block">
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                  <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">
                     Audit Index
                   </h4>
-                  <nav id="toc-nav">
-                    <ul class="space-y-4 list-none p-0 m-0">
-                      {filteredHeadings.map((heading) => (
-                        <li
-                          class={`toc-item ${
-                            heading.depth === 3 ? "ml-4" : ""
-                          }`}
-                        >
-                          <a
-                            href={`#${heading.slug}`}
-                            class="block text-xs font-bold text-slate-400 hover:text-emerald-400 transition-colors leading-tight tracking-wide core-toc-anchor"
-                            data-toc-target={heading.text}
-                          >
-                            <span class="mr-2 text-slate-700 font-mono">#</span>{" "}
-                            {heading.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
+                  <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold">
+                    {filteredHeadings.length} Sections
+                  </span>
                 </div>
-              )
-            }
-
-            {/* Lead Magnet Download Box Component */}
-            <div
-              class="bg-gradient-to-b from-[#0a0f1c] to-slate-900/50 border border-emerald-500/20 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.05)]"
-            >
-              <div
-                class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"
-              >
+                <nav id="toc-nav" class="max-h-[60vh] overflow-y-auto pr-1">
+                  <ul class="space-y-2 list-none p-0 m-0">
+                    {filteredHeadings.map((heading) => (
+                      <li class={`toc-item ${heading.depth === 3 ? "ml-3.5" : ""}`}>
+                        <a
+                          href={`#${heading.slug}`}
+                          class="block text-xs text-slate-600 hover:text-emerald-700 transition-colors leading-snug core-toc-anchor py-1 border-l-2 border-transparent pl-2 -ml-2"
+                          data-toc-target={heading.text}
+                        >
+                          <span class="text-slate-400 font-mono mr-1">§</span> {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               </div>
+            )}
+
+            {/* Light Editorial Lead Magnet Tool Card (Zero Black Box) */}
+            <div
+              class="bg-gradient-to-br from-emerald-50/60 via-white to-emerald-50/30 border border-emerald-200 rounded-3xl p-6 sm:p-7 shadow-sm relative overflow-hidden"
+            >
               <div class="relative z-10">
-                <span
-                  class="inline-block bg-red-500/10 text-red-400 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6 border border-red-500/20 font-mono"
-                >
-                  Critical Download
+                <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-emerald-300/80 mb-4">
+                  Statutory Checklist
                 </span>
-                <h3 class="text-2xl font-serif text-white font-medium mb-3">
-                  NMC 2026 Reality Checklist
+                <h3 class="text-xl font-serif text-slate-900 font-medium mb-3 leading-snug">
+                  NMC Foreign Medical Graduate Checklist (2026)
                 </h3>
-                <p
-                  class="text-sm text-slate-400 mb-8 leading-relaxed font-light"
-                >
-                  Stop reading fake agent promises. Get the officially verified
-                  list of 100% safe government universities and the legally
-                  binding expense sheet.
+                <p class="text-xs text-slate-600 mb-6 leading-relaxed font-normal">
+                  Verify any European university against all 7 mandatory statutory clauses before transferring first-year tuition fees.
                 </p>
-                <LeadCaptureModal
-                  client:load
-                  pdfUrl="/finesse-nmc-guidelines-checklist.pdf"
-                />
+                <div class="w-full">
+                  <LeadCaptureModal
+                    client:load
+                    pdfUrl="/finesse-nmc-guidelines-checklist.pdf"
+                  />
+                </div>
+                <p class="text-[10px] font-mono text-slate-400 text-center mt-3">
+                  100% Free • Verified Official PDF
+                </p>
               </div>
             </div>
+
           </div>
         </aside>
+
       </div>
     </section>
+
   </main>
 
-  {/* Image Zoom Lightbox Overlay Elements */}
+  {/* Image Zoom Lightbox Overlay */}
   <div
     id="lightbox"
-    class="fixed inset-0 bg-[#030712]/98 backdrop-blur-xl hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out"
-    style="z-index: 999999;"
+    class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center opacity-0 transition-opacity duration-300 cursor-zoom-out z-[999999]"
     aria-hidden="true"
   >
     <img
       id="lightbox-img"
       src=""
-      alt="Zoomed Audit Image"
-      class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(16,185,129,0.15)] scale-95 transition-transform duration-300"
+      alt="Zoomed Audit Graphic"
+      class="max-w-[90vw] max-h-[90vh] object-contain rounded-2xl shadow-2xl scale-95 transition-transform duration-300"
     />
   </div>
+
+  <Footer theme="light" hideCTA={true} />
+
 </Layout>
 
 <script>
-  // ⚡ COMPREHENSIVE INDUSTRIAL DATA TRACKING INTERFACES (GTM THREADS)
+  // ⚡ COMPREHENSIVE INDUSTRIAL DATA TRACKING & SCROLL ENGINE
   document.addEventListener("DOMContentLoaded", () => {
     const articleBox = document.getElementById("core-article-container");
     const slug = articleBox ? articleBox.getAttribute("data-slug") : "unknown";
@@ -738,7 +644,7 @@ const authorInitials = post.data.author
       });
     }
 
-    // 2. Track specific Table of Contents navigation index
+    // 2. Track Table of Contents navigation clicks
     tocAnchors.forEach((anchor) => {
       anchor.addEventListener("click", () => {
         const targetingText = anchor.getAttribute("data-toc-target");
@@ -752,7 +658,7 @@ const authorInitials = post.data.author
       });
     });
 
-    // 3. Track Hub Conversion Clicks seamlessly
+    // 3. Track Hub Conversion Clicks
     if (conversionBtn) {
       conversionBtn.addEventListener("click", () => {
         if (typeof window !== "undefined" && (window as any).dataLayer) {
@@ -765,16 +671,14 @@ const authorInitials = post.data.author
       });
     }
 
-    // 4. Hardware-Accelerated Dynamic Scroll Depth Matrix (25%, 50%, 75%, 100%)
+    // 4. Scroll Depth Matrix Tracking
     let markers = { "25": false, "50": false, "75": false, "100": false };
     window.addEventListener(
       "scroll",
       () => {
-        const distancePercent = Math.round(
-          (window.scrollY /
-            (document.documentElement.scrollHeight - window.innerHeight)) *
-            100
-        );
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight <= 0) return;
+        const distancePercent = Math.round((window.scrollY / totalHeight) * 100);
 
         ["25", "50", "75", "100"].forEach((milestone) => {
           if (distancePercent >= parseInt(milestone) && !markers[milestone]) {
@@ -792,30 +696,29 @@ const authorInitials = post.data.author
       { passive: true }
     );
 
-    // 5. Native Progress Bar Calculation
+    // 5. Reading Progress Bar Calculation
     const progressIndicator = document.getElementById("progress-bar");
     window.addEventListener(
       "scroll",
       () => {
         const scrollTop = window.scrollY;
-        const totalScrollable =
-          document.documentElement.scrollHeight - window.innerHeight;
-        const evaluatedPercent = (scrollTop / totalScrollable) * 100;
-        if (progressIndicator) {
+        const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalScrollable > 0 && progressIndicator) {
+          const evaluatedPercent = (scrollTop / totalScrollable) * 100;
           progressIndicator.style.width = evaluatedPercent + "%";
         }
       },
       { passive: true }
     );
 
-    // 6. Share Functionalities Scripts Threads
+    // 6. Share Functionality
     const shareWa = document.getElementById("share-wa");
     const shareCopy = document.getElementById("share-copy");
 
     if (shareWa) {
       shareWa.addEventListener("click", () => {
         const text = encodeURIComponent(
-          `🚨 *Finesse Intelligence Audit:* ${document.title}\n\nRead report here: ${window.location.href}`
+          `🚨 *Finesse Intelligence Audit:* ${document.title}\n\nRead report: ${window.location.href}`
         );
         window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
       });
@@ -827,17 +730,9 @@ const authorInitials = post.data.author
           await navigator.clipboard.writeText(window.location.href);
           const rawHTML = shareCopy.innerHTML;
           shareCopy.innerHTML =
-            '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
-          shareCopy.classList.remove("bg-slate-800", "text-slate-300");
-          shareCopy.classList.add("bg-emerald-500", "text-white", "scale-110");
+            '<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
           setTimeout(() => {
             shareCopy.innerHTML = rawHTML;
-            shareCopy.classList.add("bg-slate-800", "text-slate-300");
-            shareCopy.classList.remove(
-              "bg-emerald-500",
-              "text-white",
-              "scale-110"
-            );
           }, 2000);
         } catch (err) {
           console.error(err);
@@ -845,7 +740,7 @@ const authorInitials = post.data.author
       });
     }
 
-    // 7. Table of Contents Scrollspy Matrix
+    // 7. Table of Contents Scrollspy (with Left Accent Bar)
     const headingsNodes = document.querySelectorAll(
       ".audit-content h2, .audit-content h3"
     );
@@ -856,30 +751,21 @@ const authorInitials = post.data.author
         "scroll",
         () => {
           let activeId = "";
-          const viewportOffset = window.scrollY + 250;
+          const viewportOffset = window.scrollY + 200;
 
           headingsNodes.forEach((headerNode) => {
-            const topCoordinate =
-              headerNode.getBoundingClientRect().top + window.scrollY;
+            const topCoordinate = headerNode.getBoundingClientRect().top + window.scrollY;
             if (topCoordinate <= viewportOffset) {
-              activeId = headerNode.getAttribute("id");
+              activeId = headerNode.getAttribute("id") || "";
             }
           });
 
-          if (
-            window.innerHeight + window.scrollY >=
-            document.documentElement.scrollHeight - 50
-          ) {
-            activeId =
-              headingsNodes[headingsNodes.length - 1].getAttribute("id");
-          }
-
           linksElements.forEach((anchorEl) => {
-            anchorEl.classList.remove("text-emerald-500", "translate-x-1");
-            anchorEl.classList.add("text-slate-400");
+            anchorEl.classList.remove("text-emerald-700", "font-bold", "border-emerald-600");
+            anchorEl.classList.add("text-slate-600", "border-transparent");
             if (activeId && anchorEl.getAttribute("href") === `#${activeId}`) {
-              anchorEl.classList.remove("text-slate-400");
-              anchorEl.classList.add("text-emerald-500", "translate-x-1");
+              anchorEl.classList.remove("text-slate-600", "border-transparent");
+              anchorEl.classList.add("text-emerald-700", "font-bold", "border-emerald-600");
             }
           });
         },
@@ -887,7 +773,7 @@ const authorInitials = post.data.author
       );
     }
 
-    // 8. Image Zoom Computer Vision Modal Scripts Thread
+    // 8. Image Lightbox
     const lightboxContainer = document.getElementById("lightbox");
     const lightboxGraphic = document.getElementById("lightbox-img");
     const renderedImages = document.querySelectorAll(".audit-content img");
@@ -896,13 +782,6 @@ const authorInitials = post.data.author
       renderedImages.forEach((imageAsset) => {
         const htmlImg = imageAsset as HTMLElement;
         htmlImg.style.cursor = "zoom-in";
-        htmlImg.classList.add(
-          "hover:ring-2",
-          "hover:ring-emerald-500/50",
-          "transition-all",
-          "rounded-xl"
-        );
-
         htmlImg.addEventListener("click", () => {
           const imgSource = htmlImg as HTMLImageElement;
           lightboxGraphic.setAttribute("src", imgSource.src);
@@ -939,65 +818,241 @@ const authorInitials = post.data.author
     scroll-behavior: smooth;
   }
 
-  /* Core Markdown Document Typography Profiles Mapping */
+  /* 🏛️ Pure Editorial Typography Profiles (The Economist & Stripe Press Grade) */
+  .audit-content {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .audit-content hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 3.5rem 0 2rem 0;
+  }
+
   .audit-content h2 {
-    @apply text-2xl md:text-3xl font-serif text-white mt-16 md:mt-24 mb-6 border-b border-slate-800 pb-4 scroll-mt-28 font-bold tracking-tight;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #0f172a;
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+    scroll-margin-top: 7rem;
   }
+
+  @media (min-width: 768px) {
+    .audit-content h2 {
+      font-size: 2.15rem;
+    }
+  }
+
   .audit-content h3 {
-    @apply text-xl md:text-2xl font-serif text-emerald-400 mt-12 md:mt-16 mb-4 scroll-mt-28 font-semibold;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #1e293b;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 7rem;
   }
+
+  @media (min-width: 768px) {
+    .audit-content h3 {
+      font-size: 1.55rem;
+    }
+  }
+
+  .audit-content h4 {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #334155;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .audit-content p {
-    @apply text-slate-300 mb-7 text-base md:text-lg font-sans font-light;
-    line-height: 1.8;
+    color: #334155;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.85;
+    margin-bottom: 1.75rem;
   }
-  .audit-content ul {
-    @apply list-disc pl-6 text-slate-300 mb-7 space-y-3 text-base md:text-lg font-sans font-light;
-    line-height: 1.8;
+
+  @media (min-width: 768px) {
+    .audit-content p {
+      font-size: 1.125rem;
+    }
   }
-  .audit-content ul li::marker {
-    @apply text-emerald-500;
-  }
-  .audit-content ol {
-    @apply list-decimal pl-6 text-slate-300 mb-7 space-y-3 text-base md:text-lg font-sans font-light;
-    line-height: 1.8;
-  }
+
   .audit-content strong,
   .audit-content b {
-    color: #ffffff !important;
+    color: #0f172a !important;
     font-weight: 700 !important;
   }
+
+  .audit-content a {
+    color: #047857;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .audit-content a:hover {
+    color: #065f46;
+  }
+
+  .audit-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #334155;
+    margin-bottom: 1.75rem;
+    line-height: 1.8;
+  }
+
+  .audit-content ul li {
+    margin-bottom: 0.65rem;
+    padding-left: 0.25rem;
+    font-size: 1.0625rem;
+  }
+
+  .audit-content ul li::marker {
+    color: #059669;
+  }
+
+  .audit-content ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    color: #334155;
+    margin-bottom: 1.75rem;
+    line-height: 1.8;
+  }
+
+  .audit-content ol li {
+    margin-bottom: 0.65rem;
+    padding-left: 0.25rem;
+    font-size: 1.0625rem;
+  }
+
   .audit-content blockquote {
-    @apply border-l-4 border-emerald-500 pl-6 py-3 italic text-slate-400 bg-slate-900/50 my-8 rounded-r-xl font-sans;
+    border-left: 4px solid #059669;
+    background-color: #f0fdf4;
+    padding: 1.25rem 1.75rem;
+    border-radius: 0 1rem 1rem 0;
+    margin: 2rem 0;
+    color: #1e293b;
+    font-style: italic;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
 
-  /* Machine-Readable Structuring for Aggregated Table Matrices */
+  /* 📊 Responsive High-Trust Light Data Tables with Smooth Scroll */
   .audit-content table {
-    @apply w-full text-left border-collapse border border-slate-800/80 rounded-2xl overflow-hidden my-12 text-sm bg-slate-900/20 shadow-2xl font-sans;
-  }
-  .audit-content th {
-    @apply bg-[#0b0f19] text-slate-200 font-bold p-4 md:p-5 border-b border-slate-800 uppercase tracking-wider text-xs font-mono;
-  }
-  .audit-content td {
-    @apply p-4 md:p-5 border-b border-slate-800/50 text-slate-300 font-light leading-relaxed;
-  }
-  .audit-content tr:nth-child(even) td {
-    @apply bg-slate-950/20;
-  }
-  .audit-content tr:hover td {
-    @apply bg-slate-900/40 transition-colors;
+    width: 100%;
+    min-width: 600px;
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   }
 
-  /* High-Contrast Code Block & Snippet Styling */
+  /* Table responsive container */
+  .audit-content :has(> table) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 2rem;
+  }
+
+  .audit-content th {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-weight: 700;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 2px solid #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    white-space: nowrap;
+  }
+
+  .audit-content td {
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  .audit-content tr:last-child td {
+    border-bottom: none;
+  }
+
+  .audit-content tr:nth-child(even) td {
+    background-color: #fcfcfd;
+  }
+
+  .audit-content tr:hover td {
+    background-color: #f0fdf4;
+    transition: background-color 0.15s ease;
+  }
+
+  /* 💻 Code Blocks & Technical Snippets */
   .audit-content pre {
-    @apply bg-[#0a0f1d] border border-slate-700/80 rounded-2xl p-5 md:p-6 overflow-x-auto my-8 text-sm md:text-base font-mono shadow-2xl;
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     color: #a7f3d0 !important;
     line-height: 1.7;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
+
   .audit-content pre code {
-    @apply bg-transparent p-0 border-0 font-mono text-sm md:text-base;
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: 0 !important;
     color: #a7f3d0 !important;
   }
+
   .audit-content :not(pre) > code {
-    @apply bg-slate-800/90 text-emerald-400 px-2.5 py-1 rounded-md text-xs md:text-sm font-mono border border-slate-700/60;
+    background-color: #f1f5f9;
+    color: #047857;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+    font-size: 0.85em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    border: 1px solid #e2e8f0;
+    font-weight: 600;
+  }
+
+  /* Inline Images within Markdown */
+  .audit-content img {
+    border-radius: 1.25rem;
+    border: 1px solid #e2e8f0;
+    margin: 2.5rem 0;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    max-width: 100%;
+    height: auto;
   }
 </style>
