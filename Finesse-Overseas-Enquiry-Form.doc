@@ -18,7 +18,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 12mm 15mm 12mm 15mm;
+      margin: 14mm 16mm 14mm 16mm;
     }
     
     * {
@@ -29,32 +29,34 @@
       print-color-adjust: exact !important;
     }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: #0f172a;
       background-color: #ffffff;
-      font-size: 9.5pt;
+      font-size: 10.5pt;
       line-height: 1.4;
     }
 
-    .form-wrapper {
-      width: 100%;
+    .page-container {
       height: 100%;
+      min-height: 268mm;
+      max-height: 269mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    /* Header */
+    /* HEADER */
     .header-table {
       width: 100%;
       border-bottom: 2.5px solid #0f766e;
-      padding-bottom: 10px;
-      margin-bottom: 16px;
+      padding-bottom: 12px;
+      margin-bottom: 6px;
     }
 
     .logo-img {
-      height: 46px;
+      height: 52px;
       width: auto;
       object-fit: contain;
     }
@@ -65,52 +67,56 @@
 
     .form-main-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 16pt;
+      font-size: 18pt;
       font-weight: 800;
       color: #0f172a;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      line-height: 1.1;
     }
 
     .form-sub-title {
-      font-size: 8pt;
-      font-weight: 600;
+      font-size: 8.5pt;
+      font-weight: 700;
       color: #0d9488;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .date-box {
       text-align: right;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 9.5pt;
+      font-size: 10.5pt;
       font-weight: 700;
       color: #1e293b;
     }
 
     .date-line {
       display: inline-block;
-      border-bottom: 1.5px solid #0f172a;
-      width: 110px;
-      height: 16px;
+      border-bottom: 1.8px solid #0f172a;
+      width: 120px;
+      height: 20px;
       vertical-align: bottom;
-      margin-left: 4px;
+      margin-left: 6px;
     }
 
-    /* Form Fields Container */
-    .fields-container {
+    /* FORM FIELDS LIST */
+    .fields-list {
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      margin-bottom: 18px;
+      justify-content: space-between;
+      flex: 1;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      gap: 16px;
     }
 
     .field-row {
       display: flex;
       align-items: flex-end;
       width: 100%;
-      gap: 12px;
+      gap: 16px;
     }
 
     .field-col {
@@ -122,67 +128,77 @@
     .label {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      font-size: 9.5pt;
+      font-size: 10.5pt;
       color: #0f172a;
       white-space: nowrap;
       margin-right: 8px;
-      letter-spacing: 0.1px;
+      letter-spacing: 0.2px;
     }
 
     .line {
       flex: 1;
-      border-bottom: 1.2px dotted #64748b;
-      height: 20px;
+      border-bottom: 1.5px dotted #64748b;
+      height: 24px;
       margin-bottom: 2px;
     }
 
-    /* Office Use Only Block */
+    /* OFFICE USE ONLY BOX */
     .office-box {
-      border: 1.5px solid #0f766e;
-      border-radius: 6px;
+      border: 1.8px solid #0f766e;
+      border-radius: 8px;
       background: #f8fafc;
-      padding: 10px 14px;
-      margin-bottom: 14px;
+      padding: 12px 16px;
+      margin-top: 6px;
+      margin-bottom: 8px;
     }
 
     .office-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 8.5pt;
+      font-size: 9.5pt;
       font-weight: 800;
       color: #0f766e;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 4px;
-      margin-bottom: 10px;
+      letter-spacing: 1.2px;
+      border-bottom: 1.2px solid #cbd5e1;
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .office-fields {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
     }
 
-    /* Footer */
+    /* FOOTER BAR */
     .footer-bar {
-      border-top: 1.5px solid #0f766e;
+      border-top: 1.8px solid #0f766e;
       padding-top: 8px;
-      font-size: 7.5pt;
+      font-size: 8pt;
       color: #475569;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
-    .footer-bar strong {
+    .footer-brand {
+      font-weight: 800;
       color: #0f766e;
+    }
+
+    .contact-badge {
+      font-weight: 700;
+      color: #0f172a;
     }
   </style>
 </head>
 <body>
 
-<div class="form-wrapper">
+<div class="page-container">
 
   <!-- TOP HEADER -->
   <table class="header-table">
@@ -200,8 +216,8 @@
     </tr>
   </table>
 
-  <!-- EXACT 13 FIELDS FROM USER'S ORIGINAL FORM -->
-  <div class="fields-container">
+  <!-- EXACT 13 FIELDS EVENLY BALANCED ACROSS FULL A4 PAGE -->
+  <div class="fields-list">
 
     <!-- 1. Name -->
     <div class="field-row">
@@ -221,7 +237,7 @@
 
     <!-- 3. Mobile No. & Whatsup No. -->
     <div class="field-row">
-      <div class="field-col" style="flex: 1.1;">
+      <div class="field-col" style="flex: 1.15;">
         <span class="label">Mobile No.:</span>
         <div class="line"></div>
       </div>
@@ -233,7 +249,7 @@
 
     <!-- 4. Father's Mob. No. & Mother's Mob No. -->
     <div class="field-row">
-      <div class="field-col" style="flex: 1.1;">
+      <div class="field-col" style="flex: 1.15;">
         <span class="label">Father's Mob. No.:</span>
         <div class="line"></div>
       </div>
@@ -317,9 +333,12 @@
 
   </div>
 
-  <!-- FOR OFFICE USE (EXACT AS ORIGINAL) -->
+  <!-- FOR OFFICE USE (SPACIOUS & BALANCED) -->
   <div class="office-box">
-    <div class="office-title">For Office Use</div>
+    <div class="office-title">
+      <span>For Office Use</span>
+      <span style="font-size: 8pt; font-weight: 600; color: #64748b; text-transform: none;">Counseling Record</span>
+    </div>
     <div class="office-fields">
       <div class="field-row">
         <div class="field-col" style="flex: 1.2;">
@@ -337,16 +356,22 @@
           <div class="line" style="border-color: #0f766e;"></div>
         </div>
       </div>
+      <div class="field-row">
+        <div class="field-col">
+          <span class="label" style="color: transparent; width: 60px;"></span>
+          <div class="line" style="border-color: #0f766e;"></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- CORPORATE FOOTER -->
   <div class="footer-bar">
     <div>
-      <strong>FINESSE OVERSEAS EDUCATION</strong> | Samarth Sakshi Plaza, 1st Floor, 4th Lane, Rajarampuri, Kolhapur - 416008
+      <span class="footer-brand">FINESSE OVERSEAS EDUCATION</span> | Samarth Sakshi Plaza, 1st Floor, 4th Lane, Rajarampuri, Kolhapur - 416008
     </div>
     <div>
-      📞 <strong>+91-9850069600</strong> | 🌐 <strong>finesseoverseas.com</strong>
+      📞 <span class="contact-badge">+91-9850069600</span> | 🌐 <span class="contact-badge">finesseoverseas.com</span>
     </div>
   </div>
 
