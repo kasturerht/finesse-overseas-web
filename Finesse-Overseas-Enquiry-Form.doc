@@ -52,7 +52,7 @@
       width: 100%;
       border-bottom: 2px solid #0f766e;
       padding-bottom: 10px;
-      margin-bottom: 4px;
+      margin-bottom: 12px; /* Generous gap below divider line */
     }
 
     .logo-img {
@@ -107,9 +107,9 @@
       flex-direction: column;
       justify-content: space-between;
       flex: 1;
-      padding-top: 8px;
+      padding-top: 6px;
       padding-bottom: 8px;
-      gap: 15px;
+      gap: 14px;
     }
 
     .field-row {
@@ -148,7 +148,7 @@
       border-radius: 6px;
       background: #f8fafc;
       padding: 10px 14px;
-      margin-top: 4px;
+      margin-top: 6px;
       margin-bottom: 8px;
     }
 
@@ -170,7 +170,7 @@
     .office-fields {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
     }
 
     /* CORPORATE FOOTER (CLEANLY STRUCTURED & CENTERED) */
@@ -235,7 +235,7 @@
     </tr>
   </table>
 
-  <!-- EXACT 13 FIELDS EVENLY BALANCED ACROSS FULL A4 PAGE -->
+  <!-- EXACT 13 FIELDS PROPERLY FORMATTED ACROSS A4 PAGE -->
   <div class="fields-list">
 
     <!-- 1. Name -->
@@ -254,7 +254,7 @@
       </div>
     </div>
 
-    <!-- 3. Mobile No. & Whatsup No. -->
+    <!-- 3. Mobile No. & WhatsApp No. -->
     <div class="field-row">
       <div class="field-col" style="flex: 1.15;">
         <span class="label">Mobile No.:</span>
@@ -266,14 +266,14 @@
       </div>
     </div>
 
-    <!-- 4. Father's Mob. No. & Mother's Mob No. -->
+    <!-- 4. Father's Mobile No. & Mother's Mobile No. -->
     <div class="field-row">
       <div class="field-col" style="flex: 1.15;">
-        <span class="label">Father's Mob. No.:</span>
+        <span class="label">Father's Mobile No.:</span>
         <div class="line"></div>
       </div>
       <div class="field-col" style="flex: 1;">
-        <span class="label">Mother's Mob No.:</span>
+        <span class="label">Mother's Mobile No.:</span>
         <div class="line"></div>
       </div>
     </div>
@@ -286,18 +286,18 @@
       </div>
     </div>
 
-    <!-- 6. Qualification -->
+    <!-- 6. Highest Qualification -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">Qualification:</span>
+        <span class="label">Highest Qualification:</span>
         <div class="line"></div>
       </div>
     </div>
 
-    <!-- 7. Interested in Bachelor/ Master in -->
+    <!-- 7. Interested in (Bachelor's / Master's) -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">Interested in Bachelor/ Master in:</span>
+        <span class="label">Interested in (Bachelor's / Master's):</span>
         <div class="line"></div>
       </div>
     </div>
@@ -310,18 +310,18 @@
       </div>
     </div>
 
-    <!-- 9. Intake -->
+    <!-- 9. Target Intake -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">Intake:</span>
+        <span class="label">Target Intake:</span>
         <div class="line"></div>
       </div>
     </div>
 
-    <!-- 10. Country Interested -->
+    <!-- 10. Country of Interest -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">Country Interested:</span>
+        <span class="label">Country of Interest:</span>
         <div class="line"></div>
       </div>
     </div>
@@ -334,57 +334,56 @@
       </div>
     </div>
 
-    <!-- 12. Finance- self / Educational Loan -->
+    <!-- 12. Finance: Self / Education Loan -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">Finance- self / Educational Loan:</span>
+        <span class="label">Finance: Self / Education Loan:</span>
         <div class="line"></div>
       </div>
     </div>
 
-    <!-- 13. How do you know about us -->
+    <!-- 13. How do you know about us? -->
     <div class="field-row">
       <div class="field-col">
-        <span class="label">How do you know about us:</span>
+        <span class="label">How do you know about us?:</span>
         <div class="line"></div>
       </div>
     </div>
 
   </div>
 
-  <!-- FOR OFFICE USE (SPACIOUS & BALANCED) -->
+  <!-- FOR OFFICE USE ONLY (FULL WIDTH ATTENDED BY + SPACIOUS REMARKS) -->
   <div class="office-box">
     <div class="office-title">
-      <span>For Office Use</span>
+      <span>FOR OFFICE USE ONLY</span>
       <span style="font-size: 8pt; font-weight: 600; color: #64748b; text-transform: none;">Counseling Record</span>
     </div>
     <div class="office-fields">
+      <!-- Full-width Attended by line -->
       <div class="field-row">
-        <div class="field-col" style="flex: 1.2;">
+        <div class="field-col">
           <span class="label" style="color: #0f766e;">Attended by:</span>
           <div class="line" style="border-color: #0f766e;"></div>
         </div>
-        <div class="field-col" style="flex: 1;">
-          <span class="label" style="color: #0f766e;">Signature:</span>
-          <div class="line" style="border-color: #0f766e;"></div>
-        </div>
       </div>
+      <!-- Remark line 1 -->
       <div class="field-row">
         <div class="field-col">
           <span class="label" style="color: #0f766e;">Remark:</span>
           <div class="line" style="border-color: #0f766e;"></div>
         </div>
       </div>
+      <!-- Remark line 2 -->
       <div class="field-row">
         <div class="field-col">
-          <span class="label" style="color: transparent; width: 60px;"></span>
+          <span class="label" style="color: transparent; width: 52px;"></span>
           <div class="line" style="border-color: #0f766e;"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CORPORATE FOOTER (PROPERLY ARRANGE) -->
+  <!-- CORPORATE FOOTER -->
   <div class="footer-bar">
     <div class="footer-line-1">
       <strong>FINESSE OVERSEAS EDUCATION</strong> &nbsp;|&nbsp; Samarth Sakshi Plaza, 1st Floor, 4th Lane, Rajarampuri, Kolhapur - 416008
