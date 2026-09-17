@@ -325,7 +325,7 @@ const authorInitials = post.data.author
 
     {/* Content Layout (Consistent max-w-7xl) */}
     <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-10 lg:py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14">
         
         {/* Left Column: Markdown Article Body (8 Cols) */}
         <article class="lg:col-span-8 audit-content w-full min-w-0">
@@ -725,6 +725,41 @@ const authorInitials = post.data.author
     />
   </div>
 
+  {/* 📊 Fullscreen Data Table Modal (Universal Matrix View) */}
+  <div
+    id="table-modal"
+    class="fixed inset-0 bg-slate-900/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 z-[999999] p-3 sm:p-6 md:p-10 items-center justify-center"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="bg-white w-full max-w-6xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+      <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-mono text-[10px] sm:text-xs font-bold shrink-0">
+            📊 FULL MATRIX
+          </span>
+          <h3 id="table-modal-title" class="text-xs sm:text-sm md:text-base font-bold text-slate-800 truncate m-0">
+            Data Matrix View
+          </h3>
+        </div>
+        <button
+          id="close-table-modal"
+          type="button"
+          class="px-3 py-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
+          aria-label="Close modal"
+        >
+          <span>Close</span>
+          <kbd class="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-slate-100 px-1 py-0.5 rounded border border-slate-200">Esc</kbd>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div id="table-modal-content" class="p-4 sm:p-6 overflow-auto flex-1 audit-content">
+        {/* Cloned table inserted dynamically */}
+      </div>
+    </div>
+  </div>
+
   <Footer theme="light" hideCTA={true} />
 
 </Layout>
@@ -975,6 +1010,168 @@ const authorInitials = post.data.author
         closeDrawer();
       });
     });
+
+    // 10. Intelligent Universal Data Table Architecture (Freeze Column, Scroll Affordance, Full-Screen Modal)
+    const tableModal = document.getElementById("table-modal");
+    const tableModalTitle = document.getElementById("table-modal-title");
+    const tableModalContent = document.getElementById("table-modal-content");
+    const closeTableModalBtn = document.getElementById("close-table-modal");
+
+    const openTableModal = (tableElement: HTMLElement, titleText: string) => {
+      if (!tableModal || !tableModalContent) return;
+      if (tableModalTitle) {
+        tableModalTitle.textContent = titleText || "Full Data Matrix View";
+      }
+      tableModalContent.innerHTML = "";
+      const clone = tableElement.cloneNode(true) as HTMLElement;
+      clone.classList.remove("min-w-max");
+      clone.classList.add("w-full");
+      const wrapper = document.createElement("div");
+      wrapper.className = "w-full overflow-x-auto";
+      wrapper.appendChild(clone);
+      tableModalContent.appendChild(wrapper);
+
+      tableModal.classList.remove("hidden");
+      tableModal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        tableModal.classList.remove("opacity-0");
+      }, 10);
+    };
+
+    const closeTableModal = () => {
+      if (!tableModal) return;
+      tableModal.classList.add("opacity-0");
+      document.body.style.overflow = "";
+      setTimeout(() => {
+        tableModal.classList.add("hidden");
+        tableModal.classList.remove("flex");
+        if (tableModalContent) tableModalContent.innerHTML = "";
+      }, 250);
+    };
+
+    if (closeTableModalBtn) {
+      closeTableModalBtn.addEventListener("click", closeTableModal);
+    }
+    if (tableModal) {
+      tableModal.addEventListener("click", (e) => {
+        if (e.target === tableModal) {
+          closeTableModal();
+        }
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && tableModal && !tableModal.classList.contains("hidden")) {
+        closeTableModal();
+      }
+    });
+
+    const initUniversalTables = () => {
+      const tables = document.querySelectorAll<HTMLTableElement>(".audit-content table");
+      tables.forEach((table) => {
+        if (table.closest(".audit-table-card") || table.closest("#table-modal")) return;
+
+        // Extract column count from first row / header
+        const headerCells = table.querySelectorAll("thead th, tr:first-child th, tr:first-child td");
+        const colCount = headerCells.length || 0;
+
+        // Find nearest preceding heading for context title
+        let headingText = "Data Matrix";
+        let prev = table.previousElementSibling;
+        while (prev) {
+          if (/^H[2-4]$/i.test(prev.tagName)) {
+            headingText = prev.textContent?.trim() || "Data Matrix";
+            break;
+          }
+          prev = prev.previousElementSibling;
+        }
+
+        // 1. Build Wrapper Card
+        const card = document.createElement("div");
+        card.className = "audit-table-card group/tbl my-8 rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden transition-all";
+
+        // 2. Build Top Bar
+        const topBar = document.createElement("div");
+        topBar.className = "px-4 py-2.5 bg-slate-50/90 border-b border-slate-200/80 flex items-center justify-between gap-2 text-xs select-none";
+        topBar.innerHTML = `
+          <div class="flex items-center gap-2 text-slate-600 font-mono font-bold text-[11px] truncate">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span>
+            <span class="uppercase tracking-wider">Data Matrix</span>
+            <span class="text-slate-300">•</span>
+            <span class="font-normal text-slate-500">${colCount} Columns</span>
+          </div>
+          <div class="flex items-center gap-2.5 shrink-0">
+            <span class="table-scroll-hint hidden items-center gap-1 text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium">
+              <span>Scroll</span>
+              <span class="inline-block animate-pulse">↔</span>
+            </span>
+            <button type="button" class="table-expand-btn inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-700 hover:text-emerald-700 hover:bg-slate-100 px-2.5 py-1 rounded-lg transition-colors cursor-pointer border border-slate-200 bg-white shadow-xs" title="Open Full Screen Matrix View">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+              <span class="hidden xs:inline">Full View</span>
+            </button>
+          </div>
+        `;
+
+        // 3. Build Scroll Area with dynamic Left/Right Fade Indicators
+        const scrollContainer = document.createElement("div");
+        scrollContainer.className = "audit-table-scroll-container relative";
+
+        const fadeLeft = document.createElement("div");
+        fadeLeft.className = "table-fade-left absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
+
+        const fadeRight = document.createElement("div");
+        fadeRight.className = "table-fade-right absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
+
+        const scrollBox = document.createElement("div");
+        scrollBox.className = "audit-table-scroll overflow-x-auto overscroll-x-contain";
+
+        // Insert into DOM
+        if (table.parentNode) {
+          table.parentNode.insertBefore(card, table);
+          scrollBox.appendChild(table);
+          scrollContainer.appendChild(fadeLeft);
+          scrollContainer.appendChild(scrollBox);
+          scrollContainer.appendChild(fadeRight);
+          card.appendChild(topBar);
+          card.appendChild(scrollContainer);
+        }
+
+        // Scroll hint & fade update logic
+        const hint = topBar.querySelector(".table-scroll-hint");
+        const updateScroll = () => {
+          const hasOverflow = scrollBox.scrollWidth > scrollBox.clientWidth + 2;
+          const isScrollableRight = scrollBox.scrollWidth - scrollBox.scrollLeft - scrollBox.clientWidth > 6;
+          const isScrollableLeft = scrollBox.scrollLeft > 6;
+
+          if (hint) {
+            if (hasOverflow) {
+              hint.classList.remove("hidden");
+              hint.classList.add("inline-flex");
+            } else {
+              hint.classList.add("hidden");
+              hint.classList.remove("inline-flex");
+            }
+          }
+          fadeRight.style.opacity = isScrollableRight ? "1" : "0";
+          fadeLeft.style.opacity = isScrollableLeft ? "1" : "0";
+        };
+
+        scrollBox.addEventListener("scroll", updateScroll, { passive: true });
+        window.addEventListener("resize", updateScroll, { passive: true });
+        setTimeout(updateScroll, 80);
+
+        // Expand Button Click
+        const expandBtn = topBar.querySelector(".table-expand-btn");
+        if (expandBtn) {
+          expandBtn.addEventListener("click", () => {
+            openTableModal(table, headingText);
+          });
+        }
+      });
+    };
+
+    initUniversalTables();
+    document.addEventListener("astro:page-load", initUniversalTables);
   });
 </script>
 
@@ -1123,26 +1320,53 @@ const authorInitials = post.data.author
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
 
-  /* 📊 Responsive High-Trust Light Data Tables with Smooth Scroll */
+  /* 📊 Intelligent High-Trust Light Data Tables & Sticky Architecture */
+  .audit-table-card {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 2.25rem 0;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+  }
+
+  .audit-table-card .audit-table-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .audit-table-card .audit-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
   .audit-content table {
     width: 100%;
-    min-width: 600px;
+    min-width: max-content; /* Never crushes columns into unreadable slivers */
     text-align: left;
     border-collapse: separate;
     border-spacing: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    background-color: #ffffff;
+  }
+
+  /* Direct fallback container before JavaScript executes */
+  .audit-content :not(.audit-table-scroll) > table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border: 1px solid #e2e8f0;
     border-radius: 1rem;
     margin: 2rem 0;
-    font-size: 0.875rem;
-    background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
-  }
-
-  /* Table responsive container */
-  .audit-content :has(> table) {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 2rem;
   }
 
   .audit-content th {
@@ -1155,14 +1379,14 @@ const authorInitials = post.data.author
     letter-spacing: 0.05em;
     font-size: 0.75rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    white-space: nowrap;
+    white-space: nowrap; /* Eliminates truncations like 'MACROECONOM...' */
   }
 
   .audit-content td {
     padding: 0.875rem 1.25rem;
     border-bottom: 1px solid #f1f5f9;
     color: #334155;
-    line-height: 1.6;
+    line-height: 1.65;
     vertical-align: top;
   }
 
@@ -1177,6 +1401,95 @@ const authorInitials = post.data.author
   .audit-content tr:hover td {
     background-color: #f0fdf4;
     transition: background-color 0.15s ease;
+  }
+
+  /* 📌 Sticky First Column on Tablet & Desktop (>= 640px) */
+  @media (min-width: 640px) {
+    .audit-table-scroll th:first-child,
+    .audit-table-scroll td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      min-width: 170px;
+      max-width: 240px;
+      background-color: #ffffff;
+    }
+
+    .audit-table-scroll th:first-child {
+      background-color: #f8fafc;
+      z-index: 20;
+    }
+
+    .audit-table-scroll tr:nth-child(even) td:first-child {
+      background-color: #fcfcfd;
+    }
+
+    .audit-table-scroll tr:hover td:first-child {
+      background-color: #f0fdf4;
+    }
+
+    /* Subtle divider shadow separating frozen column from scrollable cells */
+    .audit-table-scroll th:first-child::after,
+    .audit-table-scroll td:first-child::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #e2e8f0;
+      box-shadow: 3px 0 6px -1px rgba(0, 0, 0, 0.07);
+      pointer-events: none;
+    }
+  }
+
+  /* Center numerical/stat data columns and give minimum width */
+  .audit-content td:not(:first-child) {
+    min-width: 110px;
+  }
+
+  /* Commentary / Consequence / Long analysis column gets comfortable reading width */
+  .audit-content td:last-child {
+    min-width: 250px;
+    max-width: 420px;
+    white-space: normal;
+  }
+
+  /* Custom sleek scrollbar for data tables */
+  .audit-table-scroll::-webkit-scrollbar,
+  .audit-content :not(.audit-table-scroll) > table::-webkit-scrollbar {
+    height: 6px;
+  }
+  .audit-table-scroll::-webkit-scrollbar-track,
+  .audit-content :not(.audit-table-scroll) > table::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 9999px;
+  }
+  .audit-table-scroll::-webkit-scrollbar-thumb,
+  .audit-content :not(.audit-table-scroll) > table::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  .audit-table-scroll::-webkit-scrollbar-thumb:hover,
+  .audit-content :not(.audit-table-scroll) > table::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+
+  /* Full Matrix Modal Cloned Table Styling */
+  #table-modal-content table {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  #table-modal-content th {
+    background-color: #f8fafc;
+    position: sticky;
+    top: 0;
+    z-index: 30;
   }
 
   /* 💻 Code Blocks & Technical Snippets */
