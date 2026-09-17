@@ -211,7 +211,7 @@ const authorInitials = post.data.author
 
   {/* 📣 Floating Share Bar (Sleek Desktop Light Edition) */}
   <div
-    class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[9999] flex flex-col gap-2.5 bg-white/95 backdrop-blur-xl p-2 rounded-full border border-slate-200 shadow-xl"
+    class="hidden lg:flex fixed bottom-10 right-10 z-[9999] flex-col gap-2.5 bg-white/95 backdrop-blur-xl p-2 rounded-full border border-slate-200 shadow-xl"
   >
     <button
       id="share-wa"
@@ -242,7 +242,7 @@ const authorInitials = post.data.author
     </button>
   </div>
 
-  <main class="w-full bg-[#FAFAFA] min-h-screen font-sans" id="core-article-container" data-slug={slugPath}>
+  <main class="w-full bg-[#FAFAFA] min-h-screen font-sans pb-20 lg:pb-0" id="core-article-container" data-slug={slugPath}>
     
     {/* Page Header Deck (Consistent Max-W-7xl Alignment Across Entire Page) */}
     <header class="border-b border-slate-200/90 bg-white pt-28 sm:pt-32 pb-10 sm:pb-14 relative overflow-hidden">
@@ -325,7 +325,7 @@ const authorInitials = post.data.author
 
     {/* Content Layout (Consistent max-w-7xl) */}
     <section class="container mx-auto px-4 lg:px-8 max-w-7xl py-10 lg:py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
         
         {/* Left Column: Markdown Article Body (8 Cols) */}
         <article class="lg:col-span-8 audit-content w-full min-w-0">
@@ -544,27 +544,28 @@ const authorInitials = post.data.author
         </article>
 
         {/* Right Column: Sticky Navigation Index & Lead Magnet (4 Cols) */}
-        <aside class="lg:col-span-4 w-full">
+        <aside class="lg:col-span-4 w-full h-full relative">
           <div class="sticky top-28 space-y-6 pb-10 z-10 font-sans">
             
             {/* Table of Contents Box */}
             {filteredHeadings.length > 0 && (
-              <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm hidden lg:block">
-                <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                  <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">
+              <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm hidden lg:block">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                  <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-600 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
                     Audit Index
                   </h4>
                   <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold">
                     {filteredHeadings.length} Sections
                   </span>
                 </div>
-                <nav id="toc-nav" class="max-h-[60vh] overflow-y-auto pr-1">
-                  <ul class="space-y-2 list-none p-0 m-0">
+                <nav id="toc-nav" class="max-h-[38vh] overflow-y-auto pr-1">
+                  <ul class="space-y-1.5 list-none p-0 m-0">
                     {filteredHeadings.map((heading) => (
                       <li class={`toc-item ${heading.depth === 3 ? "ml-3.5" : ""}`}>
                         <a
                           href={`#${heading.slug}`}
-                          class="block text-xs text-slate-600 hover:text-emerald-700 transition-colors leading-snug core-toc-anchor py-1 border-l-2 border-transparent pl-2 -ml-2"
+                          class="block text-xs text-slate-600 hover:text-emerald-700 transition-colors leading-snug core-toc-anchor py-1 border-l-2 border-transparent pl-2 -ml-2 rounded-r"
                           data-toc-target={heading.text}
                         >
                           <span class="text-slate-400 font-mono mr-1">§</span> {heading.text}
@@ -576,18 +577,18 @@ const authorInitials = post.data.author
               </div>
             )}
 
-            {/* Light Editorial Lead Magnet Tool Card (Zero Black Box) */}
+            {/* Light Editorial Lead Magnet Tool Card */}
             <div
-              class="bg-gradient-to-br from-emerald-50/60 via-white to-emerald-50/30 border border-emerald-200 rounded-3xl p-6 sm:p-7 shadow-sm relative overflow-hidden"
+              class="bg-gradient-to-br from-emerald-50/60 via-white to-emerald-50/30 border border-emerald-200 rounded-3xl p-5 sm:p-6 shadow-sm relative overflow-hidden"
             >
               <div class="relative z-10">
-                <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-md border border-emerald-300/80 mb-4">
+                <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-md border border-emerald-300/80 mb-3">
                   Statutory Checklist
                 </span>
-                <h3 class="text-xl font-serif text-slate-900 font-medium mb-3 leading-snug">
+                <h3 class="text-lg font-serif text-slate-900 font-medium mb-2 leading-snug">
                   NMC Foreign Medical Graduate Checklist (2026)
                 </h3>
-                <p class="text-xs text-slate-600 mb-6 leading-relaxed font-normal">
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed font-normal">
                   Verify any European university against all 7 mandatory statutory clauses before transferring first-year tuition fees.
                 </p>
                 <div class="w-full">
@@ -596,8 +597,15 @@ const authorInitials = post.data.author
                     pdfUrl="/finesse-nmc-guidelines-checklist.pdf"
                   />
                 </div>
+                <a
+                  href="/contact"
+                  class="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs mt-3"
+                >
+                  <span>Book Free Consultation</span>
+                  <span>→</span>
+                </a>
                 <p class="text-[10px] font-mono text-slate-400 text-center mt-3">
-                  100% Free • Verified Official PDF
+                  100% Free • Verified Official Guidance
                 </p>
               </div>
             </div>
@@ -609,6 +617,99 @@ const authorInitials = post.data.author
     </section>
 
   </main>
+
+  {/* 📱 Mobile Floating Persistent Action Bar (Slides up on scroll) */}
+  <div
+    id="mobile-action-bar"
+    class="fixed bottom-0 left-0 right-0 z-[9990] bg-white/95 backdrop-blur-xl border-t border-slate-200/90 px-3.5 py-2.5 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] transform translate-y-full transition-transform duration-300 ease-out lg:hidden flex items-center justify-between gap-2.5 font-sans"
+  >
+    {filteredHeadings.length > 0 && (
+      <button
+        id="open-mobile-toc"
+        type="button"
+        class="inline-flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all shrink-0 border border-slate-200/80 cursor-pointer"
+        aria-label="Open Audit Index"
+      >
+        <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+        <span>Index</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+      </button>
+    )}
+
+    <a
+      href="https://wa.me/+919850069600?text=Hi%20Finesse%20Team!%20I%20am%20reading%20your%20audit%20and%20need%20expert%20guidance."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-9 h-9 flex items-center justify-center rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white active:scale-95 transition-transform shadow-xs shrink-0"
+      aria-label="Chat on WhatsApp"
+      title="Chat on WhatsApp"
+    >
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+      </svg>
+    </a>
+
+    <a
+      href="/contact"
+      class="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-gradient-to-r from-slate-900 via-emerald-950 to-emerald-900 hover:opacity-95 active:scale-95 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-xs transition-all text-center"
+    >
+      <span>Book Consultation</span>
+      <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
+  </div>
+
+  {/* 📑 Mobile Audit Index Drawer Sheet (Modal Overlay) */}
+  {filteredHeadings.length > 0 && (
+    <div
+      id="mobile-toc-drawer"
+      class="fixed inset-0 z-[99999] bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 lg:hidden items-end"
+      aria-hidden="true"
+    >
+      <div
+        id="mobile-toc-panel"
+        class="w-full bg-white rounded-t-3xl border-t border-slate-200 shadow-2xl max-h-[75vh] flex flex-col transform translate-y-full transition-transform duration-300 ease-out"
+      >
+        <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+            <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-800">
+              Audit Index
+            </h4>
+            <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold">
+              {filteredHeadings.length} Sections
+            </span>
+          </div>
+          <button
+            id="close-mobile-toc"
+            type="button"
+            class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 active:scale-95 cursor-pointer"
+            aria-label="Close Index"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <nav class="overflow-y-auto p-4 space-y-1 font-sans">
+          {filteredHeadings.map((heading) => (
+            <a
+              href={`#${heading.slug}`}
+              class="mobile-toc-link block px-3 py-2.5 rounded-xl text-xs text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 active:bg-emerald-100 transition-colors leading-snug"
+            >
+              <span class="text-slate-400 font-mono mr-1.5">§</span>
+              <span class={heading.depth === 3 ? "pl-3 font-normal text-slate-600" : "font-semibold text-slate-800"}>
+                {heading.text}
+              </span>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  )}
 
   {/* Image Zoom Lightbox Overlay */}
   <div
@@ -808,6 +909,72 @@ const authorInitials = post.data.author
         }, 300);
       });
     }
+
+    // 9. Mobile Floating Persistent Action Bar & Mobile TOC Drawer
+    const mobileActionBar = document.getElementById("mobile-action-bar");
+    const openMobileTocBtn = document.getElementById("open-mobile-toc");
+    const closeMobileTocBtn = document.getElementById("close-mobile-toc");
+    const mobileTocDrawer = document.getElementById("mobile-toc-drawer");
+    const mobileTocPanel = document.getElementById("mobile-toc-panel");
+    const mobileTocLinks = document.querySelectorAll(".mobile-toc-link");
+
+    if (mobileActionBar) {
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (window.scrollY > 260) {
+            mobileActionBar.classList.remove("translate-y-full");
+          } else {
+            mobileActionBar.classList.add("translate-y-full");
+          }
+        },
+        { passive: true }
+      );
+    }
+
+    const openDrawer = () => {
+      if (!mobileTocDrawer || !mobileTocPanel) return;
+      mobileTocDrawer.classList.remove("hidden");
+      mobileTocDrawer.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        mobileTocDrawer.classList.remove("opacity-0");
+        mobileTocPanel.classList.remove("translate-y-full");
+      }, 10);
+    };
+
+    const closeDrawer = () => {
+      if (!mobileTocDrawer || !mobileTocPanel) return;
+      mobileTocDrawer.classList.add("opacity-0");
+      mobileTocPanel.classList.add("translate-y-full");
+      document.body.style.overflow = "";
+      setTimeout(() => {
+        mobileTocDrawer.classList.add("hidden");
+        mobileTocDrawer.classList.remove("flex");
+      }, 300);
+    };
+
+    if (openMobileTocBtn) {
+      openMobileTocBtn.addEventListener("click", openDrawer);
+    }
+
+    if (closeMobileTocBtn) {
+      closeMobileTocBtn.addEventListener("click", closeDrawer);
+    }
+
+    if (mobileTocDrawer) {
+      mobileTocDrawer.addEventListener("click", (e) => {
+        if (e.target === mobileTocDrawer) {
+          closeDrawer();
+        }
+      });
+    }
+
+    mobileTocLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeDrawer();
+      });
+    });
   });
 </script>
 
