@@ -728,14 +728,14 @@ const authorInitials = post.data.author
   {/* 📊 Fullscreen Data Table Modal (Universal Matrix View) */}
   <div
     id="table-modal"
-    class="fixed inset-0 bg-slate-900/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 z-[999999] p-3 sm:p-6 md:p-10 items-center justify-center"
+    class="fixed inset-0 bg-slate-900/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 z-[999999] p-2 sm:p-6 md:p-10 items-center justify-center"
     aria-hidden="true"
     role="dialog"
     aria-modal="true"
   >
-    <div class="bg-white w-full max-w-6xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
-      <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
-        <div class="flex items-center gap-2.5 min-w-0">
+    <div class="bg-white w-full max-w-6xl max-h-[96vh] sm:max-h-[92vh] rounded-xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+      <div class="px-3.5 sm:px-5 py-2.5 sm:py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
+        <div class="flex items-center gap-2 sm:gap-2.5 min-w-0">
           <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-mono text-[10px] sm:text-xs font-bold shrink-0">
             📊 FULL MATRIX
           </span>
@@ -746,7 +746,7 @@ const authorInitials = post.data.author
         <button
           id="close-table-modal"
           type="button"
-          class="px-3 py-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
+          class="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs"
           aria-label="Close modal"
         >
           <span>Close</span>
@@ -754,7 +754,7 @@ const authorInitials = post.data.author
           <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
-      <div id="table-modal-content" class="p-4 sm:p-6 overflow-auto flex-1 audit-content">
+      <div id="table-modal-content" class="p-2 sm:p-6 overflow-auto flex-1 audit-content">
         {/* Cloned table inserted dynamically */}
       </div>
     </div>
@@ -1086,28 +1086,28 @@ const authorInitials = post.data.author
           prev = prev.previousElementSibling;
         }
 
-        // 1. Build Wrapper Card
+        // 1. Build Wrapper Card (Compact on mobile, generous on desktop)
         const card = document.createElement("div");
-        card.className = "audit-table-card group/tbl my-8 rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden transition-all";
+        card.className = "audit-table-card group/tbl my-6 sm:my-8 rounded-xl sm:rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden transition-all";
 
-        // 2. Build Top Bar
+        // 2. Build Top Bar (Fully responsive for mobile phones)
         const topBar = document.createElement("div");
-        topBar.className = "px-4 py-2.5 bg-slate-50/90 border-b border-slate-200/80 flex items-center justify-between gap-2 text-xs select-none";
+        topBar.className = "px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-50/90 border-b border-slate-200/80 flex items-center justify-between gap-2 text-xs select-none";
         topBar.innerHTML = `
-          <div class="flex items-center gap-2 text-slate-600 font-mono font-bold text-[11px] truncate">
+          <div class="flex items-center gap-1.5 sm:gap-2 text-slate-600 font-mono font-bold text-[11px] truncate">
             <span class="w-2 h-2 rounded-full bg-emerald-600 shrink-0"></span>
             <span class="uppercase tracking-wider">Data Matrix</span>
             <span class="text-slate-300">•</span>
-            <span class="font-normal text-slate-500">${colCount} Columns</span>
+            <span class="font-normal text-slate-500">${colCount} Cols</span>
           </div>
-          <div class="flex items-center gap-2.5 shrink-0">
-            <span class="table-scroll-hint hidden items-center gap-1 text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium">
-              <span>Scroll</span>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="table-scroll-hint hidden items-center gap-1 text-[10px] sm:text-[11px] font-mono text-emerald-700 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded border border-emerald-200 font-medium">
+              <span>Swipe</span>
               <span class="inline-block animate-pulse">↔</span>
             </span>
-            <button type="button" class="table-expand-btn inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-700 hover:text-emerald-700 hover:bg-slate-100 px-2.5 py-1 rounded-lg transition-colors cursor-pointer border border-slate-200 bg-white shadow-xs" title="Open Full Screen Matrix View">
+            <button type="button" class="table-expand-btn inline-flex items-center gap-1 text-[11px] font-bold text-slate-700 hover:text-emerald-700 hover:bg-slate-100 px-2 sm:px-2.5 py-1 rounded-lg transition-colors cursor-pointer border border-slate-200 bg-white shadow-xs" title="Open Full Screen Matrix View">
               <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
-              <span class="hidden xs:inline">Full View</span>
+              <span>Full View</span>
             </button>
           </div>
         `;
@@ -1117,10 +1117,10 @@ const authorInitials = post.data.author
         scrollContainer.className = "audit-table-scroll-container relative";
 
         const fadeLeft = document.createElement("div");
-        fadeLeft.className = "table-fade-left absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
+        fadeLeft.className = "table-fade-left absolute left-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-r from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
 
         const fadeRight = document.createElement("div");
-        fadeRight.className = "table-fade-right absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
+        fadeRight.className = "table-fade-right absolute right-0 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-l from-white/95 to-transparent pointer-events-none opacity-0 transition-opacity z-30";
 
         const scrollBox = document.createElement("div");
         scrollBox.className = "audit-table-scroll overflow-x-auto overscroll-x-contain";
@@ -1373,21 +1373,37 @@ const authorInitials = post.data.author
     background-color: #f8fafc;
     color: #0f172a;
     font-weight: 700;
-    padding: 0.875rem 1.25rem;
+    padding: 0.65rem 0.85rem;
     border-bottom: 2px solid #e2e8f0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     white-space: nowrap; /* Eliminates truncations like 'MACROECONOM...' */
   }
 
+  @media (min-width: 640px) {
+    .audit-content th {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.75rem;
+    }
+  }
+
   .audit-content td {
-    padding: 0.875rem 1.25rem;
+    padding: 0.65rem 0.85rem;
     border-bottom: 1px solid #f1f5f9;
     color: #334155;
-    line-height: 1.65;
+    line-height: 1.55;
+    font-size: 0.825rem;
     vertical-align: top;
+  }
+
+  @media (min-width: 640px) {
+    .audit-content td {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
   }
 
   .audit-content tr:last-child td {
@@ -1443,16 +1459,41 @@ const authorInitials = post.data.author
     }
   }
 
+  /* First column minimum width */
+  .audit-content td:first-child,
+  .audit-content th:first-child {
+    min-width: 135px;
+    font-weight: 600;
+  }
+  @media (min-width: 640px) {
+    .audit-content td:first-child,
+    .audit-content th:first-child {
+      min-width: 170px;
+      max-width: 240px;
+    }
+  }
+
   /* Center numerical/stat data columns and give minimum width */
   .audit-content td:not(:first-child) {
-    min-width: 110px;
+    min-width: 90px;
+  }
+  @media (min-width: 640px) {
+    .audit-content td:not(:first-child) {
+      min-width: 110px;
+    }
   }
 
   /* Commentary / Consequence / Long analysis column gets comfortable reading width */
   .audit-content td:last-child {
-    min-width: 250px;
-    max-width: 420px;
+    min-width: 210px;
+    max-width: 320px;
     white-space: normal;
+  }
+  @media (min-width: 640px) {
+    .audit-content td:last-child {
+      min-width: 250px;
+      max-width: 420px;
+    }
   }
 
   /* Custom sleek scrollbar for data tables */
