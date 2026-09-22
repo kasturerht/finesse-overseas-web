@@ -142,6 +142,27 @@ interface ArticleFAQ {
 function resolveArticleFAQs(postId: string, title: string, takeaways: string[] = []): ArticleFAQ[] {
   const id = postId.toLowerCase();
   
+  if (id.includes('tuition-fee-myth') || id.includes('14-states')) {
+    return [
+      {
+        question: "Is higher education in Germany still 100% tuition-free for Indian students in 2026?",
+        answer: "Yes. Despite misleading headlines, 14 out of 16 German federal states legally guarantee 100% tuition-free higher education for all international students by sovereign state law. You only pay a subsidized social semester contribution (€150 to €350) which includes public transit."
+      },
+      {
+        question: "Which German states and universities charge tuition fees for non-EU students?",
+        answer: "Only public universities in the state of Baden-Württemberg (€1,500/semester) and select universities in Bavaria (primarily the Technical University of Munich - TUM charging €2,000 to €6,000) levy non-EU fees. Elite TU9 institutions like RWTH Aachen, TU Berlin, and TU Darmstadt charge strictly €0 tuition."
+      },
+      {
+        question: "What is the difference between Semesterbeitrag and tuition fees (Studiengebühren)?",
+        answer: "Studiengebühren are academic tuition fees, which are €0 in 14 German states. The Semesterbeitrag (€150–€350) is an administrative welfare fee that includes a 6-month unlimited regional transit pass (Semesterticket), subsidized student dining (Mensa), and campus services."
+      },
+      {
+        question: "Why do local education agents claim that Germany is no longer free?",
+        answer: "Because German public universities charge zero fees and pay zero recruiter commissions. Unscrupulous agents exploit TUM's fee announcement to mislead parents and steer students into expensive private colleges charging ₹12–18 Lakhs annually, where agents pocket 15% to 25% commissions."
+      }
+    ];
+  }
+
   if (id.includes('bilingual-degree-trap')) {
     return [
       {
