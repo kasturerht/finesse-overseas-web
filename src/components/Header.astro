@@ -30,7 +30,57 @@
           <span class="text-[11px] font-black uppercase tracking-widest font-jakarta">MBBS Guide 2026</span>
         </a>
 
-        <a href="/#destinations" class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors">Destinations</a>
+        {/* Silicon Valley Destinations Dropdown (Direct crawl links to all money hubs) */}
+        <div class="relative group">
+          <button 
+            type="button" 
+            class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors inline-flex items-center gap-1.5 py-2 cursor-pointer focus:outline-none"
+            aria-expanded="false"
+          >
+            <span>Destinations</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-600 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          
+          <div class="absolute top-full -left-4 w-72 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-xl shadow-slate-900/10 p-2.5 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <a href="/study-in-germany" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-blue-100">🇩🇪</span>
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-slate-900 group-hover/item:text-blue-600 transition-colors">Study in Germany</span>
+                <span class="text-[11px] text-slate-500 font-normal">Zero Tuition Public Universities</span>
+              </div>
+            </a>
+            <a href="/study-in-italy" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+              <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-amber-100">🇮🇹</span>
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-slate-900 group-hover/item:text-amber-600 transition-colors">Study in Italy</span>
+                <span class="text-[11px] text-slate-500 font-normal">100% Scholarship + DSU Grant</span>
+              </div>
+            </a>
+            <a href="/study-in-austria" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+              <span class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-teal-100">🇦🇹</span>
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-slate-900 group-hover/item:text-teal-600 transition-colors">Study in Austria</span>
+                <span class="text-[11px] text-slate-500 font-normal">Zero Blocked Account Pathway</span>
+              </div>
+            </a>
+            <a href="/study-in-uk-usa" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+              <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-indigo-100">🇬🇧</span>
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-slate-900 group-hover/item:text-indigo-600 transition-colors">Study in UK & USA</span>
+                <span class="text-[11px] text-slate-500 font-normal">1-Yr Masters & 3-Yr STEM OPT</span>
+              </div>
+            </a>
+            <div class="border-t border-slate-100 mt-1 pt-1.5">
+              <a href="/study-abroad-consultants-in-kolhapur" class="flex items-center justify-between p-2 rounded-xl bg-slate-50/80 hover:bg-teal-50 text-slate-700 hover:text-teal-700 transition-colors text-[11px] font-bold">
+                <span>📍 Kolhapur Counseling HQ</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="/#services" class="text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors">Services</a>
         
         {/* Sleek, premium link for Blogs/Audits with subtle hover effect */}
@@ -68,12 +118,32 @@
         <span class="text-[10px] text-teal-100/80 font-medium">India vs Abroad Comparison Guide</span>
       </a>
 
-      <a href="/#destinations" class="mobile-link group flex items-center gap-4 px-4 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 rounded-2xl transition-all">
-        <span class="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-500 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </span>
-        Explore Destinations
-      </a>
+      {/* Mobile Destinations Submenu (Direct crawlable pathways) */}
+      <div class="px-2 py-3 bg-slate-50/80 rounded-2xl border border-slate-100 flex flex-col gap-1">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-1">Top Pathways</span>
+        <div class="grid grid-cols-2 gap-1.5 px-1">
+          <a href="/study-in-germany" class="mobile-link flex items-center gap-2 p-2 rounded-xl bg-white hover:bg-teal-50 border border-slate-100 text-xs font-bold text-slate-800 transition-colors">
+            <span>🇩🇪</span>
+            <span>Germany</span>
+          </a>
+          <a href="/study-in-italy" class="mobile-link flex items-center gap-2 p-2 rounded-xl bg-white hover:bg-teal-50 border border-slate-100 text-xs font-bold text-slate-800 transition-colors">
+            <span>🇮🇹</span>
+            <span>Italy</span>
+          </a>
+          <a href="/study-in-austria" class="mobile-link flex items-center gap-2 p-2 rounded-xl bg-white hover:bg-teal-50 border border-slate-100 text-xs font-bold text-slate-800 transition-colors">
+            <span>🇦🇹</span>
+            <span>Austria</span>
+          </a>
+          <a href="/study-in-uk-usa" class="mobile-link flex items-center gap-2 p-2 rounded-xl bg-white hover:bg-teal-50 border border-slate-100 text-xs font-bold text-slate-800 transition-colors">
+            <span>🇬🇧</span>
+            <span>UK & USA</span>
+          </a>
+        </div>
+        <a href="/study-abroad-consultants-in-kolhapur" class="mobile-link mx-1 mt-1 flex items-center justify-between p-2 rounded-xl bg-teal-500/10 text-teal-800 text-xs font-bold hover:bg-teal-500/20 transition-colors">
+          <span>📍 Rajarampuri, Kolhapur HQ</span>
+          <span>→</span>
+        </a>
+      </div>
 
       <a href="/#services" class="mobile-link group flex items-center gap-4 px-4 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 rounded-2xl transition-all">
         <span class="w-12 h-12 bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-500 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 transition-colors">

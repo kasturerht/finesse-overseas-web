@@ -18,6 +18,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://finesseoverseas.com',
+  trailingSlash: 'never',
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -58,7 +59,47 @@ export default defineConfig({
 
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const excluded = [
+          '/admin',
+          '/review',
+          '/review-qr',
+          '/presentation',
+          '/Invitation',
+          '/thank-you',
+          '/germany-admission01',
+        ];
+        return !excluded.some((p) => page.includes(p)) && !page.includes('/_');
+      },
+      serialize: (item) => {
+        const url = item.url;
+        if (url === 'https://finesseoverseas.com/') {
+          item.priority = 1.0;
+          item.changefreq = 'weekly';
+        } else if (
+          url.includes('/study-in-germany') ||
+          url.includes('/study-in-italy') ||
+          url.includes('/study-in-austria') ||
+          url.includes('/study-in-uk-usa') ||
+          url.includes('/mbbs-India-abroad') ||
+          url.includes('/study-abroad-consultants-in-kolhapur')
+        ) {
+          item.priority = 0.9;
+          item.changefreq = 'weekly';
+        } else if (url.includes('/intelligence/')) {
+          item.priority = 0.8;
+          item.changefreq = 'monthly';
+        } else if (url.includes('/contact') || url.includes('/germany-admission')) {
+          item.priority = 0.7;
+          item.changefreq = 'monthly';
+        } else {
+          item.priority = 0.5;
+          item.changefreq = 'yearly';
+        }
+        return item;
+      }
+    }),
     decapCmsOauth(),
     partytown({
       config: {

@@ -1,7 +1,13 @@
 User-agent: *
 Allow: /
-Disallow: /_DNA-tier-a-mbbs-india
-Disallow: /_glob-tier-a-mbbs-india
-Disallow: /_tier-a-mbbs-india
+Disallow: /admin/
+Disallow: /api/
+Disallow: /keystatic/
+Disallow: /Invitation
+Disallow: /presentation
+Disallow: /thank-you
+Disallow: /germany-admission01
+Disallow: /_*
 
 Sitemap: https://finesseoverseas.com/sitemap-index.xml
+

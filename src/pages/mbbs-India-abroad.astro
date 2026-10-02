@@ -1,6 +1,8 @@
 ---
 // src/pages/mbbs-India-abroad.astro
 
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 
@@ -17,7 +19,7 @@ import Footer from '../components/Footer.astro';
 // --- SEO Variables ---
 const pageTitle = "MBBS in India vs Abroad 2026: Clear Admission Blueprint";
 const pageDescription = "Compare MBBS in India vs Abroad: NEET score, budget & NMC rules explained. Get a free, transparent admission blueprint from Finesse Overseas Education.";
-const pageUrl = "https://www.finesseoverseas.com/mbbs-India-abroad";
+const pageUrl = "https://finesseoverseas.com/mbbs-India-abroad";
 
 // --- Advanced JSON-LD Schema (Stringified for Layout) ---
 const seoSchema = JSON.stringify({
@@ -25,10 +27,10 @@ const seoSchema = JSON.stringify({
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.finesseoverseas.com/#organization",
+      "@id": "https://finesseoverseas.com/#organization",
       "name": "Finesse Overseas Education",
-      "url": "https://www.finesseoverseas.com",
-      "logo": "https://www.finesseoverseas.com/logo.png",
+      "url": "https://finesseoverseas.com",
+      "logo": "https://finesseoverseas.com/logo.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+91-9850069600",
@@ -39,8 +41,8 @@ const seoSchema = JSON.stringify({
     },
     {
       "@type": "MedicalWebPage",
-      "@id": "https://www.finesseoverseas.com/mbbs-India-abroad/#webpage",
-      "url": "https://www.finesseoverseas.com/mbbs-India-abroad",
+      "@id": "https://finesseoverseas.com/mbbs-India-abroad#webpage",
+      "url": "https://finesseoverseas.com/mbbs-India-abroad",
       "name": "MBBS in India vs Abroad 2026",
       "description": "Clear comparison for MBBS admission in India and abroad based on NEET scores.",
       "audience": {

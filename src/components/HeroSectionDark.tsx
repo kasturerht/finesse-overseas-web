@@ -228,7 +228,7 @@ export default function HeroSectionDark() {
                 {/* FormSubmit.co configurations  */}
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_subject" value="New Lead: MBBS Admission Blueprint" />
-                <input type="hidden" name="_next" value="https://www.finesseoverseas.com/thank-you" />
+                <input type="hidden" name="_next" value="https://finesseoverseas.com/thank-you" />
 
                 {/* Row 1: Name & NEET */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

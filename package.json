@@ -4,11 +4,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/ping-google.js",
+    "build": "astro build && node scripts/ping-google.js && node scripts/indexnow.js",
     "preview": "astro preview",
     "astro": "astro",
     "ping-google": "node scripts/ping-google.js",
-    "authorize-user": "node scripts/authorize-user.js"
+    "indexnow": "node scripts/indexnow.js",
+    "authorize-user": "node scripts/authorize-user.js",
+    "audit-gsc": "node scripts/gsc-auto-pilot.js"
   },
   "dependencies": {
     "@astrojs/markdoc": "^1.0.4",
