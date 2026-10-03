@@ -38,3 +38,6 @@ oauth-tokens.json
 scratch/
 Ultimate-Web-Production-Checklist.*
 gsc-audit-report.json
+
+# Local heavy video assets (Uploaded to YouTube)
+public/videos/

@@ -152,9 +152,261 @@ const localKnowledgeSchema = JSON.stringify({
           }
         }
       ]
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://finesseoverseas.com/study-abroad-consultants-in-kolhapur#video-prem-pachore",
+      "name": "Best Overseas Education Consultancy in Kolhapur | Prem Pachore Student Experience at Finesse",
+      "description": "Hear Prem Pachore share his complete, honest review of Finesse Overseas Education at Rajarampuri, Kolhapur and his admission at ISM Germany for Masters in International Logistics & Supply Chain Management.",
+      "thumbnailUrl": "https://finesseoverseas.com/thumbnails/prem-pachore-germany-vertical-shorts-cover.jpg",
+      "uploadDate": "2026-10-03T11:45:00+05:30",
+      "contentUrl": "https://youtube.com/shorts/JOFX-w611HQ",
+      "embedUrl": "https://www.youtube.com/embed/JOFX-w611HQ",
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "Finesse Overseas Education",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://finesseoverseas.com/logo.png"
+        }
+      }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://finesseoverseas.com/study-abroad-consultants-in-kolhapur#video-harshada-chougale",
+      "name": "Kolhapur to University of Milan (World Rank #270)! Harshada Chougale Reviews Finesse Overseas",
+      "description": "Harshada Chougale shares how Finesse Overseas Education guided her to the prestigious University of Milan, Italy (World Rank #270) for Masters in Molecular Biotechnology and Bioinformatics with a 100% regional scholarship.",
+      "thumbnailUrl": "https://finesseoverseas.com/thumbnails/harshada-chougule-italy-vertical-shorts-cover.jpg",
+      "uploadDate": "2026-10-03T12:20:00+05:30",
+      "contentUrl": "https://youtube.com/shorts/2IroG_Hf2YE",
+      "embedUrl": "https://www.youtube.com/embed/2IroG_Hf2YE",
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "Finesse Overseas Education",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://finesseoverseas.com/logo.png"
+        }
+      }
     }
   ]
 });
+
+// 🎥 LIVE YOUTUBE VIDEO TESTIMONIALS (OCTOBER 2026 RELEASES)
+const liveVideoReviews = [
+  {
+    name: "Prem Suhas Pachore",
+    degree: "Masters in International Logistics & Supply Chain Management",
+    university: "International School of Management (ISM)",
+    country: "Germany",
+    flag: "🇩🇪",
+    videoId: "JOFX-w611HQ",
+    poster: "/thumbnails/prem-pachore-germany-vertical-shorts-cover.jpg",
+    quote: "Transparent counseling under Jayant Patil sir at Rajarampuri office. Clear APS verification roadmap and zero hidden agent commissions.",
+    badge: "ISM Germany · Supply Chain",
+    badgeColor: "border-amber-500/30 text-amber-300 bg-amber-950/40"
+  },
+  {
+    name: "Harshada Mahadev Chougale",
+    degree: "Masters in Molecular Biotechnology and Bioinformatics",
+    university: "University of Milan (World Rank #270 · Top 1% Globally)",
+    country: "Italy",
+    flag: "🇮🇹",
+    videoId: "2IroG_Hf2YE",
+    poster: "/thumbnails/harshada-chougule-italy-vertical-shorts-cover.jpg",
+    quote: "Secured admission at a World Top 300 public university with a 100% regional scholarship and visa guidance from Finesse.",
+    badge: "World Rank #270 · 100% Scholarship",
+    badgeColor: "border-emerald-500/30 text-emerald-300 bg-emerald-950/40"
+  }
+];
+
+// 📜 VERIFIED KOLHAPUR STUDENT ADMISSIONS LEDGER (OFFICIAL REGISTRY)
+const verifiedAdmissions = [
+  {
+    name: "Sneha Santosh Kulkarni",
+    course: "Precise and Sustainable Agriculture",
+    university: "University of Bologna",
+    country: "Italy",
+    rank: "World #123",
+    flag: "🇮🇹",
+    badge: "100% Scholarship",
+    badgeColor: "border-emerald-500/40 text-emerald-300 bg-emerald-950/50"
+  },
+  {
+    name: "Harshada Mahadev Chougale",
+    course: "Masters in Molecular Biotechnology & Bioinformatics",
+    university: "University of Milan",
+    country: "Italy",
+    rank: "World #270",
+    flag: "🇮🇹",
+    badge: "Top 1% Worldwide",
+    badgeColor: "border-teal-500/40 text-teal-300 bg-teal-950/50",
+    hasVideo: true,
+    videoId: "2IroG_Hf2YE"
+  },
+  {
+    name: "Nayana Nivas Chougule",
+    course: "Masters in Agrifood Innovation Management",
+    university: "University of Trento",
+    country: "Italy",
+    rank: "World #438",
+    flag: "🇮🇹",
+    badge: "Public University",
+    badgeColor: "border-cyan-500/40 text-cyan-300 bg-cyan-950/50"
+  },
+  {
+    name: "Chinmay Manish Patil",
+    course: "Management & Industrial Systems Engineering",
+    university: "University of Trento",
+    country: "Italy",
+    rank: "World #438",
+    flag: "🇮🇹",
+    badge: "Public University",
+    badgeColor: "border-cyan-500/40 text-cyan-300 bg-cyan-950/50"
+  },
+  {
+    name: "Harish Suhas Puranik",
+    course: "Sustainable Industrial Pharmaceutical Biotechnology",
+    university: "The University of Siena",
+    country: "Italy",
+    rank: "World #572",
+    flag: "🇮🇹",
+    badge: "100% Scholarship",
+    badgeColor: "border-emerald-500/40 text-emerald-300 bg-emerald-950/50"
+  },
+  {
+    name: "Nirav Chetan Patil",
+    course: "Sustainable Industrial Pharmaceutical Biotechnology",
+    university: "The University of Siena",
+    country: "Italy",
+    rank: "World #572",
+    flag: "🇮🇹",
+    badge: "100% Scholarship",
+    badgeColor: "border-emerald-500/40 text-emerald-300 bg-emerald-950/50"
+  },
+  {
+    name: "Priyal Santosh Chougule",
+    course: "Environmental Sciences & Civil Protection",
+    university: "Università Politecnica delle Marche",
+    country: "Italy",
+    rank: "World #662",
+    flag: "🇮🇹",
+    badge: "100% Scholarship",
+    badgeColor: "border-emerald-500/40 text-emerald-300 bg-emerald-950/50"
+  },
+  {
+    name: "Prem Suhas Pachore",
+    course: "Masters in International Logistics & Supply Chain",
+    university: "International School of Management (ISM)",
+    country: "Germany",
+    rank: "Top Business School",
+    flag: "🇩🇪",
+    badge: "Supply Chain Masters",
+    badgeColor: "border-amber-500/40 text-amber-300 bg-amber-950/50",
+    hasVideo: true,
+    videoId: "JOFX-w611HQ"
+  },
+  {
+    name: "Shejal Shivaji Patil",
+    course: "Masters in International Logistics & Supply Chain",
+    university: "International School of Management (ISM)",
+    country: "Germany",
+    rank: "Top Business School",
+    flag: "🇩🇪",
+    badge: "Supply Chain Masters",
+    badgeColor: "border-amber-500/40 text-amber-300 bg-amber-950/50"
+  },
+  {
+    name: "Virendra Vijay Patil",
+    course: "Bachelor in Data Analysis",
+    university: "University of Messina",
+    country: "Italy",
+    rank: "World #761",
+    flag: "🇮🇹",
+    badge: "Data Analysis",
+    badgeColor: "border-blue-500/40 text-blue-300 bg-blue-950/50"
+  },
+  {
+    name: "Sahil Sachin Gore",
+    course: "Masters in Data Science",
+    university: "University of Catania",
+    country: "Italy",
+    rank: "World #851",
+    flag: "🇮🇹",
+    badge: "Data Science",
+    badgeColor: "border-blue-500/40 text-blue-300 bg-blue-950/50"
+  },
+  {
+    name: "Sultan Ahmad Mulla",
+    course: "Masters in Data Science",
+    university: "University of Catania",
+    country: "Italy",
+    rank: "World #851",
+    flag: "🇮🇹",
+    badge: "Data Science",
+    badgeColor: "border-blue-500/40 text-blue-300 bg-blue-950/50"
+  },
+  {
+    name: "Khalid Sarfaraj Shaikh",
+    course: "Masters in Data Science",
+    university: "University of Catania",
+    country: "Italy",
+    rank: "World #851",
+    flag: "🇮🇹",
+    badge: "Data Science",
+    badgeColor: "border-blue-500/40 text-blue-300 bg-blue-950/50"
+  },
+  {
+    name: "Pritam Anil Patil",
+    course: "Software: Science and Technology",
+    university: "University of Florence",
+    country: "Italy",
+    rank: "Prestigious Univ",
+    flag: "🇮🇹",
+    badge: "Software Science",
+    badgeColor: "border-teal-500/40 text-teal-300 bg-teal-950/50"
+  },
+  {
+    name: "Tanvi Sunil Kadam",
+    course: "Masters in Biomedicine",
+    university: "Hochschule Fresenius University of Applied Sciences",
+    country: "Germany",
+    rank: "Applied Sciences",
+    flag: "🇩🇪",
+    badge: "Biomedicine",
+    badgeColor: "border-purple-500/40 text-purple-300 bg-purple-950/50"
+  },
+  {
+    name: "Mayuri Mohan Herwade",
+    course: "Masters in Biomedicine",
+    university: "Hochschule Fresenius University of Applied Sciences",
+    country: "Germany",
+    rank: "Applied Sciences",
+    flag: "🇩🇪",
+    badge: "Biomedicine",
+    badgeColor: "border-purple-500/40 text-purple-300 bg-purple-950/50"
+  },
+  {
+    name: "Saniya Samir Raut",
+    course: "Masters in Data Science for Management",
+    university: "University of Parma",
+    country: "Italy",
+    rank: "World #1200",
+    flag: "🇮🇹",
+    badge: "Data Management",
+    badgeColor: "border-blue-500/40 text-blue-300 bg-blue-950/50"
+  },
+  {
+    name: "Mrunali Jayvantrao Patil",
+    course: "Global Economy and Business",
+    university: "University of Cassino and Southern Lazio",
+    country: "Italy",
+    rank: "State University",
+    flag: "🇮🇹",
+    badge: "Global Economy",
+    badgeColor: "border-cyan-500/40 text-cyan-300 bg-cyan-950/50"
+  }
+];
 
 const kolhapurColleges = [
   { name: "Shivaji University (SUK)", field: "Science & Technology", admits: "TU Munich, RWTH Aachen, Univ. of Stuttgart" },
@@ -297,7 +549,227 @@ const faqs = [
       </div>
     </section>
 
-    <!-- 🏛️ SECTION: LOCAL INSTITUTIONAL TRACK RECORD (KOLHAPUR / SANGLI COLLEGES) -->
+    <!-- 🎬 SECTION: REAL STUDENT VIDEO REVIEWS (LIVE YOUTUBE SHORTS EMBED) -->
+    <section class="py-16 md:py-24 border-b border-slate-800 bg-[#070b14] relative overflow-hidden" id="student-reviews">
+      <!-- Glow ambient -->
+      <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-widest text-teal-400 bg-teal-950/70 px-3.5 py-1.5 rounded-full border border-teal-500/30">
+            🎬 Real Voices · 100% Genuine Video Testimonials
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-4 mb-4">
+            Hear Directly from Kolhapur Students Studying in Europe
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            No scripted marketing or stock models. Watch our students share their unfiltered admissions and visa experiences under Jayant Patil sir's guidance at Rajarampuri, Kolhapur.
+          </p>
+        </div>
+
+        <!-- 2 Video Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
+          {liveVideoReviews.map((review) => (
+            <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800 hover:border-teal-500/40 rounded-2xl p-6 sm:p-7 shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <!-- Header Info -->
+                <div class="flex items-start justify-between gap-3 mb-4">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xl">{review.flag}</span>
+                      <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-teal-300 transition-colors">
+                        {review.name}
+                      </h3>
+                    </div>
+                    <p class="text-xs sm:text-sm font-medium text-slate-400 mt-1">
+                      {review.university}
+                    </p>
+                  </div>
+                  <span class={`text-[11px] font-semibold px-2.5 py-1 rounded-full border whitespace-nowrap shrink-0 ${review.badgeColor}`}>
+                    {review.badge}
+                  </span>
+                </div>
+
+                <div class="text-xs text-teal-300/90 font-mono mb-4 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80">
+                  <span class="text-slate-400">Enrolled Program:</span> {review.degree}
+                </div>
+
+                <!-- 9:16 Shorts Video Embed -->
+                <div class="aspect-[9/16] w-full max-w-[280px] sm:max-w-[300px] mx-auto rounded-xl overflow-hidden bg-black border border-slate-800 shadow-2xl relative mb-5">
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${review.videoId}`} 
+                    title={`${review.name} - Finesse Overseas Education Review`}
+                    loading="lazy" 
+                    class="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                  ></iframe>
+                </div>
+
+                <!-- Verified Quote Block -->
+                <blockquote class="bg-slate-950/40 border-l-2 border-teal-500 pl-3 py-2 text-xs sm:text-sm text-slate-300 italic mb-4">
+                  "{review.quote}"
+                </blockquote>
+              </div>
+
+              <!-- Direct YouTube Shorts Link CTA -->
+              <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                <a 
+                  href={`https://youtube.com/shorts/${review.videoId}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-400 hover:text-rose-300 transition-colors"
+                >
+                  <svg class="w-4 h-4 fill-current text-rose-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  <span>Watch on YouTube Shorts</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <span class="text-[11px] text-slate-500 flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  Verified Kolhapur Admit
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 🌟 GOOGLE 4.7★ REVIEWS TRUST BADGE & RAJARAMPURI DESK CITATION -->
+    <section class="py-12 bg-gradient-to-r from-slate-950 via-[#0B132B] to-slate-950 border-b border-slate-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-slate-900/80 border border-teal-500/20 shadow-xl">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-2xl shrink-0 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
+              ⭐
+            </div>
+            <div>
+              <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="text-xl sm:text-2xl font-black text-white">4.7 / 5.0 Rating</span>
+                <span class="text-amber-400 flex items-center">
+                  ★★★★★
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300">
+                Backed by <strong class="text-white">61+ authentic, verified Google Reviews</strong> from students and parents across Kolhapur, Ichalkaranji, and Sangli.
+              </p>
+              <p class="text-[11px] text-slate-400 mt-1">
+                Google Business Profile: Samarth Sakshi Plaza, 4th Lane, Rajarampuri, Kolhapur
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <a 
+              href="https://maps.google.com/?cid=11646274483750008573" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold transition-all shadow-lg hover:shadow-teal-500/25"
+            >
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>Read 61+ Google Reviews</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a 
+              href="/review" 
+              class="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs sm:text-sm font-semibold transition-all"
+            >
+              <span>Write a Review</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 📜 SECTION: VERIFIED EUROPEAN ADMISSIONS LEDGER (WALL OF FAME) -->
+    <section class="py-16 md:py-24 border-b border-slate-800 bg-[#060912]" id="wall-of-fame">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/70 px-3.5 py-1.5 rounded-full border border-emerald-500/30">
+            Official Finesse Admissions Registry
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-4 mb-4">
+            Kolhapur Students Placed in Top European Universities
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Every admit in our registry is real, verified, and backed by authentic university offer letters and Schengen student visas. See where students from Shivaji University, KIT, and DKTE are studying today.
+          </p>
+        </div>
+
+        <!-- Ledger Table on Desktop / Card Grid on Mobile -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-800 shadow-2xl bg-slate-900/60">
+          <table class="w-full text-left text-sm text-slate-300">
+            <thead class="bg-slate-950 text-xs uppercase tracking-wider text-slate-200 border-b border-slate-800">
+              <tr>
+                <th scope="col" class="py-4 px-5 font-bold">Student Name</th>
+                <th scope="col" class="py-4 px-5 font-bold">Admitted University</th>
+                <th scope="col" class="py-4 px-5 font-bold hidden md:table-cell">QS World Rank</th>
+                <th scope="col" class="py-4 px-5 font-bold">Degree Program</th>
+                <th scope="col" class="py-4 px-5 font-bold">Country & Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80">
+              {verifiedAdmissions.map((adm) => (
+                <tr class="hover:bg-slate-800/40 transition-colors">
+                  <td class="py-3.5 px-5 font-semibold text-white whitespace-nowrap">
+                    <div class="flex items-center gap-2">
+                      <span>{adm.name}</span>
+                      {adm.hasVideo && (
+                        <a 
+                          href={`#student-reviews`} 
+                          class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30"
+                          title="Watch video testimonial"
+                        >
+                          ▶ Video
+                        </a>
+                      )}
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-5 font-medium text-slate-200 whitespace-nowrap">
+                    {adm.university}
+                  </td>
+                  <td class="py-3.5 px-5 font-mono text-xs text-teal-300 whitespace-nowrap hidden md:table-cell">
+                    {adm.rank}
+                  </td>
+                  <td class="py-3.5 px-5 text-xs text-slate-300">
+                    {adm.course}
+                  </td>
+                  <td class="py-3.5 px-5 whitespace-nowrap">
+                    <div class="flex items-center gap-2">
+                      <span class="text-base">{adm.flag}</span>
+                      <span class={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${adm.badgeColor}`}>
+                        {adm.badge}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Registry Footer Proof Note -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3 px-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+            <span>18+ Verified admissions displayed from Finesse Kolhapur archives (Bologna, Milan, Trento, Siena, ISM Germany).</span>
+          </div>
+          <a 
+            href="https://wa.me/919850069600?text=Hello%20Finesse%20Kolhapur!%20%F0%9F%91%8B%20I%20saw%20your%20verified%20student%20admissions%20wall.%20Can%20you%20evaluate%20my%20profile%20for%20Europe?"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-teal-400 hover:text-teal-300 font-semibold underline underline-offset-4"
+          >
+            Check your profile eligibility with Jayant Patil sir →
+          </a>
+        </div>
+
+      </div>
+    </section>
     <section class="py-16 md:py-24 border-b border-slate-800 bg-[#060912]">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
