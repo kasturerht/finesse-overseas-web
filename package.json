@@ -10,7 +10,8 @@
     "ping-google": "node scripts/ping-google.js",
     "indexnow": "node scripts/indexnow.js",
     "authorize-user": "node scripts/authorize-user.js",
-    "audit-gsc": "node scripts/gsc-auto-pilot.js"
+    "audit-gsc": "node scripts/gsc-auto-pilot.js",
+    "track-serp": "node scripts/track-serp.js"
   },
   "dependencies": {
     "@astrojs/markdoc": "^1.0.4",
