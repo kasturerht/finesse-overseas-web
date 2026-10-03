@@ -1,232 +1,290 @@
 ---
 // src/components/Destinations.astro
-// 👑 SWISS-LUXURY UNIFIED ADMISSION PATHWAYS & 2026 FACT ENGINE
-// Consolidates Visual Navigation + Audited AEO Facts into a Single Apple-Grade Hub
+// 👑 SILICON VALLEY / SWISS-LUXURY EUROPEAN ADMISSION PATHWAYS (REFINED EDITION)
+// 100% High-Contrast Readability, Laser-Aligned Metric Boxes & Luxury Anglosphere Showcase
 
 const destinations = [
   { 
     id: "germany",
     name: "Germany", 
-    ctaText: "Explore Germany",
-    flagType: "germany",
+    tagline: "Tech & Masters Pathway",
+    ctaText: "Explore Germany Pathway",
+    image: "/images/destinations/germany.avif",
     badge: "Zero Tuition Fee",
-    badgeTheme: "bg-blue-50 text-blue-700 border-blue-200/80 shadow-[0_2px_10px_rgba(37,99,235,0.08)]",
-    hook: "World-class engineering & masters at 0 tuition cost across 380+ public universities.", 
+    badgeTheme: "bg-slate-950/85 text-blue-300 border-blue-400/40 shadow-[0_0_12px_rgba(59,130,246,0.2)]",
+    pulseColor: "bg-blue-400",
+    accentColor: "group-hover:border-blue-500/50",
+    btnHover: "hover:bg-blue-600",
+    hook: "World-class engineering, AI, and research degrees across 380+ sovereign public universities with zero tuition fee.", 
     link: "/study-in-germany",
-    isPopular: true,
-    accentBorder: "hover:border-blue-300",
-    accentShadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)]",
-    accentBlob: "bg-blue-500/10",
-    titleHover: "group-hover:text-blue-600",
-    dotColor: "bg-blue-500",
-    btnTheme: "bg-blue-50/70 border-blue-200 text-blue-700 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 shadow-sm",
-    metrics: [
-      { label: "Tuition Fee", value: "€0 across 16 Federal States" },
-      { label: "Blocked Account", value: "€11,208/yr (€934/mo payout)" },
-      { label: "APS Protocol", value: "Mandatory Embassy Verification" },
-      { label: "Post-Study Visa", value: "18-Month Job Seeker Visa" }
+    imageCaption: "380+ Sovereign State Universities",
+    flag: `<svg class="w-5 h-3.5 rounded-xs shadow-xs overflow-hidden shrink-0" viewBox="0 0 5 3"><rect width="5" height="1" y="0" fill="#1e293b"/><rect width="5" height="1" y="1" fill="#dc2626"/><rect width="5" height="1" y="2" fill="#eab308"/></svg>`,
+    specs: [
+      { label: "Tuition Fee", value: "€0 / Free" },
+      { label: "Blocked A/C", value: "€11,208 / yr" },
+      { label: "Verification", value: "APS Certified" },
+      { label: "Post-Study", value: "18-Mo Visa" }
     ]
   },
   { 
     id: "italy",
     name: "Italy", 
-    ctaText: "Explore Italy",
-    flagType: "italy",
+    tagline: "DSU Scholarship Pathway",
+    ctaText: "Explore Italy Scholarships",
+    image: "/images/destinations/italy.jpg",
     badge: "100% Scholarship",
-    badgeTheme: "bg-amber-50 text-amber-700 border-amber-200/80 shadow-[0_2px_10px_rgba(245,158,11,0.08)]",
-    hook: "100% tuition waiver + annual cash stipend for living expenses via regional DSU grant.", 
+    badgeTheme: "bg-slate-950/85 text-amber-300 border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.2)]",
+    pulseColor: "bg-amber-400",
+    accentColor: "group-hover:border-amber-500/50",
+    btnHover: "hover:bg-amber-600",
+    hook: "100% tuition waiver plus up to €8,000 annual living stipends via regional Italian government DSU scholarships.", 
     link: "/study-in-italy",
-    isPopular: true,
-    accentBorder: "hover:border-amber-300",
-    accentShadow: "hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.15)]",
-    accentBlob: "bg-amber-500/10",
-    titleHover: "group-hover:text-amber-600",
-    dotColor: "bg-amber-500",
-    btnTheme: "bg-amber-50/70 border-amber-200 text-amber-700 group-hover:bg-amber-600 group-hover:text-white group-hover:border-amber-600 shadow-sm",
-    metrics: [
-      { label: "Tuition Waiver", value: "100% Free Tuition via DSU Grant" },
-      { label: "Annual Stipend", value: "Up to €7,400 to €8,000 / Year" },
-      { label: "Evaluation", value: "ISEE Parificato Family Income" },
-      { label: "Instruction Medium", value: "100% English-Taught Degrees" }
+    imageCaption: "English-Taught State Universities",
+    flag: `<svg class="w-5 h-3.5 rounded-xs shadow-xs overflow-hidden shrink-0" viewBox="0 0 3 2"><rect width="1" height="2" x="0" fill="#16a34a"/><rect width="1" height="2" x="1" fill="#ffffff"/><rect width="1" height="2" x="2" fill="#dc2626"/></svg>`,
+    specs: [
+      { label: "Tuition Grant", value: "100% Waiver" },
+      { label: "Living Grant", value: "Up to €8k / yr" },
+      { label: "Eligibility", value: "ISEE Income" },
+      { label: "Instruction", value: "100% English" }
     ]
   },
   { 
     id: "austria",
     name: "Austria", 
-    ctaText: "Explore Austria",
-    flagType: "austria",
+    tagline: "Central Europe Pathway",
+    ctaText: "Explore Austria Roadmap",
+    image: "/images/destinations/austria.jpg",
     badge: "Zero Blocked A/C",
-    badgeTheme: "bg-teal-50 text-teal-700 border-teal-200/80 shadow-[0_2px_10px_rgba(20,184,166,0.08)]",
-    hook: "Subsidized European public degrees with zero mandatory blocked account hassles.", 
+    badgeTheme: "bg-slate-950/85 text-teal-300 border-teal-400/40 shadow-[0_0_12px_rgba(20,184,166,0.2)]",
+    pulseColor: "bg-teal-400",
+    accentColor: "group-hover:border-teal-500/50",
+    btnHover: "hover:bg-teal-600",
+    hook: "Subsidized European public degrees with zero mandatory blocked account hassles and Vienna's #1 global quality of life.", 
     link: "/study-in-austria",
-    isPopular: false,
-    accentBorder: "hover:border-teal-300",
-    accentShadow: "hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)]",
-    accentBlob: "bg-teal-500/10",
-    titleHover: "group-hover:text-teal-600",
-    dotColor: "bg-teal-500",
-    btnTheme: "bg-teal-50/70 border-teal-200 text-teal-700 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 shadow-sm",
-    metrics: [
-      { label: "Semester Fee", value: "Approx. €736 / Semester" },
-      { label: "Blocked Account", value: "No Mandatory Sperrkonto" },
-      { label: "Living Standard", value: "Vienna #1 Global Quality of Life" },
-      { label: "Work Rights", value: "20 Hours / Week Part-Time" }
+    imageCaption: "Top Global Living Standards",
+    flag: `<svg class="w-5 h-3.5 rounded-xs shadow-xs overflow-hidden shrink-0" viewBox="0 0 3 2"><rect width="3" height="0.67" y="0" fill="#dc2626"/><rect width="3" height="0.67" y="0.67" fill="#ffffff"/><rect width="3" height="0.67" y="1.34" fill="#dc2626"/></svg>`,
+    specs: [
+      { label: "Semester Fee", value: "€736 / Sem" },
+      { label: "Blocked A/C", value: "Not Required" },
+      { label: "Living Rank", value: "Vienna #1 Global" },
+      { label: "Work Permit", value: "20 Hrs / Wk" }
     ]
   },
   { 
     id: "mbbs-abroad",
     name: "MBBS in Europe", 
+    topLabel: "EU MBBS",
+    tagline: "Clinical Medical Pathway",
     ctaText: "Explore MBBS Abroad",
-    flagType: "mbbs",
-    badge: "100% NMC Compliant",
-    badgeTheme: "bg-emerald-50 text-emerald-700 border-emerald-200/80 shadow-[0_2px_10px_rgba(16,185,129,0.08)]",
-    hook: "Legally verified European medical degree at 1/4th the cost of Indian private colleges.", 
+    image: "/images/destinations/mbbs.jpg",
+    badge: "NMC Compliant",
+    badgeTheme: "bg-slate-950/85 text-emerald-300 border-emerald-400/40 shadow-[0_0_12px_rgba(16,185,129,0.2)]",
+    pulseColor: "bg-emerald-400",
+    accentColor: "group-hover:border-emerald-500/50",
+    btnHover: "hover:bg-emerald-600",
+    hook: "Legally verified European medical qualifications at 1/4th Indian private college costs with full licensing sync.", 
     link: "/mbbs-India-abroad",
-    isPopular: true,
-    accentBorder: "hover:border-emerald-300",
-    accentShadow: "hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)]",
-    accentBlob: "bg-emerald-500/10",
-    titleHover: "group-hover:text-emerald-600",
-    dotColor: "bg-emerald-500",
-    btnTheme: "bg-emerald-50/70 border-emerald-200 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 shadow-sm",
-    metrics: [
-      { label: "Total 6-Yr Budget", value: "₹20 – ₹35 Lakhs Total" },
-      { label: "Course Structure", value: "54 Months + 12 Mo Internship" },
-      { label: "Licensing Sync", value: "100% NMC FMGL 2021 Compliant" },
-      { label: "Eligibility", value: "NEET Qualified (No high cutoff)" }
+    imageCaption: "EU Medical Faculty & Hospital Sync",
+    flag: `<svg class="w-5 h-3.5 rounded-xs shadow-xs overflow-hidden shrink-0" viewBox="0 0 512 341"><rect width="512" height="341" fill="#003399"/><g fill="#ffcc00" transform="translate(256,170.5) scale(24)"><circle cx="0" cy="-4" r="0.6"/><circle cx="2" cy="-3.46" r="0.6"/><circle cx="3.46" cy="-2" r="0.6"/><circle cx="4" cy="0" r="0.6"/><circle cx="3.46" cy="2" r="0.6"/><circle cx="2" cy="3.46" r="0.6"/><circle cx="0" cy="4" r="0.6"/><circle cx="-2" cy="3.46" r="0.6"/><circle cx="-3.46" cy="2" r="0.6"/><circle cx="-4" cy="0" r="0.6"/><circle cx="-3.46" cy="-2" r="0.6"/><circle cx="-2" cy="-3.46" r="0.6"/></g></svg>`,
+    specs: [
+      { label: "Total Budget", value: "₹20L – ₹35L" },
+      { label: "Licensing", value: "NMC FMGL '21" },
+      { label: "Clinical Track", value: "54 Mo + 12 Mo" },
+      { label: "Eligibility", value: "NEET Qualified" }
     ]
   }
 ];
 ---
 
-<section class="py-24 bg-slate-50 relative overflow-hidden" id="destinations">
-  <!-- Subtle ambient glow background -->
-  <div class="absolute top-0 right-1/4 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-  
+<section class="py-24 bg-slate-50/80 relative overflow-hidden" id="destinations">
+  <!-- Subtle Ambient Glows -->
+  <div class="absolute top-0 right-1/4 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
-    <!-- Section Header -->
+    <!-- SECTION HEADER: Swiss Precision & Authority -->
     <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 text-teal-700 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-slate-700 text-xs font-bold uppercase tracking-widest mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
         <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-        2026 Sovereign Admission Pathways
+        <span>2026 Sovereign Admission Pathways</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-        Where Do You Want to Study? <br class="hidden md:block" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">Verified European Blueprints</span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+        Where Will You Build Your Career? <br class="hidden md:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-teal-700 to-slate-900">Audited European Gateways</span>
       </h2>
       <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-        Audited financial & legal parameters for Indian students. Zero commission-driven hype — 100% public universities and statutory compliance.
+        Direct, audited admission pipelines to sovereign public universities. Zero commission hype — 100% legal compliance and statutory safety.
       </p>
     </div>
 
-    <!-- 4-Card Luxury Unified Grid -->
+    <!-- 4-CARD LUXURY DESTINATION GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 items-stretch">
       {destinations.map((dest) => (
-        <div class={`relative bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group overflow-hidden ${dest.accentShadow} ${dest.accentBorder}`}>
+        <div class={`group relative bg-white rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04),0_12px_24px_-8px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_50px_-12px_rgba(15,23,42,0.14)] hover:-translate-y-2 transition-all duration-500 ease-out flex flex-col justify-between overflow-hidden ${dest.accentColor}`}>
           
-          {/* Subtle Corner Glow */}
-          {dest.isPopular && (
-            <div class={`absolute top-0 right-0 w-28 h-28 rounded-bl-full -mr-6 -mt-6 transition-transform group-hover:scale-125 duration-500 pointer-events-none ${dest.accentBlob}`}></div>
-          )}
+          <!-- TOP CINEMATIC PHOTOGRAPHY VIEWPORT WITH HIGH-CONTRAST DUAL SCRIMS -->
+          <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-950 shrink-0">
+            <img 
+              src={dest.image} 
+              alt={`${dest.name} university campus`}
+              width="800"
+              height="520"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            
+            <!-- High-Contrast Top Scrim (Protects Top Badges) -->
+            <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/95 via-slate-950/60 to-transparent pointer-events-none"></div>
 
-          <div class="relative z-10 flex flex-col flex-grow">
-            {/* Header / Badge Row with SVG Flag */}
-            <div class="flex items-center justify-between mb-4">
-              <div class="shrink-0">
-                {dest.flagType === 'germany' && (
-                  <svg class="w-7 h-5 rounded shadow-sm border border-slate-200/70 overflow-hidden" viewBox="0 0 5 3">
-                    <rect width="5" height="1" y="0" fill="#1e293b"/>
-                    <rect width="5" height="1" y="1" fill="#dc2626"/>
-                    <rect width="5" height="1" y="2" fill="#eab308"/>
-                  </svg>
-                )}
-                {dest.flagType === 'italy' && (
-                  <svg class="w-7 h-5 rounded shadow-sm border border-slate-200/70 overflow-hidden" viewBox="0 0 3 2">
-                    <rect width="1" height="2" x="0" fill="#16a34a"/>
-                    <rect width="1" height="2" x="1" fill="#ffffff"/>
-                    <rect width="1" height="2" x="2" fill="#dc2626"/>
-                  </svg>
-                )}
-                {dest.flagType === 'austria' && (
-                  <svg class="w-7 h-5 rounded shadow-sm border border-slate-200/70 overflow-hidden" viewBox="0 0 3 2">
-                    <rect width="3" height="0.67" y="0" fill="#dc2626"/>
-                    <rect width="3" height="0.67" y="0.67" fill="#ffffff"/>
-                    <rect width="3" height="0.67" y="1.34" fill="#dc2626"/>
-                  </svg>
-                )}
-                {dest.flagType === 'mbbs' && (
-                  <div class="w-7 h-5 rounded bg-emerald-600 text-white flex items-center justify-center shadow-sm">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
-                    </svg>
-                  </div>
-                )}
+            <!-- High-Contrast Bottom Scrim (Protects Bottom Caption) -->
+            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/95 via-slate-950/65 to-transparent pointer-events-none"></div>
+
+            <!-- Floating Top Badges (High Contrast Solid Glassmorphism) -->
+            <div class="absolute top-3.5 inset-x-3 flex items-center justify-between pointer-events-none z-10 gap-1.5">
+              <!-- Country Emblem Capsule -->
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md bg-slate-950/85 border border-white/20 text-white font-bold text-xs shadow-md whitespace-nowrap shrink-0">
+                <Fragment set:html={dest.flag} />
+                <span>{dest.topLabel || dest.name}</span>
               </div>
-              <span class={`inline-block px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full border ${dest.badgeTheme}`}>
-                {dest.badge}
-              </span>
+              
+              <!-- Value Pill Badge -->
+              <div class={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full backdrop-blur-md border text-[10px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap shrink-0 ${dest.badgeTheme}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${dest.pulseColor} animate-pulse shrink-0`}></span>
+                <span>{dest.badge}</span>
+              </div>
             </div>
 
-            {/* Destination Title */}
-            <h3 class={`text-2xl font-black text-slate-900 tracking-tight transition-colors mb-2.5 ${dest.titleHover}`}>
-              {dest.name}
-            </h3>
-            
-            {/* Value Hook with Min Height for Uniform Symmetry */}
-            <p class="text-slate-600 font-normal text-xs leading-relaxed mb-6 min-h-[36px]">
-              {dest.hook}
-            </p>
-            
-            {/* Audited Metrics Box (Clean Stacked Key-Value List) */}
-            <div class="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 mb-6 space-y-3 flex-grow">
-              {dest.metrics.map((metric) => (
-                <div class="flex items-start gap-2.5 text-xs">
-                  <div class={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${dest.dotColor}`}></div>
-                  <div class="leading-tight">
-                    <span class="text-slate-400 font-bold uppercase tracking-wider text-[9.5px] block mb-0.5">{metric.label}</span>
-                    <span class="font-bold text-slate-800 text-xs block">{metric.value}</span>
-                  </div>
-                </div>
-              ))}
+            <!-- Bottom Caption Over Image (Framed Micro-Pill for 100% Readability) -->
+            <div class="absolute bottom-3 left-3.5 right-3.5 pointer-events-none z-10">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-slate-200 tracking-wide shadow-sm max-w-full">
+                <svg class="w-3.5 h-3.5 text-teal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span class="truncate">{dest.imageCaption}</span>
+              </div>
             </div>
           </div>
-          
-          {/* Action Button */}
-          <div class="relative z-10 pt-2">
-            <a 
-              href={dest.link} 
-              data-track="destination-card-click" 
-              data-destination={dest.name} 
-              class={`w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold text-xs transition-all duration-300 border ${dest.btnTheme}`}
-            >
-              <span>{dest.ctaText}</span>
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+
+          <!-- CARD BODY: Typographic Balance & Laser-Aligned Spec Grid -->
+          <div class="p-6 flex flex-col justify-between flex-grow bg-white">
+            <div>
+              <!-- Micro-Tagline -->
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-teal-700 block mb-1">
+                {dest.tagline}
+              </span>
+
+              <!-- Destination Title -->
+              <h3 class="text-2xl font-black text-slate-900 tracking-tight mb-2 group-hover:text-teal-700 transition-colors">
+                {dest.name}
+              </h3>
+              
+              <!-- Value Hook -->
+              <p class="text-slate-600 font-normal text-xs leading-relaxed mb-5 min-h-[38px]">
+                {dest.hook}
+              </p>
+              
+              <!-- 2x2 LASER-ALIGNED MICRO-SPEC CHIPS (Zero Truncation, Guaranteed Equal Heights) -->
+              <div class="grid grid-cols-2 gap-2 mb-6">
+                {dest.specs.map((spec) => (
+                  <div class="h-[62px] px-3 py-2 rounded-xl bg-slate-50/90 border border-slate-100 flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block leading-none">
+                      {spec.label}
+                    </span>
+                    <span class="text-xs font-black text-slate-900 block leading-tight">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- TACTILE MAGNETIC ACTION BUTTON -->
+            <div class="pt-1">
+              <a 
+                href={dest.link} 
+                data-track="destination-card-click" 
+                data-destination={dest.name} 
+                class={`group/btn w-full py-3 px-4 rounded-xl bg-slate-900 ${dest.btnHover} text-white font-bold text-xs transition-all duration-300 flex items-center justify-between shadow-xs hover:shadow-md`}
+              >
+                <span>{dest.ctaText}</span>
+                <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-slate-900 transition-all duration-300 group-hover/btn:translate-x-1 shrink-0 ml-2">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </span>
+              </a>
+            </div>
+
           </div>
+
         </div>
       ))}
     </div>
 
-    <!-- Global Pathways Expansion (UK & USA Anchor) -->
-    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between p-4 px-6 bg-slate-900 text-white rounded-2xl shadow-lg border border-slate-800 gap-4">
-      <div class="flex items-center gap-3">
-        <span class="text-xl">🇬🇧 🇺🇸</span>
+    <!-- ANGLOSPHERE GLOBAL EXPANSION BANNER (UK & USA) - ULTRA-PREMIUM EXECUTIVE EDITION -->
+    <div class="mt-8 relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-950 via-[#0B1120] to-slate-950 p-6 sm:p-8 border border-slate-800/90 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Ambient Glow Accents -->
+      <div class="absolute top-0 right-1/4 w-72 h-full bg-teal-500/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-10 w-48 h-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-5 text-center sm:text-left relative z-10">
+        
+        <!-- High-Def Flag Emblem Duo -->
+        <div class="flex -space-x-3 shrink-0 drop-shadow-md">
+          <!-- UK Flag -->
+          <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-slate-700/80 shadow-md">
+            <svg class="w-full h-full object-cover" viewBox="0 0 60 30">
+              <clipPath id="uk-clip"><path d="M0 0v30h60V0z"/></clipPath>
+              <path d="M0 0v30h60V0z" fill="#012169"/>
+              <path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
+              <path d="M0 0l60 30m0-30L0 30" clip-path="url(#uk-clip)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+            </svg>
+          </div>
+          <!-- USA Flag -->
+          <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-slate-700/80 shadow-md">
+            <svg class="w-full h-full object-cover" viewBox="0 0 741 390">
+              <rect width="741" height="390" fill="#b22234"/>
+              <path d="M0 30h741M0 90h741M0 150h741M0 210h741M0 270h741M0 330h741" stroke="#fff" stroke-width="30"/>
+              <rect width="296.4" height="210" fill="#3c3b6e"/>
+              <g fill="#fff">
+                <circle cx="50" cy="40" r="10"/><circle cx="100" cy="40" r="10"/><circle cx="150" cy="40" r="10"/><circle cx="200" cy="40" r="10"/><circle cx="250" cy="40" r="10"/>
+                <circle cx="75" cy="75" r="10"/><circle cx="125" cy="75" r="10"/><circle cx="175" cy="75" r="10"/><circle cx="225" cy="75" r="10"/>
+                <circle cx="50" cy="110" r="10"/><circle cx="100" cy="110" r="10"/><circle cx="150" cy="110" r="10"/><circle cx="200" cy="110" r="10"/><circle cx="250" cy="110" r="10"/>
+                <circle cx="75" cy="145" r="10"/><circle cx="125" cy="145" r="10"/><circle cx="175" cy="145" r="10"/><circle cx="225" cy="145" r="10"/>
+                <circle cx="50" cy="180" r="10"/><circle cx="100" cy="180" r="10"/><circle cx="150" cy="180" r="10"/><circle cx="200" cy="180" r="10"/><circle cx="250" cy="180" r="10"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
         <div class="text-left">
-          <p class="text-xs font-bold text-slate-200">Looking for Anglosphere Admissions? (UK & USA)</p>
-          <p class="text-[11px] text-slate-400">1-Year Masters in the United Kingdom & 3-Year STEM OPT in the United States.</p>
+          <!-- Refined Glowing Pill -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-[10.5px] font-extrabold uppercase tracking-widest mb-1.5 shadow-[0_0_15px_rgba(45,212,191,0.15)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+            <span>Selective Direct Admissions</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-bold text-white tracking-tight">Looking for Anglosphere Admissions? (UK & USA)</h4>
+          <p class="text-xs sm:text-[13px] text-slate-300/80 leading-relaxed max-w-xl">
+            1-Year Accelerated Masters in the UK & 3-Year STEM OPT in the United States • Direct Tier-1 University Selection.
+          </p>
         </div>
       </div>
-      <a href="/study-in-uk-usa" class="shrink-0 px-4 py-2 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs transition-colors shadow-sm inline-flex items-center gap-1.5">
+
+      <!-- High-End Radiant CTA Button -->
+      <a 
+        href="/study-in-uk-usa" 
+        class="shrink-0 group/anglo px-6 py-3.5 rounded-xl bg-gradient-to-r from-teal-400 via-teal-300 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 text-slate-950 font-black text-xs transition-all duration-300 shadow-[0_0_25px_rgba(45,212,191,0.25)] hover:shadow-[0_0_35px_rgba(45,212,191,0.45)] hover:-translate-y-0.5 inline-flex items-center gap-2.5 relative z-10"
+      >
         <span>Explore UK & USA Roadmap</span>
-        <span>→</span>
+        <span class="w-5 h-5 rounded-full bg-slate-950/15 flex items-center justify-center group-hover/anglo:translate-x-1 transition-transform">→</span>
       </a>
+
     </div>
 
-    <!-- Official Regulatory Citations Strip (AEO & AI Discovery Footer) -->
-    <div class="mt-6 p-4.5 bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 text-center text-xs text-slate-500 font-medium shadow-sm flex flex-col sm:flex-row items-center justify-center gap-2">
-      <span class="font-bold text-slate-700 inline-flex items-center gap-1.5">
+    <!-- OFFICIAL STATUTORY REFERENCES STRIP (AI & Trust Authority) -->
+    <div class="mt-6 p-4 bg-white rounded-2xl border border-slate-200/90 text-center text-xs text-slate-500 font-medium shadow-xs flex flex-col sm:flex-row items-center justify-center gap-2">
+      <span class="font-bold text-slate-700 inline-flex items-center gap-1.5 shrink-0">
         <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         Official Statutory References:
       </span>

@@ -39,6 +39,7 @@ scratch/
 Ultimate-Web-Production-Checklist.*
 gsc-audit-report.json
 serp-telemetry-report.json
+*.bak
 
 # Local heavy video assets (Uploaded to YouTube)
 public/videos/
