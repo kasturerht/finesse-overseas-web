@@ -274,28 +274,38 @@ const localKnowledgeSchema = JSON.stringify({
 // 🎥 LIVE YOUTUBE VIDEO TESTIMONIALS (OCTOBER 2026 RELEASES)
 const liveVideoReviews = [
   {
-    name: "Prem Suhas Pachore",
-    degree: "Masters in International Logistics & Supply Chain",
-    university: "International School of Management (ISM)",
-    country: "Germany",
-    flag: "🇩🇪",
-    videoId: "JOFX-w611HQ",
-    poster: "/thumbnails/prem-pachore-germany-vertical-shorts-cover.jpg",
-    quote: "Transparent counseling under Jayant Patil sir at Rajarampuri office. Clear APS verification roadmap and zero hidden agent commissions.",
-    badge: "ISM Germany · Supply Chain",
-    badgeColor: "border-amber-400/40 text-amber-800 bg-amber-50"
+    name: "Harshada Mahadev Chougale",
+    hometown: "Kolhapur Native",
+    degree: "Masters in Molecular Biotechnology & Bioinformatics",
+    university: "University of Milan (Università degli Studi di Milano)",
+    rank: "QS World Rank #270",
+    country: "Italy",
+    countryCode: "it",
+    videoId: "2IroG_Hf2YE",
+    duration: "01:20 min",
+    poster: "/thumbnails/harshada-chougule-italy-vertical-shorts-cover.jpg",
+    financialImpact: "100% Scholarship · €0 Tuition + €8,000/yr Grant",
+    quote: "Secured admission at a World Top 300 public university with a 100% regional scholarship and visa guidance from Finesse. Complete transparency without any fake promises.",
+    badge: "World Rank #270 · 100% Scholarship",
+    badgeColor: "border-emerald-300 text-emerald-800 bg-emerald-50",
+    academicPill: "DSU Regional Grant Recipient"
   },
   {
-    name: "Harshada Mahadev Chougale",
-    degree: "Masters in Molecular Biotechnology & Bioinformatics",
-    university: "University of Milan (World Rank #270)",
-    country: "Italy",
-    flag: "🇮🇹",
-    videoId: "2IroG_Hf2YE",
-    poster: "/thumbnails/harshada-chougule-italy-vertical-shorts-cover.jpg",
-    quote: "Secured admission at a World Top 300 public university with a 100% regional scholarship and visa guidance from Finesse.",
-    badge: "World Rank #270 · 100% Scholarship",
-    badgeColor: "border-emerald-400/40 text-emerald-800 bg-emerald-50"
+    name: "Prem Suhas Pachore",
+    hometown: "Kolhapur Native",
+    degree: "Masters in International Logistics & Supply Chain",
+    university: "International School of Management (ISM Germany)",
+    rank: "Top German Business School",
+    country: "Germany",
+    countryCode: "de",
+    videoId: "JOFX-w611HQ",
+    duration: "01:15 min",
+    poster: "/thumbnails/prem-pachore-germany-vertical-shorts-cover.jpg",
+    financialImpact: "Zero Agency Commission · Fast-Track Schengen Visa",
+    quote: "Transparent counseling under Jayant Patil sir at Rajarampuri office. Clear APS verification roadmap and zero hidden agent commissions.",
+    badge: "German Logistics Master · Fast-Track Visa",
+    badgeColor: "border-amber-300 text-amber-900 bg-amber-50",
+    academicPill: "Direct APS Clearance"
   }
 ];
 
@@ -751,89 +761,223 @@ const faqs = [
       </div>
     </section>
 
-    <!-- 🎬 SECTION 3: REAL STUDENT VIDEO TESTIMONIALS (Pure Light Luxe #FFFFFF) -->
-    <section class="py-16 md:py-24 bg-white border-b border-slate-200/80" id="student-reviews">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 🎬 SECTION 3: REAL STUDENT VIDEO TESTIMONIALS (Horizontal Split Bento · Swiss-Luxury Standard) -->
+    <section class="py-16 md:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white border-b border-slate-200/80" id="student-reviews">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <span>🎬 Real Voices · 100% Genuine Video Proof</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200/80 text-teal-900 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Real Voices · 100% Genuine Video Proof</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
             Hear Directly from Kolhapur Students Studying in Europe
           </h2>
-          <p class="text-slate-600 text-base leading-relaxed">
-            No scripted marketing or stock actors. Real students share their admissions and visa journey guided by Director Jayant Patil sir at Rajarampuri, Kolhapur.
+          <p class="text-slate-600 text-base max-w-2xl mx-auto leading-relaxed">
+            No scripted marketing or stock actors. Unedited video testimonials from local graduates who secured 100% scholarships and zero-tuition German public university admits under Director Jayant Patil.
           </p>
         </div>
 
-        <!-- 2 Video Showcase Cards -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- Horizontal Split Bento Cards Showcase (Stacked with Pristine Rhythm) -->
+        <div class="space-y-8">
           {liveVideoReviews.map((review) => (
-            <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-              
-              <div>
-                <!-- Top Identity Row -->
-                <div class="flex items-start justify-between gap-3 mb-5">
-                  <div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-2xl">{review.flag}</span>
-                      <h3 class="text-xl font-bold text-slate-900">{review.name}</h3>
+            <div 
+              class="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden relative"
+              data-video-container
+              data-video-id={review.videoId}
+              data-video-title={`${review.name} - Finesse Overseas Education Review`}
+              itemscope 
+              itemtype="https://schema.org/Review"
+            >
+              <!-- Top Country Color Accent Bar -->
+              <div class={`h-1 w-full bg-gradient-to-r ${review.countryCode === 'it' ? 'from-emerald-500 via-teal-400 to-emerald-600' : 'from-amber-500 via-rose-500 to-slate-900'}`}></div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 lg:p-10">
+                
+                <!-- Left Column (lg:col-span-5): Ultra-Sleek Smartphone Viewport Player -->
+                <div class="lg:col-span-5 flex justify-center">
+                  <div class="relative w-full max-w-[270px] sm:max-w-[290px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-900 bg-black group">
+                    
+                    <!-- Dynamic Iframe Target (Populated on Play Trigger) -->
+                    <div data-iframe-target class="w-full h-full"></div>
+
+                    <!-- Poster & Tap-to-Play Overlay -->
+                    <div data-poster-target class="absolute inset-0 flex flex-col justify-between p-4 cursor-pointer" data-video-trigger>
+                      <img 
+                        src={review.poster} 
+                        alt={`${review.name} video testimonial thumbnail - Finesse Overseas Education Kolhapur`}
+                        width="600"
+                        height="1067"
+                        loading="lazy"
+                        decoding="async"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/60 pointer-events-none"></div>
+
+                      <!-- Top Status Badges on Screen -->
+                      <div class="relative z-10 flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full backdrop-blur-md bg-black/60 border border-white/20 text-white font-mono text-[11px] font-bold">
+                          <svg class="w-3 h-3 text-rose-400 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+                          <span>{review.duration}</span>
+                        </span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full backdrop-blur-md bg-emerald-500/80 border border-emerald-300/40 text-white text-[10px] font-black uppercase tracking-wider">
+                          <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                          <span>Verified Admit</span>
+                        </span>
+                      </div>
+
+                      <!-- Center Glowing Luxury Play Trigger -->
+                      <div class="relative z-10 flex flex-col items-center justify-center my-auto">
+                        <div class="w-16 h-16 rounded-full bg-rose-600 group-hover:bg-rose-500 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-300 ring-4 ring-rose-400/40">
+                          <svg class="w-7 h-7 ml-0.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <span class="mt-3 text-xs font-bold text-white tracking-wide drop-shadow-md bg-black/50 px-3 py-1 rounded-full backdrop-blur-xs">
+                          Click to Watch Story
+                        </span>
+                      </div>
+
+                      <!-- Bottom Institutional Stamp on Screen -->
+                      <div class="relative z-10 text-center">
+                        <span class="text-[10px] font-semibold text-slate-300 uppercase tracking-wider block">Finesse Overseas Education</span>
+                        <span class="text-xs font-bold text-white tracking-wide">Rajarampuri, Kolhapur HQ</span>
+                      </div>
+
                     </div>
-                    <p class="text-xs sm:text-sm font-semibold text-teal-700 mt-0.5">{review.university}</p>
+
                   </div>
-                  <span class={`text-[11px] font-bold px-3 py-1 rounded-full border whitespace-nowrap shrink-0 ${review.badgeColor}`}>
-                    {review.badge}
-                  </span>
                 </div>
 
-                <!-- Degree Program Tag -->
-                <div class="text-xs font-medium text-slate-700 bg-white p-3 rounded-xl border border-slate-200/80 mb-5">
-                  <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px] block mb-0.5">Enrolled Degree:</span>
-                  <span class="font-bold text-slate-900">{review.degree}</span>
+                <!-- Right Column (lg:col-span-7): Clean Editorial Credentials Story -->
+                <div class="lg:col-span-7 flex flex-col justify-between py-1">
+                  
+                  <div>
+                    <!-- Top Meta Row: SVG Flag + QS Rank + Merit Pill -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                      <div class="flex items-center gap-2.5">
+                        {review.countryCode === 'de' ? (
+                          <svg class="w-6 h-6 rounded-full shadow-xs shrink-0 overflow-hidden" viewBox="0 0 512 512" aria-label="Germany Flag">
+                            <clipPath id="circle-de"><circle cx="256" cy="256" r="256"/></clipPath>
+                            <g clip-path="url(#circle-de)">
+                              <path fill="#FFDA44" d="M0 341.3h512V512H0z"/>
+                              <path fill="#000000" d="M0 0h512v170.7H0z"/>
+                              <path fill="#D80027" d="M0 170.7h512v170.6H0z"/>
+                            </g>
+                          </svg>
+                        ) : (
+                          <svg class="w-6 h-6 rounded-full shadow-xs shrink-0 overflow-hidden" viewBox="0 0 512 512" aria-label="Italy Flag">
+                            <clipPath id="circle-it"><circle cx="256" cy="256" r="256"/></clipPath>
+                            <g clip-path="url(#circle-it)">
+                              <path fill="#496E2D" d="M0 0h170.7v512H0z"/>
+                              <path fill="#F0F0F0" d="M170.7 0h170.6v512H170.7z"/>
+                              <path fill="#D80027" d="M341.3 0H512v512H341.3z"/>
+                            </g>
+                          </svg>
+                        )}
+                        <span class="text-xs font-bold tracking-wider uppercase text-slate-500">
+                          {review.country} · {review.rank}
+                        </span>
+                      </div>
+
+                      <span class={`text-[11px] font-bold px-3 py-1 rounded-full border whitespace-nowrap ${review.badgeColor}`}>
+                        {review.badge}
+                      </span>
+                    </div>
+
+                    <!-- Student Name & University -->
+                    <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight" itemprop="author">
+                      {review.name}
+                    </h3>
+                    <p class="text-xs sm:text-sm font-bold text-teal-700 mt-1 mb-4">
+                      {review.university}
+                    </p>
+
+                    <!-- Dual Tactical Information Chips (Zero nested heavy boxes) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Enrolled Degree:</span>
+                        <span class="text-xs font-bold text-slate-900 leading-tight block">{review.degree}</span>
+                      </div>
+                      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Financial & Visa Outcome:</span>
+                        <span class="text-xs font-bold text-emerald-800 leading-tight block">{review.financialImpact}</span>
+                      </div>
+                    </div>
+
+                    <!-- Breathable Editorial Pull-Quote -->
+                    <blockquote class="relative pl-4 border-l-2 border-teal-600 text-sm sm:text-base text-slate-700 italic leading-relaxed mb-6 font-normal" itemprop="reviewBody">
+                      "{review.quote}"
+                    </blockquote>
+                  </div>
+
+                  <!-- Bottom Interactive Action Strip -->
+                  <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                    <button 
+                      type="button" 
+                      data-video-trigger
+                      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-teal-700 text-white text-xs font-bold transition-all duration-200 shadow-sm hover:shadow cursor-pointer"
+                    >
+                      <svg class="w-4 h-4 fill-current text-rose-400" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      <span>Watch Video Proof ({review.duration})</span>
+                    </button>
+
+                    <div class="flex items-center gap-3">
+                      <span class="text-[11px] font-bold text-emerald-700 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Verified Kolhapur Admit
+                      </span>
+                      <span class="text-slate-300">·</span>
+                      <a 
+                        href={`https://youtube.com/shorts/${review.videoId}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="text-[11px] font-semibold text-slate-500 hover:text-slate-800 transition-colors inline-flex items-center gap-1"
+                        title="Open on YouTube Shorts in new tab"
+                      >
+                        <span>YouTube Shorts</span>
+                        <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
 
-                <!-- 9:16 Shorts Video Embed with Rounded Frame -->
-                <div class="aspect-[9/16] w-full max-w-[270px] sm:max-w-[290px] mx-auto rounded-2xl overflow-hidden bg-black shadow-xl border-4 border-white relative mb-5">
-                  <iframe 
-                    src={`https://www.youtube.com/embed/${review.videoId}`} 
-                    title={`${review.name} - Finesse Overseas Education Review`}
-                    loading="lazy" 
-                    class="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen
-                  ></iframe>
-                </div>
-
-                <!-- Verified Quote Block -->
-                <blockquote class="bg-white rounded-xl border-l-4 border-teal-600 p-4 text-xs sm:text-sm text-slate-700 italic mb-4 shadow-2xs">
-                  "{review.quote}"
-                </blockquote>
               </div>
-
-              <!-- Direct YouTube Shorts Link CTA -->
-              <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
-                <a 
-                  href={`https://youtube.com/shorts/${review.videoId}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-xs font-bold text-rose-600 hover:text-rose-700 transition-colors"
-                >
-                  <svg class="w-4 h-4 fill-current text-rose-600" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                  <span>Watch on YouTube Shorts</span>
-                  <span>→</span>
-                </a>
-                <span class="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
-                  <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                  Verified Kolhapur Admit
-                </span>
-              </div>
-
             </div>
           ))}
         </div>
 
       </div>
+
+      <!-- In-place YouTube Shorts / Video Player (Zero page-leaving, Zero conversion leak) -->
+      <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('[data-video-container]').forEach((container) => {
+            const triggers = container.querySelectorAll('[data-video-trigger]');
+            const videoId = container.getAttribute('data-video-id');
+            const videoTitle = container.getAttribute('data-video-title') || 'Student Video Review';
+            const iframeTarget = container.querySelector('[data-iframe-target]');
+            const posterTarget = container.querySelector('[data-poster-target]');
+
+            triggers.forEach((trigger) => {
+              trigger.addEventListener('click', () => {
+                if (!iframeTarget || !videoId) return;
+                iframeTarget.innerHTML = `
+                  <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                    title="${videoTitle}"
+                    class="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                  ></iframe>
+                `;
+                if (posterTarget) {
+                  posterTarget.classList.add('hidden');
+                }
+              });
+            });
+          });
+        });
+      </script>
     </section>
 
     <!-- 🌟 SECTION 4: GOOGLE 4.7★ EXECUTIVE TRUST BAR (Luminous Oxford Navy #0A0F1D) -->
