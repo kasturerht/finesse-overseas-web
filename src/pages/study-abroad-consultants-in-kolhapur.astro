@@ -536,45 +536,222 @@ const verifiedAdmissions = [
 const kolhapurColleges = [
   { 
     name: "Shivaji University (SUK)", 
-    field: "Science & Engineering Faculty", 
-    admits: "TU Munich, RWTH Aachen, Univ. of Stuttgart",
-    accent: "border-blue-200/80 bg-blue-50/40 text-blue-900",
-    badge: "H+ Recognized"
+    est: "Est. 1962 · State Public University",
+    anabin: "Anabin H+ Certified",
+    anabinBadge: "bg-blue-50 text-blue-800 border-blue-200/80",
+    popularBranches: "B.Sc. Biotech, Microbiology, Chemistry & 4-Yr B.Tech",
+    destinations: [
+      { name: "University of Milan", country: "it", rank: "World #270", highlight: "100% DSU Scholarship" },
+      { name: "TU Munich", country: "de", rank: "World #28", highlight: "€0 State Tuition" },
+      { name: "University of Siena", country: "it", rank: "World #572", highlight: "Biotech & Pharma" }
+    ],
+    accentBorder: "hover:border-blue-400",
+    topAccent: "from-blue-600 via-teal-500 to-emerald-500",
+    ctaText: "Check SUK Degree Compatibility",
+    whatsappMsg: "Hello Finesse Kolhapur! I am a student/alumnus of Shivaji University (SUK). Can you evaluate my syllabus for German & Italian public universities?"
   },
   { 
     name: "KIT College of Engineering, Kolhapur", 
-    field: "Mechanical, CS, Electronics & AI", 
-    admits: "TU Berlin, FAU Erlangen, Politecnico di Milano",
-    accent: "border-amber-200/80 bg-amber-50/40 text-amber-900",
-    badge: "Autonomy Track"
+    est: "Autonomous · NAAC 'A' Grade · Affiliated SUK",
+    anabin: "Anabin H+ Equivalent",
+    anabinBadge: "bg-amber-50 text-amber-800 border-amber-200/80",
+    popularBranches: "Mechanical, CS, AI & Data Science, Civil, ENTC",
+    destinations: [
+      { name: "TU Berlin", country: "de", rank: "TU9 Germany", highlight: "€0 State Tuition" },
+      { name: "FAU Erlangen", country: "de", rank: "Top Tech", highlight: "AI & Embedded M.Sc." },
+      { name: "Politecnico di Milano", country: "it", rank: "World #20 Eng", highlight: "100% Scholarship Track" }
+    ],
+    accentBorder: "hover:border-amber-400",
+    topAccent: "from-amber-500 via-orange-500 to-rose-500",
+    ctaText: "Check KIT ECTS & APS Roadmap",
+    whatsappMsg: "Hello Finesse Kolhapur! I am studying at KIT College of Engineering, Kolhapur. Can you evaluate my ECTS credits for German TU9 universities?"
   },
   { 
     name: "DKTE Society's TEI, Ichalkaranji", 
-    field: "Textile, Mechanical & Data Science", 
-    admits: "TU Chemnitz, TU Dresden, Politecnico di Torino",
-    accent: "border-teal-200/80 bg-teal-50/40 text-teal-900",
-    badge: "Direct Pathways"
-  },
-  { 
-    name: "D.Y. Patil College of Engineering (DYPCET)", 
-    field: "Computer Engineering & Data Tech", 
-    admits: "Uni Freiburg, Sapienza Rome, Hamburg Univ. of Tech",
-    accent: "border-indigo-200/80 bg-indigo-50/40 text-indigo-900",
-    badge: "APS Verified"
+    est: "Autonomous · Asia's Premier Textile & Tech Institute",
+    anabin: "Anabin H+ Equivalent",
+    anabinBadge: "bg-teal-50 text-teal-800 border-teal-200/80",
+    popularBranches: "Textile Tech, Mechanical, Computer Engineering",
+    destinations: [
+      { name: "TU Chemnitz", country: "de", rank: "World #1 Textile", highlight: "Technical Textiles & Mechanics" },
+      { name: "TU Dresden", country: "de", rank: "German TU9", highlight: "€0 State Tuition" },
+      { name: "Politecnico di Torino", country: "it", rank: "World Top 35", highlight: "Materials & Design M.Sc." }
+    ],
+    accentBorder: "hover:border-teal-400",
+    topAccent: "from-teal-500 via-emerald-400 to-cyan-500",
+    ctaText: "Check DKTE Pathway to TU Chemnitz",
+    whatsappMsg: "Hello Finesse Kolhapur! I am from DKTE Ichalkaranji. Can you check my profile for German public universities like TU Chemnitz & TU Dresden?"
   },
   { 
     name: "Walchand College of Engineering, Sangli", 
-    field: "Civil, Mechanical & Electrical", 
-    admits: "RWTH Aachen, Karlsruhe Institute of Tech (KIT)",
-    accent: "border-emerald-200/80 bg-emerald-50/40 text-emerald-900",
-    badge: "Top GATE/MSc"
+    est: "Est. 1947 · Premier Govt-Aided Autonomous Institute",
+    anabin: "Anabin H+ Certified",
+    anabinBadge: "bg-emerald-50 text-emerald-800 border-emerald-200/80",
+    popularBranches: "Mechanical, Electrical, Civil, Structural, CS",
+    destinations: [
+      { name: "RWTH Aachen", country: "de", rank: "German Elite TU9", highlight: "€0 State Tuition" },
+      { name: "Karlsruhe Inst of Tech (KIT)", country: "de", rank: "Excellence Univ", highlight: "Energy & Automotive" },
+      { name: "TU Munich", country: "de", rank: "World #28", highlight: "Direct M.Sc. Entry" }
+    ],
+    accentBorder: "hover:border-emerald-400",
+    topAccent: "from-emerald-600 via-teal-500 to-blue-600",
+    ctaText: "Evaluate Walchand TU9 Target Score",
+    whatsappMsg: "Hello Finesse Kolhapur! I am from Walchand College of Engineering, Sangli. Can you evaluate my CGPA and syllabus for RWTH Aachen and German TU9?"
+  },
+  { 
+    name: "D.Y. Patil College of Engg & Tech (DYPCET)", 
+    est: "Kasaba Bawada, Kolhapur · NAAC 'A' Grade",
+    anabin: "Anabin H+ Equivalent",
+    anabinBadge: "bg-indigo-50 text-indigo-800 border-indigo-200/80",
+    popularBranches: "Computer Engineering, Data Tech, Chemical & Architecture",
+    destinations: [
+      { name: "Sapienza Univ. of Rome", country: "it", rank: "World #132", highlight: "100% Regional Grant" },
+      { name: "Hamburg Univ of Tech (TUHH)", country: "de", rank: "Top Tech North", highlight: "€0 State Tuition" },
+      { name: "University of Freiburg", country: "de", rank: "World Top 100", highlight: "Applied CS M.Sc." }
+    ],
+    accentBorder: "hover:border-indigo-400",
+    topAccent: "from-indigo-500 via-blue-500 to-teal-500",
+    ctaText: "Check DYPCET Italian Grant Match",
+    whatsappMsg: "Hello Finesse Kolhapur! I am studying at DYPCET Kolhapur. Can you evaluate my eligibility for Italian DSU 100% scholarships and German universities?"
   },
   { 
     name: "Bharati Vidyapeeth College of Engineering", 
-    field: "Automobile & Information Tech", 
-    admits: "Uni Stuttgart, University of Padua, TU Ilmenau",
-    accent: "border-purple-200/80 bg-purple-50/40 text-purple-900",
-    badge: "Schengen Visa"
+    est: "Morewadi, Kolhapur · NAAC Accredited",
+    anabin: "Anabin H+ Equivalent",
+    anabinBadge: "bg-purple-50 text-purple-800 border-purple-200/80",
+    popularBranches: "Mechanical, Automobile, Computer Science & IT",
+    destinations: [
+      { name: "University of Stuttgart", country: "de", rank: "German TU9", highlight: "Automotive Hub" },
+      { name: "University of Padua", country: "it", rank: "World #219", highlight: "100% Scholarship" },
+      { name: "TU Ilmenau", country: "de", rank: "Automotive Tech", highlight: "€0 State Tuition" }
+    ],
+    accentBorder: "hover:border-purple-400",
+    topAccent: "from-purple-500 via-pink-500 to-rose-500",
+    ctaText: "Check BVCOE Automotive & CS Pathways",
+    whatsappMsg: "Hello Finesse Kolhapur! I am from Bharati Vidyapeeth College of Engineering Kolhapur. Can you review my profile for European English-taught M.Sc.?"
+  }
+];
+
+const transparencyAuditRows = [
+  {
+    category: "Direct Tuition Liability",
+    paramTitle: "2-Year Academic Tuition Outflow",
+    commercial: {
+      stat: "₹28L – ₹55L",
+      statLabel: "Direct Tuition Debt",
+      badge: "High Debt Burden",
+      headline: "Unranked Private Colleges",
+      detail: "Heavy tuition at private UK/Poland colleges. Families forced into 11.5%–14% NBFC educational loans."
+    },
+    finesse: {
+      stat: "₹0 State Tuition",
+      statLabel: "100% Legally Protected",
+      badge: "€0 Tuition · State Funded",
+      headline: "German TU9 & Italian DSU Model",
+      detail: "Federal law guarantees €0 tuition in Germany. In Italy, eligible students receive 100% state waiver + cash grants."
+    },
+    deltaStat: "Saves ₹35L+",
+    deltaLabel: "Family Capital Saved"
+  },
+  {
+    category: "Consultant Ethics",
+    paramTitle: "Agent Revenue & Hidden Kickbacks",
+    commercial: {
+      stat: "15% – 20%",
+      statLabel: "Secret University Kickback",
+      badge: "Sales Quota Driven",
+      headline: "Agent Serves the College",
+      detail: "Agents pocket £3,000–£5,000 (₹3L–₹5L) per student. 'Free counseling' is bait to hit private sales quotas."
+    },
+    finesse: {
+      stat: "₹0 Kickbacks",
+      statLabel: "Pure Transparent Mentorship",
+      badge: "100% Conflict-Free",
+      headline: "Finesse Serves Only You",
+      detail: "German & Italian public universities strictly ban agent commissions. Transparent upfront mentorship fee only."
+    },
+    deltaStat: "100% Conflict-Free",
+    deltaLabel: "Zero Commission Bias"
+  },
+  {
+    category: "Academic Standing",
+    paramTitle: "University Global Ranking & Anabin",
+    commercial: {
+      stat: "Unranked",
+      statLabel: "Tier-3/4 Private Colleges",
+      badge: "Rented Campus Blocks",
+      headline: "Commercial Office Blocks",
+      detail: "Private degree mills excluded from top QS tables and viewed with skepticism by German & EU corporate HR."
+    },
+    finesse: {
+      stat: "Top 300",
+      statLabel: "World-Renowned Sovereign Public",
+      badge: "KMK Anabin H+ Certified",
+      headline: "Elite Research Universities",
+      detail: "TU Munich (#28), RWTH Aachen (#99), Univ of Milan (#270), Sapienza (#132), Bologna (#133). Globally revered."
+    },
+    deltaStat: "Anabin H+",
+    deltaLabel: "Statutory Global Degree"
+  },
+  {
+    category: "Student Welfare",
+    paramTitle: "Living Grants & Regional Scholarships",
+    commercial: {
+      stat: "₹0 Grants",
+      statLabel: "Zero Government Support",
+      badge: "Token Discounts Only",
+      headline: "Commercial Marketing Gimmicks",
+      detail: "Private colleges offer nominal ₹1L–₹2L 'fee discounts' while pocketing massive tuition. Zero government living stipends."
+    },
+    finesse: {
+      stat: "€8,400 / Yr",
+      statLabel: "Italian DSU Regional Cash Grant",
+      badge: "Non-Repayable Welfare",
+      headline: "Full Living & Canteen Meals",
+      detail: "Direct filing for Italian regional scholarships (€7,400–€8,400/yr stipend + free university meals + accommodation)."
+    },
+    deltaStat: "100% Covered",
+    deltaLabel: "Zero Out-of-Pocket Living"
+  },
+  {
+    category: "Career & Visas",
+    paramTitle: "Post-Study Work & EU Blue Card",
+    commercial: {
+      stat: "High Risk",
+      statLabel: "Restricted Sponsorship Traps",
+      badge: "Fragile Visa Status",
+      headline: "Strict Employer Sponsorship Limits",
+      detail: "Private college degrees face employer reluctance in Germany/EU, with high visa refusal rates during work transitions."
+    },
+    finesse: {
+      stat: "18 Months",
+      statLabel: "German Job Seeker + EU Blue Card",
+      badge: "Statutory Legal Rights",
+      headline: "Fast-Track to German PR",
+      detail: "Statutory 18-month German search visa or 12-month Italian Permesso. German PR (Permanent Residency) in 21–27 months."
+    },
+    deltaStat: "21–27 Months",
+    deltaLabel: "Fast-Track European PR"
+  },
+  {
+    category: "Local Roots",
+    paramTitle: "Physical Accountability in Kolhapur",
+    commercial: {
+      stat: "1-Day Fairs",
+      statLabel: "Hotel Sayaji / Pavilion Pop-ups",
+      badge: "Transient Visiting Sales",
+      headline: "Vanishing Pop-Up Agents",
+      detail: "Sales reps from Pune/Mumbai rent hotel banquet halls for weekend fairs, leaving families with no local recourse post-intake."
+    },
+    finesse: {
+      stat: "22+ Years",
+      statLabel: "Owned HQ in Rajarampuri 4th Lane",
+      badge: "Established 2004",
+      headline: "Permanent Kolhapur Roots",
+      detail: "Samarth Sakshi Plaza, 4th Lane, Rajarampuri. Direct, in-person counseling across the desk with Founder Jayant Patil (VJTI / JBIMS)."
+    },
+    deltaStat: "22+ Years",
+    deltaLabel: "Permanent Rajarampuri HQ"
   }
 ];
 
@@ -1206,42 +1383,103 @@ const faqs = [
       </div>
     </section>
 
-    <!-- 🏛️ SECTION 6: LOCAL COLLEGE PATHWAYS (Pure White #FFFFFF) -->
-    <section class="py-16 md:py-24 bg-white border-b border-slate-200/80">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 🏛️ SECTION 6: LOCAL COLLEGE PATHWAYS (Pure White #FFFFFF · Researched Swiss-Luxe Architecture) -->
+    <section class="py-16 md:py-24 bg-white border-b border-slate-200/80" id="local-pathways">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <span>Local Legacy & Proven Institutional Results</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200/80 text-teal-900 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-teal-600 animate-pulse"></span>
+            <span>Institutional Accreditation & Local Legacy</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
             Trusted by Engineering & Science Students Across Kolhapur District
           </h2>
-          <p class="text-slate-600 text-base leading-relaxed">
-            Over the past 22 years, our Rajarampuri office has guided alumni from Kolhapur and Sangli's top institutions into Germany and Italy's highest-ranked state universities.
+          <p class="text-slate-600 text-base max-w-2xl mx-auto leading-relaxed">
+            Over the past 22 years, our Rajarampuri headquarters has audited academic syllabi and mapped credit equivalencies for graduates from Western Maharashtra's premier universities into Europe's top public institutions.
           </p>
         </div>
 
+        <!-- 6 Researched Institutional Pathway Bento Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {kolhapurColleges.map((college) => (
-            <div class="bg-slate-50/80 border border-slate-200/90 hover:border-teal-400 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between">
+            <div class={`bg-slate-50/70 border border-slate-200/90 ${college.accentBorder} rounded-3xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between relative overflow-hidden group`}>
+              
+              <!-- Top Ambient Color Accent Bar -->
+              <div class={`h-1.5 w-full absolute top-0 inset-x-0 bg-gradient-to-r ${college.topAccent}`}></div>
+
               <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                    🏛️
-                  </span>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700">
-                    {college.badge}
+                <!-- Institutional Header Row -->
+                <div class="flex items-start justify-between gap-3 mb-4 pt-1">
+                  <div class="w-10 h-10 rounded-2xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-teal-700 shrink-0">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                    </svg>
+                  </div>
+
+                  <span class={`text-[10.5px] font-bold px-2.5 py-1 rounded-full border ${college.anabinBadge} shrink-0`}>
+                    {college.anabin}
                   </span>
                 </div>
-                <h3 class="text-base font-black text-slate-900 mb-1.5">{college.name}</h3>
-                <p class="text-xs font-semibold text-teal-700 mb-4">{college.field}</p>
+
+                <!-- College Name & Establishment -->
+                <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mb-1 group-hover:text-teal-800 transition-colors">
+                  {college.name}
+                </h3>
+                <span class="text-[11px] font-semibold text-slate-500 block mb-3">
+                  {college.est}
+                </span>
+
+                <!-- Popular Branches Pill -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200/80 mb-4">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">High-Admit Disciplines:</span>
+                  <span class="text-xs font-bold text-slate-800 leading-snug block">{college.popularBranches}</span>
+                </div>
+
+                <!-- Direct European University Admits Chips -->
+                <div class="mb-5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Verified European Admits:</span>
+                  <div class="flex flex-col gap-1.5">
+                    {college.destinations.map((dest) => (
+                      <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200/70 text-xs">
+                        <div class="flex items-center gap-2">
+                          {dest.country === 'de' ? (
+                            <svg class="w-3.5 h-3.5 rounded-full shrink-0 overflow-hidden shadow-2xs" viewBox="0 0 512 512" aria-label="Germany">
+                              <path fill="#FFDA44" d="M0 341.3h512V512H0z"/><path fill="#000000" d="M0 0h512v170.7H0z"/><path fill="#D80027" d="M0 170.7h512v170.6H0z"/>
+                            </svg>
+                          ) : (
+                            <svg class="w-3.5 h-3.5 rounded-full shrink-0 overflow-hidden shadow-2xs" viewBox="0 0 512 512" aria-label="Italy">
+                              <path fill="#496E2D" d="M0 0h170.7v512H0z"/><path fill="#F0F0F0" d="M170.7 0h170.6v512H170.7z"/><path fill="#D80027" d="M341.3 0H512v512H341.3z"/>
+                            </svg>
+                          )}
+                          <span class="font-bold text-slate-900">{dest.name}</span>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold text-teal-700 bg-teal-50 px-1.5 py-0.5 rounded border border-teal-200/60">
+                          {dest.rank}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
 
-              <div class="pt-3 border-t border-slate-200/70">
-                <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">Top University Admits:</span>
-                <p class="text-xs text-slate-800 font-semibold">{college.admits}</p>
+              <!-- Interactive Direct Counseling Action (Personalized WhatsApp Link) -->
+              <div class="pt-3.5 border-t border-slate-200/80 flex items-center justify-between gap-2">
+                <a 
+                  href={`https://wa.me/919850069600?text=${encodeURIComponent(college.whatsappMsg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-900 group-hover:translate-x-0.5 transition-all"
+                >
+                  <span>{college.ctaText}</span>
+                  <span>→</span>
+                </a>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 shrink-0">
+                  €0 Tuition
+                </span>
               </div>
+
             </div>
           ))}
         </div>
@@ -1249,123 +1487,179 @@ const faqs = [
       </div>
     </section>
 
-    <!-- ⚖️ SECTION 7: VISUAL DUAL-SPLIT COMPARISON (Luminous Oxford Midnight #0B132B - The High-Contrast Authority Anchor!) -->
-    <section class="py-16 md:py-24 bg-gradient-to-b from-[#0B132B] to-[#0A0F1D] text-white border-b border-slate-800">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ⚖️ SECTION 7: FORENSIC FINANCIAL AUDIT VAULT (The Sovereign Balance Sheet · Silicon Valley Standard) -->
+    <section class="py-20 md:py-28 bg-[#070D1B] border-y border-slate-800 text-white relative overflow-hidden" id="comparison-audit">
+      <!-- Ambient Radial Lighting & Precision Grid -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.12),transparent_70%)] pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-teal-400/30 text-teal-300 text-xs font-bold uppercase tracking-wider mb-3">
-            <span>The Transparency Audit</span>
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-teal-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+            <span>Forensic Comparative Audit · Commercial Brokerage vs. Sovereign State Model</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
-            How Finesse Compares to Traditional Kolhapur Agents
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+            Why "Free Counseling" Costs Kolhapur Families <span class="text-rose-400 underline decoration-rose-500/50 underline-offset-8">₹35L to ₹55L</span> More
           </h2>
-          <p class="text-slate-300 text-base leading-relaxed">
-            Many local agents push private colleges to pocket huge recruitment commissions. Here is the objective difference between the commercial commission model and our sovereign public university model.
+          <p class="text-slate-400 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+            Commercial agents push unranked private colleges in the UK, Poland, or Latvia to pocket 15%–20% secret kickbacks. Sovereign German & Italian state universities charge <strong class="text-emerald-400 font-bold">₹0 tuition</strong> and pay zero commissions. Here is the objective financial balance sheet.
           </p>
         </div>
 
-        <!-- 2 Side-by-Side Architectural Comparison Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <!-- ⚖️ THE FORENSIC DUAL-LEDGER BALANCE SHEET (High-Impact Stat Typography) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-10">
           
-          <!-- Column 1: Traditional Agents (The Warning Trap) -->
-          <div class="rounded-3xl bg-slate-900/90 border border-rose-500/30 p-8 shadow-xl flex flex-col justify-between">
+          <!-- Column 1: Commercial Agent Route (The High-Risk Private Trap) -->
+          <div class="rounded-2xl bg-slate-900/80 border border-rose-900/50 p-6 sm:p-8 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="h-1.5 w-full absolute top-0 inset-x-0 bg-rose-500"></div>
+
             <div>
-              <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-rose-400 block mb-1">Typical Local Agents</span>
-                  <h3 class="text-xl font-bold text-white">Commercial Commission Model</h3>
-                </div>
-                <span class="w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center font-bold text-lg">✕</span>
+              <!-- Column Header -->
+              <div class="pb-6 border-b border-slate-800/80 mb-6">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-950/80 border border-rose-800/80 text-rose-400 text-[10px] font-bold uppercase tracking-wider mb-2">
+                  ⚠️ High Family Financial Burden · Broker Model
+                </span>
+                <h3 class="text-xl sm:text-2xl font-black text-white">Commercial Commission Agents</h3>
+                <p class="text-xs font-semibold text-slate-400 mt-1">Pop-Up Hotel Sayaji Fairs · Private College Sales Quotas</p>
               </div>
 
-              <ul class="space-y-4 text-xs sm:text-sm text-slate-300">
-                <li class="flex items-start gap-3">
-                  <span class="text-rose-400 font-bold">✕</span>
-                  <div>
-                    <strong class="text-white block">Target Universities:</strong>
-                    Tier-3 Private Colleges (Poland, Latvia, UK private) with heavy commission kickbacks.
+              <!-- 6 Metric Rows -->
+              <div class="space-y-6">
+                {transparencyAuditRows.map((row, idx) => (
+                  <div class="border-b border-slate-800/60 pb-5 last:border-b-0 last:pb-0">
+                    <div class="flex items-center justify-between text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      <span>0{idx + 1} · {row.category}</span>
+                      <span class="text-rose-400 font-mono text-[10px]">✕ High Risk</span>
+                    </div>
+                    
+                    <div class="flex items-baseline gap-3 my-1">
+                      <span class="text-2xl sm:text-3xl font-black text-rose-400 font-mono tracking-tight">
+                        {row.commercial.stat}
+                      </span>
+                      <span class="text-xs font-bold text-slate-200">
+                        {row.commercial.statLabel}
+                      </span>
+                    </div>
+
+                    <p class="text-xs text-slate-400 leading-relaxed mt-1">
+                      {row.commercial.detail}
+                    </p>
                   </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-rose-400 font-bold">✕</span>
-                  <div>
-                    <strong class="text-white block">Annual Tuition Burden:</strong>
-                    ₹12 Lakhs to ₹28 Lakhs per year in private tuition fees.
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-rose-400 font-bold">✕</span>
-                  <div>
-                    <strong class="text-white block">Agent Business Model:</strong>
-                    Claim "Free Counseling" but pocket 15-20% hidden university cuts.
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-rose-400 font-bold">✕</span>
-                  <div>
-                    <strong class="text-white block">Physical Accountability:</strong>
-                    Pop-up hotel seminars or temporary rented branch offices.
-                  </div>
-                </li>
-              </ul>
+                ))}
+              </div>
             </div>
 
-            <div class="mt-8 pt-4 border-t border-slate-800 text-[11px] text-rose-400/80 font-medium">
-              ⚠️ Results in massive private student loan debt and uncertain post-study visas.
+            <!-- Column Subtotal Bar -->
+            <div class="rounded-xl bg-rose-950/40 border border-rose-900/60 p-4 mt-8">
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-400 block mb-0.5">
+                Total 2-Year Direct Financial Burden
+              </span>
+              <div class="text-2xl font-black text-rose-300 font-mono">
+                ₹38,00,000 to ₹65,00,000+
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1 leading-snug">
+                Private college tuition fees + 11.5% loan interest + zero government living stipends.
+              </p>
             </div>
           </div>
 
-          <!-- Column 2: Finesse Sovereign Model (The Gold Standard) -->
-          <div class="rounded-3xl bg-slate-900/90 border border-teal-500/50 p-8 shadow-2xl flex flex-col justify-between relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-40 h-40 bg-teal-500/10 rounded-bl-full pointer-events-none"></div>
+          <!-- Column 2: Finesse Sovereign Pathway (The Gold Standard) -->
+          <div class="rounded-2xl bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-emerald-950/40 border-2 border-emerald-500/70 p-6 sm:p-8 backdrop-blur-sm relative shadow-2xl ring-2 ring-emerald-500/20 flex flex-col justify-between">
+            <div class="h-1.5 w-full absolute top-0 inset-x-0 bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400"></div>
 
-            <div class="relative z-10">
-              <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-teal-400 block mb-1">The Finesse Blueprint</span>
-                  <h3 class="text-xl font-bold text-white">100% Sovereign Public Admissions</h3>
-                </div>
-                <span class="w-10 h-10 rounded-full bg-teal-500/20 border border-teal-400/40 text-teal-300 flex items-center justify-center font-bold text-lg">✓</span>
+            <div>
+              <!-- Column Header -->
+              <div class="pb-6 border-b border-slate-800/80 mb-6">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 text-[10px] font-bold uppercase tracking-wider mb-2">
+                  👑 Sovereign Public Pathway · VJTI / JBIMS Mentorship
+                </span>
+                <h3 class="text-xl sm:text-2xl font-black text-white">Finesse Overseas Education</h3>
+                <p class="text-xs font-semibold text-teal-400 mt-1">Permanent 22+ Year HQ · Rajarampuri 4th Lane Since 2004</p>
               </div>
 
-              <ul class="space-y-4 text-xs sm:text-sm text-slate-200">
-                <li class="flex items-start gap-3">
-                  <span class="text-teal-400 font-bold">✓</span>
-                  <div>
-                    <strong class="text-white block">Target Universities:</strong>
-                    World-Ranked State Public Universities (TU9, FAU, Sapienza Rome, Milan).
+              <!-- 6 Metric Rows -->
+              <div class="space-y-6">
+                {transparencyAuditRows.map((row, idx) => (
+                  <div class="border-b border-slate-800/60 pb-5 last:border-b-0 last:pb-0">
+                    <div class="flex items-center justify-between text-[11px] font-bold text-teal-400 uppercase tracking-wider mb-1">
+                      <span>0{idx + 1} · {row.category}</span>
+                      <span class="text-emerald-400 font-mono text-[10px]">✓ Legally Protected</span>
+                    </div>
+                    
+                    <div class="flex items-baseline gap-3 my-1">
+                      <span class="text-2xl sm:text-3xl font-black text-emerald-400 font-mono tracking-tight">
+                        {row.finesse.stat}
+                      </span>
+                      <span class="text-xs font-bold text-white">
+                        {row.finesse.statLabel}
+                      </span>
+                    </div>
+
+                    <p class="text-xs text-slate-300 leading-relaxed mt-1">
+                      {row.finesse.detail}
+                    </p>
+
+                    <!-- Family Advantage Chip -->
+                    <div class="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-900/60 border border-emerald-500/40 text-emerald-200 text-[11px] font-bold shadow-2xs">
+                      <span>✓ Net Difference:</span>
+                      <strong class="text-emerald-300 font-mono">{row.deltaStat}</strong>
+                      <span class="text-emerald-400/80 font-normal">({row.deltaLabel})</span>
+                    </div>
                   </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-teal-400 font-bold">✓</span>
-                  <div>
-                    <strong class="text-white block">Tuition & Living Grants:</strong>
-                    <span class="text-emerald-400 font-bold">€0 Tuition in Germany</span> / <span class="text-teal-300 font-bold">100% DSU Scholarship in Italy</span>.
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-teal-400 font-bold">✓</span>
-                  <div>
-                    <strong class="text-white block">Admissions Ethics:</strong>
-                    Transparent, upfront counseling fee. Zero hidden university commissions.
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-teal-400 font-bold">✓</span>
-                  <div>
-                    <strong class="text-white block">Physical Accountability:</strong>
-                    Permanent 22+ year physical counseling headquarters at Rajarampuri 4th Lane.
-                  </div>
-                </li>
-              </ul>
+                ))}
+              </div>
             </div>
 
-            <div class="mt-8 pt-4 border-t border-slate-800 text-[11px] text-teal-300 font-semibold relative z-10 flex items-center gap-1.5">
-              <span>🛡️ 99% Verified Visa Success with complete APS and NMC compliance.</span>
+            <!-- Column Subtotal Bar -->
+            <div class="rounded-xl bg-emerald-950/60 border border-emerald-500/60 p-4 mt-8">
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 block mb-0.5">
+                Total Family Wealth Preserved
+              </span>
+              <div class="text-2xl font-black text-emerald-300 font-mono">
+                ₹35,00,000 to ₹55,00,000 Saved
+              </div>
+              <p class="text-[11px] text-slate-300 mt-1 leading-snug">
+                Legally €0 state tuition + up to €8,400/yr regional grants. Zero student loan burden.
+              </p>
             </div>
           </div>
 
+        </div>
+
+        <!-- 🏛️ THE INTEGRATED RECONCILIATION & ACTION RIBBON -->
+        <div class="rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/80 border border-emerald-500/40 p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div class="flex items-start sm:items-center gap-4 text-left">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-black shrink-0">
+              ₹
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">
+                  Official Kolhapur Balance Sheet Reconciliation
+                </span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black text-white">
+                Kolhapur Parents: Bring Any Consultant's Fee Quote for an Open Audit
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                Already visited an education fair at Hotel Sayaji or received an unranked private college brochure? Founder Jayant Patil will independently calculate the hidden tuition costs and compare them against tuition-free German & Italian state universities.
+              </p>
+            </div>
+          </div>
+
+          <a 
+            href="https://wa.me/919850069600?text=Hello%20Jayant%20Patil%20Sir!%20%F0%9F%91%8B%20I%20reviewed%20the%20Forensic%20Audit%20Balance%20Sheet%20on%20your%20website.%20Can%20you%20calculate%20the%20exact%20fee%20difference%20and%20family%20savings%20for%20my%20specific%20degree%20profile%3F"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full lg:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-lg hover:shadow-emerald-500/25 shrink-0 text-center flex items-center justify-center gap-2"
+          >
+            <span>Request Personalized Fee Audit on WhatsApp</span>
+            <span>→</span>
+          </a>
         </div>
 
       </div>
