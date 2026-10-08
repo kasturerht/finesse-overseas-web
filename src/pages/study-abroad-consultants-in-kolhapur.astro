@@ -267,6 +267,52 @@ const localKnowledgeSchema = JSON.stringify({
           "url": "https://finesseoverseas.com/logo.png"
         }
       }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://finesseoverseas.com/study-abroad-consultants-in-kolhapur#video-shejal-patil",
+      "name": "Kolhapur to ISM Germany! Shejal Patil Reviews Finesse Overseas Education",
+      "description": "Hear Shejal Patil, Shivaji University graduate, review Finesse Overseas Education at Rajarampuri, Kolhapur for her Masters in International Logistics & Supply Chain Management at ISM Germany with direct APS verification and visa approval.",
+      "thumbnailUrl": "https://finesseoverseas.com/thumbnails/shejal-patil-germany-vertical-shorts-cover.jpg",
+      "uploadDate": "2026-10-08T15:00:00+05:30",
+      "duration": "PT0M58S",
+      "inLanguage": ["mr", "en"],
+      "contentUrl": "https://youtube.com/shorts/wfI4Iqwg0eg",
+      "embedUrl": "https://www.youtube.com/embed/wfI4Iqwg0eg",
+      "potentialAction": {
+        "@type": "WatchAction",
+        "target": "https://youtube.com/shorts/wfI4Iqwg0eg"
+      },
+      "contentLocation": {
+        "@type": "Place",
+        "name": "Finesse Overseas Education, Rajarampuri, Kolhapur",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 16.698246,
+          "longitude": 74.241517
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Samarth Sakshi Plaza, 4th Lane, Rajarampuri",
+          "addressLocality": "Kolhapur",
+          "postalCode": "416008",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        }
+      },
+      "about": [
+        { "@type": "Thing", "name": "Best Study Abroad Consultants in Kolhapur" },
+        { "@type": "Thing", "name": "Study in Germany Masters Degree" },
+        { "@type": "EducationalOrganization", "name": "International School of Management (ISM) Germany" }
+      ],
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "Finesse Overseas Education",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://finesseoverseas.com/logo.png"
+        }
+      }
     }
   ]
 });
@@ -304,6 +350,23 @@ const liveVideoReviews = [
     financialImpact: "Zero Agency Commission · Fast-Track Schengen Visa",
     quote: "Transparent counseling under Jayant Patil sir at Rajarampuri office. Clear APS verification roadmap and zero hidden agent commissions.",
     badge: "German Logistics Master · Fast-Track Visa",
+    badgeColor: "border-amber-300 text-amber-900 bg-amber-50",
+    academicPill: "Direct APS Clearance"
+  },
+  {
+    name: "Shejal Shivaji Patil",
+    hometown: "Kolhapur Native",
+    degree: "Masters in International Logistics & Supply Chain",
+    university: "International School of Management (ISM Germany)",
+    rank: "Top German Business School",
+    country: "Germany",
+    countryCode: "de",
+    videoId: "wfI4Iqwg0eg",
+    duration: "00:58 min",
+    poster: "/thumbnails/shejal-patil-germany-vertical-shorts-cover.jpg",
+    financialImpact: "Direct APS Clearance · Fast-Track Schengen Visa",
+    quote: "Guided directly by Jayant Patil sir at Rajarampuri, Kolhapur. Complete support from Shivaji University transcripts to APS clearance and ISM Germany visa stamping.",
+    badge: "German Logistics Master · Visa Cleared",
     badgeColor: "border-amber-300 text-amber-900 bg-amber-50",
     academicPill: "Direct APS Clearance"
   }
@@ -420,8 +483,10 @@ const verifiedAdmissions = [
     countryCode: "de",
     destinationKey: "germany",
     rank: "Top Business School",
-    badge: "Supply Chain Masters",
-    badgeColor: "border-amber-300 text-amber-900 bg-amber-50"
+    badge: "German Logistics Master · Visa Cleared",
+    badgeColor: "border-amber-300 text-amber-900 bg-amber-50",
+    hasVideo: true,
+    videoId: "wfI4Iqwg0eg"
   },
   {
     name: "Virendra Vijay Patil",
@@ -975,7 +1040,7 @@ const faqs = [
 
         <!-- Horizontal Split Bento Cards Showcase (Stacked with Pristine Rhythm) -->
         <div class="space-y-8">
-          {liveVideoReviews.map((review) => (
+          {liveVideoReviews.map((review, rIdx) => (
             <div 
               class="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden relative"
               data-video-container
@@ -1051,8 +1116,8 @@ const faqs = [
                       <div class="flex items-center gap-2.5">
                         {review.countryCode === 'de' ? (
                           <svg class="w-6 h-6 rounded-full shadow-xs shrink-0 overflow-hidden" viewBox="0 0 512 512" aria-label="Germany Flag">
-                            <clipPath id="circle-de"><circle cx="256" cy="256" r="256"/></clipPath>
-                            <g clip-path="url(#circle-de)">
+                            <clipPath id={`review-circle-${rIdx}`}><circle cx="256" cy="256" r="256"/></clipPath>
+                            <g clip-path={`url(#review-circle-${rIdx})`}>
                               <path fill="#FFDA44" d="M0 341.3h512V512H0z"/>
                               <path fill="#000000" d="M0 0h512v170.7H0z"/>
                               <path fill="#D80027" d="M0 170.7h512v170.6H0z"/>
@@ -1060,8 +1125,8 @@ const faqs = [
                           </svg>
                         ) : (
                           <svg class="w-6 h-6 rounded-full shadow-xs shrink-0 overflow-hidden" viewBox="0 0 512 512" aria-label="Italy Flag">
-                            <clipPath id="circle-it"><circle cx="256" cy="256" r="256"/></clipPath>
-                            <g clip-path="url(#circle-it)">
+                            <clipPath id={`review-circle-${rIdx}`}><circle cx="256" cy="256" r="256"/></clipPath>
+                            <g clip-path={`url(#review-circle-${rIdx})`}>
                               <path fill="#496E2D" d="M0 0h170.7v512H0z"/>
                               <path fill="#F0F0F0" d="M170.7 0h170.6v512H170.7z"/>
                               <path fill="#D80027" d="M341.3 0H512v512H341.3z"/>
