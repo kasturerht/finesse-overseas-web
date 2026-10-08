@@ -11,7 +11,8 @@
     "indexnow": "node scripts/indexnow.js",
     "authorize-user": "node scripts/authorize-user.js",
     "audit-gsc": "node scripts/gsc-auto-pilot.js",
-    "track-serp": "node scripts/track-serp.js"
+    "track-serp": "node scripts/track-serp.js",
+    "growth:telemetry": "node scripts/growth-telemetry.js"
   },
   "dependencies": {
     "@astrojs/markdoc": "^1.0.4",
