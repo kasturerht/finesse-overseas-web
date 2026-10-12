@@ -33,13 +33,26 @@ service-account-key.json
 finesse-indexer-f732effb568d.json
 oauth-client-secret.json
 oauth-tokens.json
+client_secret.json
+youtube-token.json
+youtube-tokens.json
 
 # Scratch files
 scratch/
 Ultimate-Web-Production-Checklist.*
 gsc-audit-report.json
 serp-telemetry-report.json
+youtube-audit-report.json
+*.srt
 *.bak
 
 # Local heavy video assets (Uploaded to YouTube)
 public/videos/
+
+# Archives and backups
+*.zip
+
+# Local GSC Telemetry
+gsc-active-urls-status.json
+.claude/
+

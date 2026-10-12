@@ -3,13 +3,14 @@
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import PillarIntelligenceVault from '../components/PillarIntelligenceVault.astro';
 
 const seoTitle = "Study in Austria | Zero Blocked Account | Finesse Overseas";
 const seoDescription = "Keep your 15 Lakhs in your bank. Study in premium Austrian public universities for just €726/semester with no blocked account required.";
 
 const austriaFaqs = [
   {
-    question: "Do I need to deposit €11,208 in a Blocked Account like Germany?",
+    question: "Do I need to deposit €11,904 in a Blocked Account like Germany?",
     answer: "No, absolutely not. This is Austria's biggest advantage. You do not need a mandatory blocked account. You simply have to show the required living expenses in your or your sponsor's regular local bank account."
   },
   {
@@ -286,7 +287,7 @@ const austriaSchema = JSON.stringify({
                   <div>
                     <h3 class="text-lg sm:text-xl font-bold text-white mb-1">Your funds stay liquid.</h3>
                     <p class="text-slate-400 font-medium text-xs sm:text-sm leading-relaxed max-w-md">
-                      Unlike Germany's strict €11,208 blocked account rule, Austria simply requires you to show proof of funds in your (or your sponsor's) local bank account. You do not need to lock your money abroad.
+                      Unlike Germany's strict €11,904 blocked account rule, Austria simply requires you to show proof of funds in your (or your sponsor's) local bank account. You do not need to lock your money abroad.
                     </p>
                     <a href="/intelligence/study-in-austria-zero-blocked-account-guide" class="text-emerald-400 hover:text-emerald-300 font-bold block mt-3 text-xs transition-colors underline decoration-emerald-400/30 underline-offset-4 flex items-center gap-1">
                       Read Our Austria Blocked Account Audit
@@ -834,6 +835,22 @@ const austriaSchema = JSON.stringify({
       document.addEventListener('astro:page-load', initAustriaFaqs);
     </script>
 
+    <!-- 🛡️ AUSTRIA & EUROPE STATUTORY INTELLIGENCE VAULT -->
+    <PillarIntelligenceVault
+      pillarCategories={['Study in Austria', 'Financial Truths']}
+      prioritySlugs={[
+        'study-in-austria-zero-blocked-account-guide',
+        'the-macroeconomic-study-abroad-shift-2026-canada-uk-vs-europe',
+        'the-demographic-cliff-why-europe-needs-indian-talent-2026'
+      ]}
+      title="ऑस्ट्रिया व युरोप उच्चशिक्षण: वित्तीय व व्हिसा संशोधन ऑडीट्स"
+      subtitle="झिरो ब्लॉक अकाउंटचे २०२६ नियम, भारतीय बँक खात्यातील लिक्विड फंड्स आणि युरोपमधील करिअर संधींवरील अधिकृत विश्लेषण."
+      badgeText="Austrian Financial & Regulatory Intelligence"
+      theme="amber"
+      exploreCategoryLink="/intelligence"
+      exploreCategoryLabel="सर्व ऑस्ट्रिया व युरोप रिसर्च ऑडीट्स पहा"
+      maxItems={3}
+    />
 
     <section class="relative py-20 lg:py-32 bg-[#050505]" id="final-cta">
       

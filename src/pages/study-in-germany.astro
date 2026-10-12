@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import { Picture } from 'astro:assets';
 import germanyHero from '../assets/germany-hero.avif';
+import PillarIntelligenceVault from '../components/PillarIntelligenceVault.astro';
 
 const germanySchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -937,6 +938,22 @@ const germanySchema = JSON.stringify({
         </div>
       </div>
     </section>
+
+    <!-- 🛡️ GERMANY STATUTORY & ACADEMIC INTELLIGENCE VAULT -->
+    <PillarIntelligenceVault
+      pillarCategories={['Study in Germany']}
+      prioritySlugs={[
+        'the-bilingual-degree-trap-germany-hidden-language-requirements',
+        'the-germany-tuition-fee-myth-14-states-zero-tuition-matrix'
+      ]}
+      title="जर्मनी उच्चशिक्षण: कायदेशीर व शैक्षणिक संशोधन ऑडीट्स"
+      subtitle="जर्मनीतील मोफत पब्लिक विद्यापीठे, ब्लॉक अकाउंटचे २०२६ नियम आणि बायलिंग्वल डिग्रीच्या लपवलेल्या अटींवरील अधिकृत मार्गदर्शक."
+      badgeText="German Academic & Regulatory Intelligence"
+      theme="blue"
+      exploreCategoryLink="/intelligence"
+      exploreCategoryLabel="सर्व जर्मनी रिसर्च ऑडीट्स पहा"
+      maxItems={3}
+    />
 
     <section class="relative py-24 bg-slate-950 overflow-hidden border-t-8 border-blue-600">
       <div class="absolute inset-0 z-0">

@@ -12,6 +12,7 @@ import DetailedComparison from '../components/DetailedComparison.tsx';
 import SafeCountries from '../components/SafeCountries.tsx';
 import NMCRules from '../components/NMCRules.tsx';
 import AdmissionProcess from '../components/AdmissionProcess.tsx';
+import PillarIntelligenceVault from '../components/PillarIntelligenceVault.astro';
 import FAQSection from '../components/FAQSection.tsx';
 import CTABanner from '../components/CTABanner.tsx';
 import Footer from '../components/Footer.astro';
@@ -119,6 +120,24 @@ const seoSchema = JSON.stringify({
   <SafeCountries client:visible />
   <NMCRules client:visible />
   <AdmissionProcess client:visible />
+
+  <!-- 🛡️ NMC & NEET STATUTORY INTELLIGENCE VAULT -->
+  <PillarIntelligenceVault
+    pillarCategories={['NMC Alerts', 'Myth Buster']}
+    prioritySlugs={[
+      'the-nmc-approved-colleges-list-scam-how-to-legally-verify-compliance',
+      'trapped-in-neet-2026-re-exam-loop-mental-financial-toll',
+      'neet-2026-re-exam-post-mortem-mbbs-europe'
+    ]}
+    title="NMC कायदे व NEET री-एक्झाम: फॉरेन्सिक मेडिकल संशोधन ऑडीट्स"
+    subtitle="NMC 2021 FMGL नियमावली, खोट्या मान्यताप्राप्त याद्यांचे स्कॅम आणि युरोपमधील कायदेशीर वैद्यकीय पर्यायांवरील अधिकृत विश्लेषण."
+    badgeText="NMC Statutory & Medical Admissions Intelligence"
+    theme="emerald"
+    exploreCategoryLink="/intelligence"
+    exploreCategoryLabel="सर्व मेडिकल व NMC रिसर्च ऑडीट्स पहा"
+    maxItems={3}
+  />
+
   <FAQSection client:visible />
   <CTABanner client:load />
 

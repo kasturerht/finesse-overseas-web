@@ -1,0 +1,227 @@
+---
+// src/components/PillarIntelligenceVault.astro
+// 🏛️ SILICON VALLEY PILLAR-CLUSTER INTERNAL LINKING ENGINE (OCTOBER 2026)
+// Dynamically extracts, filters & renders targeted investigative intelligence audits
+// Strict constraint: Limits to maxItems (default 3) to prevent DOM bloat while passing maximum PageRank
+
+import { getCollection } from 'astro:content';
+
+interface Props {
+  pillarCategories?: string[]; // e.g. ['Study in Germany'], ['NMC Alerts', 'Myth Buster']
+  prioritySlugs?: string[];   // Specific unindexed slugs to guarantee display
+  title: string;
+  subtitle: string;
+  badgeText?: string;
+  theme?: 'emerald' | 'blue' | 'amber' | 'teal';
+  exploreCategoryLink?: string;
+  exploreCategoryLabel?: string;
+  maxItems?: number;
+}
+
+const {
+  pillarCategories = [],
+  prioritySlugs = [],
+  title,
+  subtitle,
+  badgeText = "Verified Intelligence Vault",
+  theme = "emerald",
+  exploreCategoryLink = "/intelligence",
+  exploreCategoryLabel = "Explore All Research Audits",
+  maxItems = 3
+} = Astro.props;
+
+// Fetch all live intelligence audits
+const allAudits = await getCollection('intelligence');
+
+// 1. Sort all audits by publishDate descending
+const sortedAudits = allAudits.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+// 2. Identify priority audits if specified
+const priorityItems = prioritySlugs.length > 0
+  ? sortedAudits.filter(a => prioritySlugs.includes(a.id.split('.')[0]))
+  : [];
+
+// 3. Filter remaining audits matching the pillar categories
+const categoryItems = pillarCategories.length > 0
+  ? sortedAudits.filter(a => {
+      const slug = a.id.split('.')[0];
+      return pillarCategories.includes(a.data.category) && !prioritySlugs.includes(slug);
+    })
+  : sortedAudits.filter(a => !prioritySlugs.includes(a.id.split('.')[0]));
+
+// 4. Combine priority items first, then category items, strictly sliced to maxItems
+const displayAudits = [...priorityItems, ...categoryItems].slice(0, maxItems);
+const totalAvailableInTopic = priorityItems.length + categoryItems.length;
+
+// Theme configuration palette
+const themeStyles = {
+  emerald: {
+    badge: "bg-emerald-500/15 border-emerald-500/30 text-emerald-400",
+    gradientText: "from-emerald-400 to-teal-300",
+    cardBorder: "border-slate-800/80 hover:border-emerald-500/50",
+    cardHoverShadow: "hover:shadow-[0_10px_30px_rgba(16,185,129,0.1)]",
+    cardBadge: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    linkText: "text-emerald-400 group-hover:text-emerald-300",
+    btnHover: "hover:border-emerald-500/50 text-slate-200 hover:text-white"
+  },
+  blue: {
+    badge: "bg-blue-500/15 border-blue-500/30 text-blue-400",
+    gradientText: "from-blue-400 to-cyan-300",
+    cardBorder: "border-slate-800/80 hover:border-blue-500/50",
+    cardHoverShadow: "hover:shadow-[0_10px_30px_rgba(59,130,246,0.12)]",
+    cardBadge: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    linkText: "text-blue-400 group-hover:text-blue-300",
+    btnHover: "hover:border-blue-500/50 text-slate-200 hover:text-white"
+  },
+  amber: {
+    badge: "bg-amber-500/15 border-amber-500/30 text-amber-400",
+    gradientText: "from-amber-400 to-yellow-300",
+    cardBorder: "border-slate-800/80 hover:border-amber-500/50",
+    cardHoverShadow: "hover:shadow-[0_10px_30px_rgba(245,158,11,0.12)]",
+    cardBadge: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+    linkText: "text-amber-400 group-hover:text-amber-300",
+    btnHover: "hover:border-amber-500/50 text-slate-200 hover:text-white"
+  },
+  teal: {
+    badge: "bg-teal-500/15 border-teal-500/30 text-teal-400",
+    gradientText: "from-teal-400 to-emerald-300",
+    cardBorder: "border-slate-800/80 hover:border-teal-500/50",
+    cardHoverShadow: "hover:shadow-[0_10px_30px_rgba(20,184,166,0.12)]",
+    cardBadge: "bg-teal-500/20 text-teal-400 border-teal-500/30",
+    linkText: "text-teal-400 group-hover:text-teal-300",
+    btnHover: "hover:border-teal-500/50 text-slate-200 hover:text-white"
+  }
+};
+
+const currentTheme = themeStyles[theme] || themeStyles.emerald;
+
+// Generate Schema.org ItemList microdata
+const itemListSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": title,
+  "description": subtitle,
+  "numberOfItems": displayAudits.length,
+  "itemListElement": displayAudits.map((audit, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "url": `https://finesseoverseas.com/intelligence/${audit.id.split('.')[0]}`,
+    "name": audit.data.title
+  }))
+});
+---
+
+{displayAudits.length > 0 && (
+  <section class="py-20 bg-[#030712] relative overflow-hidden border-t border-slate-800/80" id="topic-intelligence-vault">
+    <!-- Structured Data for LLMs and Search Engine Crawlers -->
+    <script type="application/ld+json" set:html={itemListSchema} />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider border mb-4 ${currentTheme.badge}`}>
+            <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+            {badgeText}
+          </span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            {title}
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl font-normal leading-relaxed">
+            {subtitle}
+          </p>
+        </div>
+
+        <a 
+          href={exploreCategoryLink}
+          class={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 transition-all duration-300 text-sm font-bold shadow-sm whitespace-nowrap self-start md:self-auto ${currentTheme.btnHover}`}
+        >
+          <span>{exploreCategoryLabel}</span>
+          <span class="text-xs text-slate-400 font-mono">({totalAvailableInTopic})</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Symmetrical Responsive 3-Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {displayAudits.map((audit) => {
+          const slug = audit.id.split('.')[0];
+          const publishDateFormatted = new Date(audit.data.publishDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+
+          return (
+            <article class={`group bg-[#0a0f1c] border rounded-3xl overflow-hidden transition-all duration-500 flex flex-col justify-between ${currentTheme.cardBorder} ${currentTheme.cardHoverShadow}`}>
+              <div>
+                <!-- Featured Image Anchor -->
+                <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                  {audit.data.coverImage ? (
+                    <img 
+                      src={audit.data.coverImage.src} 
+                      alt={audit.data.coverImageAlt || audit.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-slate-900 flex items-center justify-center text-slate-700 font-mono text-xs">
+                      Finesse Intelligence Audit
+                    </div>
+                  )}
+                  
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] via-transparent to-transparent"></div>
+
+                  <div class="absolute top-4 left-4">
+                    <span class={`px-3 py-1 backdrop-blur-md border text-[10px] font-bold uppercase tracking-wider rounded-full shadow-sm ${currentTheme.cardBadge}`}>
+                      {audit.data.category}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content Block -->
+                <div class="p-6">
+                  <div class="flex items-center gap-3 text-xs text-slate-500 mb-3 font-mono">
+                    <time datetime={audit.data.publishDate.toISOString()}>{publishDateFormatted}</time>
+                    <span>•</span>
+                    <span>By {audit.data.author}</span>
+                  </div>
+
+                  <h3 class="text-lg font-bold text-white group-hover:text-white transition-colors line-clamp-2 mb-3 leading-snug">
+                    <a href={`/intelligence/${slug}`} class="hover:underline decoration-slate-600 underline-offset-4">
+                      {audit.data.title}
+                    </a>
+                  </h3>
+
+                  <p class="text-xs text-slate-400 leading-relaxed line-clamp-3 font-normal">
+                    {audit.data.excerpt}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card Action Footer -->
+              <div class="px-6 pb-6 pt-3 border-t border-slate-900 flex items-center justify-between mt-auto">
+                <span class="text-[11px] font-mono text-slate-500">
+                  Statutory Audit • 2026
+                </span>
+                <a 
+                  href={`/intelligence/${slug}`}
+                  class={`text-xs font-bold inline-flex items-center gap-1 transition-colors ${currentTheme.linkText}`}
+                >
+                  <span>Read Investigation</span>
+                  <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+)}
