@@ -109,6 +109,21 @@
           });
         }
 
+        // 🌐 SILICON VALLEY DUAL-ENGINE META TRACKING
+        try {
+          if (typeof window.finesseTrackMeta === 'function') {
+            window.finesseTrackMeta('Lead', {
+              name: name,
+              phone: phone
+            }, {
+              content_name: 'Regulatory Red Notice Subscription',
+              content_category: 'MBBS Regulatory Alert'
+            });
+          }
+        } catch (metaErr) {
+          console.warn('[RedNotice Meta Track Warning]:', metaErr);
+        }
+
         alert('Thank you! You have been successfully enrolled in the Finesse Sovereign Red Notice Dispatch.');
         redNoticeForm.reset();
       });

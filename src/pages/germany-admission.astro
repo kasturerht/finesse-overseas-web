@@ -114,7 +114,12 @@ import Layout from '../layouts/Layout.astro';
                 </p>
               </div>
 
-              <form action="https://formsubmit.co/finesseoverseaseducation@gmail.com" method="POST" class="space-y-6" onsubmit="window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Generate_Lead'});">
+              <form 
+                action="https://formsubmit.co/finesseoverseaseducation@gmail.com" 
+                method="POST" 
+                class="space-y-6" 
+                onsubmit="try { if (window.finesseTrackMeta) { window.finesseTrackMeta('Lead', { name: document.getElementById('fullName')?.value, phone: document.getElementById('whatsappNumber')?.value }, { content_name: 'Germany Admission Landing Page' }); } } catch(e){} window.dataLayer = window.dataLayer || []; window.dataLayer.push({'event': 'Generate_Lead'});"
+              >
                 <input type="hidden" name="_captcha" value="false">
                 <input type="text" name="_honey" style="display:none" aria-hidden="true">
                 <input type="hidden" name="_subject" value="New Lead from Finesse Landing Page!">

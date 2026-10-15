@@ -314,6 +314,24 @@ const contactSchema = JSON.stringify({
           console.warn('Non-blocking tracking script push advisory:', gtmError);
         }
 
+        // 🌐 SILICON VALLEY DUAL-ENGINE META CONVERSIONS API DISPATCH (100% Deduplicated)
+        try {
+          if (typeof window.finesseTrackMeta === 'function') {
+            window.finesseTrackMeta('Lead', {
+              name: document.getElementById('name')?.value,
+              phone: document.getElementById('phone')?.value,
+              email: document.getElementById('email')?.value
+            }, {
+              content_name: 'Main Contact Consultation Form',
+              content_category: 'Consultation Lead',
+              destination: document.getElementById('destination')?.value,
+              education: document.getElementById('education')?.value
+            });
+          }
+        } catch (metaError) {
+          console.warn('Non-blocking Meta tracking advisory:', metaError);
+        }
+
         // Form compilation matrices
         const formData = new FormData(form);
         

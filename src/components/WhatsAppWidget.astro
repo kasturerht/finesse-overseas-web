@@ -34,3 +34,29 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defa
     </svg>
   </a>
 </div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const waBtn = document.querySelector('[data-track="whatsapp-click"]');
+    if (waBtn) {
+      waBtn.addEventListener('click', () => {
+        try {
+          if (typeof window.finesseTrackMeta === 'function') {
+            window.finesseTrackMeta('Contact', {}, {
+              content_name: 'WhatsApp Floating Action Button',
+              content_category: 'Direct WhatsApp Consultation'
+            });
+          }
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'whatsapp_click',
+              click_location: 'floating_widget'
+            });
+          }
+        } catch (e) {
+          console.warn('[WhatsApp Tracking Notice]:', e);
+        }
+      });
+    }
+  });
+</script>

@@ -14,12 +14,17 @@ const description = "Thank you for contacting Finesse Overseas Education. Our ex
   <Header />
 
   <script is:inline>
-    // This script ensures that when a user lands here, Meta Ads counts it as a successful 'Lead'
+    // 🌐 Silicon Valley Dual-Engine Lead Confirmation (Browser Pixel + Serverless CAPI)
     document.addEventListener('DOMContentLoaded', () => {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead');
-      } else {
-        console.log("Meta Pixel not loaded yet, but Lead event is ready to fire.");
+      if (typeof window.finesseTrackMeta === 'function') {
+        window.finesseTrackMeta('Lead', {}, {
+          content_name: 'Thank You Page Confirmation',
+          content_category: 'Confirmed Lead Conversion'
+        });
+      } else if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Thank You Page Confirmation'
+        });
       }
     });
   </script>
