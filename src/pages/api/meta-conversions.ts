@@ -88,7 +88,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Cookie extraction for Meta first-party cookies (_fbp and _fbc)
     const fbp = user_data.fbp || parseCookie(cookieHeader, '_fbp');
-    const fbc = user_data.fbc || parseCookie(cookieHeader, '_fbc');
+    let fbc = user_data.fbc || parseCookie(cookieHeader, '_fbc');
+
+    // 🎯 Silicon Valley FBC Generator: If user arrived via Meta Ad (?fbclid=...), auto-synthesize standard fbc format
+    if (!fbc) {
+      try {
+        const sourceUrl = event_source_url || request.headers.get('referer');
+        if (sourceUrl) {
+          const urlObj = new URL(sourceUrl);
+          const fbclid = urlObj.searchParams.get('fbclid');
+          if (fbclid) {
+            fbc = `fb.1.${Date.now()}.${fbclid}`;
+          }
+        }
+      } catch (_) {}
+    }
 
     // SHA-256 PII Hashing
     const hashedEmail = user_data.em ? (user_data.em.length === 64 ? user_data.em : hashSha256(user_data.em)) : undefined;

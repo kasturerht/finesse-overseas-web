@@ -212,6 +212,16 @@ const organizationSchema = JSON.stringify({
         }
       };
 
+      // 🎯 Silicon Valley First-Party FBC Cookie Preserver (Meta Parameter Builder Standard)
+      try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var fbclid = urlParams.get('fbclid');
+        if (fbclid && !document.cookie.includes('_fbc=')) {
+          var fbcVal = 'fb.1.' + Date.now() + '.' + fbclid;
+          document.cookie = '_fbc=' + encodeURIComponent(fbcVal) + '; path=/; max-age=7776000; SameSite=Lax';
+        }
+      } catch (e) {}
+
       // Ensure subsequent client navigations fire PageView if using Astro page transitions
       document.addEventListener('astro:page-load', function () {
         if (typeof window.fbq === 'function') {
