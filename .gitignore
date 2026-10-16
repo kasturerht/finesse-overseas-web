@@ -36,6 +36,8 @@ oauth-tokens.json
 client_secret.json
 youtube-token.json
 youtube-tokens.json
+gmb-tokens.json
+gmb-*.json
 
 # Scratch files
 scratch/
