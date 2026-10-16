@@ -62,12 +62,30 @@ export const GET: APIRoute = async ({ request }) => {
     );
   }
 
+  const forceId = url.searchParams.get('force_id');
   const results: any[] = [];
 
   for (const post of socialQueue) {
-    // Check if post is scheduled for today or earlier
-    if (post.scheduledDate === istDateStr) {
-      console.log(`[Cloud Cron] Processing post: ${post.id} (${post.studentName})`);
+    const isTargetPost = forceId ? post.id === forceId : post.scheduledDate === istDateStr;
+
+    // Check if post is targeted for today (or forced)
+    if (isTargetPost) {
+      const postScheduledTime = post.scheduledTime || '00:00';
+
+      // If scheduled time has not yet arrived and not forced, keep waiting
+      if (!forceId && istTimeStr < postScheduledTime) {
+        results.push({
+          id: post.id,
+          studentName: post.studentName,
+          status: 'waiting_for_time',
+          scheduledTime: `${postScheduledTime} IST`,
+          currentTime: `${istTimeStr} IST`,
+          message: `Scheduled for ${postScheduledTime} IST. Waiting for target time.`
+        });
+        continue;
+      }
+
+      console.log(`[Cloud Cron] Processing post: ${post.id} (${post.studentName}) at ${istTimeStr} IST`);
 
       const postResult: any = {
         id: post.id,
