@@ -1,9 +1,7 @@
 // src/pages/api/telegram-webhook.ts
 // 🤖 Smart AI Telegram Bot for Finesse Overseas Education
-// Zero-PC Cloud Serverless Social Media Engine with Marathi/English NLU and Zero-Trust Security.
+// Zero-PC Cloud Serverless Social Media Engine with Marathi/English NLU and Instant Zero-Wait Auto-Publish.
 import type { APIRoute } from 'astro';
-import fs from 'node:fs';
-import path from 'node:path';
 
 export const prerender = false;
 
@@ -16,54 +14,11 @@ const META_PAGE_TOKEN =
 const META_PAGE_ID = process.env.META_PAGE_ID || '101105755777020';
 const META_IG_ID = process.env.META_INSTAGRAM_ACCOUNT_ID || '17841450168474580';
 
-// In-memory or temporary disk cache for pending post confirmation
+// In-memory cache for fast lookup within warm lambdas
 const pendingDispatches = new Map<string, any>();
-const TMP_STORE = path.join('/tmp', 'finesse_pending_posts.json');
-
-function savePendingPost(id: string, data: any) {
-  pendingDispatches.set(id, data);
-  try {
-    let existing: Record<string, any> = {};
-    if (fs.existsSync(TMP_STORE)) {
-      existing = JSON.parse(fs.readFileSync(TMP_STORE, 'utf-8'));
-    }
-    existing[id] = data;
-    fs.writeFileSync(TMP_STORE, JSON.stringify(existing), 'utf-8');
-  } catch (e) {
-    console.warn('Failed to save to /tmp:', e);
-  }
-}
-
-function getPendingPost(id: string): any {
-  if (pendingDispatches.has(id)) {
-    return pendingDispatches.get(id);
-  }
-  try {
-    if (fs.existsSync(TMP_STORE)) {
-      const existing = JSON.parse(fs.readFileSync(TMP_STORE, 'utf-8'));
-      return existing[id];
-    }
-  } catch (e) {
-    console.warn('Failed to read from /tmp:', e);
-  }
-  return null;
-}
-
-function deletePendingPost(id: string) {
-  pendingDispatches.delete(id);
-  try {
-    if (fs.existsSync(TMP_STORE)) {
-      const existing = JSON.parse(fs.readFileSync(TMP_STORE, 'utf-8'));
-      delete existing[id];
-      fs.writeFileSync(TMP_STORE, JSON.stringify(existing), 'utf-8');
-    }
-  } catch (e) {
-    console.warn('Failed to delete from /tmp:', e);
-  }
-}
 
 // Safe Telegram message sender with automatic entity strip fallback
-async function sendTelegramMessage(chatId: number | string, text: string, replyMarkup?: any) {
+async function sendTelegramMessage(chatId: number | string, text: string, replyMarkup?: any, replyToMsgId?: number) {
   try {
     const body: any = {
       chat_id: chatId,
@@ -72,6 +27,9 @@ async function sendTelegramMessage(chatId: number | string, text: string, replyM
     };
     if (replyMarkup) {
       body.reply_markup = replyMarkup;
+    }
+    if (replyToMsgId) {
+      body.reply_parameters = { message_id: replyToMsgId };
     }
     const res = await fetch(`${TELEGRAM_API}/sendMessage`, {
       method: 'POST',
@@ -87,7 +45,8 @@ async function sendTelegramMessage(chatId: number | string, text: string, replyM
         body: JSON.stringify({
           chat_id: chatId,
           text: text.replace(/<[^>]*>/g, ''),
-          reply_markup: replyMarkup
+          reply_markup: replyMarkup,
+          reply_parameters: replyToMsgId ? { message_id: replyToMsgId } : undefined
         })
       });
     }
@@ -283,6 +242,60 @@ Start your debt-free European education journey today!
 ${brandFooter}`;
 }
 
+// 🚀 Core Direct Dispatcher Function to Meta APIs
+async function executePublish(imageUrl: string, caption: string, platforms: string[]) {
+  let igResult = 'Skipped';
+  let fbResult = 'Skipped';
+
+  // 1. Instagram Publish
+  if (platforms.includes('instagram')) {
+    try {
+      const cRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media`, {
+        method: 'POST',
+        body: new URLSearchParams({
+          image_url: imageUrl,
+          caption: caption,
+          access_token: META_PAGE_TOKEN
+        })
+      });
+      const cData = await cRes.json();
+      if (cData.id) {
+        await new Promise((r) => setTimeout(r, 3000));
+        const pRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media_publish`, {
+          method: 'POST',
+          body: new URLSearchParams({ creation_id: cData.id, access_token: META_PAGE_TOKEN })
+        });
+        const pData = await pRes.json();
+        igResult = pData.id ? `https://www.instagram.com/p/${pData.id}/` : `Error: ${JSON.stringify(pData.error)}`;
+      } else {
+        igResult = `Error: ${JSON.stringify(cData.error)}`;
+      }
+    } catch (err: any) {
+      igResult = `Error: ${err.message}`;
+    }
+  }
+
+  // 2. Facebook Publish
+  if (platforms.includes('facebook')) {
+    try {
+      const fbRes = await fetch(`https://graph.facebook.com/v21.0/${META_PAGE_ID}/photos`, {
+        method: 'POST',
+        body: new URLSearchParams({
+          url: imageUrl,
+          caption: caption,
+          access_token: META_PAGE_TOKEN
+        })
+      });
+      const fbData = await fbRes.json();
+      fbResult = fbData.id ? `https://www.facebook.com/photo.php?fbid=${fbData.id}` : `Error: ${JSON.stringify(fbData.error)}`;
+    } catch (err: any) {
+      fbResult = `Error: ${err.message}`;
+    }
+  }
+
+  return { igResult, fbResult };
+}
+
 export const POST: APIRoute = async ({ request }) => {
   let activeChatId: number | string | undefined;
   try {
@@ -296,73 +309,48 @@ export const POST: APIRoute = async ({ request }) => {
 
       if (data.startsWith('pub_')) {
         const id = data.replace('pub_', '');
-        const post = getPendingPost(id);
+        let post = pendingDispatches.get(id);
+
+        // Fallback: If lambda memory is fresh, recover from reply_to_message
+        if (!post && cb.message.reply_to_message) {
+          const orig = cb.message.reply_to_message;
+          const origText = orig.text || orig.caption || '';
+          const origPhoto = orig.photo && orig.photo.length > 0 ? orig.photo[orig.photo.length - 1] : null;
+
+          if (origPhoto) {
+            const fileRes = await fetch(`${TELEGRAM_API}/getFile?file_id=${origPhoto.file_id}`);
+            const fileData = await fileRes.json();
+            if (fileData.ok) {
+              const { theme, platforms } = parseNaturalLanguageSchedule(origText);
+              post = {
+                imageUrl: `https://api.telegram.org/file/bot${BOT_TOKEN}/${fileData.result.file_path}`,
+                caption: generateSmartCaption(origText, theme),
+                platforms
+              };
+            }
+          }
+        }
 
         if (!post) {
-          await sendTelegramMessage(activeChatId, '⚠️ Post data expired or not found. Please send the image again.');
+          await sendTelegramMessage(activeChatId, '⚠️ पोस्ट डेटा सापडला नाही. कृपया फोटो पुन्हा एकदा पाठवा.');
           return new Response('OK', { status: 200 });
         }
 
         const targetPlatforms: string[] = post.platforms || ['instagram', 'facebook'];
         const targetsText = targetPlatforms.map((p: string) => (p === 'instagram' ? 'Instagram' : 'Facebook')).join(' & ');
-        await sendTelegramMessage(activeChatId, `⏳ <b>Publishing now to ${targetsText}...</b>`);
+        await sendTelegramMessage(activeChatId, `⏳ <b>${targetsText} वर थेट पब्लिश होत आहे...</b>`);
 
-        // Execute Immediate Publish
-        let igResult = 'Skipped (as requested)';
-        let fbResult = 'Skipped (as requested)';
-
-        try {
-          // Instagram Publish
-          if (targetPlatforms.includes('instagram')) {
-            const cRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media`, {
-              method: 'POST',
-              body: new URLSearchParams({
-                image_url: post.imageUrl,
-                caption: post.caption,
-                access_token: META_PAGE_TOKEN
-              })
-            });
-            const cData = await cRes.json();
-            if (cData.id) {
-              await new Promise((r) => setTimeout(r, 3000));
-              const pRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media_publish`, {
-                method: 'POST',
-                body: new URLSearchParams({ creation_id: cData.id, access_token: META_PAGE_TOKEN })
-              });
-              const pData = await pRes.json();
-              igResult = pData.id ? `https://www.instagram.com/p/${pData.id}/` : `Error: ${JSON.stringify(pData.error)}`;
-            } else {
-              igResult = `Error: ${JSON.stringify(cData.error)}`;
-            }
-          }
-
-          // Facebook Publish
-          if (targetPlatforms.includes('facebook')) {
-            const fbRes = await fetch(`https://graph.facebook.com/v21.0/${META_PAGE_ID}/photos`, {
-              method: 'POST',
-              body: new URLSearchParams({
-                url: post.imageUrl,
-                caption: post.caption,
-                access_token: META_PAGE_TOKEN
-              })
-            });
-            const fbData = await fbRes.json();
-            fbResult = fbData.id ? `https://www.facebook.com/photo.php?fbid=${fbData.id}` : `Error: ${JSON.stringify(fbData.error)}`;
-          }
-        } catch (err: any) {
-          if (targetPlatforms.includes('instagram')) igResult = err.message;
-          if (targetPlatforms.includes('facebook')) fbResult = err.message;
-        }
+        const { igResult, fbResult } = await executePublish(post.imageUrl, post.caption, targetPlatforms);
 
         await sendTelegramMessage(
           activeChatId,
-          `🎉 <b>POST IS LIVE!</b>\n\n📸 <b>Instagram:</b> ${igResult}\n📘 <b>Facebook:</b> ${fbResult}`
+          `🎉 <b>अभिनंदन! तुमची पोस्ट लाईव्ह झाली आहे!</b> 🚀\n\n📸 <b>Instagram:</b> ${igResult}\n📘 <b>Facebook:</b> ${fbResult}\n\n⚡ <i>100% Zero-PC Cloud Engine</i>`
         );
-        deletePendingPost(id);
+        pendingDispatches.delete(id);
       } else if (data.startsWith('cancel_')) {
         const id = data.replace('cancel_', '');
-        deletePendingPost(id);
-        await sendTelegramMessage(activeChatId, '❌ <b>Post cancelled.</b> Nothing was published.');
+        pendingDispatches.delete(id);
+        await sendTelegramMessage(activeChatId, '❌ <b>पोस्ट रद्द करण्यात आली आहे.</b> काहीही पब्लिश केले नाही.');
       }
 
       return new Response('OK', { status: 200 });
@@ -382,8 +370,8 @@ export const POST: APIRoute = async ({ request }) => {
           `हा बोट थेट आपल्या <b>100% Zero-PC Cloud Serverless Engine</b> शी जोडलेला आहे.\n\n` +
           `<b>कसे वापरायचे?</b>\n` +
           `१. मला कोणताही फोटो किंवा बॅनर पाठवा.\n` +
-          `२. सोबत मराठीत किंवा इंग्रजीत वेळ सांगा (उदा. <i>"हा फोटो आज 4:30 PM ला पोस्ट कर आणि यात जर्मनी ऍडमिशन बद्दल लिही"</i>).\n` +
-          `३. मी लगेच कॅप्शन तयार करून शेड्युल करेन!\n\n` +
+          `२. सोबत वेळ किंवा सूचना द्या (उदा. <i>"हा फोटो आज लगेच पोस्ट कर"</i> किंवा <i>"फक्त इन्स्टावर पोस्ट कर"</i>).\n` +
+          `३. बोट त्वरित AI कॅप्शन तयार करून लाईव्ह पोस्ट करेल!\n\n` +
           `🔐 <b>Your Telegram Chat ID:</b> <code>${activeChatId}</code>`
       );
       return new Response('OK', { status: 200 });
@@ -391,7 +379,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Handle Photo Submissions
     if (msg.photo && msg.photo.length > 0) {
-      await sendTelegramMessage(activeChatId, '⏳ <i>फोटो प्राप्त झाला आहे. AI द्वारे सूचनांचे विश्लेषण आणि कॅप्शन तयार होत आहे...</i>');
+      await sendTelegramMessage(activeChatId, '⏳ <i>फोटो प्राप्त झाला आहे. AI द्वारे विश्लेषण आणि कॅप्शन तयार होत आहे...</i>');
 
       // Get highest resolution photo
       const photo = msg.photo[msg.photo.length - 1];
@@ -410,8 +398,51 @@ export const POST: APIRoute = async ({ request }) => {
       const { dateStr, timeStr, theme, platforms } = parseNaturalLanguageSchedule(text);
       const smartCaption = generateSmartCaption(text, theme);
 
+      // Check current IST time
+      const now = new Date();
+      const todayDateStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(now);
+      const currentTimeStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+
+      const isToday = dateStr === todayDateStr;
+      const isPastOrNow = isToday && timeStr <= currentTimeStr;
+      const wantsImmediate =
+        text.toLowerCase().includes('atta') ||
+        text.toLowerCase().includes('आत्ता') ||
+        text.toLowerCase().includes('now') ||
+        text.toLowerCase().includes('lagesh') ||
+        text.toLowerCase().includes('लगेच') ||
+        text.toLowerCase().includes('aaj') ||
+        text.toLowerCase().includes('आज');
+
+      // ⚡ AUTO-PUBLISH IMMEDIATELY IF TIME HAS ARRIVED OR ALREADY PASSED!
+      if (isPastOrNow || wantsImmediate) {
+        const platformsLabel = platforms.map((p: string) => (p === 'instagram' ? 'Instagram' : 'Facebook')).join(' & ');
+        await sendTelegramMessage(
+          activeChatId,
+          `⚡ <b>वेळ झाली आहे! कोणतीही वाट न पाहता थेट ${platformsLabel} वर पब्लिश करत आहे...</b>`
+        );
+
+        const { igResult, fbResult } = await executePublish(publicPhotoUrl, smartCaption, platforms);
+
+        await sendTelegramMessage(
+          activeChatId,
+          `🎉 <b>अभिनंदन! तुमची पोस्ट थेट लाईव्ह झाली आहे!</b> 🚀\n\n` +
+            `📝 <b>कॅप्शन:</b>\n${smartCaption.slice(0, 180)}...\n\n` +
+            `📸 <b>Instagram:</b> ${igResult}\n` +
+            `📘 <b>Facebook:</b> ${fbResult}\n\n` +
+            `⚡ <i>Zero-PC Autonomous Cloud Engine द्वारे त्वरित पब्लिश झाले.</i>`
+        );
+        return new Response('OK', { status: 200 });
+      }
+
+      // If scheduled for a future time:
       const postId = `post_${Date.now()}`;
-      savePendingPost(postId, {
+      pendingDispatches.set(postId, {
         id: postId,
         imageUrl: publicPhotoUrl,
         caption: smartCaption,
@@ -429,7 +460,7 @@ export const POST: APIRoute = async ({ request }) => {
         `📱 <b>प्लॅटफॉर्म:</b> ${platformsLabel}\n\n` +
         `📝 <b>तयार केलेले स्मार्ट कॅप्शन:</b>\n` +
         `----------------------------------------\n` +
-        `${smartCaption.slice(0, 320)}...\n` +
+        `${smartCaption.slice(0, 280)}...\n` +
         `----------------------------------------\n\n` +
         `ही पोस्ट वरील वेळेला क्लाउडवरून आपोआप पब्लिश होईल. किंवा आत्ताच हवी असल्यास खालील बटण दाबा:`;
 
@@ -442,7 +473,7 @@ export const POST: APIRoute = async ({ request }) => {
         ]
       };
 
-      await sendTelegramMessage(activeChatId, replyText, keyboard);
+      await sendTelegramMessage(activeChatId, replyText, keyboard, msg.message_id);
       return new Response('OK', { status: 200 });
     }
 
@@ -460,7 +491,6 @@ export const POST: APIRoute = async ({ request }) => {
         await sendTelegramMessage(activeChatId, `⚠️ क्षमस्व, प्रोसेस करताना तांत्रिक अडचण आली: ${error.message}`);
       }
     } catch (_) {}
-    // ALWAYS return 200 to Telegram so Telegram NEVER loops retries
     return new Response('OK', { status: 200 });
   }
 };
