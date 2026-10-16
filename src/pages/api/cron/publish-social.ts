@@ -196,6 +196,50 @@ export const GET: APIRoute = async ({ request }) => {
       }
 
       results.push(postResult);
+
+      // 🔔 3. REAL-TIME TELEGRAM NOTIFICATION TO ADMIN
+      try {
+        const adminChatId = process.env.ADMIN_TELEGRAM_CHAT_ID || '847419012';
+        const botToken = process.env.TELEGRAM_BOT_TOKEN || '8866326692:AAEwyXC3ih8mmykNcT_UYvujUj1ZH-iQMJQ';
+
+        let igLink = 'स्किप केले';
+        if (postResult.instagram?.status === 'success') {
+          igLink = `https://www.instagram.com/p/${postResult.instagram.mediaId}/`;
+        } else if (postResult.instagram?.status === 'skipped') {
+          igLink = `आधीच पब्लिश झाली आहे`;
+        } else if (postResult.instagram?.error) {
+          igLink = `Error: ${JSON.stringify(postResult.instagram.error)}`;
+        }
+
+        let fbLink = 'स्किप केले';
+        if (postResult.facebook?.status === 'success') {
+          fbLink = `https://www.facebook.com/photo.php?fbid=${postResult.facebook.photoId}`;
+        } else if (postResult.facebook?.status === 'skipped') {
+          fbLink = `आधीच पब्लिश झाली आहे`;
+        } else if (postResult.facebook?.error) {
+          fbLink = `Error: ${JSON.stringify(postResult.facebook.error)}`;
+        }
+
+        const notifyMsg =
+          `🎉 <b>अभिनंदन! तुमची पोस्ट लाईव्ह झाली आहे!</b> 🚀\n\n` +
+          `👤 <b>कंटेंट / विद्यार्थी:</b> ${post.studentName || post.id}\n` +
+          `📅 <b>वेळ:</b> ${istDateStr} | ${istTimeStr} IST\n\n` +
+          `📸 <b>Instagram:</b> ${igLink}\n` +
+          `📘 <b>Facebook:</b> ${fbLink}\n\n` +
+          `⚡ <i>100% Zero-PC Cloud Engine द्वारे स्वयंचलित पब्लिश झाले.</i>`;
+
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: adminChatId,
+            text: notifyMsg,
+            parse_mode: 'HTML'
+          })
+        });
+      } catch (tgErr) {
+        console.error('Failed to send Telegram notification from cron:', tgErr);
+      }
     }
   }
 
