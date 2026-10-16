@@ -82,17 +82,48 @@ function parseNaturalLanguageSchedule(text: string) {
     }
   }
 
-  // 3. Theme & Context Detection
-  let theme = 'visa_achievement';
-  if (lower.includes('दसरा') || lower.includes('दसरा') || lower.includes('दिवाळी') || lower.includes('navratri') || lower.includes('festival') || lower.includes('सण')) {
-    theme = 'festival';
-  } else if (lower.includes('seminar') || lower.includes('event') || lower.includes('मेळावा') || lower.includes('session')) {
-    theme = 'event';
-  } else if (lower.includes('व्हिसा') || lower.includes('visa') || lower.includes('admit') || lower.includes('approved')) {
-    theme = 'visa_achievement';
+  // 4. Platform Targeting (Instagram vs Facebook)
+  let platforms: string[] = ['instagram', 'facebook'];
+
+  const wantsOnlyInsta =
+    lower.includes('फक्त insta') ||
+    lower.includes('फक्त instagram') ||
+    lower.includes('fakt insta') ||
+    lower.includes('fakt instagram') ||
+    lower.includes('only insta') ||
+    lower.includes('only instagram') ||
+    lower.includes('fb nako') ||
+    lower.includes('fb la nako') ||
+    lower.includes('fb var nako') ||
+    lower.includes('facebook nako') ||
+    lower.includes('facebook la nako') ||
+    lower.includes('facebook var nako') ||
+    lower.includes('no fb') ||
+    lower.includes('no facebook');
+
+  const wantsOnlyFb =
+    lower.includes('फक्त fb') ||
+    lower.includes('फक्त facebook') ||
+    lower.includes('fakt fb') ||
+    lower.includes('fakt facebook') ||
+    lower.includes('only fb') ||
+    lower.includes('only facebook') ||
+    lower.includes('insta nako') ||
+    lower.includes('insta la nako') ||
+    lower.includes('insta var nako') ||
+    lower.includes('instagram nako') ||
+    lower.includes('instagram la nako') ||
+    lower.includes('instagram var nako') ||
+    lower.includes('no insta') ||
+    lower.includes('no instagram');
+
+  if (wantsOnlyInsta && !wantsOnlyFb) {
+    platforms = ['instagram'];
+  } else if (wantsOnlyFb && !wantsOnlyInsta) {
+    platforms = ['facebook'];
   }
 
-  return { dateStr, timeStr, theme };
+  return { dateStr, timeStr, theme, platforms };
 }
 
 // ✍️ Smart AI Copywriter for Finesse Overseas Education
@@ -155,48 +186,55 @@ export const POST: APIRoute = async ({ request }) => {
           return new Response('OK');
         }
 
-        await sendTelegramMessage(chatId, '⏳ <b>Publishing now to Instagram & Facebook...</b>');
+        const targetPlatforms: string[] = post.platforms || ['instagram', 'facebook'];
+        const targetsText = targetPlatforms.map((p: string) => p === 'instagram' ? 'Instagram' : 'Facebook').join(' & ');
+        await sendTelegramMessage(chatId, `⏳ <b>Publishing now to ${targetsText}...</b>`);
 
         // Execute Immediate Publish
-        let igResult = 'Pending';
-        let fbResult = 'Pending';
+        let igResult = 'Skipped (as requested)';
+        let fbResult = 'Skipped (as requested)';
 
         try {
           // Instagram Publish
-          const cRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media`, {
-            method: 'POST',
-            body: new URLSearchParams({
-              image_url: post.imageUrl,
-              caption: post.caption,
-              access_token: META_PAGE_TOKEN
-            })
-          });
-          const cData = await cRes.json();
-          if (cData.id) {
-            await new Promise((r) => setTimeout(r, 3000));
-            const pRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media_publish`, {
+          if (targetPlatforms.includes('instagram')) {
+            const cRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media`, {
               method: 'POST',
-              body: new URLSearchParams({ creation_id: cData.id, access_token: META_PAGE_TOKEN })
+              body: new URLSearchParams({
+                image_url: post.imageUrl,
+                caption: post.caption,
+                access_token: META_PAGE_TOKEN
+              })
             });
-            const pData = await pRes.json();
-            igResult = pData.id ? `https://www.instagram.com/p/${pData.id}/` : `Error: ${JSON.stringify(pData.error)}`;
-          } else {
-            igResult = `Error: ${JSON.stringify(cData.error)}`;
+            const cData = await cRes.json();
+            if (cData.id) {
+              await new Promise((r) => setTimeout(r, 3000));
+              const pRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media_publish`, {
+                method: 'POST',
+                body: new URLSearchParams({ creation_id: cData.id, access_token: META_PAGE_TOKEN })
+              });
+              const pData = await pRes.json();
+              igResult = pData.id ? `https://www.instagram.com/p/${pData.id}/` : `Error: ${JSON.stringify(pData.error)}`;
+            } else {
+              igResult = `Error: ${JSON.stringify(cData.error)}`;
+            }
           }
 
           // Facebook Publish
-          const fbRes = await fetch(`https://graph.facebook.com/v21.0/${META_PAGE_ID}/photos`, {
-            method: 'POST',
-            body: new URLSearchParams({
-              url: post.imageUrl,
-              caption: post.caption,
-              access_token: META_PAGE_TOKEN
-            })
-          });
-          const fbData = await fbRes.json();
-          fbResult = fbData.id ? `https://www.facebook.com/photo.php?fbid=${fbData.id}` : `Error: ${JSON.stringify(fbData.error)}`;
+          if (targetPlatforms.includes('facebook')) {
+            const fbRes = await fetch(`https://graph.facebook.com/v21.0/${META_PAGE_ID}/photos`, {
+              method: 'POST',
+              body: new URLSearchParams({
+                url: post.imageUrl,
+                caption: post.caption,
+                access_token: META_PAGE_TOKEN
+              })
+            });
+            const fbData = await fbRes.json();
+            fbResult = fbData.id ? `https://www.facebook.com/photo.php?fbid=${fbData.id}` : `Error: ${JSON.stringify(fbData.error)}`;
+          }
         } catch (err: any) {
-          igResult = err.message;
+          if (targetPlatforms.includes('instagram')) igResult = err.message;
+          if (targetPlatforms.includes('facebook')) fbResult = err.message;
         }
 
         await sendTelegramMessage(
@@ -252,7 +290,7 @@ export const POST: APIRoute = async ({ request }) => {
       const publicPhotoUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${filePath}`;
 
       // NLU Parsing
-      const { dateStr, timeStr, theme } = parseNaturalLanguageSchedule(text);
+      const { dateStr, timeStr, theme, platforms } = parseNaturalLanguageSchedule(text);
       const smartCaption = generateSmartCaption(text, theme);
 
       const postId = `post_${Date.now()}`;
@@ -261,14 +299,17 @@ export const POST: APIRoute = async ({ request }) => {
         imageUrl: publicPhotoUrl,
         caption: smartCaption,
         scheduledDate: dateStr,
-        scheduledTime: timeStr
+        scheduledTime: timeStr,
+        platforms: platforms
       });
+
+      const platformsLabel = platforms.map((p: string) => p === 'instagram' ? '📸 Instagram' : '📘 Facebook').join(' + ');
 
       const replyText =
         `✅ <b>पोस्ट शेड्युलिंग तयार झाले आहे!</b>\n\n` +
         `📅 <b>नियोजित तारीख:</b> ${dateStr}\n` +
         `⏰ <b>नियोजित वेळ:</b> ${timeStr} IST\n` +
-        `📱 <b>प्लॅटफॉर्म:</b> Instagram + Facebook\n\n` +
+        `📱 <b>प्लॅटफॉर्म:</b> ${platformsLabel}\n\n` +
         `📝 <b>तयार केलेले स्मार्ट कॅप्शन:</b>\n` +
         `----------------------------------------\n` +
         `${smartCaption.slice(0, 300)}...\n` +
