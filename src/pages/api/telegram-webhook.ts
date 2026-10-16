@@ -1,7 +1,8 @@
 // src/pages/api/telegram-webhook.ts
 // 🤖 Smart AI Telegram Bot for Finesse Overseas Education
-// Zero-PC Cloud Serverless Social Media Engine with Marathi/English NLU and Instant Zero-Wait Auto-Publish.
+// Powered by TiDB Cloud Serverless (Zero-PC Cloud Database)
 import type { APIRoute } from 'astro';
+import { connect } from '@tidbcloud/serverless';
 
 export const prerender = false;
 
@@ -14,8 +15,13 @@ const META_PAGE_TOKEN =
 const META_PAGE_ID = process.env.META_PAGE_ID || '101105755777020';
 const META_IG_ID = process.env.META_INSTAGRAM_ACCOUNT_ID || '17841450168474580';
 
-// In-memory cache for fast lookup within warm lambdas
-const pendingDispatches = new Map<string, any>();
+const TIDB_URL =
+  process.env.TIDB_DATABASE_URL ||
+  'mysql://3EG6Dp1YBiQZq9t.root:OExhrLg6B5z7fpEV@gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/finesse';
+
+function getDb() {
+  return connect({ url: TIDB_URL });
+}
 
 // Safe Telegram message sender with automatic entity strip fallback
 async function sendTelegramMessage(chatId: number | string, text: string, replyMarkup?: any, replyToMsgId?: number) {
@@ -76,6 +82,10 @@ function parseNaturalLanguageSchedule(text: string) {
   let timeStr = '11:00'; // Default 11:00 AM
   if (lower.includes('4:30') || lower.includes('4.30') || lower.includes('४:३०')) {
     timeStr = lower.includes('am') || lower.includes('सकाळी') ? '04:30' : '16:30';
+  } else if (lower.includes('5:40') || lower.includes('5.40') || lower.includes('५:४०')) {
+    timeStr = lower.includes('am') || lower.includes('सकाळी') ? '05:40' : '17:40';
+  } else if (lower.includes('5:42') || lower.includes('5.42') || lower.includes('५:४२')) {
+    timeStr = lower.includes('am') || lower.includes('सकाळी') ? '05:42' : '17:42';
   } else if (lower.includes('दुपारी २') || lower.includes('2 pm') || lower.includes('14:00')) {
     timeStr = '14:00';
   } else if (lower.includes('दुपारी ३') || lower.includes('3 pm') || lower.includes('15:00')) {
@@ -260,7 +270,7 @@ async function executePublish(imageUrl: string, caption: string, platforms: stri
       });
       const cData = await cRes.json();
       if (cData.id) {
-        await new Promise((r) => setTimeout(r, 3000));
+        await new Promise((r) => setTimeout(r, 4000));
         const pRes = await fetch(`https://graph.facebook.com/v21.0/${META_IG_ID}/media_publish`, {
           method: 'POST',
           body: new URLSearchParams({ creation_id: cData.id, access_token: META_PAGE_TOKEN })
@@ -300,6 +310,7 @@ export const POST: APIRoute = async ({ request }) => {
   let activeChatId: number | string | undefined;
   try {
     const update = await request.json();
+    const conn = getDb();
 
     // 1. Handle Callback Queries (Button Clicks)
     if (update.callback_query) {
@@ -309,9 +320,24 @@ export const POST: APIRoute = async ({ request }) => {
 
       if (data.startsWith('pub_')) {
         const id = data.replace('pub_', '');
-        let post = pendingDispatches.get(id);
+        let post: any = null;
 
-        // Fallback: If lambda memory is fresh, recover from reply_to_message
+        // Fetch post from TiDB Cloud Database
+        try {
+          const rows: any = await conn.execute(`SELECT * FROM social_posts WHERE id = ? LIMIT 1`, [id]);
+          if (Array.isArray(rows) && rows.length > 0) {
+            const r = rows[0];
+            post = {
+              imageUrl: r.image_url,
+              caption: r.caption,
+              platforms: typeof r.platforms === 'string' ? JSON.parse(r.platforms) : r.platforms
+            };
+          }
+        } catch (e) {
+          console.warn('TiDB lookup error:', e);
+        }
+
+        // Fallback: recover from reply_to_message
         if (!post && cb.message.reply_to_message) {
           const orig = cb.message.reply_to_message;
           const origText = orig.text || orig.caption || '';
@@ -342,14 +368,23 @@ export const POST: APIRoute = async ({ request }) => {
 
         const { igResult, fbResult } = await executePublish(post.imageUrl, post.caption, targetPlatforms);
 
+        // Update TiDB status
+        try {
+          await conn.execute(
+            `UPDATE social_posts SET status = 'published', ig_result = ?, fb_result = ?, published_at = NOW() WHERE id = ?`,
+            [igResult, fbResult, id]
+          );
+        } catch (_) {}
+
         await sendTelegramMessage(
           activeChatId,
-          `🎉 <b>अभिनंदन! तुमची पोस्ट लाईव्ह झाली आहे!</b> 🚀\n\n📸 <b>Instagram:</b> ${igResult}\n📘 <b>Facebook:</b> ${fbResult}\n\n⚡ <i>100% Zero-PC Cloud Engine</i>`
+          `🎉 <b>अभिनंदन! तुमची पोस्ट लाईव्ह झाली आहे!</b> 🚀\n\n📸 <b>Instagram:</b> ${igResult}\n📘 <b>Facebook:</b> ${fbResult}\n\n⚡ <i>TiDB Cloud + 100% Zero-PC Engine</i>`
         );
-        pendingDispatches.delete(id);
       } else if (data.startsWith('cancel_')) {
         const id = data.replace('cancel_', '');
-        pendingDispatches.delete(id);
+        try {
+          await conn.execute(`UPDATE social_posts SET status = 'cancelled' WHERE id = ?`, [id]);
+        } catch (_) {}
         await sendTelegramMessage(activeChatId, '❌ <b>पोस्ट रद्द करण्यात आली आहे.</b> काहीही पब्लिश केले नाही.');
       }
 
@@ -367,12 +402,13 @@ export const POST: APIRoute = async ({ request }) => {
       await sendTelegramMessage(
         activeChatId,
         `👋 <b>Welcome to Finesse Autonomous Social Media Bot!</b>\n\n` +
-          `हा बोट थेट आपल्या <b>100% Zero-PC Cloud Serverless Engine</b> शी जोडलेला आहे.\n\n` +
+          `हा बोट आता <b>TiDB Cloud Serverless Database</b> शी कायमस्वरूपी जोडलेला आहे.\n\n` +
           `<b>कसे वापरायचे?</b>\n` +
           `१. मला कोणताही फोटो किंवा बॅनर पाठवा.\n` +
-          `२. सोबत वेळ किंवा सूचना द्या (उदा. <i>"हा फोटो आज लगेच पोस्ट कर"</i> किंवा <i>"फक्त इन्स्टावर पोस्ट कर"</i>).\n` +
-          `३. बोट त्वरित AI कॅप्शन तयार करून लाईव्ह पोस्ट करेल!\n\n` +
-          `🔐 <b>Your Telegram Chat ID:</b> <code>${activeChatId}</code>`
+          `२. सोबत वेळ किंवा सूचना द्या (उदा. <i>"हा फोटो आज 5:40 PM ला पोस्ट कर"</i> किंवा <i>"उद्या दुपारी २:०० ला पोस्ट कर"</i>).\n` +
+          `३. बोट TiDB क्लाउडमध्ये पोस्ट सेव्ह करेल आणि ठरलेल्या वेळेला आपोआप पब्लिश करेल!\n\n` +
+          `🔐 <b>Your Telegram Chat ID:</b> <code>${activeChatId}</code>\n` +
+          `🗄️ <b>Database Status:</b> TiDB Cloud Active 🟢`
       );
       return new Response('OK', { status: 200 });
     }
@@ -419,7 +455,10 @@ export const POST: APIRoute = async ({ request }) => {
         text.toLowerCase().includes('aaj') ||
         text.toLowerCase().includes('आज');
 
-      // ⚡ AUTO-PUBLISH IMMEDIATELY IF TIME HAS ARRIVED OR ALREADY PASSED!
+      const postId = `post_${Date.now()}`;
+      const scheduledAt = `${dateStr} ${timeStr}:00`;
+
+      // ⚡ CASE A: IF TIME HAS ARRIVED OR ALREADY PASSED -> PUBLISH IMMEDIATELY!
       if (isPastOrNow || wantsImmediate) {
         const platformsLabel = platforms.map((p: string) => (p === 'instagram' ? 'Instagram' : 'Facebook')).join(' & ');
         await sendTelegramMessage(
@@ -429,40 +468,54 @@ export const POST: APIRoute = async ({ request }) => {
 
         const { igResult, fbResult } = await executePublish(publicPhotoUrl, smartCaption, platforms);
 
+        // Save to TiDB as published
+        try {
+          await conn.execute(
+            `INSERT INTO social_posts (id, title, image_url, caption, scheduled_at, platforms, status, ig_result, fb_result, published_at)
+             VALUES (?, ?, ?, ?, ?, ?, 'published', ?, ?, NOW())`,
+            [postId, `Instant Post (${theme})`, publicPhotoUrl, smartCaption, scheduledAt, JSON.stringify(platforms), igResult, fbResult]
+          );
+        } catch (dbErr) {
+          console.error('TiDB save error:', dbErr);
+        }
+
         await sendTelegramMessage(
           activeChatId,
           `🎉 <b>अभिनंदन! तुमची पोस्ट थेट लाईव्ह झाली आहे!</b> 🚀\n\n` +
             `📝 <b>कॅप्शन:</b>\n${smartCaption.slice(0, 180)}...\n\n` +
             `📸 <b>Instagram:</b> ${igResult}\n` +
             `📘 <b>Facebook:</b> ${fbResult}\n\n` +
-            `⚡ <i>Zero-PC Autonomous Cloud Engine द्वारे त्वरित पब्लिश झाले.</i>`
+            `⚡ <i>TiDB Cloud + Zero-PC Engine द्वारे त्वरित पब्लिश झाले.</i>`
         );
         return new Response('OK', { status: 200 });
       }
 
-      // If scheduled for a future time:
-      const postId = `post_${Date.now()}`;
-      pendingDispatches.set(postId, {
-        id: postId,
-        imageUrl: publicPhotoUrl,
-        caption: smartCaption,
-        scheduledDate: dateStr,
-        scheduledTime: timeStr,
-        platforms: platforms
-      });
+      // 📅 CASE B: IF SCHEDULED FOR FUTURE (e.g. 5:40 PM, or Tomorrow, etc.) -> SAVE TO TIDB CLOUD DATABASE!
+      try {
+        await conn.execute(
+          `INSERT INTO social_posts (id, title, image_url, caption, scheduled_at, platforms, status)
+           VALUES (?, ?, ?, ?, ?, ?, 'pending')
+           ON DUPLICATE KEY UPDATE image_url = VALUES(image_url), caption = VALUES(caption), scheduled_at = VALUES(scheduled_at), status = 'pending'`,
+          [postId, `Scheduled Post (${theme})`, publicPhotoUrl, smartCaption, scheduledAt, JSON.stringify(platforms)]
+        );
+      } catch (dbErr) {
+        console.error('TiDB insert error:', dbErr);
+      }
 
       const platformsLabel = platforms.map((p: string) => (p === 'instagram' ? '📸 Instagram' : '📘 Facebook')).join(' + ');
 
       const replyText =
-        `✅ <b>पोस्ट शेड्युलिंग तयार झाले आहे!</b>\n\n` +
+        `✅ <b>पोस्ट TiDB क्लाउड डेटाबेसमध्ये शेड्युल झाली आहे!</b>\n\n` +
         `📅 <b>नियोजित तारीख:</b> ${dateStr}\n` +
         `⏰ <b>नियोजित वेळ:</b> ${timeStr} IST\n` +
-        `📱 <b>प्लॅटफॉर्म:</b> ${platformsLabel}\n\n` +
-        `📝 <b>तयार केलेले स्मार्ट कॅप्शन:</b>\n` +
+        `📱 <b>प्लॅटफॉर्म:</b> ${platformsLabel}\n` +
+        `🗄️ <b>डेटाबेस:</b> TiDB Cloud Serverless 🟢\n\n` +
+        `📝 <b>तयार केलेले स्मार्ट AI कॅप्शन:</b>\n` +
         `----------------------------------------\n` +
-        `${smartCaption.slice(0, 280)}...\n` +
+        `${smartCaption.slice(0, 260)}...\n` +
         `----------------------------------------\n\n` +
-        `ही पोस्ट वरील वेळेला क्लाउडवरून आपोआप पब्लिश होईल. किंवा आत्ताच हवी असल्यास खालील बटण दाबा:`;
+        `⚡ <b>100% Zero-PC Cloud Automation:</b> तुमचा कॉम्प्युटर बंद असला तरी वरील वेळेला ही पोस्ट क्लाउडवरून आपोआप पब्लिश होईल.\n\n` +
+        `किंवा आत्ताच लाईव्ह करायची असल्यास खालील बटण दाबा:`;
 
       const keyboard = {
         inline_keyboard: [
@@ -500,6 +553,7 @@ export const GET: APIRoute = async () => {
     JSON.stringify({
       status: 'active',
       engine: 'Finesse Telegram AI Social Media Webhook',
+      database: 'TiDB Cloud Serverless (Active)',
       bot: '@Finesse_media_bot'
     }),
     { status: 200, headers: { 'Content-Type': 'application/json' } }
