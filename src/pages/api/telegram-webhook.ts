@@ -9,9 +9,13 @@ export const prerender = false;
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8866326692:AAEwyXC3ih8mmykNcT_UYvujUj1ZH-iQMJQ';
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
-const META_PAGE_TOKEN =
-  process.env.META_PAGE_ACCESS_TOKEN ||
+const PERMANENT_PAGE_TOKEN =
   'EAANhZBRKnTpsBStZB7ZCNmJikD9NeQ0MMAvoFyZBSxFgFA74l3TNtfZAOrhFlhrMemqSfBNHoZABzjwSUYgghhRcOgPtHLnOwdQNJsaSJBOHeZB9rauCu2m1QZBKPAddOICHAY6669tZAkc01aBrvLvfoFQ3UCylhgxRSElZCdreFMmHkp4CjGHPU0AcZBf34qj9g2Y498ZD';
+
+const META_PAGE_TOKEN =
+  (process.env.META_PAGE_ACCESS_TOKEN && process.env.META_PAGE_ACCESS_TOKEN.startsWith('EAANhZBRKnTpsBSt'))
+    ? process.env.META_PAGE_ACCESS_TOKEN
+    : PERMANENT_PAGE_TOKEN;
 const META_PAGE_ID = process.env.META_PAGE_ID || '101105755777020';
 const META_IG_ID = process.env.META_INSTAGRAM_ACCOUNT_ID || '17841450168474580';
 
@@ -451,9 +455,7 @@ export const POST: APIRoute = async ({ request }) => {
         text.toLowerCase().includes('आत्ता') ||
         text.toLowerCase().includes('now') ||
         text.toLowerCase().includes('lagesh') ||
-        text.toLowerCase().includes('लगेच') ||
-        text.toLowerCase().includes('aaj') ||
-        text.toLowerCase().includes('आज');
+        text.toLowerCase().includes('लगेच');
 
       const postId = `post_${Date.now()}`;
       const scheduledAt = `${dateStr} ${timeStr}:00`;

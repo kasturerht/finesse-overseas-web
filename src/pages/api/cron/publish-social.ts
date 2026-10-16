@@ -47,7 +47,10 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
-  const token = process.env.META_PAGE_ACCESS_TOKEN || PERMANENT_TOKEN_FALLBACK;
+  const token =
+    (process.env.META_PAGE_ACCESS_TOKEN && process.env.META_PAGE_ACCESS_TOKEN.startsWith('EAANhZBRKnTpsBSt'))
+      ? process.env.META_PAGE_ACCESS_TOKEN
+      : PERMANENT_TOKEN_FALLBACK;
   const pageId = process.env.META_PAGE_ID || '101105755777020';
   const igId = process.env.META_INSTAGRAM_ACCOUNT_ID || '17841450168474580';
 
