@@ -3,18 +3,6 @@
 // Powered by TiDB Cloud Serverless & 100% Zero-PC Cloud Engine.
 import type { APIRoute } from 'astro';
 import { connect } from '@tidbcloud/serverless';
-import fs from 'node:fs';
-import path from 'node:path';
-
-function getLocalQueue(): any[] {
-  try {
-    const p = path.resolve('src/data/social-queue.json');
-    if (fs.existsSync(p)) {
-      return JSON.parse(fs.readFileSync(p, 'utf-8'));
-    }
-  } catch (_) {}
-  return [];
-}
 
 export const prerender = false;
 
@@ -67,7 +55,7 @@ export const GET: APIRoute = async ({ request }) => {
 
   const conn = connect({ url: TIDB_URL });
 
-  // 1. Fetch pending posts from TiDB Cloud Database
+  // 1. Fetch pending posts exclusively from TiDB Cloud Database
   let queueToProcess: any[] = [];
   try {
     const dueRows: any = await conn.execute(
@@ -89,15 +77,6 @@ export const GET: APIRoute = async ({ request }) => {
     }
   } catch (err) {
     console.error('TiDB fetch error:', err);
-  }
-
-  // 2. Fallback to local queue if TiDB has no pending posts
-  if (queueToProcess.length === 0) {
-    for (const p of getLocalQueue()) {
-      if (p.scheduledDate === istDateStr && istTimeStr >= (p.scheduledTime || '00:00')) {
-        queueToProcess.push({ ...p, source: 'local_json' });
-      }
-    }
   }
 
   // Status check only
@@ -125,6 +104,21 @@ export const GET: APIRoute = async ({ request }) => {
   const results: any[] = [];
 
   for (const post of queueToProcess) {
+    // Atomic lock check: mark as processing so no duplicate cron execution can pick it up
+    try {
+      const lockRes: any = await conn.execute(
+        `UPDATE social_posts SET status = 'processing' WHERE id = ? AND status = 'pending'`,
+        [post.id]
+      );
+      const rowsChanged = lockRes?.rowsAffected ?? lockRes?.affectedRows ?? 1;
+      if (rowsChanged === 0) {
+        console.log(`[Cloud Cron] Post ${post.id} already locked or processed. Skipping.`);
+        continue;
+      }
+    } catch (lockErr) {
+      console.warn('Could not acquire processing lock, continuing:', lockErr);
+    }
+
     console.log(`[Cloud Cron] Processing post: ${post.id} (${post.studentName}) at ${istTimeStr} IST`);
 
     const postResult: any = {
